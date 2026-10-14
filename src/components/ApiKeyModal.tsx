@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Key, ExternalLink, ShieldCheck } from 'lucide-react';
+import { getApiKeyPreference } from '../services/storage';
 
 interface ApiKeyModalProps {
   isOpen: boolean;
   onClose: () => void;
   apiKey: string;
-  onSaveKey: (key: string) => void;
+  onSaveKey: (key: string, remember: boolean) => void;
 }
 
 export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
@@ -15,12 +16,27 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
   onSaveKey,
 }) => {
   const [val, setVal] = useState(apiKey);
+  const [remember, setRemember] = useState(getApiKeyPreference);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setVal(apiKey);
+      setRemember(getApiKeyPreference());
+      setError('');
+    }
+  }, [isOpen, apiKey]);
 
   if (!isOpen) return null;
 
   const handleSave = () => {
-    onSaveKey(val);
-    onClose();
+    try { onSaveKey(val.trim(), remember); onClose(); }
+    catch (error) { setError(error instanceof Error ? error.message : 'API key could not be saved.'); }
+  };
+
+  const handleClear = () => {
+    try { onSaveKey('', false); setVal(''); setRemember(false); onClose(); }
+    catch (error) { setError(error instanceof Error ? error.message : 'API key could not be cleared.'); }
   };
 
   return (
@@ -37,6 +53,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close API key settings"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
           >
             <X className="w-5 h-5" />
@@ -46,28 +63,37 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
         <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
           Adding your Google Gemini API Key enables:
           <br />• 🤖 AI Study Tutor across 4 coaching modes (Socratic, Teach-Back, Drill, Standard).
-          <br />• ⚡️ Dynamic in-app question generation with strict anti-bias quality gates.
+          <br />• ⚡️ Draft question generation with structure and length checks; content still needs review.
         </p>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          <label htmlFor="gemini-key" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
             API Key
           </label>
           <input
+            id="gemini-key"
             type="password"
+            autoComplete="off"
             value={val}
             onChange={e => setVal(e.target.value)}
             placeholder="AIzaSy..."
             className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-none text-xs text-slate-900 dark:text-white font-mono focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
           />
+          <label className="flex items-center gap-2 pt-2 text-xs text-slate-600 dark:text-slate-300">
+            <input type="checkbox" checked={remember} onChange={event => setRemember(event.target.checked)} />
+            Remember this key on this device
+          </label>
         </div>
 
         <div className="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-[11px] text-indigo-700 dark:text-indigo-300 flex items-start gap-2">
           <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-indigo-500" />
           <span>
-            Your API Key is stored exclusively in your local browser's LocalStorage and is never shared or transmitted elsewhere.
+            Your key stays in this browser session by default. “Remember” stores it in this browser until you clear it.
+            AI requests send your key, study messages, and relevant practice question content directly to Google Gemini.
+            Google quota limits and charges may apply. Do not submit personal, confidential, or protected ISACA exam/QAE material.
           </span>
         </div>
+        {error && <p role="alert" className="text-xs text-rose-600">{error}</p>}
 
         <div className="flex items-center justify-between pt-2">
           <a
@@ -76,10 +102,15 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
             rel="noreferrer"
             className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
           >
-            Get Free Key <ExternalLink className="w-3 h-3" />
+            Get Gemini Key <ExternalLink className="w-3 h-3" />
           </a>
 
           <div className="flex gap-2">
+            {apiKey && (
+              <button onClick={handleClear} className="px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50">
+                Clear Key
+              </button>
+            )}
             <button
               onClick={onClose}
               className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"

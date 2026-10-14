@@ -1,6 +1,7 @@
 import { Flashcard } from '../types';
+import { draftSource } from '../services/questionOrder';
 
-export const INITIAL_FLASHCARDS: Flashcard[] = [
+const FLASHCARD_DRAFTS: Flashcard[] = [
   // =========================================================================
   // DOMAIN 1: AI ENTERPRISE GOVERNANCE (30%)
   // =========================================================================
@@ -175,7 +176,7 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     domainId: 'D2',
     topic: 'Disparate Impact vs. Disparate Treatment',
     front: 'How do "Disparate Treatment" and "Disparate Impact" differ in AI legal compliance?',
-    back: '1. Disparate Treatment: Intentional discrimination where an algorithm explicitly uses protected class status to treat individuals differently.\n2. Disparate Impact: Unintentional discrimination where an ostensibly neutral practice or algorithmic model disproportionately disadvantages a protected subgroup in practice (the 80% / Four-Fifths Rule).',
+    back: '1. Disparate Treatment: Intentional differential treatment based on protected status; explicit protected-class fields are not the only possible mechanism.\n2. Disparate Impact: An ostensibly neutral practice disproportionately disadvantages a protected group, subject to the applicable legal test. The US employment Four-Fifths Rule is a screening rule of thumb, not a universal legal definition of discrimination or a guarantee of compliance.',
     source: 'ISACA AAIG D2; US EEOC / Title VII; EU AI Act Art. 10',
     keyTakeaway: 'Lack of discriminatory intent is not a legal defense against demonstrable disparate impact.'
   },
@@ -205,8 +206,8 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     id: 'fc-22',
     domainId: 'D3',
     topic: 'Explainability & Contestability (XAI)',
-    front: 'Why is "black-box" AI unacceptable for high-impact enterprise decisions (e.g., credit underwriting, hiring)?',
-    back: 'A lack of explainability directly impedes:\n1. Contestability: Inability to provide affected individuals with legally mandated adverse action notices or appeal avenues;\n2. Regulatory Defense: Failure to prove absence of proxy discrimination or algorithmic bias;\n3. Effective Human Oversight: Human-in-the-loop reviewers cannot evaluate edge cases without interpretable rationales.',
+    front: 'Why do high-impact AI decisions require appropriate transparency and explanations (e.g., credit underwriting, hiring)?',
+    back: 'Insufficient transparency can impede: 1. Contestability: Providing affected individuals with explanations or appeal avenues where applicable law requires them. 2. Risk evaluation: Investigating proxy discrimination, bias, limitations and decision behavior. 3. Effective human oversight: Enabling reviewers to interpret outputs and identify when to intervene. A complex model is not automatically prohibited; assess whether available explanations, documentation and controls meet the use case and legal requirements.',
     source: 'ISACA AAIG D3; EU AI Act Art. 13; NIST AI RMF MEASURE 2.8',
     keyTakeaway: 'High-impact decisions require explainability and human contestability to remain legally defensible.'
   },
@@ -233,7 +234,7 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     domainId: 'D3',
     topic: 'Human-in-the-Loop (HITL) vs. Human-on-the-Loop (HOTL)',
     front: 'What is the operational and governance distinction between HITL, HOTL, and HIC (Human-in-Command)?',
-    back: '1. Human-in-the-Loop (HITL): Human must review and approve every individual output before execution (highest control, lowest latency);\n2. Human-on-the-Loop (HOTL): System executes autonomously in real-time, but a human monitors telemetry and can intervene or abort;\n3. Human-in-Command (HIC): Human oversees overall system deployment, context, and operational bounds, deciding whether and when the AI should run at all.',
+    back: '1. Human-in-the-Loop (HITL): A human participates in decisions before execution; reviewing individual outputs can add latency, and control effectiveness depends on the reviewer and process.\n2. Human-on-the-Loop (HOTL): The system executes while a human monitors and can intervene or abort.\n3. Human-in-Command (HIC): A human oversees deployment, context and operational boundaries, including whether the AI should run.',
     source: 'ISACA AAIG D3; EU AI Act Art. 14; NIST AI RMF GOVERN 2.1',
     keyTakeaway: 'High-risk systems mandate meaningful human oversight—automation bias (rubber-stamping) invalidates HITL compliance.'
   },
@@ -354,18 +355,18 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     domainId: 'D4',
     topic: 'AI Incident Reporting Timelines',
     front: 'What are the regulatory notification requirements when a serious AI safety incident occurs under the EU AI Act?',
-    back: 'Providers of High-Risk AI systems must report any serious incident (resulting in death, serious bodily injury, critical infrastructure disruption, or fundamental rights breaches) to relevant national market surveillance authorities immediately, and no later than 15 calendar days after becoming aware of the incident.',
+    back: 'EU AI Act Article 73 distinguishes reporting deadlines for providers of high-risk AI systems. The general rule is immediately after a causal link or reasonable likelihood is established, and no later than 15 days after awareness. Widespread infringement or a serious incident involving serious and irreversible disruption of critical infrastructure must be reported immediately and no later than 2 days. A death must be reported immediately once a causal link is established or suspected, and no later than 10 days after awareness. Check applicable scope, transition dates and sector-specific provisions; do not wait for the maximum deadline.',
     source: 'EU AI Act Article 73; ISACA AAIG D4',
-    keyTakeaway: 'Serious AI incidents have statutory 15-day reporting deadlines to regulatory authorities.'
+    keyTakeaway: 'Article 73 has 2, 10 and 15 day outer limits depending on the incident, with immediate reporting triggers.'
   },
   {
     id: 'fc-39',
     domainId: 'D4',
     topic: 'Conformity Assessment Procedures (CE-Marking)',
     front: 'What is an AI Conformity Assessment under the EU AI Act, and what are the two main pathways?',
-    back: 'A mandatory evaluation proving a High-Risk AI system satisfies all essential requirements (Articles 8–15: risk management, data governance, technical docs, record-keeping, transparency, human oversight, accuracy/robustness).\nPathways: 1) Internal control (self-assessment by deployer/provider for Annex III items); 2) Third-party assessment by a Notified Body (mandatory for biometric identification systems).',
+    back: 'A conformity assessment evaluates whether an in-scope high-risk AI system meets applicable requirements, including Articles 8-15. The provider is responsible for the applicable assessment. Article 43 provides different routes: Annex III points 2-8 generally use internal control under Annex VI; Annex III point 1 may use internal control or a notified body under Annex VII depending on applicable standards and conditions. Product-related AI covered by Annex I follows the relevant sector legislation. Check system category, applicable dates and conditions before selecting a route.',
     source: 'EU AI Act Article 43, Annexes VI & VII; ISACA AAIG D4',
-    keyTakeaway: 'Without a successfully completed conformity assessment and CE-mark, high-risk AI cannot be legally placed on the EU market.'
+    keyTakeaway: 'Assessment routes depend on system category and conditions; a notified body is not universally required for every biometric system.'
   },
   {
     id: 'fc-40',
@@ -377,3 +378,7 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     keyTakeaway: 'Red teaming is a proactive assurance control validating whether security guardrails hold against adversarial exploitation.'
   }
 ];
+
+export const INITIAL_FLASHCARDS: Flashcard[] = FLASHCARD_DRAFTS.map(card => ({
+  ...card, source: draftSource(card.source), reviewStatus: 'unreviewed',
+}));

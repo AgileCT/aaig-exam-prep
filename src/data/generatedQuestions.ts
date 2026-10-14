@@ -1,6 +1,7 @@
 import { Question } from '../types';
+import { markQuestionUnreviewed } from '../services/questionOrder';
 
-export const GENERATED_QUESTIONS: Question[] = [
+const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services firm intends to scale multiple generative AI applications across customer-facing operations. The board of directors seeks to establish robust oversight to ensure enterprise alignment with regulatory obligations and strategic risk tolerance.",
     "questionText": "Which of the following is the BEST governance action for the board to establish effective oversight?",
@@ -6887,3 +6888,5 @@ export const GENERATED_QUESTIONS: Question[] = [
     "subDomain": "D2.5 Provenance, Lineage & Synthetic Data Usage"
   }
 ];
+
+export const GENERATED_QUESTIONS: Question[] = GENERATED_QUESTION_DRAFTS.map(markQuestionUnreviewed);

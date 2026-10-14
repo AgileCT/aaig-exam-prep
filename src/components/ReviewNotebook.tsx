@@ -93,7 +93,7 @@ export const ReviewNotebook: React.FC<ReviewNotebookProps> = ({
                   </p>
 
                   <div className="text-xs text-slate-400 flex items-center gap-2">
-                    <span>Standard: {q.source}</span>
+                    <span>Reference ({q.reviewStatus === 'reviewed' && q.reviewedBy && q.reviewedAt ? 'reviewed' : 'unreviewed'}): {q.source}</span>
                     {lastAttempt && (
                       <span className={lastAttempt.isCorrect ? 'text-emerald-500' : 'text-rose-500'}>
                         Last Attempt: {lastAttempt.isCorrect ? 'Correct' : 'Incorrect'}

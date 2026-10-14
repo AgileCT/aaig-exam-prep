@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Question, TutorMode, TutorMessage } from '../types';
 import { callAITutor } from '../services/tutorPromptPolicy';
 import { 
@@ -27,6 +27,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
   const [mode, setMode] = useState<TutorMode>('standard');
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const request = useRef<AbortController | null>(null);
   const [messages, setMessages] = useState<TutorMessage[]>([
     {
       id: 'welcome',
@@ -39,18 +40,28 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
     }
   ]);
 
+  useEffect(() => {
+    setLoading(false);
+    return () => {
+      request.current?.abort();
+      request.current = null;
+    };
+  }, [isOpen, contextQuestion?.id, apiKey]);
+
   if (!isOpen) return null;
 
-  const handleSend = async (userTextToSend?: string) => {
+  const handleSend = async (userTextToSend?: string, selectedMode: TutorMode = mode) => {
     const text = userTextToSend || input;
-    if (!text.trim() || loading) return;
+    if (!text.trim() || request.current) return;
+    const controller = new AbortController();
+    request.current = controller;
 
     const userMsg: TutorMessage = {
       id: `u-${Date.now()}`,
       role: 'user',
       content: text,
       timestamp: Date.now(),
-      mode,
+      mode: selectedMode,
     };
 
     setMessages(prev => [...prev, userMsg]);
@@ -58,16 +69,18 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
     setLoading(true);
 
     try {
-      const reply = await callAITutor(apiKey, text, mode, contextQuestion);
+      const reply = await callAITutor(apiKey, text, selectedMode, contextQuestion, { signal: controller.signal });
+      if (controller.signal.aborted || request.current !== controller) return;
       const assistantMsg: TutorMessage = {
         id: `a-${Date.now()}`,
         role: 'assistant',
         content: reply,
         timestamp: Date.now(),
-        mode,
+        mode: selectedMode,
       };
       setMessages(prev => [...prev, assistantMsg]);
     } catch (err: any) {
+      if (controller.signal.aborted || request.current !== controller) return;
       setMessages(prev => [
         ...prev,
         {
@@ -78,7 +91,10 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
         }
       ]);
     } finally {
-      setLoading(false);
+      if (request.current === controller) {
+        request.current = null;
+        setLoading(false);
+      }
     }
   };
 
@@ -108,18 +124,24 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
                 </span>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Grounded in ISACA governance doctrines & global AI frameworks
+                Independent practice guidance · AI output is unreviewed
               </p>
             </div>
           </div>
 
           <button
-            onClick={onClose}
+            onClick={() => { request.current?.abort(); onClose(); }}
+            aria-label="Close AI tutor"
             className="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
+
+        <p className="px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800">
+          With an API key, study messages and the current practice item go to Google Gemini. Quota limits and charges may apply.
+          Do not submit personal, confidential, or protected ISACA exam/QAE content. Verify AI explanations against original sources.
+        </p>
 
         {/* Mode Selector Tabs (AAISM's 4 Tutor Modes) */}
         <div className="px-4 py-2 bg-slate-50 dark:bg-slate-850 border-b border-slate-100 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto text-xs shrink-0">
@@ -206,7 +228,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
               key={i}
               onClick={() => {
                 if (qp.targetMode) setMode(qp.targetMode);
-                handleSend(qp.text);
+                handleSend(qp.text, qp.targetMode ?? mode);
               }}
               className="text-[11px] whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 hover:text-indigo-600 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 transition-colors"
             >

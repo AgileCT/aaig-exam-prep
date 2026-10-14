@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DomainId, Question, Flashcard, QuestionType, Difficulty } from '../types';
 import { AAIG_DOMAINS } from '../data/domains';
 import { Sparkles, AlertCircle, Plus, CheckCircle2, Layers, BookOpen, RotateCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { generateGeminiText } from '../services/gemini';
+import { parseGeneratedFlashcard, parseGeneratedQuestion, passesLengthGate, questionLengthRatio } from '../services/contentValidation';
 
 interface QuestionGeneratorModalProps {
   apiKey: string;
@@ -32,12 +34,27 @@ export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
   const [generatedFlashcard, setGeneratedFlashcard] = useState<Flashcard | null>(null);
 
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const request = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    setIsGenerating(false);
+    return () => { request.current?.abort(); request.current = null; };
+  }, [apiKey]);
+
+  const cancelGeneration = () => {
+    request.current?.abort();
+    request.current = null;
+    setIsGenerating(false);
+  };
 
   const handleGenerateMCQ = async () => {
     if (!apiKey) {
       onOpenApiKey();
       return;
     }
+    if (request.current) return;
+    const controller = new AbortController();
+    request.current = controller;
 
     setIsGenerating(true);
     setErrorMsg(null);
@@ -48,17 +65,17 @@ export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
     const randomSubDomain = subDomains[Math.floor(Math.random() * subDomains.length)];
     const correctPos = Math.floor(Math.random() * 4);
 
-    const prompt = `You are an ISACA AAIG (Advanced in AI Governance) exam author. Create ONE brand-new scenario-based multiple-choice question.
+    const prompt = `Create ONE original AAIG (Advanced in AI Governance) practice question. You are an independent author, not ISACA. Do not reproduce protected exam or QAE material. This output will be marked unreviewed.
 Domain: ${domainId} - ${AAIG_DOMAINS[domainId].name}
 SubDomain: ${randomSubDomain}
 Question Type: ${questionType} (ISACA style: BEST=most comprehensive governance action, FIRST=foundational initial step, PRIMARY=main responsibility/objective)
 Difficulty: ${difficulty}
 
-CRITICAL ANTI-BIAS GATES:
+AUTHORING REQUIREMENTS (the app only checks structure and length):
 1. Place correct answer at index ${correctPos} (0..3).
-2. The correct answer must NOT be the longest option. Make at least ONE distractor equal-to-or-longer.
+2. Keep the correct option length between 0.75 and 1.45 times the mean distractor length.
 3. Distractors must test distinct governance misconceptions (Priority trap, Timing/Sequence trap, Scope/Lines of defense trap).
-4. Strictly ground in ISO/IEC 42001, NIST AI RMF, or EU AI Act.
+4. Explain a relevant ISO/IEC 42001, NIST AI RMF, or EU AI Act concept. Do not invent clause references; explicitly state when a reference needs verification.
 5. Answer strictly in English.
 
 Respond with STRICT RAW JSON only (no markdown code fence):
@@ -75,41 +92,22 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 }`;
 
     try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ role: 'user', parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.4, maxOutputTokens: 1200 }
-        })
+      const rawText = await generateGeminiText(apiKey, prompt, {
+        signal: controller.signal, temperature: 0.4, maxOutputTokens: 1600, json: true,
       });
-
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-      const data = await res.json();
-      let rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      rawText = rawText.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
-
-      const parsed = JSON.parse(rawText);
-      parsed.id = `aaig-custom-${Date.now()}`;
-      parsed.domainId = domainId;
-      parsed.subDomain = randomSubDomain;
-
-      const correctLen = parsed.options[parsed.correctIndex].length;
-      const otherLens = parsed.options.filter((_: any, i: number) => i !== parsed.correctIndex).map((o: string) => o.length);
-      const meanOther = otherLens.reduce((a: number, b: number) => a + b, 0) / otherLens.length;
-      const ratio = correctLen / meanOther;
-
+      if (controller.signal.aborted || request.current !== controller) return;
+      const parsed = parseGeneratedQuestion(rawText, domainId, randomSubDomain, questionType, difficulty);
+      const ratio = questionLengthRatio(parsed);
       setQualityStats({
         ratio: Number(ratio.toFixed(2)),
-        lengthCheck: ratio <= 1.45
+        lengthCheck: passesLengthGate(parsed),
       });
-
       setGeneratedQuestion(parsed);
-    } catch (e: any) {
-      setErrorMsg(e?.message || 'Generation failed. Please verify your API Key or try again.');
+    } catch (error) {
+      if (controller.signal.aborted || request.current !== controller) return;
+      setErrorMsg(error instanceof Error ? error.message : 'Generation failed. Please try again.');
     } finally {
-      setIsGenerating(false);
+      if (request.current === controller) { request.current = null; setIsGenerating(false); }
     }
   };
 
@@ -118,6 +116,9 @@ Respond with STRICT RAW JSON only (no markdown code fence):
       onOpenApiKey();
       return;
     }
+    if (request.current) return;
+    const controller = new AbortController();
+    request.current = controller;
 
     setIsGenerating(true);
     setErrorMsg(null);
@@ -125,11 +126,11 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 
     const topicQuery = flashcardTopic.trim() || AAIG_DOMAINS[domainId].subDomains[0];
 
-    const prompt = `You are an ISACA AAIG (Advanced in AI Governance) curriculum author. Create ONE high-yield study flashcard.
+    const prompt = `Create ONE original AAIG (Advanced in AI Governance) study flashcard. You are an independent author, not ISACA. Do not reproduce protected exam or QAE material. This output will be marked unreviewed.
 Domain: ${domainId} - ${AAIG_DOMAINS[domainId].name}
 Target Topic: ${topicQuery}
 
-Focus on key ISACA governance nuances, standard requirements (ISO/IEC 42001, NIST AI RMF, EU AI Act), and clear distinctions.
+Focus on governance concepts (ISO/IEC 42001, NIST AI RMF, EU AI Act) and clear distinctions. Do not invent clause references; state when verification is needed.
 Answer strictly in English.
 
 Respond with STRICT RAW JSON only (no markdown code fence):
@@ -142,46 +143,37 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 }`;
 
     try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ role: 'user', parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.5, maxOutputTokens: 1000 }
-        })
+      const rawText = await generateGeminiText(apiKey, prompt, {
+        signal: controller.signal, temperature: 0.5, maxOutputTokens: 1200, json: true,
       });
-
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-      const data = await res.json();
-      let rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      rawText = rawText.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
-
-      const parsed = JSON.parse(rawText);
-      parsed.id = `fc-custom-${Date.now()}`;
-      parsed.domainId = domainId;
-
+      if (controller.signal.aborted || request.current !== controller) return;
+      const parsed = parseGeneratedFlashcard(rawText, domainId);
       setGeneratedFlashcard(parsed);
-    } catch (e: any) {
-      setErrorMsg(e?.message || 'Generation failed. Please verify your API Key or try again.');
+    } catch (error) {
+      if (controller.signal.aborted || request.current !== controller) return;
+      setErrorMsg(error instanceof Error ? error.message : 'Generation failed. Please try again.');
     } finally {
-      setIsGenerating(false);
+      if (request.current === controller) { request.current = null; setIsGenerating(false); }
     }
   };
 
   const handleSaveMCQ = () => {
-    if (!generatedQuestion) return;
-    onSaveQuestion(generatedQuestion);
-    confetti({ particleCount: 50, spread: 70, origin: { y: 0.8 } });
-    setGeneratedQuestion(null);
-    setQualityStats(null);
+    if (!generatedQuestion || !passesLengthGate(generatedQuestion)) return;
+    try {
+      onSaveQuestion(generatedQuestion);
+      confetti({ particleCount: 50, spread: 70, origin: { y: 0.8 } });
+      setGeneratedQuestion(null);
+      setQualityStats(null);
+    } catch (error) { setErrorMsg(error instanceof Error ? error.message : 'Question was not saved.'); }
   };
 
   const handleSaveCard = () => {
     if (!generatedFlashcard) return;
-    onSaveFlashcard(generatedFlashcard);
-    confetti({ particleCount: 50, spread: 70, origin: { y: 0.8 } });
-    setGeneratedFlashcard(null);
+    try {
+      onSaveFlashcard(generatedFlashcard);
+      confetti({ particleCount: 50, spread: 70, origin: { y: 0.8 } });
+      setGeneratedFlashcard(null);
+    } catch (error) { setErrorMsg(error instanceof Error ? error.message : 'Flashcard was not saved.'); }
   };
 
   return (
@@ -189,7 +181,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
       {/* Target Type Selector */}
       <div className="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl w-fit mx-auto text-xs font-bold">
         <button
-          onClick={() => { setTargetType('mcq'); setErrorMsg(null); }}
+          onClick={() => { cancelGeneration(); setTargetType('mcq'); setErrorMsg(null); }}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all ${
             targetType === 'mcq'
               ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm'
@@ -199,7 +191,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
           <BookOpen className="w-4 h-4" /> Multiple-Choice Question (MCQ)
         </button>
         <button
-          onClick={() => { setTargetType('flashcard'); setErrorMsg(null); }}
+          onClick={() => { cancelGeneration(); setTargetType('flashcard'); setErrorMsg(null); }}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all ${
             targetType === 'flashcard'
               ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm'
@@ -218,15 +210,20 @@ Respond with STRICT RAW JSON only (no markdown code fence):
           </div>
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-              {targetType === 'mcq' ? 'ISACA Quality-Gated Question Authoring' : 'AI Governance Flashcard Authoring'}
+              {targetType === 'mcq' ? 'Original Practice Question Authoring' : 'AI Governance Flashcard Authoring'}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
               {targetType === 'mcq'
-                ? 'Built-in Length-parity Gate, Position Steering, and Orthogonal Distractor Misconception Axes'
-                : 'Generates concise, high-yield concept breakdowns anchored in ISO 42001, NIST AI RMF, and EU AI Act'}
+                ? 'Checks JSON structure and option length only. No blind answer validation or expert review.'
+                : 'Checks JSON structure only. AI-generated explanations and references require verification.'}
             </p>
           </div>
         </div>
+
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          Requests send your key, selected topic, and authoring prompt to Google Gemini. Quota limits and charges may apply.
+          Do not enter personal, confidential, or protected ISACA exam/QAE material. Generated items remain unreviewed.
+        </p>
 
         {/* Form Controls for MCQ */}
         {targetType === 'mcq' && (
@@ -325,7 +322,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
             </div>
           ) : (
             <div className="text-xs text-slate-500">
-              ⚡️ Quality gates automatically enforce length parity and distractor diversity
+              Length gate: 0.75–1.45 × mean distractor length. Content accuracy is not verified.
             </div>
           )}
 
@@ -335,12 +332,13 @@ Respond with STRICT RAW JSON only (no markdown code fence):
             className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-700 hover:to-sky-700 disabled:opacity-50 text-white font-semibold text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
-            {isGenerating ? 'Generating with Quality Gates...' : targetType === 'mcq' ? 'Generate Question' : 'Generate Flashcard'}
+            {isGenerating ? 'Generating...' : targetType === 'mcq' ? 'Generate Question' : 'Generate Flashcard'}
           </button>
+          {isGenerating && <button onClick={cancelGeneration} className="text-xs text-slate-500">Cancel request</button>}
         </div>
 
         {errorMsg && (
-          <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 text-xs">
+            <div role="alert" className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 text-xs">
             {errorMsg}
           </div>
         )}
@@ -352,14 +350,14 @@ Respond with STRICT RAW JSON only (no markdown code fence):
           <div className="flex items-center justify-between">
             <span className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              Passed Quality Gates
+              {qualityStats?.lengthCheck ? 'Structure & length checks passed · Unreviewed' : 'Length check failed · Unreviewed'}
             </span>
 
             {qualityStats && (
               <span className={`text-[11px] font-mono px-2 py-0.5 rounded ${
                 qualityStats.lengthCheck ? 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300' : 'bg-rose-100 text-rose-600'
               }`}>
-                Length Ratio: {qualityStats.ratio} (Parity Passed)
+                Length ratio: {qualityStats.ratio} ({qualityStats.lengthCheck ? 'within 0.75–1.45' : 'outside 0.75–1.45'})
               </span>
             )}
           </div>
@@ -393,17 +391,18 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 
           <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 text-xs space-y-2">
             <div>
-              <span className="font-bold text-indigo-600 dark:text-indigo-400">ISACA Governance Rationale:</span>
+              <span className="font-bold text-indigo-600 dark:text-indigo-400">AI-generated explanation · Unreviewed:</span>
               <p className="text-slate-600 dark:text-slate-300 mt-0.5">{generatedQuestion.explanation}</p>
             </div>
             <div className="text-[11px] text-slate-400">
-              Citation: {generatedQuestion.source}
+              Unverified reference: {generatedQuestion.source}
             </div>
           </div>
 
           <button
             onClick={handleSaveMCQ}
-            className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all active:scale-98 flex items-center justify-center gap-1.5"
+            disabled={!qualityStats?.lengthCheck}
+            className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white font-bold text-xs shadow-md transition-all active:scale-98 flex items-center justify-center gap-1.5"
           >
             <Plus className="w-4 h-4" /> Add to My Question Bank
           </button>
@@ -415,10 +414,10 @@ Respond with STRICT RAW JSON only (no markdown code fence):
         <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border-2 border-sky-300 dark:border-sky-800 shadow-lg space-y-4 animate-fadeIn">
           <div className="flex items-center justify-between">
             <span className="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 font-bold text-xs">
-              {generatedFlashcard.domainId} · {generatedFlashcard.topic}
+              {generatedFlashcard.domainId} · {generatedFlashcard.topic} · AI-generated, unreviewed
             </span>
             <span className="text-xs text-slate-400">
-              {generatedFlashcard.source}
+              Unverified reference: {generatedFlashcard.source}
             </span>
           </div>
 

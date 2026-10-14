@@ -1,5 +1,6 @@
 import { Question } from '../types';
 import { GENERATED_QUESTIONS } from './generatedQuestions';
+import { markQuestionUnreviewed } from '../services/questionOrder';
 
 const BASE_QUESTIONS: Question[] = [
   // =========================================================================
@@ -524,7 +525,6 @@ const BASE_QUESTIONS: Question[] = [
 ];
 
 export const INITIAL_QUESTIONS: Question[] = [
-  ...BASE_QUESTIONS,
+  ...BASE_QUESTIONS.map(markQuestionUnreviewed),
   ...GENERATED_QUESTIONS,
 ];
-
