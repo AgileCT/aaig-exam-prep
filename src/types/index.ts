@@ -7,7 +7,7 @@ export type Difficulty = 'Fundamental' | 'Intermediate' | 'Director-Level';
 export interface DomainMeta {
   id: DomainId;
   name: string;
-  weight: number; // percentage, e.g. 30
+  weight: number; // Product-defined study allocation, not an official exam weight.
   description: string;
   subDomains: string[];
 }
@@ -26,6 +26,10 @@ export interface Question {
   source: string;
   difficulty: Difficulty;
   distractorAxes?: string[];
+  reviewStatus?: 'unreviewed' | 'reviewed';
+  sourceUrl?: string;
+  reviewedBy?: string;
+  reviewedAt?: string;
 }
 
 export interface Flashcard {
@@ -36,6 +40,10 @@ export interface Flashcard {
   back: string;
   source: string;
   keyTakeaway: string;
+  reviewStatus?: 'unreviewed' | 'reviewed';
+  sourceUrl?: string;
+  reviewedBy?: string;
+  reviewedAt?: string;
 }
 
 export type FlashcardMastery = 'new' | 'learning' | 'mastered';

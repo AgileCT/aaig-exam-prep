@@ -34,6 +34,7 @@ export const App: React.FC = () => {
   const [isTutorOpen, setIsTutorOpen] = useState(false);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
   const [quizDomainFilter, setQuizDomainFilter] = useState<DomainId | 'ALL'>('ALL');
+  const [quizQuestionId, setQuizQuestionId] = useState<string | undefined>();
 
   // Handle dark mode class
   useEffect(() => {
@@ -44,13 +45,12 @@ export const App: React.FC = () => {
     }
   }, [isDarkMode]);
 
-  // Persist progress changes
+  useEffect(() => {
+    saveUserProgress(progress);
+  }, [progress]);
+
   const updateProgress = (updater: (prev: UserProgress) => UserProgress) => {
-    setProgress(prev => {
-      const updated = updater(prev);
-      saveUserProgress(updated);
-      return updated;
-    });
+    setProgress(updater);
   };
 
   const handleRecordAttempt = (questionId: string, answeredIndex: number, isCorrect: boolean) => {
@@ -63,6 +63,8 @@ export const App: React.FC = () => {
       const wrongSet = new Set(prev.wrongIds);
       if (!isCorrect) {
         wrongSet.add(questionId);
+      } else {
+        wrongSet.delete(questionId);
       }
 
       return {
@@ -105,9 +107,9 @@ export const App: React.FC = () => {
     }));
   };
 
-  const handleSaveApiKey = (key: string) => {
+  const handleSaveApiKey = (key: string, remember: boolean) => {
+    saveApiKey(key, remember);
     setApiKey(key);
-    saveApiKey(key);
   };
 
   const handleSaveCustomQuestion = (newQ: Question) => {
@@ -126,6 +128,7 @@ export const App: React.FC = () => {
   };
 
   const handleSelectDomainFromDashboard = (dId: DomainId) => {
+    setQuizQuestionId(undefined);
     setQuizDomainFilter(dId);
     setActiveTab('quiz');
   };
@@ -133,6 +136,7 @@ export const App: React.FC = () => {
   const handleLaunchQuestionFromReview = (qId: string) => {
     const targetQ = questions.find(q => q.id === qId);
     if (targetQ) {
+      setQuizQuestionId(qId);
       setQuizDomainFilter(targetQ.domainId);
       setActiveTab('quiz');
     }
@@ -176,6 +180,7 @@ export const App: React.FC = () => {
             onToggleBookmark={handleToggleBookmark}
             onOpenTutor={handleOpenTutorForQuestion}
             initialDomainId={quizDomainFilter}
+            initialQuestionId={quizQuestionId}
           />
         )}
 

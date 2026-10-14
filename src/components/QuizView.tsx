@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Question, DomainId, UserProgress } from '../types';
 import { AAIG_DOMAINS } from '../data/domains';
 import { 
@@ -11,7 +11,7 @@ import {
   BookOpen,
   CheckCircle2,
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { shuffleQuestionOptions } from '../services/questionOrder';
 
 interface QuizViewProps {
   questions: Question[];
@@ -20,6 +20,7 @@ interface QuizViewProps {
   onToggleBookmark: (questionId: string) => void;
   onOpenTutor: (question: Question) => void;
   initialDomainId?: DomainId | 'ALL';
+  initialQuestionId?: string;
 }
 
 export const QuizView: React.FC<QuizViewProps> = ({
@@ -29,24 +30,24 @@ export const QuizView: React.FC<QuizViewProps> = ({
   onToggleBookmark,
   onOpenTutor,
   initialDomainId = 'ALL',
+  initialQuestionId,
 }) => {
   const [selectedDomain, setSelectedDomain] = useState<DomainId | 'ALL'>(initialDomainId);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const filteredQuestions = useMemo(() => (selectedDomain === 'ALL'
+    ? questions
+    : questions.filter(q => q.domainId === selectedDomain)).map(q => shuffleQuestionOptions(q)), [questions, selectedDomain]);
+  const [currentIndex, setCurrentIndex] = useState(() => Math.max(0, filteredQuestions.findIndex(q => q.id === initialQuestionId)));
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [quizMode, setQuizMode] = useState<'practice' | 'exam'>('practice');
-
-  // Filter questions based on selected domain
-  const filteredQuestions = selectedDomain === 'ALL' 
-    ? questions 
-    : questions.filter(q => q.domainId === selectedDomain);
+  const submittedRef = useRef(false);
 
   const currentQ = filteredQuestions[currentIndex];
 
   useEffect(() => {
     setSelectedOption(null);
     setHasSubmitted(false);
-  }, [currentIndex, selectedDomain]);
+    submittedRef.current = false;
+  }, [currentIndex, selectedDomain, currentQ?.id]);
 
   if (!currentQ) {
     return (
@@ -67,23 +68,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const isBookmarked = progress.bookmarkedIds.includes(currentQ.id);
 
   const handleSelectOption = (idx: number) => {
-    if (quizMode === 'practice' && hasSubmitted) return;
+    if (submittedRef.current) return;
     setSelectedOption(idx);
   };
 
   const handleConfirmAnswer = () => {
-    if (selectedOption === null) return;
+    if (selectedOption === null || submittedRef.current) return;
+    submittedRef.current = true;
     setHasSubmitted(true);
     const isCorrect = selectedOption === currentQ.correctIndex;
-    onRecordAttempt(currentQ.id, selectedOption, isCorrect);
-
-    if (isCorrect) {
-      confetti({
-        particleCount: 40,
-        spread: 60,
-        origin: { y: 0.8 },
-      });
-    }
+    const originalQuestion = questions.find(q => q.id === currentQ.id)!;
+    const originalIndex = originalQuestion.options.indexOf(currentQ.options[selectedOption]);
+    onRecordAttempt(currentQ.id, originalIndex, isCorrect);
   };
 
   const handleNext = () => {
@@ -129,31 +125,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           ))}
         </div>
 
-        {/* Mode Selector */}
-        <div className="flex items-center gap-2">
-          <div className="bg-slate-100 dark:bg-slate-800 p-1 rounded-xl flex items-center text-xs">
-            <button
-              onClick={() => setQuizMode('practice')}
-              className={`px-3 py-1 rounded-lg font-medium transition-all ${
-                quizMode === 'practice'
-                  ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs'
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
-            >
-              Practice Mode
-            </button>
-            <button
-              onClick={() => setQuizMode('exam')}
-              className={`px-3 py-1 rounded-lg font-medium transition-all ${
-                quizMode === 'exam'
-                  ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs'
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
-            >
-              Exam Mode
-            </button>
-          </div>
-        </div>
+        <span className="text-xs text-slate-500">Practice · confirm each answer for feedback</span>
       </div>
 
       {/* Main Question Card */}
@@ -213,7 +185,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
               optionStyle = 'border-indigo-600 dark:border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 ring-1 ring-indigo-500';
             }
 
-            if (quizMode === 'practice' && hasSubmitted) {
+            if (hasSubmitted) {
               if (isCorrect) {
                 optionStyle = 'border-emerald-500 dark:border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-100 ring-1 ring-emerald-500';
               } else if (isSelected && !isCorrect) {
@@ -222,10 +194,14 @@ export const QuizView: React.FC<QuizViewProps> = ({
             }
 
             return (
-              <div
+              <button
                 key={idx}
+                type="button"
+                role="radio"
+                aria-checked={isSelected}
+                disabled={hasSubmitted}
                 onClick={() => handleSelectOption(idx)}
-                className={`p-4 rounded-2xl border text-sm transition-all cursor-pointer flex items-start gap-3.5 select-none ${optionStyle}`}
+                className={`w-full text-left p-4 rounded-2xl border text-sm transition-all cursor-pointer flex items-start gap-3.5 select-none ${optionStyle}`}
               >
                 <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 transition-colors ${
                   isSelected
@@ -238,13 +214,13 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   {option}
                 </div>
 
-                {quizMode === 'practice' && hasSubmitted && (
+                {hasSubmitted && (
                   <div className="shrink-0 pt-0.5">
                     {isCorrect && <Check className="w-5 h-5 text-emerald-500" />}
                     {isSelected && !isCorrect && <X className="w-5 h-5 text-rose-500" />}
                   </div>
                 )}
-              </div>
+              </button>
             );
           })}
         </div>
@@ -277,7 +253,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
               Ask AI Tutor
             </button>
 
-            {quizMode === 'practice' && !hasSubmitted && (
+            {!hasSubmitted && (
               <button
                 onClick={handleConfirmAnswer}
                 disabled={selectedOption === null}
@@ -287,7 +263,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
               </button>
             )}
 
-            {quizMode === 'practice' && hasSubmitted && currentIndex < filteredQuestions.length - 1 && (
+            {hasSubmitted && currentIndex < filteredQuestions.length - 1 && (
               <button
                 onClick={handleNext}
                 className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-md transition-all active:scale-95 flex items-center gap-1"
@@ -299,12 +275,12 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </div>
 
         {/* Detailed Explanation Drawer */}
-        {quizMode === 'practice' && hasSubmitted && (
+        {hasSubmitted && (
           <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-4 animate-fadeIn">
             <div className="flex items-center justify-between">
               <span className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                ISACA Official Governance Rationale
+                Author Governance Rationale
               </span>
               <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                 Key: {'ABCD'[currentQ.correctIndex]}
@@ -334,7 +310,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
             {/* Source Reference */}
             <div className="pt-3 border-t border-slate-200 dark:border-slate-750 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
-              <span>📖 Standard Citation: {currentQ.source}</span>
+               <span>📖 Reference: {currentQ.source}</span>
               <span className="text-[11px] bg-slate-200/80 dark:bg-slate-800 px-2 py-0.5 rounded">
                 Difficulty: {currentQ.difficulty}
               </span>

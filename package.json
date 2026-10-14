@@ -8,7 +8,12 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "gen:questions": "tsx scripts/generateQuestions.ts",
-    "judge:mindset": "tsx scripts/judgeGovernanceMindset.ts"
+    "audit:questions": "tsx scripts/auditQuestions.ts",
+    "test": "tsx --test tests/*.test.ts tests/*.test.tsx",
+    "verify": "npm test && npm run audit:questions && npm run build"
+  },
+  "engines": {
+    "node": ">=22.14.0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
@@ -22,9 +27,11 @@
   },
   "devDependencies": {
     "@types/canvas-confetti": "^1.9.0",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^22.14.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "jsdom": "^29.1.1",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"

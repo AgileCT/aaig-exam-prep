@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 AAIG™ Prep
               </span>
               <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold border border-indigo-200 dark:border-indigo-800/60">
-                ISACA
+                Independent
               </span>
             </div>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 hidden sm:block">
@@ -49,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Navigation Tabs */}
         <nav className="flex items-center gap-1 sm:gap-1.5">
           <button
+            aria-label="Dashboard"
             onClick={() => setActiveTab('dashboard')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'dashboard'
@@ -61,6 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            aria-label="Practice"
             onClick={() => setActiveTab('quiz')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'quiz'
@@ -73,6 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            aria-label="Mock Exam"
             onClick={() => setActiveTab('mockExam')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'mockExam'
@@ -85,6 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            aria-label="Flashcards"
             onClick={() => setActiveTab('flashcards')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'flashcards'
@@ -97,6 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            aria-label="Review"
             onClick={() => setActiveTab('review')}
             className={`relative flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'review'
@@ -114,6 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            aria-label="AI Gen"
             onClick={() => setActiveTab('generate')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'generate'
@@ -129,6 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Actions */}
         <div className="flex items-center gap-2">
           <button
+            aria-label="Configure Gemini API Key"
             onClick={onOpenApiKey}
             className={`p-2 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-colors ${
               hasApiKey
@@ -138,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Configure Gemini API Key"
           >
             <Key className="w-4 h-4" />
-            <span className="hidden lg:inline">{hasApiKey ? 'AI Ready' : 'Key'}</span>
+            <span className="hidden lg:inline">{hasApiKey ? 'Key Saved' : 'Key'}</span>
           </button>
 
           <button

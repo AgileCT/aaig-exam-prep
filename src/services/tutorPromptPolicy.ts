@@ -1,12 +1,15 @@
 import { Question, TutorMode } from '../types';
+import { generateGeminiText, GeminiRequestOptions } from './gemini';
 
 export const APPROVED_TUTOR_MODES: TutorMode[] = ['standard', 'socratic', 'teach-back', 'drill'];
 
 export function buildTutorSystemPrompt(mode: TutorMode, contextQuestion?: Question): string {
   const baseRules = [
-    'You are the ISACA AAIG (Advanced in AI Governance) Expert Study Tutor.',
+    'You are an independent AAIG (Advanced in AI Governance) study tutor, not an ISACA representative.',
     'Your goal is to coach the candidate through enterprise AI governance, risk oversight, data architecture, and compliance frameworks.',
-    'Always ground explanations in recognized frameworks: ISACA Governance Principles, COBIT, NIST AI RMF 1.0, ISO/IEC 42001 (AIMS), and the EU AI Act.',
+    'Explain recognized frameworks: COBIT, NIST AI RMF 1.0, ISO/IEC 42001 (AIMS), and the EU AI Act. State uncertainty instead of inventing source clauses.',
+    'All supplied practice content is original or AI-generated and unreviewed unless separately verified. Never present it as an official ISACA question or explanation.',
+    'Do not request or reproduce protected ISACA exam questions, QAE material, or other confidential exam content. Ask for a general concept instead.',
     'Emphasize the ISACA Mindset: Governance & strategy first, risk-based prioritization, clear board accountability & three lines model, plan/policy before technical tools.',
     'Keep your tone encouraging, rigorous, and exam-focused. Answer exclusively in English.'
   ];
@@ -70,8 +73,8 @@ CURRENT QUESTION CONTEXT:
 [Options]:
 ${contextQuestion.options.map((opt, i) => `${'ABCD'[i]}) ${opt}`).join('\n')}
 [Correct Answer Index]: ${contextQuestion.correctIndex} (${'ABCD'[contextQuestion.correctIndex]})
-[Official Explanation]: ${contextQuestion.explanation}
-[Official Source]: ${contextQuestion.source}
+[Unreviewed Practice Explanation]: ${contextQuestion.explanation}
+[Unverified Reference Supplied by Practice Item]: ${contextQuestion.source}
 `;
   }
 
@@ -86,7 +89,8 @@ export async function callAITutor(
   apiKey: string,
   userMessage: string,
   mode: TutorMode,
-  contextQuestion?: Question
+  contextQuestion?: Question,
+  options: GeminiRequestOptions = {},
 ): Promise<string> {
   const systemPrompt = buildTutorSystemPrompt(mode, contextQuestion);
 
@@ -96,42 +100,12 @@ export async function callAITutor(
       return `[Offline Tutor - Socratic Mode] In this scenario, as the AI Governance Officer, what foundational mandate and decision authority must executive leadership establish before any technical tools or pilots are approved? (Tip: Configure your Gemini API Key in the top right to unlock real-time dynamic AI dialogue).`;
     }
     if (contextQuestion) {
-      return `[Offline Knowledge Retrieval]\nTested Topic: **${contextQuestion.subDomain}**\n\n**ISACA Official Governance Rationale:**\n${contextQuestion.explanation}\n\n**Standard Citation:**\n${contextQuestion.source}\n\n💡 *Tip: Click 'API Key' in the header to enter your Gemini API Key for unlimited cloud AI conversations, Socratic coaching, and instant drill generation!*`;
+      return `[Offline Practice Explanation - Unreviewed]\nTested Topic: ${contextQuestion.subDomain}\n\n${contextQuestion.explanation}\n\nUnverified Reference: ${contextQuestion.source}\n\nCloud tutoring requires your Gemini API key. Google quota limits and charges may apply.`;
     }
     return `Please configure your Gemini API Key in the top right header to unlock the full AI Study Tutor conversational experience!`;
   }
 
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
-
-  const payload = {
-    contents: [
-      {
-        role: 'user',
-        parts: [
-          {
-            text: `${systemPrompt}\n\nCandidate Request: ${userMessage}`
-          }
-        ]
-      }
-    ],
-    generationConfig: {
-      temperature: mode === 'drill' ? 0.4 : 0.6,
-      maxOutputTokens: 1000,
-    }
-  };
-
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+  return generateGeminiText(apiKey, `${systemPrompt}\n\nCandidate Request: ${userMessage}`, {
+    ...options, temperature: mode === 'drill' ? 0.4 : 0.6, maxOutputTokens: 1000,
   });
-
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Gemini API Error (${response.status}): ${errText.slice(0, 150)}`);
-  }
-
-  const data = await response.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  return text || 'No response received from tutor. Please try again.';
 }

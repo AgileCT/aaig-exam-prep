@@ -1,5 +1,7 @@
 import { DomainId, DomainMeta } from '../types';
 
+// These four learning categories and allocation weights are this app's study design.
+// They are not an official ISACA exam blueprint or verified examination weights.
 export const AAIG_DOMAINS: Record<DomainId, DomainMeta> = {
   D1: {
     id: 'D1',

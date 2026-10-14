@@ -116,6 +116,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         </div>
       </div>
 
+      <p className="text-xs text-slate-500 dark:text-slate-400">
+        {currentCard.reviewStatus === 'reviewed' && currentCard.reviewedBy && currentCard.reviewedAt
+          ? `Reviewed by ${currentCard.reviewedBy} on ${currentCard.reviewedAt}`
+          : 'Unreviewed study material · verify the explanation and references before relying on them.'}
+      </p>
+
       {/* 3D Flip Card Container */}
       <div 
         onClick={handleFlip}
@@ -161,7 +167,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold text-indigo-400">
-                  💡 Governance Breakdown & Standards
+                  💡 Study Explanation & References
                 </span>
                 <span className="text-xs text-slate-400">
                   {currentCard.source}
@@ -174,7 +180,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
               {currentCard.keyTakeaway && (
                 <div className="p-3.5 rounded-xl bg-indigo-950/80 border border-indigo-700/50 text-xs text-indigo-200 leading-relaxed">
-                  <span className="font-bold text-indigo-300 block mb-1">🎯 ISACA Core Takeaway:</span>
+                  <span className="font-bold text-indigo-300 block mb-1">🎯 Study Takeaway:</span>
                   {currentCard.keyTakeaway}
                 </div>
               )}

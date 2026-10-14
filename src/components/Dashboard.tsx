@@ -66,13 +66,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-200 text-xs font-semibold mb-4 backdrop-blur-sm">
             <Award className="w-3.5 h-3.5 text-amber-300" />
-            ISACA AAIG™ Official Blueprint Calibration
+            Independent AAIG™ Study Companion
           </div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
             AI Governance Exam Workbench
           </h1>
           <p className="text-sm sm:text-base text-indigo-100/90 leading-relaxed mb-6">
-            Master enterprise AI strategy, the Three Lines Model, ISO/IEC 42001 (AIMS), NIST AI RMF 1.0, and EU AI Act compliance under rigorous ISACA governance principles.
+            Practice enterprise AI governance with original and AI-generated scenarios. These materials are unreviewed study drafts, not ISACA-approved questions or a predictor of exam success.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -174,14 +174,14 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-              Exam Content Outline Readiness
+              Progress by Study Category
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Calibrated against ISACA official domain weights and practice tasks
+              Four custom study categories with product-defined sampling allocations, not an official exam blueprint
             </p>
           </div>
           <span className="text-xs font-medium px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
-            Passing Target: 450 / 800 (~65%+)
+            Practice accuracy only · no official score estimate
           </span>
         </div>
 
@@ -201,7 +201,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   </span>
                 </div>
                 <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                  Weight: {dom.weight}%
+                  Study allocation: {dom.weight}%
                 </span>
               </div>
 
@@ -220,7 +220,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     className={`h-full rounded-full transition-all duration-500 ${
                       dom.accuracy >= 70 ? 'bg-emerald-500' : dom.accuracy >= 50 ? 'bg-amber-500' : 'bg-indigo-600'
                     }`}
-                    style={{ width: `${dom.totalCount > 0 ? Math.max(5, (dom.attemptedCount / dom.totalCount) * 100) : 0}%` }}
+                    style={{ width: `${dom.totalCount > 0 ? (dom.attemptedCount / dom.totalCount) * 100 : 0}%` }}
                   />
                 </div>
               </div>
@@ -239,7 +239,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
       {/* Core Standards Reference Banner */}
       <div className="bg-slate-100 dark:bg-slate-800/40 p-6 rounded-3xl border border-slate-200 dark:border-slate-800">
         <h3 className="text-sm font-bold text-slate-900 dark:text-slate-200 mb-3">
-          📚 ISACA AAIG Foundational Governance Standards
+          📚 Public Governance References
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
           <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700/60">
@@ -263,11 +263,15 @@ export const Dashboard: React.FC<DashboardProps> = ({
               EU AI Act
             </span>
             <p className="text-slate-600 dark:text-slate-400">
-              Risk hierarchy: Unacceptable (prohibited), High-Risk (mandatory conformity assessments & fundamental rights impact), and Limited Risk (transparency & watermarking).
+              Obligations depend on the use case, operator role, risk classification, and applicable dates. Check the current law and its exceptions before applying a study summary.
             </p>
           </div>
         </div>
       </div>
+      <p className="text-xs text-slate-500 dark:text-slate-400">
+        Independently developed; not affiliated with or endorsed by ISACA. AAIG™ is an ISACA trademark.
+        Check the <a className="underline" href="https://www.isaca.org/credentialing/aaig" target="_blank" rel="noopener noreferrer">official AAIG page</a> for current exam information.
+      </p>
     </div>
   );
 };
