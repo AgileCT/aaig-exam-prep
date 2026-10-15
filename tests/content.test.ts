@@ -30,7 +30,7 @@ test('retained questions are unreviewed and do not claim ISACA manual provenance
 test('retained canonical indices stay compatible with historical attempts', () => {
   assert.equal(INITIAL_QUESTIONS[0].correctIndex, 1);
   assert.equal(GENERATED_QUESTIONS[0].correctIndex, 0);
-  assert.match(INITIAL_QUESTIONS[0].options[1], /^Establish a formal AI Governance Steering Committee/);
+  assert.match(INITIAL_QUESTIONS[0].options[1], /AI Governance Steering Committee/);
   assert.ok(INITIAL_QUESTIONS.every(q => q.distractorExplanations?.length === 3));
 });
 

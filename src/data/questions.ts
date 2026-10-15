@@ -12,21 +12,16 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D1.1 AI Governance Structure & Board Oversight',
     scenarioText: 'A global financial institution plans to deploy enterprise-wide generative AI copilots across multiple business units. Several departmental heads have already started vendor pilots independently without centralized coordination.',
     questionText: 'What should the Chief AI Governance Officer recommend as the FIRST step?',
-    options: [
-      'Immediately mandate a technical penetration test and red-teaming assessment on all vendor APIs.',
-      'Establish a formal AI Governance Steering Committee with clear charter, decision rights, and risk appetite.',
-      'Instruct the IT department to block access to all generative AI endpoints until procurement review finishes.',
-      'Deploy an automated monitoring dashboard to capture real-time prompt token consumption and latency metrics.'
-    ],
+    options: ["Immediately mandate a technical penetration test and red-teaming assessment on all vendor APIs.","Establish a formally chartered AI Governance Steering Committee with delegated decision rights and board-aligned risk appetite thresholds (while containing urgent data or security exposures in active pilots in parallel).","Instruct the IT department to block access to all generative AI endpoints until procurement review finishes.","Deploy an automated monitoring dashboard to capture real-time prompt token consumption and latency metrics."],
     correctIndex: 1,
     questionType: 'FIRST',
-    explanation: 'Under ISACA governance doctrine, establish governance foundation first (charter, decision rights, risk appetite, steering committee) before technical testing, blanket prohibitions, or operational dashboard deployments. Governance sets the mandate and boundaries for all downstream actions.',
+    explanation: "When business units initiate uncoordinated vendor pilots without central oversight, the Chief AI Governance Officer should establish a cross-functional AI Governance Steering Committee operating under a formal charter, clear decision rights, and board-approved risk appetite thresholds (while containing any immediate data leakage or compliance exposures in parallel). This top-down governance structure provides the mandate and evaluation criteria needed to govern subsequent red-teaming (Option A), access controls (Option C), and operational telemetry (Option D).",
     distractorExplanations: [
       'A: Red-teaming is an operational/technical verification step that happens after governance scope and policies are defined.',
       'C: Blanket blockage is an abrupt operational reaction that damages business agility before establishing authorized governance channels.',
       'D: Metric tracking is an ongoing operational monitoring duty, not the primary foundational governance step.'
     ],
-    source: 'ISACA AAIG Review Manual D1; NIST AI RMF GOVERN 1.1; ISO/IEC 42001 Cl. 5',
+    source: "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 (verify against licensed standard).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Operational technical testing instead of foundational governance mandate',
@@ -39,22 +34,17 @@ const BASE_QUESTIONS: Question[] = [
     domainId: 'D1',
     subDomain: 'D1.4 Roles, Responsibilities & Three Lines Model',
     scenarioText: 'An enterprise is aligning its emerging AI risk management program with the Institute of Internal Auditors (IIA) Three Lines Model to ensure accountability and defensibility.',
-    questionText: 'Which responsibility belongs strictly to the SECOND LINE of defense in AI governance?',
-    options: [
-      'Designing and executing day-to-day model validation tests during the data science training pipeline.',
-      'Establishing enterprise AI risk frameworks, setting compliance policies, and providing independent challenge.',
-      'Conducting periodic independent assurance audits directly reporting to the Board Audit Committee.',
-      'Accepting residual business risks and determining commercial trade-offs for high-impact use cases.'
-    ],
+    questionText: "Under the IIA Three Lines Model, which responsibility is characteristic of the SECOND LINE roles in enterprise AI governance?",
+    options: ["Designing and executing day-to-day model validation tests during the data science training pipeline.","Establishing enterprise AI risk frameworks, formulating compliance policies within delegated authority, and providing objective, credible challenge to first-line management.","Conducting periodic independent assurance audits directly reporting to the Board Audit Committee.","Accepting residual business risks and determining commercial trade-offs for high-impact use cases."],
     correctIndex: 1,
     questionType: 'BEST',
-    explanation: 'In the Three Lines Model: 1st line (management & development) owns and operates risk; 2nd line (Risk & Compliance) sets policies, frameworks, monitors risk appetite, and challenges 1st line; 3rd line (Internal Audit) provides independent assurance to the board.',
+    explanation: "Under the IIA Three Lines Model (2020), both first- and second-line roles are part of management. First-line roles own and manage operational AI delivery and day-to-day validation controls (Option A) and accept commercial/operational risks within approved appetite (Option D). Second-line roles (Risk and Compliance) provide complementary expertise, establish risk frameworks and policies under delegated authority, monitor adherence to risk appetite, and provide objective challenge to the first line. Independent assurance reporting directly to the Audit Committee belongs exclusively to the third line, Internal Audit (Option C).",
     distractorExplanations: [
       'A: Model validation during development is a 1st line operational control duty.',
       'C: Independent audit reporting directly to the Board is the role of 3rd line (Internal Audit).',
       'D: Accepting residual business risks is the duty of the business asset owner (1st line management), not the risk oversight function.'
     ],
-    source: 'ISACA AAIG Review Manual D1; IIA Three Lines Model; COBIT Framework',
+    source: "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2 & 1.3; COBIT 2019 (verify specific governance/management objectives against licensed text).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Confusing 1st line operational engineering with 2nd line oversight',
@@ -104,13 +94,13 @@ const BASE_QUESTIONS: Question[] = [
     ],
     correctIndex: 1,
     questionType: 'MOST',
-    explanation: 'An enforceable AI Acceptable Use Policy (AUP) that delineates authorized tools, confidential data boundaries, and mandatory disclosure is the essential governance baseline. Vague guidance, covert surveillance, or unfeasible vendor demands do not provide governance legitimacy.',
+    explanation: "When employees input customer complaint transcripts into unvetted public consumer LLMs, formulating and enforcing a specific AI Acceptable Use Policy (AUP)—defining approved enterprise tools, data-classification restrictions (prohibiting confidential or regulated personal data inputs into public models), human review expectations, and compliance consequences—is the essential governance baseline, paired with immediate containment and secure enterprise alternatives.",
     distractorExplanations: [
       'A: Vague emails do not establish binding enterprise policy or enforceable boundaries.',
       'C: Technical surveillance without clear policy creates employee legal/privacy backlash and fails governance standards.',
       'D: Consumer-tier public web vendors will not execute enterprise BAAs retroactively for unauthorized personal usage.'
     ],
-    source: 'ISACA AAIG Review Manual D1; ISO/IEC 42001 Cl. 5.2; NIST AI RMF GOVERN 1.2',
+    source: "NIST AI RMF 1.0 GOVERN 1.2; NIST AI 600-1 GOVERN 1.2; GDPR Arts. 5(1)(f) & 32; ISO/IEC 42001:2023 Cl. 5.2 (verify against licensed standard).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Relying on informal, unenforceable general reminders',
@@ -124,21 +114,12 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D1.5 Ethical Frameworks & Responsible AI Principles',
     scenarioText: 'A retail bank discovers that an automated loan qualification algorithm indirectly uses postal codes that heavily correlate with protected racial demographics, causing disparate denial rates.',
     questionText: 'Which ethical governance principle has been breached, and what is the PRIMARY corrective mandate?',
-    options: [
-      'System availability; the IT team must increase server redundancy across affected bank branches.',
-      'Fairness and non-discrimination; the AI Governance Committee must mandate proxy variable audits and fairness-aware retraining.',
-      'Intellectual property protection; the data science team must patent the proprietary feature engineering formula.',
-      'Cost minimization; the procurement team must negotiate lower transaction API fees with data brokers.'
-    ],
+    options: ["Data minimization; the engineering team must mask applicant names while retaining postal code weights unchanged in production.","Fairness and non-discrimination; the AI Governance Committee must mandate proxy variable audits and fairness-aware retraining.","Technical robustness; the MLOps team must increase training epochs to reinforce existing historical credit approval correlations.","Third-party confidentiality; the legal team must classify the feature-importance matrix as a trade secret to prevent external regulatory inspection."],
     correctIndex: 1,
     questionType: 'PRIMARY',
-    explanation: 'Using features that act as proxies for protected demographic attributes breaches fairness and non-discrimination principles (proxy discrimination). Governance requires auditing for disparate impact and eliminating biased proxies.',
-    distractorExplanations: [
-      'A: System availability is an operational uptime concern, entirely irrelevant to demographic lending fairness.',
-      'C: Patenting a biased model compounds regulatory exposure and legal liability.',
-      'D: Fee negotiation does not remedy fundamental algorithmic bias or civil rights violations.'
-    ],
-    source: 'ISACA AAIG Review Manual D1; OECD AI Principles; EU AI Act Art. 10',
+    explanation: "Using neutral variables (such as postal codes) that strongly correlate with protected demographic attributes and produce unjustified disparate denial rates constitutes proxy discrimination, breaching fairness and non-discrimination principles. Sound AI governance requires proxy-variable and disparate-impact audits, bias mitigation or model redesign, and second-line validation prior to continued use.",
+    distractorExplanations: ["A: Masking applicant names while retaining discriminatory postal-code weights does not address proxy discrimination or unjustified disparate denial rates.","C: Reinforcing historical approval correlations may perpetuate the bias rather than assess and mitigate proxy discrimination.","D: Trade-secret classification does not resolve proxy discrimination or substitute for lawful regulatory scrutiny."],
+    source: "OECD AI Principles (OECD/LEGAL/0449, 2024) Principle 1.2; NIST AI RMF 1.0 MEASURE 2.11; EU AI Act Art. 10(2)(f)–(g); US ECOA / Regulation B (12 CFR Part 1002).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Confusing algorithmic fairness with IT infrastructure uptime',
@@ -164,13 +145,13 @@ const BASE_QUESTIONS: Question[] = [
     ],
     correctIndex: 0,
     questionType: 'MOST',
-    explanation: 'An enterprise AI asset inventory supplemented by Model Cards provides essential governance context: intended use, limitations, data lineage, responsible owner, risk tier, and dependencies. Simple IT license inventories or raw training logs lack this governance metadata.',
+    explanation: "Traditional IT asset registries tracking only server hostnames and software licenses lack AI-specific governance metadata. Establishing an enterprise AI asset inventory (NIST AI RMF GOVERN 1.6) paired with standardized Model Cards (documenting intended clinical use, out-of-scope uses, accountable owners, PHI data lineage, evaluation conditions, and risk tier) provides executive leadership and risk oversight with essential visibility into clinical AI deployments.",
     distractorExplanations: [
       'B: Loss curves and GPU telemetry are technical developer metrics devoid of risk or clinical governance context.',
       'C: Policy acknowledgments do not solve the structural absence of an AI asset inventory.',
       'D: NDAs address confidentiality in procurement, not internal visibility into deployed clinical models.'
     ],
-    source: 'ISACA AAIG Review Manual D2; NIST AI RMF MAP 1.1; ISO/IEC 42001 Cl. 8.2',
+    source: "NIST AI RMF 1.0 GOVERN 1.6 & MAP 1.1; Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); ISO/IEC 42001:2023 (verify inventory clauses against licensed standard).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Technical low-level training telemetry instead of governance asset metadata',
@@ -240,21 +221,12 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D2.5 Provenance, Lineage & Synthetic Data Usage',
     scenarioText: 'An enterprise decides to supplement its training dataset with commercially purchased synthetic consumer financial records to accelerate model development.',
     questionText: 'What is the PRIMARY governance risk associated with incorporating unvalidated synthetic data?',
-    options: [
-      'Synthetic data consumes twice as much GPU memory bandwidth as real historical customer records.',
-      'Model collapse, amplified statistical hallucinations, and distortion of real-world risk tail distributions.',
-      'Inability of the enterprise to copyright the resulting downstream neural network weights under US law.',
-      'Immediate revocation of all existing corporate enterprise database software licenses.'
-    ],
+    options: ["Mandatory reclassification of all downstream internal analytics models as prohibited AI practices under EU AI Act Article 5.","Distortion of real-world tail distributions, amplification of latent biases or statistical artifacts, residual privacy leakage, and recursive model collapse risks.","Automatic invalidation of existing enterprise encryption certificates across cloud storage buckets.","Statutory prohibition against combining third-party datasets with internal historical records under NIST AI RMF."],
     correctIndex: 1,
     questionType: 'PRIMARY',
-    explanation: 'Unvalidated synthetic data introduces risks of model collapse, loss of real-world edge-case variance, and amplified statistical feedback loops. Governance must validate synthetic data fidelity, diversity, and representation before ingestion.',
-    distractorExplanations: [
-      'A: Synthetic data format consumes standard memory; GPU bandwidth is not the governance risk.',
-      'C: Copyrightability of weights is a secondary legal consideration compared to model failure and risk blindness.',
-      'D: Commercial synthetic data does not violate enterprise database software licenses.'
-    ],
-    source: 'ISACA AAIG Review Manual D2; ISO/IEC 42001 Cl. 8.2; NIST AI RMF MAP 1.5',
+    explanation: "Incorporating unvalidated synthetic financial data introduces major governance risks: loss or distortion of rare real-world tail events, propagation or amplification of generator biases and statistical artifacts, potential memorization/privacy leakage (e.g., membership inference attacks), and conditional model collapse if models are recursively trained on generated outputs without curated real-world anchoring. Governance requires validating distributional fidelity, bias, provenance, and privacy bounds prior to ingestion.",
+    distractorExplanations: ["A: Incorporating synthetic data does not automatically make every downstream analytics model a prohibited practice under EU AI Act Article 5.","C: Synthetic-data ingestion does not automatically invalidate enterprise encryption certificates.","D: NIST AI RMF does not impose a statutory prohibition on combining third-party datasets with internal historical records."],
+    source: "Shumailov et al. (arXiv:2305.17493); NIST AI 600-1; NIST AI RMF 1.0 MAP 2.3 & MEASURE 2.6, 2.7, 2.10, 2.11; ISO/IEC 42001:2023 (verify data clauses against licensed standard).",
     difficulty: 'Director-Level',
     distractorAxes: [
       'Fictional hardware memory constraints rather than statistical degradation',
@@ -326,23 +298,14 @@ const BASE_QUESTIONS: Question[] = [
     id: 'aaig-d3-003',
     domainId: 'D3',
     subDomain: 'D3.4 Explainability, Interpretability & Transparency (XAI)',
-    scenarioText: 'An insurance underwriting AI model denies critical medical coverage to an applicant. The model is an ensemble deep neural network that outputs only a probability score without explanatory factor attribution.',
+    scenarioText: "A financial or insurance institution deploys an opaque ensemble deep neural network for retail credit underwriting or life/health insurance risk assessment that outputs only a rejection probability score without factor attribution.",
     questionText: 'From an AI governance standpoint, what is the MOST severe liability created by this deployment?',
-    options: [
-      'The model requires more server compute power to run inference than a linear regression model.',
-      'Inability to provide legally mandated adverse action notices and defend against regulatory allegations of arbitrary denial.',
-      'The data science team cannot publish academic research papers about the model architecture.',
-      'Competitor insurance firms may copy the user interface layout of the mobile application.'
-    ],
+    options: ["Mandatory disclosure of proprietary neural network weights to competing institutions under open-data rules.","Inability to provide legally mandated adverse action notices and defend against regulatory allegations of arbitrary denial.","Automatic classification of any deep neural network architecture as an unacceptable prohibited practice under EU AI Act Article 5.","Inability of first-line engineers to compress the model using post-training quantization."],
     correctIndex: 1,
     questionType: 'MOST',
-    explanation: 'In regulated high-stakes decisions (insurance, credit, employment), deployers are legally obligated to provide explainable adverse action rationales. An opaque "black-box" prevents legal contestability and invites massive regulatory fines.',
-    distractorExplanations: [
-      'A: Server compute costs are minor operational line-items compared to major regulatory sanctions.',
-      'C: Academic publishing is completely irrelevant to commercial compliance and fiduciary duties.',
-      'D: Competitor UI copying does not relate to explainability and adverse action mandates.'
-    ],
-    source: 'ISACA AAIG Review Manual D3; EU AI Act Art. 13; Equal Credit Opportunity Act (ECOA)',
+    explanation: "In regulated high-impact consumer decisions (such as credit underwriting under US ECOA / Regulation B, 12 CFR § 1002.9 and CFPB Circular 2022-03, or covered Annex III 5(b) credit and 5(c) life/health insurance decisions subject to EU AI Act Article 13 deployer transparency and Article 86 individual right to explanation), deploying an unexplainable black-box model without validated factor attribution prevents the deployer from issuing legally compliant adverse-action/decision explanations, impairs human oversight, and exposes the firm to enforcement actions.",
+    distractorExplanations: ["A: Decision explainability does not require mandatory disclosure of proprietary neural-network weights to competitors.","C: A deep neural-network architecture alone does not automatically make a use case a prohibited practice under EU AI Act Article 5.","D: Whether engineers can quantize the model does not address adverse-action explanations or the governance liability in this scenario."],
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13, Art. 86 & Annex III 5(b)/(c); US ECOA / Regulation B (12 CFR § 1002.9); NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
     difficulty: 'Director-Level',
     distractorAxes: [
       'Treating regulatory liability as an IT compute hardware cost issue',
@@ -480,13 +443,13 @@ const BASE_QUESTIONS: Question[] = [
     ],
     correctIndex: 1,
     questionType: 'BEST',
-    explanation: 'Third-party AI governance mandates enforceable contractual restrictions prohibiting vendor retention or reuse of confidential prompts/data for model training, accompanied by audit and verification rights.',
+    explanation: "Under NIST AI RMF 1.0 (GOVERN 6.1 & 6.2) and NIST AI 600-1, third-party AI procurement requires explicit, enforceable contractual terms governing customer prompt/conversation data retention, prohibiting unauthorized secondary training on enterprise/customer data, and establishing risk-proportionate audit or independent assurance verification mechanisms prior to contract execution.",
     distractorExplanations: [
       'A: Brand reputation does not protect against data leakage or regulatory penalties under GDPR/CCPA.',
       'C: Verbal vendor representations are legally unenforceable and directly contradict written contracts.',
       'D: Insurance policies do not indemnify against intentional regulatory violations or reputational harm.'
     ],
-    source: 'ISACA AAIG Review Manual D4; ISO/IEC 42001 Cl. 8.4; NIST AI RMF GOVERN 3.2',
+    source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; NIST AI 600-1; GDPR Art. 28; ISO/IEC 42001:2023 (verify supplier controls against licensed standard).",
     difficulty: 'Intermediate',
     distractorAxes: [
       'Blind trust in external vendor brand reputation over legal contracts',
@@ -508,13 +471,13 @@ const BASE_QUESTIONS: Question[] = [
     ],
     correctIndex: 1,
     questionType: 'BEST',
-    explanation: 'Risk appetite and tolerance boundaries set by executive leadership cannot be breached for short-term profit. When residual risk exceeds appetite, the system must be halted/redesigned or escalated for formal executive risk acceptance.',
+    explanation: "When residual risk of a high-impact AI system exceeds approved risk tolerance thresholds, commercial profit projections cannot override governance boundaries. Deployment must be halted or the system redesigned/mitigated until residual risk falls within approved tolerance—or, solely where statutory and regulatory safety floors are not violated, formally escalated to the governing body for documented risk acceptance.",
     distractorExplanations: [
       'A: Commercial revenue benefits never automatically override board-mandated risk appetite limits.',
       'C: Suppressing risk metrics represents deceptive fraud and intentional breach of fiduciary duty.',
       'D: Consumer waivers do not shield deployers from regulatory enforcement for unsafe high-risk systems.'
     ],
-    source: 'ISACA AAIG Review Manual D4; COBIT 2019 EDM03; ISO 31000 Risk Management',
+    source: "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3 & MANAGE 2.4; ISO 31000:2018 & COBIT 2019 EDM03 (verify specific standard clauses against licensed texts).",
     difficulty: 'Director-Level',
     distractorAxes: [
       'Subordinating established board risk tolerance to short-term revenue pressure',

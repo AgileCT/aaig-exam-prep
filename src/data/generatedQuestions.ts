@@ -19,7 +19,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an operational, bottom-up risk assessment task (wrong sequence) that cannot be properly evaluated without an overarching board-approved policy, charter, and risk appetite baseline.",
       "Option D violates the Three Lines Model (wrong authorization/scope); internal audit is the third line of defense responsible for independent assurance, not for designing, approving, or operating management controls."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941016903-0",
     "domainId": "D1",
@@ -42,7 +42,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Enforcing completion of model cards across all production models is premature (wrong sequence/timing); without standardized templates, taxonomy, and risk-tier thresholds, the submitted documentation will be non-standardized and unmanageable.",
       "Assigning Internal Audit (3rd line) to compile the asset inventory and validate initial categorization breaches the Three Lines Model (wrong authorization/scope); management and risk oversight (1st and 2nd lines) own asset identification and risk classification, while Internal Audit must maintain independent assurance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Control A.6.2; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941015830-1",
     "domainId": "D2",
@@ -66,7 +66,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D exhibits a wrong authorization and scope by inappropriately tasking third-line internal audit with pre-approval operational verification of financial models, compromising audit independence and misallocating management's first- and second-line responsibilities."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1 & GOVERN 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941080701-6",
     "domainId": "D3",
@@ -89,7 +89,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an operational hotfix action (wrong sequence/timing) executed before updating governance thresholds, assessing systemic risk, or conducting conformity assessments.",
       "Option D breaches the Three Lines Model (wrong authorization/scope) by delegating organizational risk appetite and tolerance definitions to first-line technical operators instead of maintaining second-line risk oversight and board-aligned policy."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 8.4; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.7)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941106674-13",
     "domainId": "D2",
@@ -135,7 +135,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C exhibits wrong sequence/timing by procuring and deploying technical tooling before establishing the foundational policies, data ownership charters, and quality criteria necessary to guide tool configuration.",
       "Option D exhibits wrong authorization/scope by violating the Three Lines Model; internal audit (third line) provides independent assurance and must not assume first- or second-line responsibilities such as setting operational thresholds or monitoring production metrics."
     ],
-    "source": "ISO/IEC 42001:2023 Clause B.7; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7; EU AI Act Art. 10 (for high-risk systems); ISO/IEC 42001:2023 (verify exact data governance clauses/annexes against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941151242-25",
     "domainId": "D2",
@@ -158,7 +158,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because a post-implementation review occurs late in the lifecycle after the solution is deployed and operational, making it sequence-improper for initial business case evaluation.",
       "Option D is incorrect because delegating KPI and risk tolerance establishment solely to the first-line engineering team breaches governance boundaries and the Three Lines model, bypassing appropriate executive oversight and second-line risk challenge."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941150664-26",
     "domainId": "D3",
@@ -175,13 +175,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 0,
     "questionType": "PRIMARY",
-    "explanation": "In the Three Lines Model and ISO/IEC 42001 (Clause 5.3), the Second Line (Risk Management and Compliance) is responsible for establishing governance frameworks, defining risk management policies, setting appetite thresholds, monitoring compliance, and providing independent challenge to First Line activities. The First Line owns and manages the operational risk, while the Second Line provides oversight, guidance, and challenge.",
+    "explanation": "In the Three Lines Model and ISO/IEC 42001 (Clause 5.3), the Second Line (Risk Management and Compliance) is responsible for establishing governance frameworks, defining risk management policies, setting appetite thresholds, monitoring compliance, and providing objective, credible challenge to First Line activities. The First Line owns and manages the operational risk, while the Second Line provides oversight, guidance, and challenge.",
     "distractorExplanations": [
       "Algorithmic tuning, model optimization, and hyperparameter selection are technical engineering activities owned exclusively by First Line developers and business teams, reflecting a wrong priority/technical focus rather than governance oversight.",
       "Conducting retrospective conformity audits after decommissioning represents flawed timing and sequence, as Second Line governance requires ongoing monitoring, and retrospective independent assurance is properly the domain of Third Line Internal Audit.",
       "Accepting operational residual risk and operating day-to-day controls are direct ownership duties belonging exclusively to First Line operational management; delegating risk acceptance or operational control execution to the Second Line compromises independence and violates governance scope."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941164478-28",
     "domainId": "D1",
@@ -204,7 +204,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it reflects wrong sequence/timing; initiating full-scale technical prototyping prior to establishing governance frameworks and executive steering approval consumes resources prematurely.",
       "Option D is incorrect because it reflects wrong authorization/scope; the Three Lines Model dictates that first-line product management cannot unilaterally execute enterprise risk acceptance for high-impact AI systems without second-line oversight and appropriate risk committee approval."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, A.7; NIST AI RMF 1.0 GOVERN 1.2, MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941166271-30",
     "domainId": "D3",
@@ -227,7 +227,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This represents wrong sequence/timing by deploying operational monitoring tooling before foundational policy standards, objectives, and metric thresholds have been defined and approved.",
       "This represents wrong authorization/scope because the third-line internal audit function must remain independent and cannot define business policies, establish operational risk criteria, or approve exception waivers."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 5.3, 6.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941180316-32",
     "domainId": "D1",
@@ -250,7 +250,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing conformity and impact assessments is a mandatory operational compliance action under regulatory frameworks such as the EU AI Act, but it is premature before establishing overarching enterprise policies and strategic intent.",
       "Allowing individual business units to independently define their own risk tolerances creates fragmented, siloed governance and misallocates the authority for setting enterprise-level risk appetite, which must be mandated from the board and executive level."
     ],
-    "source": "NIST AI RMF GOVERN 1.1, 1.2; ISO/IEC 42001 Clauses 5.1, 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941200295-36",
     "domainId": "D1",
@@ -273,7 +273,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an incorrect operational sequence; formal conformity assessments and technical verifications cannot be meaningfully conducted before organizational risk appetite, governance criteria, and strategic objectives are defined.",
       "Option D violates appropriate governance authorization and the Three Lines Model by inappropriately granting first-line operational staff sole authority over enterprise-level risk boundaries and acceptable-use policies."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1, 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941406549-0",
     "domainId": "D1",
@@ -296,7 +296,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence/timing: requiring teams to complete model cards before the enterprise has established standard metadata schemas, risk tiering, and intake procedures creates conflicting, unstandardized operational overhead.",
       "Option D represents wrong authorization/scope: Internal Audit represents the third line of defense responsible for independent assurance, not operational asset discovery or inventory establishment, which belongs to first- and second-line governance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Cl. 8.1; NIST AI RMF 1.0 GOVERN 1.1, MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941406550-1",
     "domainId": "D2",
@@ -319,7 +319,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Immediately executing automated retraining on unvalidated production data represents premature operational action that bypasses formal change management, potentially amplifying bias or incorporating corrupted data.",
       "Assigning model threshold recalibration to internal audit violates the Three Lines Model, as third-line assurance must maintain independence and cannot perform operational or design functions."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941412138-2",
     "domainId": "D3",
@@ -342,7 +342,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Attempting operational drift remediation and post-deployment monitoring before establishing contractual audit rights and procurement controls is an inverted workflow (wrong sequence) that lacks legal enforceability.",
       "First-line operational development teams do not possess the organizational mandate or scope (wrong authorization) to accept enterprise residual risk or establish third-party risk boundaries, which violates the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 8.2 & Control A.8 (Third-party supplier management); NIST AI RMF 1.0 GOVERN 6.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941407823-3",
     "domainId": "D4",
@@ -365,7 +365,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance practice reflecting correct operational sequencing, ensuring that ethical and socio-technical impact evaluations occur prior to exposing the business or consumers to live model risks.",
       "This is an appropriate governance practice reflecting correct scope and authority under the Three Lines Model, ensuring second-line risk functions possess the independent mandate to challenge and halt non-compliant AI systems."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, GOVERN 1.4); ISO/IEC 42001:2023 Cl. 5.1 & Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941410373-4",
     "domainId": "D1",
@@ -388,7 +388,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating immediate manual remediation by decentralized teams represents an ad-hoc operational intervention (wrong sequence/timing) executed prior to establishing clear enterprise-wide quality benchmarks and policies.",
       "Empowering first-line developers to grant exemptions violates governance segregation of duties and risk management principles (wrong authorization/scope) by bypassing second-line challenge and organizational risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2; NIST AI RMF 1.0 GOVERN 1.2 & MAP 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7; EU AI Act Art. 10 (for high-risk systems); ISO/IEC 42001:2023 (verify exact data governance clauses/annexes against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941424799-5",
     "domainId": "D2",
@@ -411,7 +411,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing a post-implementation audit represents a downstream activity that occurs after deployment, making it chronologically premature at the business case and planning stage.",
       "Permitting engineering leads to autonomously set risk tolerances and financial hurdle rates violates proper governance scope, as risk appetite and financial thresholds must be set by executive oversight and the second line of defense."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941421172-6",
     "domainId": "D3",
@@ -443,21 +443,16 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational enterprise is operationalizing an AI Governance Framework based on ISO/IEC 42001 and the IIA Three Lines Model across its customer-facing divisions. During the pre-deployment evaluation of a generative AI assistant, the first-line development team identifies outputs that occasionally violate internal fairness and toxic-speech thresholds.",
     "questionText": "Under the Three Lines Model, what is the PRIMARY responsibility of the second-line AI risk and compliance function in this scenario?",
-    "options": [
-      "Establish risk thresholds and independently challenge the business unit's proposed mitigation strategy.",
-      "Directly retrain the machine learning model and adjust hyperparameters to remediate the identified demographic bias.",
-      "Perform an end-to-end technical code inspection of the underlying data processing pipelines and feature stores.",
-      "Conduct an independent formal assurance audit to certify system controls directly to the board of directors."
-    ],
+    "options": ["Establish risk thresholds and objectively challenge the business unit's proposed mitigation strategy.","Directly retrain the machine learning model and adjust hyperparameters to remediate the identified demographic bias.","Perform an end-to-end technical code inspection of the underlying data processing pipelines and feature stores.","Conduct an independent formal assurance audit to certify system controls directly to the board of directors."],
     "correctIndex": 0,
     "questionType": "PRIMARY",
-    "explanation": "In the IIA Three Lines Model and ISO/IEC 42001 (Clauses 5.3 and 9.1), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing risk boundaries, providing oversight, monitoring compliance against policies, and offering robust, independent challenge to the risk-taking and operational decisions of the first line. The first line owns the risk and implements direct technical remediations, while the second line ensures mitigations align with enterprise risk appetite.",
+    "explanation": "In the IIA Three Lines Model and ISO/IEC 42001 (Clauses 5.3 and 9.1), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing risk boundaries, providing oversight, monitoring compliance against policies, and offering robust, objective challenge to the risk-taking and operational decisions of the first line. The first line owns the risk and implements direct technical remediations, while the second line ensures mitigations align with enterprise risk appetite.",
     "distractorExplanations": [
       "Operational remediation—such as retraining models, cleaning data, and adjusting model hyperparameters—is the explicit responsibility of the first line (development/business unit); having the second line perform direct remediation violates segregation of duties (Wrong Authorization / Scope).",
       "Conducting deep technical debugging and low-level code inspection shifts focus away from governance oversight toward technical troubleshooting, blurring the operational boundaries between risk oversight and technical execution (Wrong Priority / Direction).",
       "Providing independent, objective assurance directly to the governing body/board is the distinct mandate of the third line (Internal Audit), not the second line (Wrong Authorization / Scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941430170-8",
     "domainId": "D1",
@@ -480,7 +475,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an acceptable governance practice adhering to the Three Lines Model, ensuring independent second-line risk challenge and validation prior to production.",
       "Option D is an acceptable governance practice ensuring that first-line operational execution strictly adheres to top-down enterprise policy and cataloging mandates."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2, 8.4; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941425909-9",
     "domainId": "D2",
@@ -503,7 +498,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence; executing an external conformity assessment is premature before business use cases, data flows, and functional requirements are scoped and established.",
       "Option D represents wrong authorization and scope; delegating third-party AI sourcing approval unilaterally to the first-line development team bypasses second-line risk oversight and violates enterprise decision-rights governance."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 6.1, GOVERN 6.2); ISO/IEC 42001:2023 Cl. 8.2 & Cl. 8.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941442227-10",
     "domainId": "D3",
@@ -549,7 +544,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an improper sequence and timing because formal conformity assessments and detailed assurance reviews cannot be effectively executed before enterprise policies, charters, and risk appetites are formally defined.",
       "Violates the Three Lines Model by inappropriately granting sole sign-off authority to first-line operational development owners without second-line risk challenge or centralized governance oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, Cl. 6.1; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941444246-12",
     "domainId": "D1",
@@ -572,7 +567,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C reflects a premature operational action (wrong sequence/timing), executing production retraining before policy review, impact assessment, and risk governance sign-off.",
       "Option D breaches the Three Lines Model (wrong authorization/scope) by directing the third line (internal audit) to execute first- and second-line responsibilities of operational configuration and policy design."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.11",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941443614-13",
     "domainId": "D2",
@@ -595,7 +590,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and necessary sequence control ensuring that data protection, compliance retention, and schema consistency are established before live deployment rather than retrofitted.",
       "This is an acceptable governance practice that upholds the Three Lines Model by providing third-line assurance with unmediated, read-only access to verify compliance independently."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 GOVERN 4.1 & MEASURE 2.6",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941453475-14",
     "domainId": "D3",
@@ -618,7 +613,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B proposes registering the model in the EU database before implementing risk controls and completing conformity assessments, reversing the mandatory regulatory lifecycle sequence (wrong sequence/timing).",
       "Option C violates the Three Lines Model by tasking the third-line internal audit function with designing and executing operational controls, which compromises their required independence for objective assurance (wrong authorization/scope)."
     ],
-    "source": "EU AI Act, Articles 16, 17, and 43; ISO/IEC 42001 Cl. 6.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941469749-15",
     "domainId": "D4",
@@ -641,7 +636,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting algorithmic impact assessments on specific models is an operational risk measurement action that is premature before the enterprise governance charter and risk appetite have been established.",
       "Delegating isolated approval and funding authority to individual business unit leaders creates decentralized silos and shadow AI, violating enterprise-wide oversight and strategic alignment."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941470950-16",
     "domainId": "D1",
@@ -664,7 +659,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor 2 represents the wrong sequence and timing because post-hoc quarterly purges and audits attempt to clean up data sprawl retrospectively rather than preventing excessive data collection by design.",
       "Distractor 3 represents the wrong authorization and scope because third-line internal audit must maintain objective independence and cannot be assigned operational execution duties such as configuring data-masking controls."
     ],
-    "source": "ISO/IEC 42001:2023 Annex B.7.3; NIST AI RMF 1.0 (MAP 1.5, GOVERN 1.2)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941473504-17",
     "domainId": "D2",
@@ -687,7 +682,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a wrong sequence/timing misconception by advancing to direct production implementation and operational deployment before defining governance policies, risk thresholds, and explainability standards.",
       "Option D represents a wrong authorization/scope misconception by assigning operational model-execution and explanation tasks to the third line of defense (Internal Audit), violating the Three Lines Model and compromising audit independence."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.8; ISO/IEC 42001:2023, Annex B.7.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941470913-18",
     "domainId": "D3",
@@ -710,7 +705,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is a sound governance action reflecting correct sequencing and lifecycle control; requiring committee re-authorization prior to deployment ensures changes remain within enterprise risk appetite before reactivation.",
       "This is a sound governance action reflecting proper authorization boundaries; 1st-line owns incident logging while 2nd-line maintains independent oversight and continuous risk verification."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941483700-19",
     "domainId": "D4",
@@ -733,7 +728,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Demonstrates incorrect sequencing; conducting fragmented impact assessments at the business unit level before establishing an overarching AI governance framework and enterprise risk appetite creates inconsistency.",
       "Violates the Three Lines Model; the internal audit function (Third Line) must remain independent and provide objective assurance, and therefore cannot assume operational risk management or risk acceptance responsibilities (First/Second Line)."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001 Cl. 5.1 & 5.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941501443-20",
     "domainId": "D1",
@@ -756,7 +751,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents premature operational enforcement, requiring teams to populate registries before enterprise standards, templates, and baseline metadata criteria have been formally established.",
       "Option D breaches the Three Lines Model by improperly tasking internal audit (the third line) with first- or second-line operational inventory discovery and baseline cataloging activities."
     ],
-    "source": "ISO/IEC 42001:2023 Clauses 6.1 & 8.1; NIST AI RMF 1.0 (GOVERN 1.1, MAP 1.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941501551-21",
     "domainId": "D2",
@@ -779,7 +774,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence and timing by immediately deploying a retrained model into production before conducting root cause analysis and independent impact evaluation, introducing potential unvetted systemic risks.",
       "Option D represents wrong authorization and scope by delegating critical risk threshold modifications to first-line frontline operators, bypassing required second-line risk challenge and formal change management oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941502874-22",
     "domainId": "D3",
@@ -802,7 +797,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence/Timing: Technical testing and adversarial red-teaming should not precede the establishment of organizational risk acceptance criteria and formal governance metrics.",
       "Wrong Authorization/Scope: The first-line business operational team cannot unilaterally accept third-party AI enterprise risk without independent second-line oversight and alignment with the AI steering committee's charter."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.8; NIST AI RMF 1.0 GOVERN 2.3 & MANAGE 4.1",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941505157-23",
     "domainId": "D4",
@@ -825,7 +820,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Defining formal ethical principles and thresholds before approving models for production represents an essential sequential control in AI governance lifecycle management.",
       "Empowering independent second-line oversight to challenge first-line assessments is standard practice under the Three Lines Model and ISO/IEC 42001 governance requirements."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1; NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941499406-24",
     "domainId": "D1",
@@ -848,7 +843,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect due to wrong sequence; deploying runtime drift monitoring agents prior to establishing data classification standards and quality baselines represents an inverted sequence that monitors outputs against undefined or inconsistent standards.",
       "Option D is incorrect due to wrong authorization and scope; assigning Internal Audit (the third line) the responsibility of establishing and enforcing operational data metrics violates the Three Lines Model, as independent assurance functions must not design or execute operational management controls."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6 (Data for AI systems); NIST AI RMF 1.0 (GOVERN 1.2 & MAP 2.3)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7; EU AI Act Art. 10 (for high-risk systems); ISO/IEC 42001:2023 (verify exact data governance clauses/annexes against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941523762-25",
     "domainId": "D2",
@@ -871,7 +866,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong authorization and scope; delegating risk tolerance definitions solely to first-line operational leads violates the Three Lines Model and bypasses enterprise risk governance oversight.",
       "Option D represents wrong timing and focus; third-line independent audits assess effectiveness post-implementation or during formal review cycles, rather than acting as a foundational step for business case formulation."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941520433-26",
     "domainId": "D3",
@@ -888,13 +883,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "MOST",
-    "explanation": "In the NIST AI RMF 1.0, the MANAGE function focuses on allocating resources to risk treatment, prioritizing responses based on impacts identified in MAP and quantified in MEASURE, and continuously monitoring residual risk. To operationalize governance effectively, risk metrics and evaluation outcomes must map directly into formal risk treatment options (mitigate, transfer, avoid, or accept) that align with enterprise risk appetite, supported by independent second-line oversight and verification.",
+    "explanation": "In the NIST AI RMF 1.0, the MANAGE function focuses on allocating resources to risk treatment, prioritizing responses based on impacts identified in MAP and quantified in MEASURE, and continuously monitoring residual risk. To operationalize governance effectively, risk metrics and evaluation outcomes must map directly into formal risk treatment options (mitigate, transfer, avoid, or accept) that align with enterprise risk appetite, supported by objective second-line oversight and verification.",
     "distractorExplanations": [
       "Option A focuses on technical performance monitoring and tooling rather than governance risk treatment, failing to bridge empirical assessments into formalized risk response decisions.",
       "Option B represents an improper sequence and premature operational action by triggering automated decommission before risk profiles and governance registries are formally reviewed and updated.",
       "Option C violates the Three Lines Model by allowing first-line risk owners to unilaterally self-certify and downgrade residual risk without independent second-line risk oversight and challenge."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 1.1, MANAGE 2.1, MANAGE 4.1)",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941527214-27",
     "domainId": "D4",
@@ -917,7 +912,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Deploying technical monitoring before establishing formal risk classification represents an operational sequencing flaw, bypassing foundational governance requirements.",
       "Setting corporate risk appetite, establishing governance frameworks, and approving enterprise risk policies are core second-line (Risk/Compliance) and governing body (Board/Executive) responsibilities."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791941519728-28",
     "domainId": "D1",
@@ -940,7 +935,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an indispensable second-line risk management control ensuring that synthetic datasets are evaluated for statistical fidelity and privacy leakage before production ingestion.",
       "Option D is an essential foundational governance requirement aligning technical synthetic generation parameters with enterprise-level risk appetite, governance charters, and regulatory obligations."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.4 & Annex A.6.2 (Data for AI systems); NIST AI RMF 1.0 GOVERN 1.2, MAP 1.5 & MEASURE 2.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791941529710-29",
     "domainId": "D2",
@@ -980,13 +975,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 1,
     "questionType": "FIRST",
-    "explanation": "According to ISACA governance principles and ISO/IEC 42001 (AIMS Cl. 6 & A.6.2) as well as NIST AI RMF GOVERN 1.1 and MAP 1.1, the foundational first step in building an AI inventory is defining the enterprise taxonomy (establishing what legally and operationally constitutes an 'AI asset') and defining roles and responsibilities (ownership). Without a formal definition, scope, and accountability framework, technical cataloging efforts fail due to ambiguous classification and lack of lifecycle stewardship.",
+    "explanation": "In a decentralized environment lacking unified inventory controls, establishing an enterprise AI asset taxonomy (defining what constitutes an AI system or integration in scope) and formalizing lifecycle ownership accountability are foundational prerequisites for a consistent inventory. Under NIST AI RMF 1.0 (GOVERN 1.6 on mechanisms to inventory AI systems, supported by GOVERN 2.1 on documented roles, responsibilities and communication) and an ISO/IEC 42001 AI Management System, clear classification boundaries and designated owners ensure subsequent technical discovery and standardized model-card documentation are consistently scoped and maintained.",
     "distractorExplanations": [
       "Procuring an automated MLOps registry represents a premature technical tooling response that fails to define governance taxonomy, asset scope, or operational ownership.",
       "Mandating model card creation for legacy algorithms is an operational remediation activity that cannot succeed before defining standardized documentation criteria, ownership, and asset classification boundaries.",
       "Directing Internal Audit violates the Three Lines Model; the third line provides independent assurance and must not be tasked with performing operational asset discovery and management inventory tasks."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & A.6.2; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.6 & GOVERN 2.1; ISO/IEC 42001:2023 (verify exact AIMS inventory clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942360567-1",
     "domainId": "D2",
@@ -1009,7 +1004,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence/timing by acquiring specialized tooling before defining the governance baselines, threshold policies, and risk tolerance metrics required to direct that tool.",
       "Option D represents wrong authorization/scope by assigning operational and remediation execution duties to the third line of defense (Internal Audit), which impairs their required independence."
     ],
-    "source": "NIST AI RMF 1.0 (MEASURE 2.6, MANAGE 2.4); ISO/IEC 42001:2023 Cl. 9.1",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942359925-2",
     "domainId": "D3",
@@ -1032,7 +1027,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B reverses the sequence of governance operations by implementing technical telemetry controls before the governing body establishes risk appetite thresholds and formal third-party policy frameworks.",
       "Option C violates the Three Lines Model by improperly delegating compliance and model risk validation solely to first-line commercial negotiators, bypassing independent second-line risk challenge and oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.9 (Supplier relationships); NIST AI RMF 1.0 GOVERN 6.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942356662-3",
     "domainId": "D4",
@@ -1055,7 +1050,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Enforcing second-line independent validation of bias controls against risk appetite prior to release is an essential Three Lines Model requirement and a core responsible AI practice.",
       "Granting the AI Steering Committee authority to block or revoke approval for non-compliant models is a recognized, authoritative governance mechanism ensuring effective oversight and accountability."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & 2.1; ISO/IEC 42001:2023 Cl. 5.2, 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942365052-4",
     "domainId": "D1",
@@ -1078,7 +1073,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Focuses on operational remediation at the unit level before overarching data taxonomies, quality standards, and governance policies have been established (wrong sequence).",
       "Assigns operational management and approval responsibilities to Internal Audit, compromising their independence under the Three Lines Model (wrong authorization and scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. B.7 (Data for AI Systems); NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.6",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7; EU AI Act Art. 10 (for high-risk systems); ISO/IEC 42001:2023 (verify exact data governance clauses/annexes against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942379061-5",
     "domainId": "D2",
@@ -1101,7 +1096,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Deploying a pilot to observe savings is an operational execution step that is premature before establishing baselines and evaluation criteria (wrong sequence).",
       "Assigning internal audit to validate assumptions inappropriately delegates first- and second-line governance responsibilities to the third line of defense before management defines and owns the business baseline (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942376652-6",
     "domainId": "D3",
@@ -1147,7 +1142,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Remediating operational incidents prior to defining enterprise risk tolerance and baselines reflects flawed governance sequence and bypasses policy controls.",
       "Providing independent and objective assurance directly to executive management and the audit committee is the core mandate of the third line (Internal Audit), not the second line."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942377513-8",
     "domainId": "D1",
@@ -1170,7 +1165,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and sound lifecycle sequence control, ensuring that provenance artifacts and model dependencies are immutably captured upstream prior to downstream model dependency creation.",
       "This is an acceptable and vital control adhering to the Three Lines Model, ensuring that independent 2nd-line risk oversight validates privacy parameters and lineage before 1st-line deployment."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & Annex A.7; NIST AI RMF 1.0 (MAP 2.2, MEASURE 2.6)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942391993-9",
     "domainId": "D2",
@@ -1193,7 +1188,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it exhibits flawed sequence and timing; contractual negotiations and indemnification terms should not precede the baseline risk assessment and requirement definition.",
       "Option D is incorrect because it reflects inappropriate authorization and scope; delegating high-impact sourcing choices solely to first-line technical engineering bypasses cross-functional oversight, enterprise risk management, and the AI steering committee."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Cl. 8.1; NIST AI RMF 1.0 GOVERN 1.2, MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942403792-10",
     "domainId": "D3",
@@ -1239,7 +1234,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting algorithmic impact assessments represents an operational evaluation (wrong sequence/timing) that is premature or incomplete without an approved overarching governance policy defining evaluation criteria and risk tolerances.",
       "Delegating sign-off solely to first-line business managers creates conflicting interests and bypasses independent second-line oversight and committee governance (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 6.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942404379-12",
     "domainId": "D1",
@@ -1262,7 +1257,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Deploys operational tooling prematurely into the live pipeline (wrong sequence/timing) before revising governance standards, data governance policies, and control mechanisms.",
       "Improperly delegates enterprise risk tolerance decisions to first-line operators (wrong authorization/scope), violating the Three Lines Model where risk appetite must be established by leadership and overseen by the second line."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.11; ISO/IEC 42001:2023 Clauses 6.1 and 8.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942405270-13",
     "domainId": "D2",
@@ -1285,7 +1280,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance practice focusing on proper lifecycle sequence; defining baselines, formats, and retention rules before deployment ensures the monitoring pipeline is governable from day one.",
       "This is an appropriate governance practice aligning with the Three Lines Model; it correctly authorizes the second line to maintain oversight of compliance while tasking the third line with independent assurance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & Annex A.6.3; NIST AI RMF 1.0 (MEASURE 2.6 & GOVERN 1.2)",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942414357-14",
     "domainId": "D3",
@@ -1308,7 +1303,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B exhibits flawed sequencing; engaging in public database registration and technical red teaming before establishing foundational enterprise risk policies, taxonomies, and oversight structures puts operational activities ahead of governance mandate.",
       "Option C violates the Three Lines Model and risk governance separation of duties by allowing first-line system developers to self-attest and hold exclusive oversight for regulatory conformity and risk management without independent second-line challenge."
     ],
-    "source": "EU AI Act Articles 9, 17, and 43; ISO/IEC 42001 Cl. 5 & 6; NIST AI RMF GOVERN 1.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942430369-15",
     "domainId": "D4",
@@ -1331,7 +1326,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting algorithmic impact assessments is an essential MAP/MEASURE activity, but it is premature before enterprise-wide AI objectives, risk tolerances, and governance principles are defined.",
       "Delegating approval authority to departmental managers bypasses centralized governance, lacks strategic alignment, and misassigns 2nd-line risk appetite decisions to 1st-line operational silos without an approved framework."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2); ISO/IEC 42001:2023 Clauses 5.2 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942423393-16",
     "domainId": "D1",
@@ -1354,7 +1349,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C exhibits wrong sequence/timing by deferring privacy validation to late-stage pre-deployment, making remediation costly and failing to prevent the architectural aggregation of unauthorized training data.",
       "Option D exhibits wrong authorization/scope by delegating risk appetite and retention limits to 1st-line engineers based on technical performance metrics rather than maintaining 2nd-line governance oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Control A.7.4; NIST AI RMF 1.0 (MAP 1.5, GOVERN 1.2)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942430355-17",
     "domainId": "D2",
@@ -1377,7 +1372,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence: Deploying technical interpretation libraries (e.g., SHAP, LIME) before defining governance policies, risk tolerance, and stakeholder transparency requirements represents an ad-hoc, premature operational action.",
       "Wrong Authorization: Internal audit (Third Line) provides independent assurance and must not establish operational thresholds or approve day-to-day model loan overrides, which violates segregation of duties under the Three Lines Model."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8); ISO/IEC 42001:2023 Cl. 6 & B.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942429985-18",
     "domainId": "D3",
@@ -1400,7 +1395,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance practice (Sequence/Timing axis); filtering noise and confirming persistence via root-cause analysis prevents governance fatigue while maintaining structured escalation discipline.",
       "This is an appropriate governance practice (Authorization/Scope axis); delegating emergency suspension authority to an independent risk function enforces established risk boundaries and prevents ongoing harm."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942436925-19",
     "domainId": "D4",
@@ -1446,7 +1441,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because requiring model cards for all existing models is premature before establishing the definition of an AI asset, its tiering structure, and the governing framework.",
       "Option D is incorrect because internal audit represents the third line of defense; assigning them the operational task of discovering and cataloging departmental assets violates the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Control A.6.2; NIST AI RMF 1.0 (GOVERN 1.1, MAP 1.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942452091-21",
     "domainId": "D2",
@@ -1469,7 +1464,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a premature operational reaction that bypasses established threshold assessment and impact evaluation, disrupting business operations without following defined escalation procedures.",
       "Option D breaches the Three Lines Model; the third line (internal audit) provides independent assurance and must not design operational controls, manage operational limits, or set risk tolerances."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942450897-22",
     "domainId": "D3",
@@ -1492,7 +1487,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect due to wrong SEQUENCE: conducting deep operational checkpoint audits occurs during or after detailed vendor evaluations and requires foundational contractual access rights and established assessment criteria to be defined first.",
       "Option C is incorrect due to wrong AUTHORIZATION and SCOPE: commercial contract execution resides with procurement/legal, and operational tuning belongs to the first line of defense; an AI Governance Director (second line) cannot usurp business ownership without violating the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Control A.8.4 (Suppliers); NIST AI RMF 1.0 GOVERN 6.1, 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942454013-23",
     "domainId": "D4",
@@ -1515,7 +1510,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Embedding algorithmic impact assessments at early stage gates is an essential governance practice under NIST AI RMF (MAP/GOVERN), though examinees with sequential misconceptions may mistakenly believe ethical reviews belong only at final pre-deployment testing.",
       "Assigning the second line of defense to challenge ethical assumptions and monitor compliance preserves the Three Lines Model, though candidates with scope misconceptions might incorrectly assume ethical evaluation is solely the responsibility of technical developers."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & 1.3; ISO/IEC 42001:2023 Cl. 5.2 & 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942456761-24",
     "domainId": "D1",
@@ -1532,13 +1527,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 1,
     "questionType": "BEST",
-    "explanation": "According to ISO/IEC 42001 (Section 6 and Annex A.6) and NIST AI RMF (GOVERN 1.2, MAP 2.3), effective data governance for AI requires establishing a top-down, formalized framework. This entails explicit cross-functional accountability (data owners, AI developers, risk managers), clear standards for data quality, provenance, and lineage, along with independent second-line monitoring, rather than fragmented or purely technical solutions.",
+    "explanation": "According to ISO/IEC 42001 (Section 6 and Annex A.6) and NIST AI RMF (GOVERN 1.2, MAP 2.3), effective data governance for AI requires establishing a top-down, formalized framework. This entails explicit cross-functional accountability (data owners, AI developers, risk managers), clear standards for data quality, provenance, and lineage, along with objective second-line monitoring, rather than fragmented or purely technical solutions.",
     "distractorExplanations": [
       "Option A represents wrong PRIORITY/DIRECTION; deploying technical monitoring tools and automated profiling focuses on operational tooling rather than establishing the overarching governance structures, decision rights, and policies required for comprehensive data governance.",
       "Option C represents wrong SEQUENCE/TIMING; initiating ad-hoc cleansing sprints and audits acts on tactical symptoms prematurely without first instituting the formal policy, standardized metrics, and governance requirements that govern data quality.",
       "Option D represents wrong AUTHORIZATION/SCOPE; the independent internal audit function (Third Line) must not define operational thresholds or enforce policies, as doing so violates the Three Lines Model and impairs their independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Annex A.6 (Data for AI systems); NIST AI RMF 1.0 GOVERN 1.2 & MAP 2.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7; EU AI Act Art. 10 (for high-risk systems); ISO/IEC 42001:2023 (verify exact data governance clauses/annexes against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791942470081-25",
     "domainId": "D2",
@@ -1561,7 +1556,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing a production pilot to measure ROI is prematurely sequenced; baseline performance metrics and strategic objectives must be defined prior to empirical testing and deployment.",
       "Engaging the third-line independent internal audit function to approve financial models breaches governance scope and independence principles defined under the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1, MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942471290-26",
     "domainId": "D3",
@@ -1607,7 +1602,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This option represents a sequence error by prioritizing the implementation of technical monitoring tooling before establishing foundational risk governance thresholds and organizational policies.",
       "This option confuses first-line operational duties with third-line internal audit responsibilities, which uniquely require independent and objective assurance provided to the governing body."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791942473141-28",
     "domainId": "D1",
@@ -1630,7 +1625,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Directing operational product teams to set technical thresholds represents premature operationalization; technical criteria must be derived from an enterprise-level risk appetite and steering charter established by leadership.",
       "Internal audit is the third line of defense responsible for providing independent assurance; assigning audit to design operational controls violates the Three Lines Model by impairing independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943026259-0-006uc",
     "domainId": "D1",
@@ -1653,7 +1648,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing; conducting system-level impact assessments is a key operational step (MAP/MANAGE functions), but it is premature before enterprise-level governance objectives, taxonomy, and evaluation criteria are codified.",
       "Option D represents wrong authorization and scope by improperly positioning internal audit (the third line) to set operational management thresholds and design controls, which compromises audit independence."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2); ISO/IEC 42001:2023 Cl. 5.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943034620-1-q7092",
     "domainId": "D1",
@@ -1676,7 +1671,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Commissioning an external conformity assessment audit is premature before an overarching enterprise AI governance framework, organizational policies, and management systems have been designed and implemented.",
       "Delegating risk appetite and acceptable-use thresholds to decentralized business unit leaders improperly fragments governance and violates the board's prerogative to set enterprise-wide risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943062362-0-82x09",
     "domainId": "D1",
@@ -1699,7 +1694,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence/timing; deploying an inventory and mapping dependencies (NIST MAP function) is an essential operational activity, but it cannot be executed systematically without top-down governance policies and taxonomy established first.",
       "Option D represents wrong authorization/scope; permitting first-line operational managers to independently set risk tolerances and self-approve deployment roadmaps violates the Three Lines Model and fragments strategic enterprise alignment."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2); ISO/IEC 42001:2023 Cl. 5.1, 5.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943062368-1-hqxbw",
     "domainId": "D1",
@@ -1722,7 +1717,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents incorrect sequencing; performing granular conformity assessments is premature without established enterprise-level policies, criteria, and risk appetite thresholds to measure against.",
       "Option D represents an authorization and Three Lines Model failure; internal audit (third line) provides independent assurance and must not design operational procedures or manage first-line activities."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2; NIST AI RMF 1.0 GOVERN 1.1, GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943062361-2-m01ua",
     "domainId": "D1",
@@ -1745,7 +1740,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a timing and scope error by conducting audits prior to establishing baseline governance policies, while also conflating Second Line oversight with Third Line independent assurance.",
       "Option C represents an authorization and scope error because the First Line (business unit heads) owns commercial use case decisions and residual risk acceptance, not the Second Line."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2, 2.1; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943057884-3-qn0sg",
     "domainId": "D1",
@@ -1768,7 +1763,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate practice reflecting proactive governance; a common misconception regarding timing is that ethical and societal impact assessments belong only in post-deployment monitoring rather than prior to production release.",
       "This is an appropriate practice adhering to the Three Lines Model; a common misconception regarding scope and authorization is that independent second-line oversight and challenge over metrics improperly restricts first-line operational autonomy."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 6.1; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943073272-4-jq50e",
     "domainId": "D1",
@@ -1791,7 +1786,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating technical conformity assessments prior to establishing the enterprise governance framework and baseline AI policies is premature, as evaluators lack standardized classification criteria and enterprise risk tolerance guidelines against which to assess models (wrong sequence/timing).",
       "Delegating ultimate risk acceptance and enforcement exclusively to first-line model developers violates the Three Lines Model and sound segregation of duties, as first-line risk owners cannot independently govern or enforce enterprise risk oversight (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943090430-5-9n5z2",
     "domainId": "D1",
@@ -1814,7 +1809,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring model cards is an operational execution step that is premature until the organization defines classification thresholds, metadata schemas, and scope for what constitutes an in-scope AI asset.",
       "Internal audit is the third line of defense responsible for independent assurance, not for conducting first- or second-line management operational asset discovery."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Cl. 8.1; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943089265-6-zw8u6",
     "domainId": "D2",
@@ -1837,7 +1832,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an operational lifecycle activity implemented too late in the development cycle; purging data after acceptance testing fails to prevent unauthorized or excessive data processing during training and validation (wrong sequence/timing).",
       "Inappropriately delegates compliance and minimization decisions to first-line development teams without independent oversight, violating the Three Lines Model and risk management boundaries by allowing accuracy metrics to supersede regulatory constraints (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6.2 & A.6.3; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943089288-7-qyc29",
     "domainId": "D2",
@@ -1860,7 +1855,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents a premature operational intervention (wrong sequence), attempting technical mitigation in production prior to root-cause analysis and governance baseline re-evaluation.",
       "Violates the Three Lines Model (wrong authorization/scope) by inappropriately assigning operational model maintenance and parameter tuning (1st line) to internal audit (3rd line independent assurance)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex B.6; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.11)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943088709-8-8nnep",
     "domainId": "D2",
@@ -1883,7 +1878,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an acceptable, necessary quality-gate practice ensuring that synthetic data accurately reflects real-world dynamics without introducing severe distribution drift prior to training.",
       "Option D is an acceptable practice aligning with the Three Lines Model, ensuring second-line risk functions independently evaluate and challenge first-line synthetic data implementation."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & A.6.2; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.6)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943093490-9-moo30",
     "domainId": "D2",
@@ -1906,7 +1901,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence: Finalizing supplier contractual terms, audit rights, and SLAs is premature before foundational steps—such as clearly establishing the business use case, system requirements, and AI risk categorization—are completed.",
       "Wrong Authorization: Sourcing decisions with high strategic, regulatory, and risk impacts cannot be delegated unilaterally to first-line operational teams without governance oversight, cross-functional risk evaluation, and AI Steering Committee approval."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & Annex B.8; NIST AI RMF 1.0 GOVERN 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943112438-10-qh1bn",
     "domainId": "D3",
@@ -1929,7 +1924,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a premature timing error, as independent third-party conformity assessments occur during or after system readiness, not before foundational business case approval.",
       "Option C violates the Three Lines Model and governance authorization by delegating enterprise-level risk appetite and investment threshold decisions solely to first-line operational managers."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1, GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943105271-11-qkes3",
     "domainId": "D3",
@@ -1952,7 +1947,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an assurance action with flawed timing (wrong sequence/timing); relying on annual third-line post-hoc audits cannot remediate real-time operational drift and degradation occurring mid-cycle.",
       "Option D violates governance boundaries (wrong authorization/scope); first-line operational engineers cannot unilaterally alter risk acceptance thresholds, as this requires second-line oversight and alignment with the enterprise risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MANAGE 2.2 & MEASURE 2.6",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943105269-12-9ueky",
     "domainId": "D3",
@@ -1975,7 +1970,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor C represents wrong SEQUENCE/TIMING; deploying technical explanation tools (e.g., SHAP, LIME) before defining governance policies, risk tiers, and performance criteria creates unstandardized, unverified artifacts without strategic oversight.",
       "Distractor D represents wrong AUTHORIZATION/SCOPE; defining disclosure and legal adverse action thresholds belongs to 2nd-line enterprise compliance and risk governance, not operational 1st-line underwriting staff."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.8.4; NIST AI RMF 1.0 (GOVERN 1.2 & MEASURE 2.8)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943110058-13-ver4a",
     "domainId": "D3",
@@ -1998,7 +1993,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents an acceptable sequence where continuous operational monitoring runs alongside scheduled retrospective deep-dives, though candidates might mistakenly view periodic audits as improperly delayed or duplicative.",
       "Option D reflects proper Three Lines Model governance, where 2nd-line risk oversight independently evaluates operational telemetry against enterprise risk appetite rather than leaving alert calibration solely to 1st-line system operators."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.6 & GOVERN 4.1",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943115211-14-nny8a",
     "domainId": "D3",
@@ -2007,21 +2002,16 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is preparing to deploy an AI-driven candidate assessment and recruitment platform across its European Union operating entities. Under the EU AI Act, this platform qualifies as a High-Risk AI System within the domain of employment and worker management.",
     "questionText": "What is the BEST course of action for the enterprise AI Governance Steering Committee to establish compliant, enterprise-wide oversight as a deployer of this system?",
-    "options": [
-      "Deploy automated fairness and statistical parity validation algorithms directly into the engineering pipeline to eliminate demographic bias prior to candidate inference.",
-      "Commission an external third-party technical conformity audit and notify national market surveillance authorities prior to finalizing internal deployer governance policies.",
-      "Authorize the First Line HR talent operations team to independently determine acceptable residual risk thresholds and approve the platform for enterprise deployment.",
-      "Establish deployer governance policies requiring competent human oversight protocols, fundamental rights assessments, and systematic operational log retention."
-    ],
+    "options": ["Deploy automated fairness and statistical parity validation algorithms directly into the engineering pipeline to eliminate demographic bias prior to candidate inference.","Commission an external third-party technical conformity audit and notify national market surveillance authorities prior to finalizing internal deployer governance policies.","Authorize the First Line HR talent operations team to independently determine acceptable residual risk thresholds and approve the platform for enterprise deployment.","Establish deployer governance policies requiring competent human oversight protocols, operational monitoring and log retention under EU AI Act Article 26, worker notification (Art. 26(7)), and applicable impact assessments (GDPR Art. 35 DPIA, or EU AI Act Art. 27 FRIA where covered as a public body or public-service operator)."],
     "correctIndex": 3,
     "questionType": "BEST",
-    "explanation": "Under the EU AI Act (specifically obligations for deployers of high-risk AI systems under Article 26), deployers must establish formal governance mechanisms to ensure the system is used in accordance with instructions, assign competent human oversight, maintain automatically generated logs, and perform Fundamental Rights Impact Assessments where applicable. From an ISACA AI governance perspective, the AI Governance Steering Committee must establish top-down policies and oversight mandates that govern operational use before execution.",
+    "explanation": "When the relevant requirements apply, EU AI Act Article 26 requires deployers of high-risk recruitment AI systems (Annex III point 4) to establish governance mechanisms to ensure use in accordance with instructions, assign competent human oversight (Art. 26(2)), monitor operation and report serious incidents (Art. 26(5)), retain automatically generated logs (Art. 26(6)), and inform workers' representatives and affected workers (Art. 26(7)). Note that pre-use Fundamental Rights Impact Assessments (FRIA, Art. 27) are statutorily mandatory for bodies governed by public law, private entities providing public services, and deployers of Annex III 5(b)/(c) credit/insurance systems. Private-sector employers must assess whether the personal-data processing triggers a DPIA under GDPR Article 35; a DPIA is required where the applicable criteria are met. Check applicable transition rules before determining current obligations.",
     "distractorExplanations": [
       "Option A focuses strictly on a technical pipeline control (wrong PRIORITY/DIRECTION), omitting the broader enterprise governance, human oversight, legal accountability, and operational monitoring mandated for deployers.",
       "Option B represents premature external execution (wrong SEQUENCE/TIMING); notifying market surveillance authorities and engaging external auditors without first establishing foundational deployer policies, roles, and controls inverts proper governance order.",
       "Option C violates the Three Lines Model (wrong AUTHORIZATION/SCOPE); First Line operational teams cannot independently set corporate risk tolerances or unilaterally grant enterprise approval without Second Line risk oversight and Steering Committee governance."
     ],
-    "source": "EU AI Act, Articles 26 & 27 (Obligations of Deployers of High-Risk AI Systems); ISO/IEC 42001:2023 Cl. 5 & 6",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943128218-15-l5h7z",
     "domainId": "D4",
@@ -2067,7 +2057,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because it reflects the wrong sequence/timing; executing localized risk mitigations (MANAGE) prior to categorizing risks and contextualizing system impacts (MAP and GOVERN) results in disjointed, uncalibrated risk treatment.",
       "Option D is incorrect because it reflects the wrong authorization/scope; tasking internal audit (Third Line) with establishing risk thresholds and operational controls violates independence principles and the Three Lines Model."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2, 2.1); ISO/IEC 42001 Cl. 5",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943131382-17-7wx7z",
     "domainId": "D4",
@@ -2090,7 +2080,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because conducting deep empirical testing prior to establishing foundational governance, legal terms, and mutual agreements represents an improper operational sequence, and proprietary API vendors rarely grant access to internal pre-trained weights.",
       "Option D is incorrect because risk acceptance authority belongs to designated business risk owners within the risk appetite framework overseen by the second line and board; the first-line development team cannot unilaterally authorize or accept third-party AI risks."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.9; NIST AI RMF 1.0 GOVERN 6.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943131156-18-mu8fj",
     "domainId": "D4",
@@ -2113,7 +2103,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring a formal remediation and risk acceptance or variance process prior to permitting ongoing operation near tolerance limits maintains accountability and complies with formal risk sequencing.",
       "Escalating aggregate risk exposure to the executive risk committee and governing body to assess risk appetite re-baselining respects proper authority and scope under ISO/IEC 42001 Clause 6 and NIST AI RMF GOVERN 1.2."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 (Actions to address risks) & Cl. 9.1 (Monitoring, measurement, analysis and evaluation); NIST AI RMF 1.0 GOVERN 1.2 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943128246-19-klb0i",
     "domainId": "D4",
@@ -2136,7 +2126,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Presents incorrect sequencing by attempting third-party conformity assessments before foundational governance charters, policies, and risk taxonomies have been formally defined.",
       "Violates basic corporate governance and the Three Lines Model by allowing first-line operational developers to set their own risk tolerances and self-regulate without independent board or second-line oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943147661-20-3vfz3",
     "domainId": "D1",
@@ -2159,7 +2149,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong sequence/timing: Performing granular AI impact and conformity assessments is an essential step (NIST AI RMF MAP/MEASURE), but doing so prior to defining overarching strategic objectives, policies, and risk boundaries is premature.",
       "Wrong authorization/scope: First-line engineering teams lack organizational authority to establish risk tolerance thresholds; defining enterprise risk boundaries is a governance responsibility reserved for executive leadership and the Board."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 5.1; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943147519-21-hvpof",
     "domainId": "D1",
@@ -2182,7 +2172,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because conducting conformity assessments prior to establishing an approved governance charter and policy framework inverts the proper governance sequence, leading to assessments without baseline criteria.",
       "Option D is incorrect because allowing first-line product teams to define acceptable use thresholds and self-certify creates a conflict of interest, violates the Three Lines Model, and fails to maintain consistent enterprise-level risk governance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943144401-22-8tbz6",
     "domainId": "D1",
@@ -2191,21 +2181,16 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is operationalizing an Artificial Intelligence Management System (AIMS) under ISO/IEC 42001 and aligning its governance structure with the IIA Three Lines Model. Following multiple deployments of high-risk generative AI customer service agents and automated credit scoring systems, executive leadership establishes an AI Risk and Compliance function to bolster governance oversight.",
     "questionText": "Under the Three Lines Model, what is the PRIMARY responsibility of this newly established Second Line function regarding algorithmic and enterprise AI risk?",
-    "options": [
-      "Optimizing algorithmic performance thresholds, tuning neural network hyperparameters, and directly mitigating data drift across all business unit applications.",
-      "Implementing automated runtime validation tools across production pipelines to remediate observed drift before top management approves the enterprise AI risk appetite.",
-      "Conducting independent, periodic assurance audits of AI controls and reporting non-conformances directly to the supervisory board's audit committee.",
-      "Defining enterprise AI policies, establishing risk oversight thresholds, and providing objective, independent challenge to first-line risk ownership."
-    ],
+    "options": ["Optimizing algorithmic performance thresholds, tuning neural network hyperparameters, and directly mitigating data drift across all business unit applications.","Implementing automated runtime validation tools across production pipelines to remediate observed drift before top management approves the enterprise AI risk appetite.","Conducting independent, periodic assurance audits of AI controls and reporting non-conformances directly to the supervisory board's audit committee.","Defining enterprise AI risk policies and oversight thresholds within delegated authority, and providing objective, credible challenge to first-line risk ownership."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In the IIA Three Lines Model and ISO/IEC 42001 (Clause 5.3) / NIST AI RMF (GOVERN 1.2, 2.1), the Second Line of Defense (Risk and Compliance) is primarily responsible for establishing policies, defining frameworks, monitoring compliance, and providing objective, independent challenge to the risk management practices of the first line. The first line owns and operates the risk, while the second line oversees and sets guardrails.",
+    "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles belong to management. While first-line roles directly own and manage operational AI delivery and associated risks, second-line roles (AI Risk and Compliance) provide complementary expertise, support, monitoring, and objective challenge to first-line risk practices within authority delegated by the governing body and top management. Independent and objective assurance to the governing body remains the distinct mandate of the third line (Internal Audit). NIST AI RMF (GOVERN 2.1) and ISO/IEC 42001 similarly emphasize clear risk management roles and responsibilities.",
     "distractorExplanations": [
       "Option A represents wrong PRIORITY and wrong DIRECTION by focusing on granular technical optimization and operational engineering duties, which are primary responsibilities of first-line operational teams and developers.",
       "Option B represents wrong SEQUENCE and wrong TIMING by attempting technical remediation and deployment before foundational governance prerequisites—namely top management's approval of risk appetite and policy—have been established.",
       "Option C represents wrong AUTHORIZATION and wrong SCOPE by assigning independent assurance and direct audit committee reporting to the second line, which improperly encroaches on the mandate of the Third Line (Internal Audit)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2 & 2.1; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943153308-23-shwtn",
     "domainId": "D1",
@@ -2228,7 +2213,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is a correct sequential practice; mandating ethical impact assessments prior to technical implementation ensures risks are mapped and governed before exposure occurs.",
       "This is an appropriate authorization practice; the Three Lines Model mandates that independent 2nd-line risk functions maintain objective oversight, monitoring, and challenge over operational AI systems."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.1, GOVERN 1.2; ISO/IEC 42001:2023 Cl. 5.1 & 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943149789-24-l3x7s",
     "domainId": "D1",
@@ -2251,7 +2236,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor C represents wrong sequence/timing: executing technical conformity assessments and red-teaming is an operational validation step that cannot effectively occur without established policies, classification criteria, and baseline risk thresholds.",
       "Distractor D represents wrong authorization/scope: delegating risk acceptance and policy exceptions exclusively to 1st-line business unit managers violates the Three Lines Model, compromises board fiduciary oversight, and creates uncontrolled conflicts of interest between velocity and risk."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943171040-25-5puc0",
     "domainId": "D1",
@@ -2274,7 +2259,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents premature operational execution; requiring teams to complete model cards before establishing formal criteria, classification thresholds, and governance definitions causes rework and inconsistent reporting.",
       "Option D incorrectly assigns operational baseline establishment to the third line of defense (Internal Audit), violating the Three Lines Model which requires governance and management (first and second lines) to establish asset tracking before audit evaluates it."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 8.1; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943166460-26-wrliw",
     "domainId": "D2",
@@ -2297,7 +2282,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a wrong sequence/timing error; third-line internal audit evaluations of production logs occur post-deployment and provide retrospective assurance, which is ineffective at proactively preventing unnecessary data ingestion and contamination during training.",
       "Option C represents a wrong authorization/scope error; leaving data minimization decisions to the discretion of first-line data scientists optimizing for model accuracy bypasses institutional privacy policies, second-line compliance oversight, and formal risk thresholds."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6.2 (Data for AI systems); NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943170521-27-c05z1",
     "domainId": "D2",
@@ -2320,7 +2305,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence/Timing: Implementing monitoring dashboards is a valid operational control, but doing so prior to defining or reviewing enterprise fairness thresholds inverts the governance lifecycle.",
       "Wrong Authorization/Scope: Operational data science teams (first line of defense) do not have the organizational authority to redefine protected classes or modify enterprise risk limits; that authority rests with governance bodies and oversight functions."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 2.4); ISO/IEC 42001:2023 Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943163595-28-3f1lb",
     "domainId": "D2",
@@ -2343,7 +2328,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an acceptable, robust governance control; rejecting it represents an improper sequencing misconception, because verifying statistical fidelity and drift before submitting the pipeline to the second line of defense ensures controls operate at the correct phase of the lifecycle.",
       "Option D is an acceptable, essential governance control; rejecting it represents an authorization and scope misconception, as decisions regarding synthetic data usage in high-risk automated decisioning must remain with top-level governance oversight (AI Steering Committee) rather than decentralized first-line operators."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6.2 (Data for AI systems); NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943184158-29-xsta5",
     "domainId": "D2",
@@ -2366,7 +2351,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting penetration testing prior to defining organizational evaluation criteria illustrates a wrong sequence axis, as operational and technical validation must follow formalized sourcing criteria and governance policies.",
       "Permitting a decentralized business unit to independently finalize the acquisition represents a wrong authorization and scope axis, violating the Three Lines Model and bypassing second-line risk oversight and enterprise AI steering controls."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.4; NIST AI RMF 1.0 GOVERN 2.1 & MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943197132-30-yyz23",
     "domainId": "D3",
@@ -2389,7 +2374,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it reflects the wrong sequence/timing; post-implementation reconciliations are operational tracking mechanisms conducted after systems are in production, not at the initial capital planning and business case stage.",
       "Option C is incorrect because it reflects the wrong authorization/scope; internal audit provides independent assurance (the third line) and cannot establish business hurdle rates or define management investment criteria without impairing its objectivity under the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 (GOVERN 1.2 & 2.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943199628-31-3294z",
     "domainId": "D3",
@@ -2435,7 +2420,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because it reflects the wrong sequence and timing; third-line audit and punitive measures cannot effectively occur before the enterprise governance framework and explainability policies have been formally articulated, approved, and operationalized.",
       "Option D is incorrect because it reflects the wrong authorization and scope; first-line technical teams own operational execution and model building, but they do not hold the governance decision rights to define risk tolerance and legal compliance thresholds for interpretability."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 (Actions to address risks) & Cl. B.7.3 (Explainability); NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.8",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943198675-33-0tu1t",
     "domainId": "D3",
@@ -2458,7 +2443,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is an acceptable and essential sequence-driven governance control, ensuring that monitoring mechanisms and statistical alerting thresholds are formally calibrated and verified prior to production activation.",
       "Option D is an acceptable governance practice properly reflecting the Three Lines Model, where the third line independently provides objective assurance over the adequacy and integrity of first-line monitoring infrastructure."
     ],
-    "source": "ISO/IEC 42001:2023, Clause 9.1 & Annex A.9; NIST AI RMF 1.0, MEASURE 2.7 & GOVERN 1.2",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943203860-34-kk87c",
     "domainId": "D3",
@@ -2467,21 +2452,16 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is preparing to deploy an AI-driven credit scoring platform across its European subsidiaries, qualifying it as a high-risk AI system under Annex III of the EU AI Act. The executive committee has tasked the AI Governance Director with establishing the governance posture necessary to ensure organizational compliance and defend against regulatory sanctions.",
     "questionText": "Which of the following represents the BEST strategic governance action to ensure compliance prior to placing the system into service?",
-    "options": [
-      "Deploy algorithmic explainability toolkits, automated bias detection pipelines, and real-time performance telemetry dashboards across all operational inference nodes.",
-      "Submit technical specifications to an accredited notified body for external conformity assessment and register the system in the EU database prior to ratifying internal AI risk policies.",
-      "Authorize 1st-line development engineering leads to validate technical documentation, self-certify regulatory conformity, and sign off on production release.",
-      "Establish an AI compliance framework that enforces quality management, fundamental rights impact assessments, and designated human oversight protocols satisfying provider obligations."
-    ],
+    "options": ["Deploy algorithmic explainability toolkits, automated bias detection pipelines, and real-time performance telemetry dashboards across all operational inference nodes.","Submit technical specifications to an accredited notified body for external conformity assessment and register the system in the EU database prior to ratifying internal AI risk policies.","Authorize 1st-line development engineering leads to validate technical documentation, self-certify regulatory conformity, and sign off on production release.","Establish an AI compliance framework that enforces quality management (Art. 17), technical documentation and conformity assessment (Art. 43), human oversight protocols (Arts. 14 & 26), and pre-deployment fundamental rights impact assessments (Art. 27) satisfying applicable provider and deployer obligations."],
     "correctIndex": 3,
     "questionType": "BEST",
-    "explanation": "Under the EU AI Act (Articles 9, 14, 16, 17, and 27), high-risk AI systems require providers and deployers to implement a holistic governance ecosystem. This includes a robust Quality Management System (QMS), fundamental rights impact assessments (where applicable), risk management throughout the lifecycle, and structurally integrated human oversight (human-in-the-loop/on-the-loop). Establishing this comprehensive compliance framework provides the strategic, top-down foundation required to govern obligations systematically before market release.",
+    "explanation": "When a financial institution develops and deploys a high-risk credit-scoring AI system (Annex III point 5(b)) across the EU, it must satisfy both provider obligations (Articles 9–17 and 43, including a Risk Management System, Quality Management System, human-oversight design, and Annex VI internal control conformity assessment) and deployer obligations (Articles 26 and 27, including assigning competent human oversight and conducting a pre-use Fundamental Rights Impact Assessment).",
     "distractorExplanations": [
       "Option A is incorrect because it represents a bottom-up technical and operational control implementation (wrong priority/direction) rather than a comprehensive, top-down governance framework addressing legal and compliance obligations.",
       "Option B is incorrect because seeking external third-party assessment and database filing before formalizing enterprise AI policies and internal risk management constitutes a flawed operational sequence (wrong sequence/timing); furthermore, credit evaluation typically follows internal control conformity (Annex VI) unless specific conditions mandate notified bodies.",
       "Option C is incorrect because delegating conformity self-certification and final authorization solely to 1st-line delivery engineers violates segregation of duties and the Three Lines Model (wrong authorization/scope), lacking 2nd-line compliance oversight and executive accountability."
     ],
-    "source": "EU AI Act, Articles 9, 14, 17, & 27; ISO/IEC 42001:2023 Cl. 6.1 (Actions to address risks and opportunities)",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943218996-35-gob6a",
     "domainId": "D4",
@@ -2522,12 +2502,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "correctIndex": 1,
     "questionType": "MOST",
     "explanation": "According to the NIST AI RMF (GOVERN 1.2, MANAGE 1.1, and MANAGE 2.4), the bridge between MEASURE (evaluation) and MANAGE (treatment) requires enterprise-level governance oversight. Establishing pre-approved risk tolerance thresholds and formalized escalation workflows ensures that when measurement metrics breach defined tolerances, appropriate risk mitigation, transfer, or avoidance actions are enacted with second-line oversight and executive accountability.",
-    "distractorExplanations": [
-      "Option A focuses on technical tooling and operational monitoring (wrong priority/direction); telemetry alone lacks organizational accountability, risk tolerance criteria, and mandatory risk treatment mandates.",
-      "Option C represents reactive, post-deployment remediation after harm has already occurred (wrong sequence/timing), failing to provide a proactive governance control that prevents unmitigated model risks.",
-      "Option D delegates risk treatment authority to first-line technical operators without second-line risk oversight or standardized governance governance oversight (wrong authorization/scope), violating the Three Lines Model."
-    ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.6, MANAGE 1.1, MANAGE 2.4); ISO/IEC 42001 Cl. 6.1",
+    "distractorExplanations": ["Option A focuses on technical tooling and operational monitoring (wrong priority/direction); telemetry alone lacks organizational accountability, risk tolerance criteria, and mandatory risk treatment mandates.","Option C represents reactive, post-deployment remediation after harm has already occurred (wrong sequence/timing), failing to provide a proactive governance control that prevents unmitigated model risks.","Option D delegates risk treatment authority to first-line technical operators without second-line risk oversight or standardized governance oversight (wrong authorization/scope), violating the Three Lines Model."],
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943222206-37-po9vv",
     "domainId": "D4",
@@ -2550,7 +2526,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an improper operational sequence by deploying technical controls prior to establishing governance baselines and risk acceptance criteria.",
       "Violates organizational scope and the Three Lines Model by allowing first-line procurement staff to unilaterally waive risk and transparency requirements without second-line risk oversight."
     ],
-    "source": "NIST AI RMF 1.0, GOVERN 6.1; ISO/IEC 42001:2023, Annex A.10",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943224452-38-rmt4g",
     "domainId": "D4",
@@ -2573,7 +2549,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is a sound governance practice ensuring that escalation and governance oversight precede ad-hoc technical modifications to production systems (correct sequence/timing).",
       "This is a sound governance practice that preserves the objectivity and independence of internal audit under the Three Lines Model by preventing self-review threats (correct authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943225712-39-t7mnc",
     "domainId": "D4",
@@ -2596,7 +2572,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Directing internal audit to assess conformity before baseline governance policies and risk taxonomies are established reflects inverted sequencing (wrong timing).",
       "Delegating ultimate AI risk acceptance and control design exclusively to first-line business units violates the Three Lines Model and undermines independent board oversight (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943237518-40-m0yds",
     "domainId": "D1",
@@ -2605,12 +2581,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational commercial bank plans to adopt generative AI across retail banking operations to drive digital growth and reduce operational costs. The board has approved a multi-million-dollar AI modernization initiative, but the organization currently lacks formalized governance connecting these technological investments to corporate strategy and enterprise risk boundaries.",
     "questionText": "To achieve strategic alignment and establish sustainable oversight, what should the organization execute FIRST?",
-    "options": [
-      "Procure an enterprise AI observability platform to track model drift and pipeline latency across retail workloads.",
-      "Establish an executive AI steering committee to define governance charters and align AI initiatives with enterprise risk appetite.",
-      "Perform rigorous algorithmic audits and ISO-aligned conformity assessments on candidate third-party foundational models considered for retail deployment.",
-      "Authorize first-line line-of-business product owners to establish localized AI risk appetite boundaries and operational compliance criteria independently."
-    ],
+    "options": ["Procure an enterprise AI observability platform to track model drift and pipeline latency across retail workloads.","Establish an executive AI steering committee to define governance charters and align AI initiatives with enterprise risk appetite.","Perform rigorous algorithmic audits and ISO-aligned conformity assessments on candidate third-party foundational models considered for retail deployment.","Authorize first-line business unit product owners to establish localized AI risk appetite boundaries and operational compliance criteria independently."],
     "correctIndex": 1,
     "questionType": "FIRST",
     "explanation": "According to ISO/IEC 42001 (Clauses 5.1 and 5.2) and NIST AI RMF (GOVERN 1.1 and 1.2), establishing top-down governance via an executive steering committee and formal charter is the foundational first step. This ensures executive accountability, cross-functional oversight, and explicit linkage between AI strategies, organizational objectives, and enterprise risk appetite before technical deployment or operational evaluations occur.",
@@ -2619,7 +2590,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing algorithmic audits and conformity assessments represents wrong sequence and timing; validating individual models is an operational verification activity that must be guided by established enterprise risk criteria and governance policies.",
       "Allowing first-line product owners to establish localized risk boundaries represents wrong authorization and scope; enterprise risk appetite and overarching governance frameworks must be defined at the executive/governing board level under the Three Lines Model rather than delegated independently to business units."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943243672-41-65gxx",
     "domainId": "D1",
@@ -2643,7 +2614,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D reflects an authorization and segregation of duties failure; delegating policy interpretation and exception thresholds solely to 1st-line asset owners undermines centralized second-line oversight and consistent risk appetite enforcement."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 6.2; NIST AI RMF 1.0 GOVERN 1.1, GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943242476-42-b4cm9",
     "domainId": "D1",
@@ -2660,13 +2631,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In the Three Lines Model adapted for AI governance (ISO/IEC 42001 Cl. 5.3 and NIST AI RMF GOVERN 1.2/1.3), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing risk management frameworks, defining boundaries and risk appetite thresholds, providing policy oversight, and actively challenging first-line implementations. They do not own or execute the operational models themselves.",
+    "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles are part of management. First-line business units own and operate AI models and manage day-to-day operational risks, whereas second-line roles (Risk Management and Compliance) provide complementary expertise, establish risk frameworks and thresholds within delegated authority, monitor policy compliance, and provide objective challenge to first-line model owners. Independent assurance to the audit committee belongs to the third line (Internal Audit). This role allocation supports accountability requirements in NIST AI RMF (GOVERN 2.1) and ISO/IEC 42001.",
     "distractorExplanations": [
       "Option A is incorrect because data validation, model training, and performance tuning are operational, first-line engineering and business unit responsibilities focused on technical execution rather than risk oversight.",
       "Option B is incorrect because real-time operational remediation, maintenance, and retraining of production models belong to first-line product owners and AI operators who own and manage the operational risk day-to-day.",
       "Option C is incorrect because providing independent, objective assurance directly to the board's audit committee is the explicit and exclusive mandate of the third line of defense (Internal Audit)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2 & 2.1; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943238742-43-l38z6",
     "domainId": "D1",
@@ -2689,7 +2660,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is a proper governance control ensuring risk identification precedes operational exposure; choosing it reflects a misconception that ethical impact evaluations can be deferred until post-release monitoring (wrong sequence/timing axis).",
       "This is a standard governance requirement reflecting appropriate segregation of duties where the second line challenges first-line activities; choosing it reflects a misconception regarding organizational oversight scope and authority (wrong authorization/scope axis)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & Cl. 6.1; NIST AI RMF 1.0 GOVERN 1.2, 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943254448-44-kfth5",
     "domainId": "D1",
@@ -2712,7 +2683,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C prematurely tasks the third line of defense with auditing systems before the board and executive management have established the foundational governance charter, risk appetite, and policies against which to assess compliance (wrong sequence/timing).",
       "Option D improperly delegates enterprise risk acceptance to first-line operational teams, violating the Three Lines Model and undermining board oversight of enterprise risk tolerances (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & Cl. 5.3; NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943269040-45-lpuih",
     "domainId": "D1",
@@ -2735,7 +2706,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Assigning internal audit to build and maintain the operational inventory violates the Three Lines Model, as the third line must maintain independence to assess governance effectiveness rather than performing operational management tasks.",
       "Directing teams to draft model cards for select customer-facing models focuses narrowly on operational documentation before the enterprise has established the standardized metadata framework, asset criteria, and centralized governance baseline."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex A.6; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943272203-46-suwin",
     "domainId": "D2",
@@ -2752,13 +2723,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "MOST",
-    "explanation": "In accordance with ISO/IEC 42001 (Annex A.7) and NIST AI RMF (GOVERN 1.2 and MANAGE 2.4), Privacy by Design and data minimization must be enforced systematically through formal governance gates before data ingestion occurs. Establishing an independent second-line architectural review ensures that business purpose limitation is verified, unnecessary attributes are eliminated at the conceptual stage, and sensitive identifiers are tokenized before entering model training pipelines, establishing proactive accountability.",
+    "explanation": "In accordance with ISO/IEC 42001 (Annex A.7) and NIST AI RMF (GOVERN 1.2 and MEASURE 2.10), Privacy by Design and data minimization should be addressed systematically through risk-proportionate governance controls before data ingestion occurs. An architectural review with objective second-line challenge, where appropriate under delegated authority, can help verify business purpose limitation, eliminate unnecessary attributes at the conceptual stage, and select tokenization of sensitive identifiers where warranted by the identified privacy risks before model training.",
     "distractorExplanations": [
       "Option A is incorrect because it reflects the wrong priority and direction; applying technical obfuscation tooling without formal purpose limitation and governance gating treats privacy purely as an engineering problem rather than an architectural policy requirement.",
       "Option B is incorrect because it reflects the wrong timing and sequence; conducting extraction testing during pre-production acceptance staging addresses leakage too late in the lifecycle after excessive personal data has already been ingested and processed into model artifacts.",
       "Option C is incorrect because it reflects the wrong authorization and scope; delegating feature governance and retention sign-offs solely to first-line ML engineering teams violates the Three Lines Model by eliminating independent second-line risk oversight and challenge."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex A.7; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943269969-47-mryb2",
     "domainId": "D2",
@@ -2781,7 +2752,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents a premature operational execution (wrong sequence) by attempting automated remediation in production before conducting root-cause analysis and assessing policy impact.",
       "Violates proper governance authorization and the Three Lines Model by delegating enterprise risk tolerance definitions to first-line technical operators rather than governing bodies."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11; ISO/IEC 42001 Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943271485-48-c6uyk",
     "domainId": "D2",
@@ -2804,7 +2775,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an appropriate governance action establishing the proper sequence and timing by defining policy baselines and logging standards prior to operational dataset substitution.",
       "Option D is an appropriate governance action upholding strict Three Lines Model authorization, ensuring independent Second Line challenge rather than relying on First Line operational self-certification."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. A.6.2 (Data provenance); NIST AI RMF 1.0 MAP 2.2 & MEASURE 2.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943276347-49-agzy8",
     "domainId": "D2",
@@ -2828,7 +2799,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is correct as described in the main explanation.",
       "Option D is incorrect because granting unilateral decision-making authority to first-line technical teams violates governance authorization principles; AI sourcing decisions involving regulatory and enterprise risk require multi-stakeholder governance and second-line oversight."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & GOVERN 6.1; ISO/IEC 42001:2023 Annex A.8 (Suppliers and third parties)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943294203-50-49u23",
     "domainId": "D3",
@@ -2851,7 +2822,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Commissioning third-party post-implementation audits is premature before establishing enterprise-wide measurement standards, baseline expectations, and strategic objectives (wrong sequence/timing).",
       "Delegating threshold-setting autonomously to business unit owners violates centralized governance and cross-functional consistency, creating fragmented, unverifiable ROI targets (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2 & GOVERN 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943289173-51-tnztz",
     "domainId": "D3",
@@ -2874,7 +2845,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Commissioning a third-line internal audit review is a reactive, untimely assurance measure; continuous monitoring and remediation triggers belong within first- and second-line governance mechanisms prior to audit engagement.",
       "Allowing first-line engineers to independently modify decision boundaries breaches segregation of duties and model change governance, bypassing requisite second-line risk validation and formal approval controls."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MANAGE 2.4 & MEASURE 2.6",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943290779-52-tsbao",
     "domainId": "D3",
@@ -2897,7 +2868,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing by deploying operational user-facing tooling prematurely before defining foundational governance criteria, stakeholder needs, and risk-tiered interpretability baselines.",
       "Option D represents wrong authorization and scope by inappropriately delegating governance, legal threshold setting, and risk boundary decisions to first-line technical engineering teams rather than cross-functional risk and compliance authorities."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8); ISO/IEC 42001:2023 Annex B.7.4 (Explainability and transparency)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943294885-53-cjlfm",
     "domainId": "D3",
@@ -2920,7 +2891,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is an acceptable and recommended governance practice that correctly enforces operational sequencing by ensuring monitoring baselines exist prior to formal production sign-off.",
       "Option D is an acceptable and recommended governance practice that properly enforces the Three Lines Model and segregation of duties over audit log integrity."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & Control A.6.2.4; EU AI Act Art. 12; NIST AI RMF 1.0 (MEASURE 2.7)",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943298921-54-2uolr",
     "domainId": "D3",
@@ -2943,7 +2914,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B exhibits flawed sequencing; pursuing external notified body audits or database registration before internal classification taxonomies and legal roles (provider vs. deployer) are defined produces fragmented and premature filings.",
       "Option C violates the Three Lines Model through improper authorization; first-line product managers own delivery risk but cannot independently conduct impact assessments and authorize compliance declarations without objective second-line challenge."
     ],
-    "source": "EU AI Act Articles 26-29 (Deployer Obligations); ISO/IEC 42001 Cl. 5 & 6; NIST AI RMF GOVERN 1.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943317740-55-07trj",
     "domainId": "D4",
@@ -2989,7 +2960,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence/timing by relying on reactive, retrospective reviews post-incident rather than instituting proactive, in-stride controls to treat measured risks before harm occurs.",
       "Option D represents wrong authorization/scope by violating the Three Lines Model, inappropriately delegating risk tolerance setting and alert suppression to first-line model developers."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.6, MANAGE 2.1, 2.2); ISO/IEC 42001 Cl. 6.1",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943315796-57-qkq0e",
     "domainId": "D4",
@@ -3012,7 +2983,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an improper operational sequence by attempting to establish production runtime monitoring before defining contractual baselines, performance thresholds, and service-level commitments.",
       "Violates the Three Lines Model by placing operational system maintenance, tuning, and model intervention directly onto the second-line risk oversight function instead of the first-line business owners."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 6.1, 6.2); ISO/IEC 42001:2023 Annex A.9",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943315649-58-7qd1l",
     "domainId": "D4",
@@ -3035,7 +3006,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance practice (proper sequence and timing) because establishing baseline tolerance limits and escalation triggers before operational activation ensures controls are operationalized from inception.",
       "This is an appropriate governance practice (proper authorization and scope) because the second line of defense is explicitly responsible for challenging first-line assumptions, controls, and threshold modifications before governance sign-off."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943330756-59-in7ze",
     "domainId": "D4",
@@ -3058,7 +3029,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing technical conformity assessments and model cards before establishing the overarching policy, taxonomy, and risk tolerance is premature and lacks strategic alignment (wrong sequence/timing).",
       "Allowing first-line operational development units to set their own risk thresholds and self-authorize deployments violates the Three Lines Model and abdicates executive oversight responsibilities (wrong authorization/scope)."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2); ISO/IEC 42001:2023 Clause 5 (Leadership and Commitment)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943341335-60-xaq5w",
     "domainId": "D1",
@@ -3081,7 +3052,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing algorithmic impact assessments and conformity reviews is an operational risk management activity (MAP/MEASURE in NIST AI RMF) that is premature before defining the enterprise AI governance charter, risk taxonomy, and risk tolerance thresholds (wrong sequence).",
       "Tasking Internal Audit (the Third Line) with approving business cases violates the Three Lines Model by compromising auditor independence through involvement in management decision-making and operational approvals (wrong authorization and scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1–5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943347849-61-aq1v4",
     "domainId": "D1",
@@ -3121,13 +3092,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "Under the IIA Three Lines Model and ISO/IEC 42001 (Clause 5.3 on organizational roles, responsibilities, and authorities), the second line of defense (AI Risk and Compliance) is primarily responsible for establishing policies, frameworks, and tools to manage risk, providing independent oversight and credible challenge to first-line risk assessments and decisions, and monitoring compliance against board-approved risk appetite.",
+    "explanation": "Under the IIA Three Lines Model (2020), first- and second-line roles both reside within management. To address business units self-authorizing high-risk AI deployments without oversight, the second-line AI Risk and Compliance function is responsible—within authority delegated by top management and the governing body—for establishing the AI risk governance framework, providing objective and credible challenge to first-line risk ratings and decisions, and monitoring compliance against approved risk appetite. Independent assurance to the audit committee remains the distinct remit of the third line (Internal Audit).",
     "distractorExplanations": [
       "Option A is incorrect because remediation, hyperparameter tuning, and technical performance optimization are operational execution activities that belong strictly to the first line of defense (development and deployment teams).",
       "Option B is incorrect because procuring and deploying operational monitoring tools prior to defining governance mandates, risk taxonomies, and enterprise policies reverses the requisite governance sequence.",
       "Option C is incorrect because providing objective, independent assurance directly to the governing body and audit committee is the exclusive remit of the third line of defense (Internal Audit), not the second line."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2 & 1.3; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943349110-63-ewu27",
     "domainId": "D1",
@@ -3150,7 +3121,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting multi-disciplinary stakeholder consultations prior to formalizing operational thresholds is an acceptable, well-timed engagement practice recommended in responsible AI frameworks to prevent biased policy definitions.",
       "Granting second-line risk functions independent challenge and veto authority is an acceptable, core governance mechanism under the Three Lines Model to ensure adherence to established risk appetites."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Cl. 8.2; NIST AI RMF 1.0 GOVERN 1.2 & GOVERN 4.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943346650-64-3nlj2",
     "domainId": "D1",
@@ -3173,7 +3144,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because commissioning independent conformity assessments is premature before the enterprise has established its internal governance baseline, policies, and risk taxonomy.",
       "Option D is incorrect because delegating the definition of risk thresholds and self-approval exclusively to first-line business owners violates the Three Lines Model and abdicates board accountability for enterprise risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.2; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943365683-65-3cvpi",
     "domainId": "D1",
@@ -3196,7 +3167,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Populating model cards with operational validation metrics is premature (wrong sequence) because documentation standards and comprehensive cataloging cannot occur consistently until the organizational scope and criteria of AI assets are formally defined.",
       "Directing internal audit to build the inventory misallocates responsibilities under the Three Lines Model (wrong authorization/scope), as compiling and maintaining the operational asset inventory is a management responsibility (first and second lines), not the role of independent assurance."
     ],
-    "source": "ISO/IEC 42001:2023, Cl. 4.3 (Determining the scope of the AI management system); NIST AI RMF 1.0, GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943362932-66-4fifg",
     "domainId": "D2",
@@ -3219,7 +3190,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents reactive remediation with flawed timing (wrong sequence); Privacy by Design mandates proactive minimization before and during training rather than attempting post-hoc detection and scrubbing of model weights.",
       "Option C violates segregation of duties and governance scope (wrong authorization); 1st-line AI product owners cannot unilaterally set risk tolerances or approve privacy exemptions without 2nd-line risk oversight and committee approval."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Controls B.7.2, B.9.2; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943369657-67-lxxtk",
     "domainId": "D2",
@@ -3237,12 +3208,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "correctIndex": 0,
     "questionType": "PRIMARY",
     "explanation": "In accordance with NIST AI RMF (GOVERN 1.2 and MANAGE 2.4) and ISO/IEC 42001, the primary responsibility of a governance body such as an AI risk committee (Second Line of Defense) is to establish organizational boundaries, risk tolerance thresholds, and oversight frameworks for addressing drift and bias. The committee governs the criteria under which models must be re-evaluated, adjusted, or suspended, ensuring consistent accountability rather than engaging in hands-on technical remediation.",
-    "distractorExplanations": [
-      "Directing specific technical data manipulation algorithms (such as SMOTE) reflects a purely technical remediation priority that belongs to operational developers (First Line of Defense), not the governance mandate of an AI risk committee.",
-      "Initiating a production rollback without formal risk evaluation and alignment against enterprise risk appetite represents an premature, reactive operational decision taken out of proper governance sequence.",
-      "Assuming operational control over data pipelines violates the Three Lines Model by conflating Second Line oversight and policy enforcement with First Line development and maintenance responsibilities."
-    ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 2.4); ISO/IEC 42001:2023 Cl. 6.1",
+    "distractorExplanations": ["Directing specific technical data manipulation algorithms (such as SMOTE) reflects a purely technical remediation priority that belongs to operational developers (First Line of Defense), not the governance mandate of an AI risk committee.","Initiating a production rollback without formal risk evaluation and alignment against enterprise risk appetite represents a premature, reactive operational decision taken out of proper governance sequence.","Assuming operational control over data pipelines violates the Three Lines Model by conflating Second Line oversight and policy enforcement with First Line development and maintenance responsibilities."],
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943361279-68-0ukrs",
     "domainId": "D2",
@@ -3265,7 +3232,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because ensuring second-line independent challenge and verification of generative models before operational sign-off is a foundational principle of the Three Lines Model and risk governance.",
       "Option D is incorrect because establishing formal steering committee policies regarding usage boundaries, parameters, and retention ensures strong organizational accountability and controlled lineage."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2, Annex A.7; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943363838-69-0k522",
     "domainId": "D2",
@@ -3288,7 +3255,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it exhibits flawed sequence/timing; testing models in a production pilot prior to completing formal risk assessments and establishing control gates introduces unmitigated operational and compliance risks.",
       "Option D is incorrect because it represents an inappropriate authorization/scope; the 1st-line development team cannot unilaterally accept risk or make enterprise sourcing decisions without 2nd-line risk review and steering committee oversight."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1; ISO/IEC 42001:2023 Cl. 8.2 & Annex A.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943389729-70-17fxn",
     "domainId": "D3",
@@ -3311,7 +3278,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because procuring vendor solutions and launching operational pilots prior to defining strategic objectives and value criteria represents premature sequencing, risking unaligned capital expenditure and governance failure.",
       "Option C is incorrect because the third line of defense (Internal Audit) must maintain operational independence and cannot be tasked with formulating management's business targets, KPIs, or investment return criteria."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943389038-71-hprlj",
     "domainId": "D3",
@@ -3334,7 +3301,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Redesigning the model architecture is a premature operational action executed out of sequence before evaluating the extent of drift against documented performance metrics and root-cause analyses.",
       "Assigning daily operational monitoring to internal audit violates the Three Lines Model, as the third line must maintain independence and should not perform day-to-day operational control execution."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943382925-72-rsjps",
     "domainId": "D3",
@@ -3357,7 +3324,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an incorrect sequence and timing by deploying operational user-facing tooling into customer channels before establishing the prerequisite policy criteria and risk classification benchmarks.",
       "Option D violates governance authorization and the Three Lines Model by tasking the third line (internal audit) with designing and calibrating models, which compromises their objective independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex B.7; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.8",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943386735-73-ro93k",
     "domainId": "D3",
@@ -3380,7 +3347,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is an acceptable, sequential practice ensuring that necessary auditability and retention frameworks are formalized and approved before operational deployment.",
       "Option D is an acceptable practice aligning with the Three Lines Model by utilizing third-line assurance to objectively test the controls, completeness, and immutability of telemetry logs."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 (Monitoring, measurement, analysis and evaluation); NIST AI RMF 1.0 GOVERN 4.1 & MEASURE 2.6",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943391747-74-535ol",
     "domainId": "D3",
@@ -3403,7 +3370,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents an inverted sequence (wrong timing/sequence); an organization must establish its internal risk management, quality systems, and technical documentation before engaging with conformity pathways or pursuing certification.",
       "Option C violates segregation of duties and enterprise risk governance principles (wrong authorization/scope) by delegating independent regulatory sign-off and risk tolerance decisions to the first-line business unit without second-line risk/compliance oversight."
     ],
-    "source": "EU AI Act, Articles 9 (Risk Management System), 14 (Human Oversight), and 17 (Quality Management System); ISO/IEC 42001 Cl. 6 & 8",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943409214-75-czko4",
     "domainId": "D4",
@@ -3449,7 +3416,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C suggests conducting independent internal audits prior to formalizing the enterprise risk taxonomy and appetite metrics (wrong sequence/timing); assurance cannot effectively evaluate compliance without an established baseline governance framework.",
       "Option D allows first-line system developers to adjust risk appetite and tolerance parameters autonomously (wrong authorization/scope); risk appetite and tolerance modifications are strictly the purview of executive risk leadership and governing bodies, violating separation of duties."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 4.1, & MANAGE 4.1; ISO/IEC 42001 Cl. 6.1",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943411137-77-o3n8u",
     "domainId": "D4",
@@ -3472,7 +3439,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B proposes late-stage live operational red-teaming prior to contract execution, which represents an incorrect sequence and timing of assurance activities before establishing contractual parameters and baseline risk policies.",
       "Option D breaches appropriate governance authority by assigning cross-functional risk sign-off and legal terms solely to first-line business unit operators, violating second-line oversight and corporate governance structures."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 Cl. 8.2 and Control A.9 (Supplier Relationships)",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943405753-78-721my",
     "domainId": "D4",
@@ -3495,7 +3462,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents an appropriate sequencing and operational containment action, ensuring that untrusted, drifting models are not continuously updated or deployed before root causes are mitigated.",
       "Option C represents an appropriate authorization and assurance mechanism where the third line provides independent, objective assurance to the board without operational conflicts of interest."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & 9.1; NIST AI RMF 1.0 GOVERN 1.2 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943410717-79-na2y9",
     "domainId": "D4",
@@ -3518,7 +3485,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is prematurely sequenced; performing external conformity assessments and audits prior to defining the organizational AI governance charter, risk appetite, and internal policy foundation reverses the necessary governance lifecycle.",
       "Option D represents an improper allocation of authorization and scope; setting risk tolerance thresholds and overarching oversight is a board and executive function that cannot be delegated solely to first-line project managers."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1, 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943427743-80-0iu96",
     "domainId": "D1",
@@ -3541,7 +3508,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because conducting use-case classifications and algorithmic impact assessments is an operational step that requires pre-established risk appetite thresholds and evaluation criteria to be meaningful (wrong sequence/timing).",
       "Option D is incorrect because internal audit represents the third line of defense and must maintain independence; delegating operational parameter-setting and pilot supervision to audit violates the Three Lines Model (wrong authorization/scope)."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2); ISO/IEC 42001:2023 Cl. 5.1, 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943426620-81-keney",
     "domainId": "D1",
@@ -3573,21 +3540,12 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is establishing an AI governance operating model aligned with NIST AI RMF (GOVERN) and the IIA Three Lines Model to oversee generative AI adoption. The board has mandated distinct separation between day-to-day algorithm delivery, risk oversight, and independent assurance across all operating subsidiaries.",
     "questionText": "What is the PRIMARY responsibility of the second line of defense within this AI governance structure?",
-    "options": [
-      "Deploy automated model observability tooling directly within continuous integration pipelines to optimize system telemetry and model accuracy.",
-      "Execute granular technical audits of algorithms across operational business units before the governing body formalizes the organizational risk appetite.",
-      "Assume direct operational ownership of algorithmic failure remediation and direct frontline data science teams during model development cycles.",
-      "Establish enterprise AI risk frameworks, formulate policy constraints, and provide independent oversight and challenge to operational risk owners."
-    ],
+    "options": ["Deploy automated model observability tooling directly within continuous integration pipelines to optimize system telemetry and model accuracy.","Execute granular technical audits of algorithms across operational business units before the governing body formalizes the organizational risk appetite.","Assume direct operational ownership of algorithmic failure remediation and direct frontline data science teams during model development cycles.","Establish enterprise AI risk frameworks, formulate policy constraints within delegated authority, and provide objective oversight and challenge to operational risk owners."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In the IIA Three Lines Model and governance frameworks such as NIST AI RMF (GOVERN 1.2) and ISO/IEC 42001 (Clause 5.3), the second line of defense (e.g., Enterprise Risk Management, AI Compliance) is primarily responsible for establishing policies, risk management frameworks, and guardrails, while providing independent oversight, monitoring, and effective challenge to first-line business operations. The first line maintains risk ownership, and the third line provides independent assurance.",
-    "distractorExplanations": [
-      "Option A represents wrong priority and technical direction; configuring automated observability tooling to maximize technical throughput is a technical/first-line engineering function rather than a governance oversight role.",
-      "Option B represents wrong sequence and timing; executing operational audits ahead of the board establishing a formal risk appetite and governance charter reverses the foundational governance flow.",
-      "Option C represents wrong authorization and scope; assuming operational ownership of remediation and directly managing data scientists compromises second-line independence by taking on first-line operational ownership."
-    ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 Cl. 5.3; IIA Three Lines Model",
+    "explanation": "In the IIA Three Lines Model (2020), both first- and second-line roles belong to management. The second line (e.g., Enterprise Risk Management, AI Compliance) establishes risk management frameworks and policy guardrails under delegated authority while providing continuous monitoring and objective challenge to first-line business operations. First-line roles retain direct operational and risk ownership, and the third line (Internal Audit) provides independent assurance to the governing body.",
+    "distractorExplanations": ["Option A represents wrong priority and technical direction; configuring automated observability tooling to maximize technical throughput is a technical/first-line engineering function rather than a governance oversight role.","Option B represents wrong sequence and timing; executing operational audits ahead of the board establishing a formal risk appetite and governance charter reverses the foundational governance flow.","Option C represents wrong authorization and scope; assuming operational ownership of remediation and directly managing data scientists blurs the separation between frontline risk ownership and second-line management oversight by taking on first-line operational ownership."],
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943428696-83-84pke",
     "domainId": "D1",
@@ -3610,7 +3568,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Enforcing an algorithmic impact assessment and stakeholder engagement before deployment reflects sound governance sequencing and proactive risk management.",
       "Granting the second-line risk management function independent challenge authority over first-line metric selection properly enforces the Three Lines Model."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943430840-84-81eim",
     "domainId": "D1",
@@ -3633,7 +3591,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C proposes formal audits and conformity assessments before enterprise policies and risk thresholds are defined, representing an inverted governance sequence where assurance precedes foundational policy mandates (wrong sequence/timing).",
       "Option D places 1st-line operational risk ownership and deployment approval into the hands of Internal Audit (3rd line) and Compliance (2nd line), violating role segregation and compromising audit independence under the Three Lines Model (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2, & 1.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943447320-85-vd1zc",
     "domainId": "D1",
@@ -3656,7 +3614,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents premature operational tasking; asking developers to author model cards before enterprise-wide metadata standards, templates, and classification criteria are defined leads to fragmented and non-comparable documentation.",
       "Option D improperly utilizes the third line of defense (Internal Audit) to conduct compliance verification before the first and second lines have defined policies, standards, and inventory baselines."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.1; NIST AI RMF 1.0 (GOVERN 1.1, MAP 1.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943445140-86-ovi5b",
     "domainId": "D2",
@@ -3673,13 +3631,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "MOST",
-    "explanation": "Under ISO/IEC 42001 (Clause 6 and Annex A controls on data lifecycle) and NIST AI RMF (GOVERN 1.2 and MANAGE 2.2), effective Privacy by Design and data minimization require upfront architectural controls. Establishing feature-level proportionality assessments ensures that each ingested variable is demonstrably necessary and proportionate to a validated business purpose, with independent second-line oversight preventing unconstrained feature accumulation.",
+    "explanation": "Under ISO/IEC 42001 (Clause 6 and Annex A controls on data lifecycle) and NIST AI RMF (GOVERN 1.2 and MEASURE 2.10), effective Privacy by Design and data minimization require upfront architectural assessment. Feature-level proportionality assessments help determine whether each ingested variable is necessary and proportionate to a validated business purpose, with objective second-line oversight, where assigned under delegated authority, helping prevent unconstrained feature accumulation.",
     "distractorExplanations": [
       "Option A is incorrect because applying mathematical perturbations (differential privacy) at the output stage fails to address the governance requirement of minimizing data collection and ingestion at the architectural source.",
       "Option B is incorrect because deploying synthetic data tooling prematurely—before establishing foundational enterprise data classification schemes and retention criteria—inverts governance sequencing and risks codifying unverified data attributes.",
       "Option C is incorrect because delegating minimization decisions solely to first-line technical teams using model performance metrics bypasses privacy compliance mandates, legal obligations, and second-line risk challenge."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7; NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 2.2)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943444776-87-34yu5",
     "domainId": "D2",
@@ -3702,7 +3660,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor 2 reflects a wrong sequence and timing by inappropriately tasking third-line internal audit to execute operational reviews before first- and second-line stakeholders have logged, analyzed, or managed the operational incident.",
       "Distractor 3 reflects wrong authorization and scope by delegating corporate-level risk appetite decisions (redefining fairness thresholds and underwriting criteria) to first-line technical operators without steering committee oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 8.4; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.6, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943445534-88-jxmit",
     "domainId": "D2",
@@ -3725,7 +3683,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an essential sequencing and validation control that ensures synthetic distributions are empirically evaluated and approved prior to operational deployment.",
       "This represents proper alignment with the Three Lines Model, ensuring second-line risk functions maintain independent review authority over first-line engineering practices."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7.2 & A.7.4; NIST AI RMF 1.0 MEASURE 2.6 & GOVERN 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943447751-89-s2dsf",
     "domainId": "D2",
@@ -3748,7 +3706,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence; negotiating contractual remedies prior to assessing and categorizing the AI system's risk tier and operating requirements leads to misaligned legal protections and incomplete requirements.",
       "Option D represents wrong scope and authorization; assigning operational sourcing and procurement decisions to internal audit breaches the Three Lines Model, compromising third-line independence and objective assurance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2; NIST AI RMF 1.0 GOVERN 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943467675-90-it88i",
     "domainId": "D3",
@@ -3771,7 +3729,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a wrong sequence/timing misconception because deploying tracking tooling and dashboards is an operational activity that must occur after the strategic value metrics, baselines, and criteria have been formally defined.",
       "Option C represents a wrong authorization/scope misconception because the third line of defense (Internal Audit) must maintain independence and should not design performance scorecards or establish business ROI thresholds."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2 (AI objectives and planning to achieve them); NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943463778-91-etjek",
     "domainId": "D3",
@@ -3794,7 +3752,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an improper operational sequence; unilaterally rolling back before capturing telemetry and diagnostic metrics prevents proper root-cause analysis and violates change management protocols.",
       "Violates the Three Lines Model by improperly assigning first-line operational tuning and parameter management responsibilities to third-line internal audit, compromising audit independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.7 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943465809-92-22gqd",
     "domainId": "D3",
@@ -3817,7 +3775,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C reflects a sequential error; technical runtime tools must not be operationalized in consumer-facing environments before governing policies and thresholds are ratified.",
       "Option D represents an authorization failure; balancing model accuracy against interpretability impacts enterprise risk posture and cannot be delegated unilaterally to first-line developers."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8); ISO/IEC 42001:2023 Cl. 6.1 & Annex B.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943467777-93-6bhwv",
     "domainId": "D3",
@@ -3840,7 +3798,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents incorrect sequencing and regulatory scope; credit scoring AI systems under Annex III are typically subject to internal control conformity assessments (Annex VI) rather than mandatory notified body involvement, and initiating external validation prior to establishing internal governance and quality management systems is premature.",
       "Option C violates the Three Lines Model; assigning internal audit (3rd line) to draft operational plans and design controls compromises their independent assurance mandate."
     ],
-    "source": "EU AI Act Articles 9, 17, and 72; ISO/IEC 42001 Clause 5 & 6; NIST AI RMF GOVERN 1.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943491980-95-3lqrs",
     "domainId": "D4",
@@ -3886,7 +3844,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents a sequence error by executing tactical adversarial testing before defining the enterprise risk policies, scopes, and governance frameworks that establish testing criteria.",
       "Violates the Three Lines Model by assigning first- and second-line responsibilities (setting risk tolerance and approving risk mitigations) to the third line of defense (Internal Audit), destroying audit independence."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2, GOVERN 2.1); ISO/IEC 42001 Cl. 5",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943495559-97-m8kn4",
     "domainId": "D4",
@@ -3909,7 +3867,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because attempting to enforce remediation prior to formalizing the enterprise's baseline risk criteria and contractual mandates represents an inverted operational sequence (wrong sequence/timing).",
       "Option D is incorrect because delegating risk acceptance and oversight solely to first-line business or development units violates the Three Lines Model and exceeds appropriate authorization boundaries without second-line risk challenge or steering committee oversight (wrong authorization/scope)."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 Annex A.10",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943492171-98-85i9f",
     "domainId": "D4",
@@ -3932,7 +3890,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is an entirely appropriate governance practice that enforces correct sequence and approval authority through the designated risk committee rather than ad-hoc overrides.",
       "Option C is an entirely appropriate governance practice that exemplifies effective second-line oversight by providing objective, independent challenge to first-line remediation strategies."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943499320-99-e36b3",
     "domainId": "D4",
@@ -3955,7 +3913,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting independent third-line conformity assessments before defining policies, governance structures, and risk thresholds represents inverted sequencing, as internal audit assesses compliance against established policies.",
       "Delegating complete risk acceptance and approval to business unit operators breaches second-line oversight principles and fragments organizational risk posture, failing the board's duty of centralized governance oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943513191-100-3c1m9",
     "domainId": "D1",
@@ -3978,7 +3936,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting algorithmic impact assessments on specific models is an essential 1st/2nd line risk identification activity, but performing it before defining the overarching enterprise charter, policy baseline, and risk thresholds is premature (wrong sequence/timing).",
       "Assigning internal audit the responsibility to design or approve system architectures breaches independence under the Three Lines Model (wrong authorization/scope); audit provides independent assurance (3rd line) rather than operational design or approval (1st/2nd line)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.2; NIST AI RMF 1.0 GOVERN 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943518869-101-61lzd",
     "domainId": "D1",
@@ -4001,7 +3959,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting model testing without standardized risk definitions represents an inverted operational sequence (wrong sequence/timing), as technical assessments cannot be benchmarked without an enterprise policy establishing risk tolerance.",
       "Permitting individual business unit managers to approve operational guidelines creates decentralized fragmentation and lacks independent second-line oversight and executive authorization (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2; NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943515176-102-okmhl",
     "domainId": "D1",
@@ -4018,13 +3976,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In the Three Lines Model and ISO/IEC 42001 (Clause 5.3), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing policies, defining frameworks, monitoring risk trends, and providing independent challenge to first-line risk assessments. The second line does not own operational risk or execute operational controls, but ensures that first-line risk taking aligns with organizational risk appetite.",
+    "explanation": "In the Three Lines Model and ISO/IEC 42001 (Clause 5.3), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing policies, defining frameworks, monitoring risk trends, and providing objective, credible challenge to first-line risk assessments. The second line does not own operational risk or execute operational controls, but ensures that first-line risk taking aligns with organizational risk appetite.",
     "distractorExplanations": [
       "Option A is incorrect because designing, deploying, and maintaining operational safeguards and technical monitoring tools is a first-line operational ownership responsibility, reflecting technical execution rather than governance oversight.",
       "Option B is incorrect because independent, objective assurance of governance control design and operating effectiveness is the defining mandate of internal audit (the third line), not the second line.",
       "Option C is incorrect because risk acceptance and accountability reside strictly with first-line business owners who deploy the systems and control the underlying business process; the second line advises and challenges but cannot assume risk ownership."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943513787-103-7pz06",
     "domainId": "D1",
@@ -4047,7 +4005,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Establishing organizational risk tolerance before approving deployment pipelines reflects proper governance sequencing and prevents premature operational release.",
       "Empowering the second-line risk management function to challenge ethical compliance enforces independent oversight and upholds the Three Lines Model."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2); ISO/IEC 42001:2023 Cl. 5.1 & Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943516497-104-xyzm5",
     "domainId": "D1",
@@ -4070,7 +4028,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because it reflects the wrong sequence/timing; performing operational assessments and stress tests before establishing the organizational AI charter and risk appetite leads to inconsistent evaluations without enterprise-wide reference baselines.",
       "Option D is incorrect because it represents wrong authorization/scope; delegating risk appetite and deployment approvals entirely to 1st-line business units violates the Three Lines Model and circumvents board-level oversight and 2nd-line independent risk challenge."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943535745-105-0p7tf",
     "domainId": "D1",
@@ -4093,7 +4051,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating immediate model card population across all operational models is an operational task that suffers from wrong sequencing, as developers cannot consistently complete documentation without approved institutional definitions and tiered documentation thresholds.",
       "Assigning discovery to internal audit represents an inappropriate scope and authorization error; the third line provides independent assurance and should not be tasked with performing operational 1st-line asset identification and inventory creation."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 4.3 (Scope) & Cl. 6.1; NIST AI RMF 1.0 (GOVERN 1.1, MAP 1.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943532960-106-wilmy",
     "domainId": "D2",
@@ -4116,7 +4074,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents an operational testing action that is sequenced too late; executing post-deployment testing violates the core tenet of Privacy by Design, which requires proactive upstream preventive controls before live release.",
       "Option C misallocates authorization and scope by allowing first-line operational managers to set privacy thresholds without enterprise second-line risk oversight, standardized data governance policies, or architectural oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6.2 (Data for AI systems); NIST AI RMF 1.0 (MAP 1.5, GOVERN 1.2)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943539729-107-ughg2",
     "domainId": "D2",
@@ -4139,7 +4097,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing immediate technical retraining prior to performing a comprehensive AI impact and risk reassessment violates proper governance sequencing and change management processes.",
       "Permitting first-line engineering teams to unilaterally authorize fairness metrics and tolerances violates the Three Lines Model, as risk thresholds must be challenged and governed by the second line and approved by executive oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.4; NIST AI RMF 1.0 (MEASURE 2.7, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943537900-108-aanfq",
     "domainId": "D2",
@@ -4162,7 +4120,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is a foundational, required sequential control where second-line and technical teams validate statistical parity and privacy guarantees prior to production ingestion.",
       "Option D reflects sound governance and appropriate authorization within the Three Lines Model, allowing independent risk functions to enforce data quality and lineage mandates."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7 (Data for AI systems); NIST AI RMF 1.0 (MAP 1.5, MEASURE 2.7)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943540669-109-3k0k1",
     "domainId": "D2",
@@ -4185,7 +4143,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing deployment activities and contractual agreements before establishing requirements and evaluating strategic risk reflects an improper sequence that risks vendor lock-in and regulatory non-compliance.",
       "Allowing first-line operational development teams to make unilateral sourcing decisions violates governance scope and the Three Lines Model by circumventing independent risk oversight and committee authorization."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2; NIST AI RMF 1.0 GOVERN 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943564664-110-4uy56",
     "domainId": "D3",
@@ -4208,7 +4166,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it represents the wrong sequence/timing; procuring observability tooling and executing testing prior to defining strategic metrics and governance criteria leads to unguided spend and disconnected operational monitoring.",
       "Option C is incorrect because it reflects the wrong authorization/scope; internal audit (the third line) must remain independent and cannot design risk thresholds or set business case ROI targets, which are primary management responsibilities (first and second lines)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943556341-111-w9yo1",
     "domainId": "D3",
@@ -4231,7 +4189,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Suspending operations immediately without verifying whether input distribution drift translates to actual model degradation or operational harm is premature and disrupts business operations before basic validation occurs.",
       "Permitting first-line developers to alter performance criteria autonomously violates the Three Lines Model and separation of duties, as tolerances must be governed by approved risk limits and second-line oversight rather than operational self-authorization."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943555445-112-5psez",
     "domainId": "D3",
@@ -4254,7 +4212,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C reflects an error in governance sequence; independent third-line assurance cannot effectively audit compliance until the enterprise governance layer establishes formal policies, interpretability thresholds, and control criteria.",
       "Option D reflects an improper delegation of authorization and scope, inappropriately allowing first-line operational staff to define risk thresholds and policy in an ad-hoc manner, breaching enterprise risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 6.1; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943556657-113-zrxeu",
     "domainId": "D3",
@@ -4277,7 +4235,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate phased governance practice; stabilizing and calibrating baseline drift detection at the core model layer prior to instrumenting downstream consumer workflows ensures reliable metric thresholds.",
       "This is an appropriate governance practice; having the third line (internal audit) provide independent assurance over control designs established by the second line strictly adheres to the IIA Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & Annex A.9; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.7",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943564576-114-jdy9q",
     "domainId": "D3",
@@ -4300,7 +4258,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an incorrect sequence; external notified body audits or conformity assessments cannot succeed before an internal policy, technical documentation, and quality management baseline are established.",
       "Violates governance authorization and the Three Lines Model by allowing first-line operational managers to unilaterally self-classify regulatory tiers without second-line oversight or enterprise governance steering."
     ],
-    "source": "EU AI Act Articles 9, 17, 43, 72; ISO/IEC 42001:2023 Clause 6, 8, and 9",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943579681-115-bbbve",
     "domainId": "D4",
@@ -4346,7 +4304,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an incorrect sequence; conducting independent external assessments across operational systems prior to establishing the governing organizational policy framework violates top-down governance principles.",
       "Option D reflects an improper authorization and scope error under the Three Lines Model; first-line development teams cannot unilaterally calibrate and accept risk tolerances without second-line oversight and executive alignment."
     ],
-    "source": "NIST AI RMF 1.0: GOVERN 1.1, GOVERN 1.2; ISO/IEC 42001:2023 Cl. 5.1 & 6.2",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943578863-117-0z4eu",
     "domainId": "D4",
@@ -4370,7 +4328,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D improperly allows the first-line operational team to unilaterally accept unmitigated model risks, violating the Three Lines Model and risk governance delegation principles (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.10 (Third-party relationships); NIST AI RMF 1.0 GOVERN 6.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943578454-118-omq1r",
     "domainId": "D4",
@@ -4393,7 +4351,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance mechanism enforcing proper sequence and gating, ensuring the second line of defense validates risk posture before autonomous changes enter production.",
       "This is an appropriate governance practice ensuring organizational transparency and enabling the governing body to retain continuous oversight over residual risks relative to enterprise appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943581224-119-401wk",
     "domainId": "D4",
@@ -4416,7 +4374,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Commissioning a third-party conformity assessment before defining enterprise policies and risk taxonomies represents an improper sequence; external assurance must evaluate models against established organizational baselines and governance standards.",
       "Allowing business units to independently set risk appetite thresholds represents a severe governance breakdown, violating the principle that risk appetite must be established by the board and managed through enterprise-wide policies rather than siloed operational units."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943597832-120-8zzew",
     "domainId": "D1",
@@ -4439,7 +4397,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents a necessary MAP and MEASURE activity under NIST AI RMF, but conducting impact assessments at the operational project level is premature (wrong sequence/timing) prior to defining enterprise strategy and risk boundaries.",
       "Option D breaches the Three Lines Model by delegating control design to internal audit (3rd line) rather than operational management (1st line) supported by risk management (2nd line), representing improper authorization and scope."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 5.1, 5.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943598252-121-nry2o",
     "domainId": "D1",
@@ -4471,21 +4429,12 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial enterprise is operationalizing an AI Management System (AIMS) conforming to ISO/IEC 42001 and aligning organizational risk oversight with the Three Lines Model. Following several generative AI deployments across decentralized business units, executive leadership seeks to formalize accountability and eliminate role ambiguity between operational teams and the central risk function.",
     "questionText": "Under this governance architecture, what is the PRIMARY responsibility of the second line of defense?",
-    "options": [
-      "Deploy automated CI/CD pipeline guardrails and tune monitoring thresholds directly within the operational machine learning infrastructure.",
-      "Execute comprehensive pre-deployment penetration testing and model red-teaming prior to the formal establishment of enterprise AI risk appetite statements.",
-      "Assume operational ownership of AI risk treatment plans and execute model retraining workflows when performance drift exceeds critical operational limits.",
-      "Define the AI risk management framework, establish compliance policies, and independently challenge the risk decisions made by model owners."
-    ],
+    "options": ["Deploy automated CI/CD pipeline guardrails and tune monitoring thresholds directly within the operational machine learning infrastructure.","Execute comprehensive pre-deployment penetration testing and model red-teaming prior to the formal establishment of enterprise AI risk appetite statements.","Assume operational ownership of AI risk treatment plans and execute model retraining workflows when performance drift exceeds critical operational limits.","Define the AI risk management framework, establish compliance policies within delegated authority, and objectively challenge the risk decisions made by model owners."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In the Three Lines Model (and aligned with ISO/IEC 42001 Clause 5 and NIST AI RMF GOVERN 1.2), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing risk management frameworks, formulating enterprise-wide AI policies, monitoring regulatory compliance, and providing objective challenge to first-line decisions. First-line management owns and operates AI systems and their associated risks, while the third line provides independent assurance.",
-    "distractorExplanations": [
-      "Option A represents a technical engineering objective belonging to the first line of defense (operational AI engineering and MLOps teams), focusing on technical pipeline implementation rather than governance and oversight.",
-      "Option B exhibits a sequence and timing error by executing tactical, pre-deployment security testing before foundational governance prerequisites—namely, executive risk appetite and tolerance thresholds—have been established.",
-      "Option C constitutes an authorization and scope error by assigning first-line responsibilities (owning risk treatments, remediation actions, and operational model modifications) to the second line, violating the required segregation of duties and compromising oversight independence."
-    ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 (GOVERN 1.2); IIA/ISACA Three Lines Model",
+    "explanation": "Under the IIA Three Lines Model (2020), first- and second-line roles are both part of management. The second line (Risk Management and Compliance) defines risk management frameworks, formulates enterprise AI policies within delegated authority, monitors compliance, and provides objective challenge to first-line decisions. First-line management owns and operates AI systems and their risks, while the third line (Internal Audit) provides independent assurance.",
+    "distractorExplanations": ["Option A represents a technical engineering objective belonging to the first line of defense (operational AI engineering and MLOps teams), focusing on technical pipeline implementation rather than governance and oversight.","Option B exhibits a sequence and timing error by executing tactical, pre-deployment security testing before foundational governance prerequisites—namely, executive risk appetite and tolerance thresholds—have been established.","Option C constitutes an authorization and scope error by assigning first-line responsibilities (owning risk treatments, remediation actions, and operational model modifications) to the second line, violating the required segregation of duties and undermining objective second-line management oversight."],
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943601600-123-33egk",
     "domainId": "D1",
@@ -4508,7 +4457,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and standard sequential gate control; high-risk AI models require independent review and approval prior to production release to prevent ethical non-compliance and harm.",
       "This is an acceptable governance practice adhering strictly to the Three Lines Model, where the first line owns operational execution and monitoring, and the second line maintains oversight and objective challenge."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2 & 6.2; NIST AI RMF 1.0 GOVERN 1.2 & GOVERN 3.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943598829-124-snffj",
     "domainId": "D1",
@@ -4531,7 +4480,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an operational risk assessment activity executed out of order (wrong sequence/timing); risk management methodologies and risk assessments require organizational governance, policies, and risk tolerance thresholds to be defined first.",
       "Option D breaches the Three Lines Model (wrong authorization/scope) by giving Internal Audit (third line) operational responsibilities and approval authority over first-line and second-line activities, severely impairing their independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943617917-125-4ch2u",
     "domainId": "D1",
@@ -4549,12 +4498,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "correctIndex": 2,
     "questionType": "FIRST",
     "explanation": "Establishing an enterprise AI asset inventory and model card program requires a foundational governance definition before tools or enforcement can take place. In alignment with ISO/IEC 42001 and NIST AI RMF (GOVERN 1.2 and MAP 1.1), the organization must first establish a unified taxonomy and determine the mandatory metadata attributes (e.g., intended purpose, risk classification, data lineage) that define an AI asset across the enterprise. Without this standardized criteria, inventory efforts will remain fragmented and inconsistent.",
-    "distractorExplanations": [
-      "Option A represents wrong priority and direction by emphasizing technical automated tooling before establishing the foundational governance definitions, criteria, and governance standards.",
-      "Option B represents wrong sequence and timing because mandating documentation across legacy systems cannot be successfully enforced without first defining the common documentation standards and metadata requirements.",
-      "Option C represents wrong authorization and scope by inappropriately assigning 3rd-line independent assurance (Internal Audit) the operational responsibility of identifying, compiling, and managing 1st-line asset inventories."
-    ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1; NIST AI RMF 1.0 (GOVERN 1.2, MAP 1.1)",
+    "distractorExplanations": ["Option A represents wrong priority and direction by emphasizing technical automated tooling before establishing the foundational governance definitions, criteria, and governance standards.","Option B represents wrong sequence and timing because mandating documentation across legacy systems cannot be successfully enforced without first defining the common documentation standards and metadata requirements.","Option D represents wrong authorization and scope by inappropriately assigning 3rd-line independent assurance (Internal Audit) the operational responsibility of identifying, compiling, and managing 1st-line asset inventories."],
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943613883-126-9zj35",
     "domainId": "D2",
@@ -4577,7 +4522,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a timing failure (wrong sequence); conducting evaluations only after model training and production release contradicts the core premise of Privacy by Design, which requires proactive upstream controls.",
       "Option C represents an oversight and scope failure (wrong authorization); delegating compliance thresholds and data stripping to the discretion of first-line operational engineers lacks independent second-line oversight and consistent enterprise governance."
     ],
-    "source": "ISO/IEC 42001:2023, Annex A.6.2 & A.6.3; NIST AI RMF 1.0, MAP 2.3 & GOVERN 1.2",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943619721-127-i8i43",
     "domainId": "D2",
@@ -4600,7 +4545,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Deploying technical fixes directly into production represents operational execution (first line) and exhibits premature timing by altering production data before governance evaluations and controls are updated.",
       "Modifying or raising enterprise risk tolerances is within the exclusive purview of the governing body (Board of Directors or designated executive steering committee), exceeding the authorization scope of the second line."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.11); ISO/IEC 42001:2023 Cl. 6.1 and Cl. 9.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943616852-128-zx9rq",
     "domainId": "D2",
@@ -4624,7 +4569,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D is incorrect because it violates governance authorization and scope under the Three Lines Model; internal audit (third line) provides independent assurance and must not select operational models or design management monitoring controls."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2, Control A.8.4; NIST AI RMF 1.0 GOVERN 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943650497-130-94yh2",
     "domainId": "D3",
@@ -4647,7 +4592,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating subsidiary-level NPV projections and conformity assessments is premature; financial models and use-case assessments cannot be reliably baselined without enterprise-wide value criteria and overarching risk appetite guidance.",
       "Directing internal audit to build testing programs violates proper governance scope and the Three Lines Model; independent 3rd-line assurance evaluates established controls and criteria after management designs and implements them, not as the foundational first step of business case formulation."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943645628-131-2yf79",
     "domainId": "D3",
@@ -4670,7 +4615,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting annual third-party assurance represents a wrong sequence/timing control; retrospective reviews after year-end cannot prevent or mitigate active operational drift in a timely manner.",
       "Allowing first-line engineers to adjust alert thresholds without governance authorization represents a failure of scope and segregation of duties, effectively bypassing risk tolerances to suppress alerts."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 (Monitoring, measurement, analysis and evaluation); NIST AI RMF 1.0 (MEASURE 2.7, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943648083-132-a8ehk",
     "domainId": "D3",
@@ -4693,7 +4638,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing; procuring and implementing production monitoring tools is an operational execution step that must follow the definition of policies, thresholds, and stakeholder requirements.",
       "Option D represents wrong authorization and scope; assigning internal audit (the Third Line) to define management thresholds and operational consumer recourse violates independence under the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2 & Annex B.7; NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943647350-133-4g5z3",
     "domainId": "D3",
@@ -4716,7 +4661,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring second-line risk oversight approval before modifying monitoring baselines aligns directly with the Three Lines Model and prevents unapproved drift in monitoring standards.",
       "Providing independent internal audit with read-only telemetry access is an exemplary third-line governance practice enabling continuous, objective assurance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & Control B.9.4; NIST AI RMF 1.0 GOVERN 4.1 & MEASURE 2.7",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943654769-134-2kg8k",
     "domainId": "D3",
@@ -4725,12 +4670,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial institution plans to deploy a vendor-provided biometric identification and credit-scoring engine across its European retail banking operations, classifying the system as High-Risk under Annex III of the EU AI Act. As the Director of AI Governance, you must establish an oversight structure to address regulatory requirements while maintaining sound risk management across the enterprise.",
     "questionText": "Which of the following actions represents the BEST governance approach to ensure sustained regulatory compliance and accountability?",
-    "options": [
-      "Procure and integrate advanced algorithmic debiasing toolchains to perform continuous automated drift detection across the third-party credit scoring models.",
-      "Execute an operational fundamental rights impact assessment and submit the comprehensive technical documentation directly to the designated national supervisory authority prior to formalizing the enterprise governance charter.",
-      "Task the third-line internal audit team with designing and operating the continuous risk management system and technical logging controls required for high-risk deployers under Annex III.",
-      "Establish an enterprise AI compliance framework that mandates fundamental rights impact assessments, deployer post-market monitoring, and three lines of defense accountability."
-    ],
+    "options": ["Procure and integrate advanced algorithmic debiasing toolchains to perform continuous automated drift detection across the third-party credit scoring models.","Execute an operational fundamental rights impact assessment and submit the comprehensive technical documentation directly to the designated national supervisory authority prior to formalizing the enterprise governance charter.","Task the third-line internal audit team with designing and operating the continuous risk management system and technical logging controls required for high-risk deployers under Annex III.","Establish an enterprise AI compliance framework that mandates fundamental rights impact assessments (Art. 27), deployer operational monitoring and log retention (Art. 26), and Three Lines Model accountability."],
     "correctIndex": 3,
     "questionType": "BEST",
     "explanation": "The BEST governance approach aligns enterprise strategy, top-down policy, and statutory obligations. Under the EU AI Act, deployers of high-risk AI systems (such as credit evaluation and biometric identification) must conduct a Fundamental Rights Impact Assessment (FRIA, Art. 27), implement post-market monitoring and logging controls (Art. 26), and establish clear governance roles. Embedding these requirements into an overarching enterprise AI compliance framework operationalized across the Three Lines Model ensures structured, sustainable, and auditable oversight.",
@@ -4739,7 +4679,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it exhibits wrong sequence and timing; executing an ad-hoc FRIA and attempting external regulator engagement prior to defining the internal enterprise governance charter and risk appetite leads to fragmented and premature operational actions.",
       "Option C is incorrect because it violates proper authorization and scope under the Three Lines Model; the third line (internal audit) must maintain independence to provide objective assurance and must never design or operate management controls or logging systems (which are first- and second-line responsibilities)."
     ],
-    "source": "EU AI Act (Regulation (EU) 2024/1689), Articles 26, 27; IIA Three Lines Model",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943675926-135-h6jgr",
     "domainId": "D4",
@@ -4779,13 +4719,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 1,
     "questionType": "MOST",
-    "explanation": "The NIST AI RMF emphasizes that the GOVERN function is a foundational cross-cutting function that informs and enables MAP, MEASURE, and MANAGE. From an enterprise governance perspective, the most effective control integrates framework outcomes directly into the enterprise risk management (ERM) taxonomy and enforces structural stage-gates. Having the second line of defense independently validate contextualization (MAP) and governance policies (GOVERN) before authorizing deployment upholds the Three Lines Model and aligns organizational risk appetite with AI operations.",
+    "explanation": "The NIST AI RMF emphasizes that the GOVERN function is a foundational cross-cutting function that informs and enables MAP, MEASURE, and MANAGE. From an enterprise governance perspective, the most effective control integrates framework outcomes directly into the enterprise risk management (ERM) taxonomy and enforces structural stage-gates. Having the second line of defense objectively validate contextualization (MAP) and governance policies (GOVERN) before authorizing deployment upholds the Three Lines Model and aligns organizational risk appetite with AI operations.",
     "distractorExplanations": [
       "Option A reflects a flawed technical priority; implementing automated monitoring (MEASURE) without governing frameworks, contextual risk mapping, or accountability structures creates an illusion of control through vanity metrics while lacking governance foundation.",
       "Option C represents flawed sequence and timing; attempting to remediate or manage risks (MANAGE) before establishing context, boundaries, impact categorization, and likelihood assessments (MAP) results in inefficient, untargeted mitigation.",
       "Option D violates risk authorization and the Three Lines Model; first-line engineering teams own and manage operational risk but cannot unilaterally establish organizational risk tolerances or grant themselves policy exemptions, which is a second-line and governing body mandate."
     ],
-    "source": "NIST AI RMF 1.0 (Section 2.1 & Core Functions: GOVERN 1.1, MAP 1.1, MANAGE 1.1); ISO/IEC 42001:2023 Cl. 6.1",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943675186-137-eh26n",
     "domainId": "D4",
@@ -4808,7 +4748,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence and timing; relying on independent audit reports post-deployment fails to establish pre-procurement risk baselines, verification rights, and controls before production exposure.",
       "Option D represents wrong authorization and scope; first-line business units must not unilaterally negotiate operational risk thresholds or liability waivers, as defining risk appetite and contractual governance criteria requires second-line oversight and legal concurrence."
     ],
-    "source": "ISO/IEC 42001:2023, Annex A.9 (Supplier relationships); NIST AI RMF 1.0, GOVERN 6.1 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943672764-138-7tgna",
     "domainId": "D4",
@@ -4831,7 +4771,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is an appropriate governance action; enforcing second-line validation before deploying retrained algorithms ensures proper segregation of duties and adherence to established change management protocols.",
       "Option C is an appropriate governance action; escalating formal breaches to executive governance bodies allows the organization to formally determine whether temporary, bounded risk acceptance is justifiable."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1.2 & 9.1; NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943681438-139-0r6fq",
     "domainId": "D4",
@@ -4854,7 +4794,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents premature operational execution; conducting detailed assessments across the organization is ineffective without established enterprise-wide AI policies, criteria, and governance mandates.",
       "Option D breaches the Three Lines Model by assigning operational management and sign-off duties to Internal Audit (third line), compromising their independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943698810-140-ryq5j",
     "domainId": "D1",
@@ -4877,7 +4817,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting algorithmic impact assessments represents an operational, technical risk identification process (NIST MAP) that is premature before establishing enterprise-level governance charters, policies, and risk thresholds.",
       "Delegating risk appetite formulation to individual business unit managers violates proper organizational authorization and governance scope, creating uncoordinated departmental silos that breach enterprise-wide 2nd-line oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1, 5.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943691011-141-3u1ro",
     "domainId": "D1",
@@ -4900,7 +4840,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a premature operational action (wrong sequence/timing); conducting impact assessments without an approved enterprise policy framework leaves assessors without standardized criteria, benchmarks, or defined risk appetites.",
       "Option D represents a breakdown of authorization and oversight (wrong authorization/scope); first-line managers cannot set their own risk tolerances or unilaterally grant policy exceptions, which violates independent 2nd-line risk oversight and sound governance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2 (AI Policy); NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943700289-142-t6qml",
     "domainId": "D1",
@@ -4917,13 +4857,9 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "In accordance with the IIA Three Lines Model and ISO/IEC 42001 (Clause 5.3), the primary responsibility of the second line of defense (Risk Management and Compliance) is to establish the enterprise risk management frameworks, define overarching policies, monitor compliance, and provide independent, credible challenge to operational teams. Operational risk ownership and model execution reside strictly within the first line, while independent assurance is provided by the third line.",
-    "distractorExplanations": [
-      "Option A represents a technical optimization and operational engineering duty, which belongs to first-line model developers rather than second-line risk oversight (wrong priority/direction).",
-      "Option B proposes commissioning external assurance before foundational governance and risk tolerance parameters are defined, reversing the necessary governance lifecycle sequence (wrong sequence/timing).",
-      "Option C inappropriately shifts operational day-to-day risk management, model tuning, and remediation duties from business units to the risk function, violating line independence (wrong authorization/scope)."
-    ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles belong to management. The second line (Risk Management and Compliance) establishes enterprise risk management frameworks, defines governance policies within delegated authority, monitors compliance, and provides objective, credible challenge to first-line operational teams. Operational risk ownership and model execution reside in the first line, while independent assurance is the distinct responsibility of the third line (Internal Audit).",
+    "distractorExplanations": ["Option A represents a technical optimization and operational engineering duty, which belongs to first-line model developers rather than second-line risk oversight (wrong priority/direction).","Option B proposes commissioning external assurance before foundational governance and risk tolerance parameters are defined, reversing the necessary governance lifecycle sequence (wrong sequence/timing).","Option C inappropriately shifts operational day-to-day risk management, model tuning, and remediation duties from business units to the risk function, blurring the separation between first-line risk ownership and second-line oversight (wrong authorization/scope)."],
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943701977-143-nvyb7",
     "domainId": "D1",
@@ -4946,7 +4882,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This represents proper procedural sequencing and gatekeeping by evaluating ethical and societal impacts before high-risk deployment occurs, making it a sound practice.",
       "This correctly maintains organizational scope and the Three Lines Model by establishing independent 2nd-line oversight to monitor and challenge 1st-line adherence to responsible AI policies."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, GOVERN 2.1); ISO/IEC 42001:2023 Cl. 5.1 & 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943699029-144-k8sn5",
     "domainId": "D1",
@@ -4969,7 +4905,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing conformity assessments prior to establishing the enterprise AI risk taxonomy and corporate strategy is out of sequence; foundational governance and classification criteria must precede operational assessments.",
       "Delegating risk tolerance definition and vendor procurement to individual business unit leaders violates centralized board oversight and the Three Lines Model by allowing first-line operators to bypass second-line risk governance."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943718126-145-870vw",
     "domainId": "D1",
@@ -4993,7 +4929,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is correct.",
       "Option D is incorrect because it violates the Three Lines Model regarding authorization and scope; internal audit (third line) provides independent assurance and must not design, register, or execute operational management activities such as populating the inventory."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MAP 1.1); ISO/IEC 42001:2023 Clause 6.1 and Clause 8.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943718417-146-1l4x6",
     "domainId": "D2",
@@ -5016,7 +4952,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Prescribes an extreme operational implementation (blanket synthetic data replacement) prematurely before conducting risk assessments or establishing feature necessity (Wrong Sequence/Timing).",
       "Inappropriately assigns risk tolerance and data retention decision rights to first-line delivery teams, undermining independent oversight and the Three Lines Model (Wrong Authorization/Scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & B.7.3; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943717230-147-23thc",
     "domainId": "D2",
@@ -5039,7 +4975,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Retraining and redeploying the model prior to conducting an algorithmic impact assessment violates proper governance sequencing and risks perpetuating or exacerbating bias without adequate validation.",
       "Permitting first-line model developers to unilaterally modify fairness thresholds exceeds their operational scope and bypasses approved risk governance, board-level risk appetite, and Second Line oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Cl. 8.2; NIST AI RMF 1.0 GOVERN 1.2 & MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943714436-148-21q69",
     "domainId": "D2",
@@ -5062,7 +4998,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an appropriate governance practice enforcing the proper top-down sequence by establishing steering committee policies prior to operational tool deployment.",
       "Option D is an appropriate governance practice adhering to the Three Lines Model by ensuring second-line risk management provides independent oversight of generative models."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. A.6.2.2 (Data for AI systems); NIST AI RMF 1.0 MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943719691-149-93vv6",
     "domainId": "D2",
@@ -5085,7 +5021,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a premature operational step in the procurement process; comprehensive technical audits and penetration tests should follow after establishing the sourcing strategy, assessment criteria, and initial due diligence.",
       "Option D reflects an authorization and segregation of duties failure, inappropriately delegating enterprise sourcing, legal risk acceptance, and procurement governance to first-line technical engineering roles."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & Annex A.8; NIST AI RMF 1.0 GOVERN 2.1 & MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943732362-150-ey9df",
     "domainId": "D3",
@@ -5102,13 +5038,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "FIRST",
-    "explanation": "According to ISACA governance principles and ISO/IEC 42001 (Clause 6.2), the foundational first step in value realization is defining clear, standardized strategic objectives and key performance indicators that reflect the enterprise's risk appetite and strategic vision. Establishing these baseline criteria centrally enables consistent evaluation of AI business cases and prioritization across the organization before technical tooling or capital allocation decisions are made.",
+    "explanation": "When launching an enterprise-wide AI portfolio where common evaluation criteria do not yet exist, the AI Steering Committee—acting under authority delegated by top management and the governing body—should first define standardized value realization and risk evaluation metrics aligned with organizational strategy and risk appetite. Establishing consistent evaluation criteria precedes deploying operational telemetry (Option A) or conducting post-implementation reviews (Option B), and prevents fragmented, unaligned hurdle rates across business units (Option C).",
     "distractorExplanations": [
       "Option A represents wrong PRIORITY; implementing automated tooling and operational metric collection focuses prematurely on technical infrastructure rather than foundational governance objectives and strategic business outcomes.",
       "Option B represents wrong SEQUENCE; conducting audits and post-implementation reviews occurs after deployment and value delivery, rather than providing the proactive baseline framework required to evaluate upfront business cases.",
       "Option C represents wrong AUTHORIZATION; delegating valuation criteria exclusively to business unit owners creates fragmented governance silos, bypassing central steering oversight and risk appetite alignment."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 (GOVERN 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.3; ISO/IEC 42001:2023 (verify Cl. 6.2 objectives requirements against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943736083-151-32qho",
     "domainId": "D3",
@@ -5131,7 +5067,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Initiating a full external audit at the first statistical anomaly is premature, cost-prohibitive, and bypasses established internal first- and second-line monitoring procedures (wrong sequence/timing).",
       "Frontline development teams (First Line) cannot unilaterally modify risk tolerances; risk appetite and boundary adjustments must be governed and challenged by Second Line risk management and approved by appropriate oversight bodies (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 (Monitoring, measurement, analysis and evaluation); NIST AI RMF 1.0 MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943732791-152-huwgt",
     "domainId": "D3",
@@ -5154,7 +5090,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an inverted sequence error by deploying operational and user-facing dashboards prior to defining baseline transparency policies, data classifications, and governance mandates.",
       "Violates the Three Lines Model by assigning control design and calibration responsibilities to the third line (internal audit), compromising their independent assurance mandate."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.8; ISO/IEC 42001:2023 Annex A.8.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943737090-153-3s2x0",
     "domainId": "D3",
@@ -5177,7 +5113,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring telemetry and logging to be validated in staging prior to production cutover reflects sound sequencing and change governance, ensuring audit controls function before exposure to operational risks.",
       "Enforcing independent third-line oversight over production metrics rather than relying only on first-line self-reporting is a valid governance practice that properly observes the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & Annex A.6 (AI system impact assessment & logging); NIST AI RMF 1.0 MEASURE 2.6",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943739696-154-c9zoj",
     "domainId": "D3",
@@ -5200,7 +5136,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it reflects wrong sequence and timing; premature engagement with external bodies bypasses the foundational requirement to establish an internal quality management system and complete underlying technical documentation. Furthermore, most Annex III high-risk employment systems undergo internal control conformity assessments (Annex VI) rather than mandatory third-party notified body assessments.",
       "Option C is incorrect because it reflects wrong authorization and scope; delegating regulatory risk tolerance, compliance sign-off, and deployment approval solely to first-line HR operational managers violates the Three Lines Model and abdicates executive risk oversight responsibilities."
     ],
-    "source": "EU AI Act (Regulation (EU) 2024/1689), Articles 9, 17, 43; ISO/IEC 42001:2023 Cl. 6, 8",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943757508-155-0fdqo",
     "domainId": "D4",
@@ -5246,7 +5182,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong SEQUENCE/TIMING: Deploying automated technical orchestration before establishing organizational risk tolerance, clear decision rights, and governing policies creates premature operational controls without foundational oversight.",
       "Option D represents wrong AUTHORIZATION/SCOPE: Internal audit represents the Third Line of accountability and cannot unilaterally define risk appetite or operate first-line monitoring dashboards without fundamentally violating organizational independence under the Three Lines Model."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.6, MANAGE 1.3); ISO/IEC 42001 Cl. 5.1",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943759533-157-mrv74",
     "domainId": "D4",
@@ -5270,7 +5206,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D represents wrong AUTHORIZATION/SCOPE; first-line technical engineers lack the enterprise authority to renegotiate legal contracts, and third-party commercial off-the-shelf foundation models typically do not permit internal foundational weight retraining."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 Annex A.10 (Third-party relationships)",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943755244-158-u3p00",
     "domainId": "D4",
@@ -5293,7 +5229,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and necessary governance response; sustained breaches must be formally reported to executive oversight bodies with clear accountability and remediation timelines under NIST AI RMF GOVERN 1.2 and ISO/IEC 42001 Cl. 9; selecting it reflects a misconception about escalation timing.",
       "This is an acceptable and vital practice adhering to the Three Lines Model, where second-line risk oversight independently challenges and validates first-line technical remediations to ensure alignment with enterprise risk posture; selecting it reflects a misconception about organizational scope and authorization."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Cl. 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943763389-159-dy19l",
     "domainId": "D4",
@@ -5316,7 +5252,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an inverted sequence error; operational conformity assessments and testing cannot be effectively executed or standardized without an established governance framework, policy baseline, and defined risk thresholds.",
       "Violates the Three Lines Model and authorization principles by assigning independent assurance and compliance sign-off to first-line operators, creating a severe conflict of interest and bypassing board-level accountability."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & Cl. 5.3; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943829229-160-0knam",
     "domainId": "D1",
@@ -5339,7 +5275,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents premature execution; conducting operational-level impact assessments and audits is a MAP/MEASURE activity that must occur after executive policy, risk criteria, and governance roles are approved.",
       "Option D exhibits improper scope and authorization; delegating unchecked authority to first-line business leads circumvents centralized oversight, risk appetite boundaries, and enterprise-wide strategic alignment."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943831726-161-nvn8j",
     "domainId": "D1",
@@ -5362,7 +5298,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because relying on post-implementation third-line internal audit reviews occurs too late in the lifecycle to prevent policy violations and inappropriately shifts preventive governance responsibility to independent assurance.",
       "Option D is incorrect because allowing decentralized first-line business owners to independently modify enterprise risk tolerances violates the Three Lines Model and breaks centralized risk alignment established by the governing body."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2, & 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943823909-162-a11gg",
     "domainId": "D1",
@@ -5371,21 +5307,12 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial institution is establishing an enterprise-wide Artificial Intelligence Management System (AIMS) under ISO/IEC 42001 and NIST AI RMF GOVERN. Business units across commercial banking and underwriting have begun independently deploying machine learning and generative AI applications, resulting in fragmented risk assessment and inconsistent control baselines across the organization.",
     "questionText": "Under the Three Lines Model adapted for enterprise AI governance, what is the PRIMARY responsibility of the second-line AI Risk Management and Compliance function?",
-    "options": [
-      "Implement automated drift detection scripts and fine-tune hyperparameters across production models to optimize algorithmic performance.",
-      "Conduct external third-party independent conformity assessments on pre-release systems prior to defining the risk taxonomy.",
-      "Maintain direct ownership of AI system operations and execute remediation protocols whenever system biases emerge.",
-      "Establish risk management frameworks, define guardrails, and independently challenge model operational risk."
-    ],
+    "options": ["Implement automated drift detection scripts and fine-tune hyperparameters across production models to optimize algorithmic performance.","Conduct external third-party independent conformity assessments on pre-release systems prior to defining the risk taxonomy.","Maintain direct ownership of AI system operations and execute remediation protocols whenever system biases emerge.","Establish risk management frameworks, define guardrails within delegated authority, and provide credible, objective challenge to model operational risk."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "According to the Three Lines Model adapted for AI governance (as reflected in ISO/IEC 42001 Clause 5.3 and NIST AI RMF GOVERN 1.2), the second line of defense (Risk Management and Compliance) is primarily responsible for establishing policies, defining enterprise AI risk frameworks and guardrails, monitoring risk compliance, and providing credible, independent challenge to first-line risk owners. The second line does not operate the systems or own the risk directly, but ensures first-line activities align with board-approved risk appetite.",
-    "distractorExplanations": [
-      "Option A represents wrong priority and wrong direction: monitoring script deployment and hyperparameter tuning are tactical engineering activities focused on technical optimization rather than enterprise governance oversight.",
-      "Option B represents wrong sequence and timing: pursuing external conformity assessments before establishing an enterprise AI risk taxonomy and baseline policies skips fundamental governance sequencing and conflates external/third-line assurance with second-line functions.",
-      "Option C represents wrong authorization and scope: the first line (business unit and model owners) maintains direct ownership of AI systems and executes day-to-day remediation; placing operational ownership in the second line compromises independence and violates core Three Lines separation."
-    ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3 (Roles and responsibilities); NIST AI RMF 1.0 (GOVERN 1.2 & 1.3); The IIA Three Lines Model",
+    "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles belong to management. The second line (AI Risk Management and Compliance) establishes enterprise AI risk frameworks and guardrails within delegated authority, monitors compliance, and provides credible, objective challenge to first-line risk owners. First-line business units retain direct operational ownership, while independent assurance is provided by the third line (Internal Audit).",
+    "distractorExplanations": ["Option A represents wrong priority and wrong direction: monitoring script deployment and hyperparameter tuning are tactical engineering activities focused on technical optimization rather than enterprise governance oversight.","Option B represents wrong sequence and timing: pursuing external conformity assessments before establishing an enterprise AI risk taxonomy and baseline policies skips fundamental governance sequencing and conflates external/third-line assurance with second-line functions.","Option C represents wrong authorization and scope: the first line (business unit and model owners) maintains direct ownership of AI systems and executes day-to-day remediation; placing operational ownership in the second line undermines objective second-line oversight and role separation and violates core Three Lines separation."],
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2 & 1.3; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943832214-163-lz5tp",
     "domainId": "D1",
@@ -5408,7 +5335,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Establishing the organizational ethical risk appetite and tolerance boundaries before selecting and implementing technical bias-testing tools represents proper governance sequencing and policy-first mandate.",
       "Structuring independent challenge capabilities and escalation procedures within the second line of defense adheres directly to the Three Lines Model and ISO/IEC 42001 accountability requirements."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, GOVERN 2.1); ISO/IEC 42001 Cl. 5.1 & Cl. 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943826901-164-h7nku",
     "domainId": "D1",
@@ -5431,7 +5358,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C initiates independent third-line compliance and conformity assurance prematurely (wrong sequence/timing) before management has defined policies, operational controls, or the AI management system scope.",
       "Option D abdicates centralized enterprise oversight and risk posture calibration to decentralized operational units (wrong authorization/scope), leading to inconsistent risk thresholds and fragmented accountability."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943849647-165-md05v",
     "domainId": "D1",
@@ -5454,7 +5381,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because mandating that operational teams fill out model cards is premature before standardizing asset definitions, required metadata fields, and classification boundaries.",
       "Option D is incorrect because allowing 1st-line operational unit leads to independently define what constitutes an AI asset violates the Three Lines Model by abdicating governance oversight and creating fragmented, inconsistent enterprise criteria."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Control A.6.2; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943844948-166-k1k5o",
     "domainId": "D2",
@@ -5477,7 +5404,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because it reflects the wrong sequence/timing; generating synthetic data operationalizes privacy prematurely before governance foundations, such as the organizational data classification schema and risk appetite, have been formally approved.",
       "Option C is incorrect because it reflects the wrong authorization/scope; permitting first-line operational engineers to unilaterally set retention and exclusion rules bypasses second-line oversight and breaches Three Lines Model segregation of duties."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, A.7.2; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943846028-167-566x0",
     "domainId": "D2",
@@ -5500,7 +5427,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents premature technical automation (wrong sequence/timing), deploying production retraining mechanisms before establishing governing baselines and threshold metrics for drift tolerance.",
       "Option D breaches the Three Lines Model (wrong authorization/scope) by directing internal audit (the third line) to perform first-line operational management and model recalibration duties, compromising their independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 8.2; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943848698-168-f8m5h",
     "domainId": "D2",
@@ -5523,7 +5450,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and necessary control; candidates prone to sequence errors often assume fidelity checks can be conducted post-deployment rather than enforcing validation gates prior to model promotion.",
       "This is an acceptable governance practice aligned with the Three Lines Model; candidates misattributing scope often assume synthetic data review is solely an engineering-level (first-line) task rather than subject to independent second-line risk oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6, A.6.2; NIST AI RMF 1.0 MAP 1.5, MEASURE 2.7",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943850951-169-ieals",
     "domainId": "D2",
@@ -5546,7 +5473,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Enforcing contractual audit clauses and indemnification jumps ahead in the operational sequence before defining the fundamental enterprise risk criteria and governance taxonomy needed to evaluate the vendor.",
       "Delegating model risk acceptance to frontline engineering staff violates the Three Lines Model and governance decision rights, as first-line operational teams cannot unilaterally accept strategic enterprise risks."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & Annex A.8; NIST AI RMF 1.0 GOVERN 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943869015-170-3r2zz",
     "domainId": "D3",
@@ -5569,7 +5496,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because deploying post-implementation dashboards and ROI telemetry represents premature operational monitoring before the overarching value governance criteria and investment criteria are formally established.",
       "Option C is incorrect because internal audit (the third line) provides independent assurance and should not be tasked with pre-allocation approval or setting the business case framework, which is a management and governance responsibility."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943864279-171-tsv4n",
     "domainId": "D3",
@@ -5592,7 +5519,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor 2 represents a wrong SEQUENCE/TIMING misconception; while internal audit provides independent assurance, initiating a third-line audit is premature and should not precede operational and second-line monitoring adjustments and baseline risk reviews.",
       "Distractor 3 represents a wrong AUTHORIZATION/SCOPE misconception; permitting first-line operational engineers to unilaterally alter decision thresholds bypasses model risk management policies, validation gates, and appropriate governance change control."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1; NIST AI RMF 1.0 (MEASURE 2.6, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943863242-172-fym50",
     "domainId": "D3",
@@ -5615,7 +5542,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong priority/direction: enforcing a blanket restriction to intrinsically interpretable models sacrifices performance and business strategy unnecessarily, rather than balancing explainability with capability through contextual, risk-based trade-off decisions.",
       "Option D represents wrong authorization/scope: operational threshold configuration and real-time intervention are management (first- and second-line) responsibilities; assigning them to internal audit impairs third-line independence."
     ],
-    "source": "ISO/IEC 42001:2023 Annex B.7.3; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943870539-173-yw9ef",
     "domainId": "D3",
@@ -5655,13 +5582,13 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "BEST",
-    "explanation": "At the Director level, the best governance action is establishing a top-down, integrated compliance framework aligned with the Three Lines Model. Under the EU AI Act (Articles 9, 11, 14, and 43), high-risk AI providers must maintain a risk management system, technical documentation, and conduct conformity assessments. Assigning operational responsibility (risk controls, logs, technical files) to the first line while empowering the second line (risk/compliance) to provide independent challenge and oversight ensures defensible, sustainable compliance.",
+    "explanation": "At the Director level, the best governance action is establishing a top-down, integrated compliance framework aligned with the Three Lines Model. Under the EU AI Act (Articles 9, 11, 14, and 43), high-risk AI providers must maintain a risk management system, technical documentation, and conduct conformity assessments. Assigning operational responsibility (risk controls, logs, technical files) to the first line while empowering the second line (risk/compliance) to provide objective, credible challenge and oversight ensures defensible, sustainable compliance.",
     "distractorExplanations": [
       "Focuses on a downstream technical control (bias and drift monitoring). While technically necessary, it represents an isolated operational tool rather than an enterprise-wide governance framework (Wrong Priority/Direction).",
       "Jumps prematurely to external notified body engagement before establishing internal governance structures, policies, and risk taxonomies; furthermore, credit scoring systems generally utilize internal control conformity assessments (Annex VI) unless combined with biometric systems (Wrong Sequence/Timing).",
       "Compromises the independence of the third line by assigning operational risk design, impact assessments, and control remediation to internal audit, directly violating standard ISACA Three Lines Model principles (Wrong Authorization/Scope)."
     ],
-    "source": "EU AI Act Articles 9, 11, 43; ISO/IEC 42001:2023 Cl. 5 & 6; NIST AI RMF GOVERN 1.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943897260-175-4zuav",
     "domainId": "D4",
@@ -5707,7 +5634,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing; executing runtime safeguards and penetration testing prior to establishing enterprise governance mandates and risk tolerance leads to ad-hoc, unaligned technical actions that lack foundational governance anchoring.",
       "Option D represents wrong authorization and scope by violating the Three Lines Model; the first line (system developers and business owners) must document operational context and execute treatment, while the second line provides oversight, challenge, and compliance validation rather than executing operational risk mitigation."
     ],
-    "source": "NIST AI RMF 1.0 (Sections 5.1 GOVERN and 5.2 MAP); ISO/IEC 42001:2023 Cl. 6.1 (Actions to address risks and opportunities)",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943885266-177-6c8rd",
     "domainId": "D4",
@@ -5730,7 +5657,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents a sequence error by conducting advanced technical testing before establishing the foundational risk acceptance criteria, contractual governance terms, and risk boundaries.",
       "Violates organizational risk authorization and the Three Lines Model by allowing operational procurement personnel to unilaterally accept critical enterprise-level AI and compliance risks without oversight."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 Cl. 8.2 & Annex A.10",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943895020-178-cpb1m",
     "domainId": "D4",
@@ -5753,7 +5680,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor B represents a defensible and rigorous governance sequence, ensuring that once an automated fail-safe halts a drifting model, senior leadership validates remediation before autonomy resumes.",
       "Distractor C represents a valid second-line governance mandate to monitor, evaluate risk metrics independently, and ensure remediation is enforced across operational units."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2 & 9.1; NIST AI RMF 1.0 (GOVERN 1.2, MANAGE 2.4)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943888008-179-jkmw3",
     "domainId": "D4",
@@ -5776,7 +5703,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing impact assessments on isolated prototypes before establishing organizational governance structures and policy charters is out of order (wrong sequence/timing).",
       "Delegating deployment sign-off to 1st-line AI engineering leads violates the Three Lines Model and governance segregation of duties, as delivery teams should not independently determine enterprise risk acceptability (wrong authorization/scope)."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.1, 1.2; ISO/IEC 42001:2023 Cl. 5.1 & 5.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943910240-180-6ze6b",
     "domainId": "D1",
@@ -5799,7 +5726,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because it reflects the wrong sequence; while AI impact assessments and risk scoring are necessary components of risk management (MAP/MEASURE), they cannot be calibrated effectively before organizational strategic objectives and risk appetite thresholds are defined.",
       "Option D is incorrect because it reflects the wrong authorization and scope; delegating unchecked authority to decentralized business lines bypasses enterprise risk oversight, violates central governance mandates, and risks misaligned or ungoverned AI adoption."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, 1.2); ISO/IEC 42001:2023 Clauses 5.2 & 6.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943914843-181-pmvpd",
     "domainId": "D1",
@@ -5822,7 +5749,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents flawed sequencing and timing; waiting until after user acceptance testing to evaluate ethical impact and policy conformity creates severe remediation delays and fails to embed governance by design.",
       "Option D represents improper authorization and scope by allowing first-line operational teams to self-certify compliance against localized tolerances rather than enforcing centralized, independent second-line governance and enterprise-wide risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Cl. 8.1; NIST AI RMF 1.0 GOVERN 1.2 & GOVERN 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943911400-182-cebe9",
     "domainId": "D1",
@@ -5831,12 +5758,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A global financial institution is formalizing its artificial intelligence governance structure in accordance with ISO/IEC 42001 and the IIA Three Lines Model following the creation of an AI Steering Committee. The Chief Risk Officer has been tasked with defining the governance mandate for the newly established enterprise AI Risk and Compliance function.",
     "questionText": "What is the PRIMARY responsibility of this Second Line function throughout the enterprise AI lifecycle?",
-    "options": [
-      "Deploy automated model monitoring telemetry and conduct continuous algorithmic code refactoring directly across enterprise production pipelines.",
-      "Perform retrospective bias remediation and operational retraining on deployed models prior to completing the organizational AI risk taxonomy.",
-      "Assume direct operational ownership for approving day-to-day algorithmic risk mitigation actions within customer-facing business units.",
-      "Establish AI risk frameworks, formulate policy limits, and provide independent oversight and challenge to first-line risk ownership."
-    ],
+    "options": ["Deploy automated model monitoring telemetry and conduct continuous algorithmic code refactoring directly across enterprise production pipelines.","Perform retrospective bias remediation and operational retraining on deployed models prior to completing the organizational AI risk taxonomy.","Assume direct operational ownership for approving day-to-day algorithmic risk mitigation actions within customer-facing business units.","Establish AI risk frameworks, formulate policy limits, and provide objective oversight and credible challenge to first-line risk ownership."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
     "explanation": "Under the IIA Three Lines Model and ISO/IEC 42001 (Clause 5.3) / NIST AI RMF (GOVERN 1.2 & 1.3), the Second Line (AI Risk and Compliance) is primarily responsible for designing the AI risk management framework, establishing policies and risk limits, and maintaining objective oversight by monitoring and challenging first-line activities. The First Line retains operational risk ownership and day-to-day mitigation.",
@@ -5845,7 +5767,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence/Timing: Initiating retrospective model remediations before establishing an approved enterprise AI risk taxonomy and governance baseline represents an ad-hoc, premature operational action that lacks top-down policy grounding.",
       "Wrong Authorization/Scope: The Second Line must never assume operational ownership of risk mitigation decisions; doing so violates segregation of duties, strips the First Line of accountability, and compromises Second-Line independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 (GOVERN 1.2, 1.3); IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943914843-183-kyc4x",
     "domainId": "D1",
@@ -5868,7 +5790,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing ethical risk assessments at the earliest stages of model scoping ensures proactive risk identification and adherence to responsible AI principles prior to resource expenditure.",
       "Assigning an independent second line to challenge operational adherence is a foundational governance practice ensuring objective monitoring and oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2, 6.2; NIST AI RMF 1.0 (GOVERN 1.2, GOVERN 2.1)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943917717-184-67wih",
     "domainId": "D1",
@@ -5914,7 +5836,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring teams to complete model cards before establishing enterprise definitions, approved metadata standards, and risk-based categorization results in inconsistent documentation and premature operational overhead.",
       "Directing internal audit (3rd line) to catalog dependencies and assign risk tiers inappropriately places operational management and design responsibilities on an independent assurance function, violating the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex B.7; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943931121-186-4ck0r",
     "domainId": "D2",
@@ -5937,7 +5859,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents wrong sequence/timing: attempting to prune sensitive features post-training is technically fraught, fails to prevent data contamination during pre-processing, and violates Privacy by Design principles requiring upstream controls.",
       "Option C represents wrong authorization/scope: delegating retention decisions to decentralized first-line technical squads without centralized governance oversight or second-line policy enforcement breaches the Three Lines Model and invites compliance fragmentation."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.2 & Control A.6.2 (Data for AI Systems); NIST AI RMF 1.0 GOVERN 1.2 & MANAGE 2.2",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943930609-187-tdpx1",
     "domainId": "D2",
@@ -5960,7 +5882,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Decommissioning the model without preliminary impact assessment or root-cause evaluation represents an arbitrary, premature operational reaction rather than an orderly, policy-driven risk response.",
       "Assigning threshold recalibration to internal audit violates the Three Lines Model; the third line must provide independent assurance rather than establishing or modifying operational controls and risk thresholds."
     ],
-    "source": "ISO/IEC 42001 Cl. 6.1; NIST AI RMF GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943930405-188-crb65",
     "domainId": "D2",
@@ -5983,7 +5905,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents a sound governance sequence where production deployment is appropriately gated pending formal risk committee approval of synthetic generation methodologies, making it an incorrect answer for a LEAST question.",
       "Option D represents a proper execution of the Three Lines Model, ensuring first-line engineers log provenance while second-line compliance maintains objective authorization authority, making it an incorrect answer for a LEAST question."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7; NIST AI RMF 1.0 MEASURE 2.5 & GOVERN 1.2; EU AI Act Article 10",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943932381-189-ubyer",
     "domainId": "D2",
@@ -6006,7 +5928,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B initiates vendor contractual and SLA negotiations prematurely before organizational risk appetite and comparative sourcing thresholds have been established (wrong sequence).",
       "Option D abdicates governance by allowing first-line operational teams to unilaterally accept significant compliance and enterprise risks without second-line oversight or executive committee approval (wrong authorization)."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 6.1 & Annex A.7; NIST AI RMF 1.0 GOVERN 1.2 & MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943958027-190-xf2br",
     "domainId": "D3",
@@ -6029,7 +5951,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents incorrect sequence and timing because post-implementation reviews occur at the conclusion of pilot initiatives and cannot substitute for an upfront value definition and evaluation framework.",
       "Option C violates the Three Lines Model and authorization scope by assigning the independent 3rd line (internal audit) operational responsibility for defining management targets and business case thresholds."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2 & 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943956698-191-0piit",
     "domainId": "D3",
@@ -6052,7 +5974,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor 2 represents a wrong sequence and timing error; while third-line internal audit provides valuable assurance, requiring an audit before implementing runtime failover leaves the organization actively exposed to unmitigated credit risk.",
       "Distractor 3 represents a wrong authorization and scope error; operational engineers in the first line cannot unilaterally adjust risk thresholds, as tolerance boundaries are defined by governance bodies and challenged by the second line to reflect enterprise risk appetite."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 8.4, 9.1; NIST AI RMF 1.0 MANAGE 2.4, MANAGE 4.1",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943950598-192-9ij22",
     "domainId": "D3",
@@ -6075,7 +5997,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an incorrect operational sequence, as deploying technical surrogate models into production prior to formalizing risk appetite, governance criteria, and risk taxonomies violates foundational top-down lifecycle controls.",
       "Option D represents an authorization and scope failure; first-line underwriting managers lack the enterprise mandate to unilaterally set regulatory compliance standards and risk acceptance thresholds, which belong to second-line compliance/risk functions and AI steering bodies."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8); ISO/IEC 42001:2023 Cl. 8.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943953971-193-xi000",
     "domainId": "D3",
@@ -6098,7 +6020,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an acceptable and necessary sequential practice; baseline reference distributions must be validated and locked during the pre-deployment phase so drift detection thresholds have an authorized point of comparison.",
       "This is an acceptable governance control upholding the Three Lines Model; internal audit (third line) must maintain independence by evaluating controls and log integrity rather than participating in first-line operational system configurations."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 9.1 & A.9; NIST AI RMF 1.0 MEASURE 2.7, GOVERN 1.2",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943968165-194-t8rg8",
     "domainId": "D3",
@@ -6121,7 +6043,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Jumps immediately to external conformity assessment engagements before establishing foundational internal policies, risk taxonomies, and quality management baselines (Wrong Sequence). Furthermore, standard credit scoring systems typically follow internal control conformity assessments rather than mandatory third-party notified body audits.",
       "Inappropriately assigns definitive legal sign-off and unchecked conformity verification to 1st-line model developers, violating the Three Lines Model by circumventing 2nd-line compliance challenge and oversight (Wrong Authorization)."
     ],
-    "source": "EU AI Act, Articles 9, 17, 43, 72 & Annex III; ISO/IEC 42001:2023 Cl. 6 & Cl. 9; NIST AI RMF GOVERN 1.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943986838-195-w23gz",
     "domainId": "D4",
@@ -6167,7 +6089,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is incorrect because it represents flawed sequencing and timing; conducting individual operational impact assessments (MAP/MEASURE) without an overarching policy, taxonomy, and inventory creates fragmented compliance rather than systematic institutional governance.",
       "Option D is incorrect due to improper authorization and scope; delegating risk appetite setting and exception approval solely to first-line operators violates core governance and Three Lines Model principles, as risk tolerances must be established by top-level oversight."
     ],
-    "source": "NIST AI RMF 1.0 (GOVERN 1.1, GOVERN 1.2, MANAGE 1.1); ISO/IEC 42001 Cl. 5.1",
+    "source": "NIST AI RMF 1.0 Section 5 (GOVERN 1.1–1.3, 2.1; MAP 1.1, 5.1; MEASURE 2.6; MANAGE 1.1, 1.3, 2.4, 4.1); IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943988538-197-p3hhf",
     "domainId": "D4",
@@ -6190,7 +6112,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B represents a premature operational step (wrong sequence), as establishing production drift monitoring occurs after completing classification and contractual risk framing.",
       "Option D represents an authorization failure (wrong scope), as individual technical engineers in the first line cannot formally accept organizational risk, nor should third-party standard assertions replace enterprise governance due diligence."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1; ISO/IEC 42001:2023 Cl. 8.2 & Annex B.8",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791943982220-198-6afbl",
     "domainId": "D4",
@@ -6213,7 +6135,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Sequencing the calibration of technical/model tolerances to derive directly from top-down, board-approved enterprise risk appetite ensures proper strategic alignment under ISO/IEC 42001 Clause 5 and Clause 6.",
       "Enforcing an independent second-line challenge of first-line operational risk metrics strictly adheres to the Three Lines Model and ensures objective oversight of risk tolerance compliance."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Cl. 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791943983566-199-mxwfl",
     "domainId": "D4",
@@ -6236,7 +6158,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Performing impact assessments is an operational risk identification activity that requires pre-established governance frameworks, evaluation criteria, and leadership mandates to be meaningful and standardized (wrong sequence/timing).",
       "Assigning approval and operational compliance oversight to internal audit breaches the IIA Three Lines Model by stripping 3rd line independence and improperly positioning audit as an operational 1st or 2nd line risk owner (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944007251-200-lfg3s",
     "domainId": "D1",
@@ -6259,7 +6181,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing; algorithmic impact assessments and conformity assessments are second-stage operational risk mapping activities (NIST MAP/ISO 42001 Cl. 6.1.2) that require an approved enterprise strategy and risk appetite to evaluate against.",
       "Option D represents wrong authorization and scope by inappropriately delegating enterprise risk posture definition and ethical thresholds to decentralized first-line operators, violating top-down governance and the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.2; NIST AI RMF 1.0 (GOVERN 1.1, 1.2)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944001831-201-ggsrx",
     "domainId": "D1",
@@ -6283,7 +6205,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is the correct answer.",
       "Option D improperly grants policy exception and risk-acceptance authority to first-line product owners (wrong authorization/scope), violating Three Lines Model separation and steering committee oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.2; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944004754-202-9w3xu",
     "domainId": "D1",
@@ -6300,13 +6222,9 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     ],
     "correctIndex": 3,
     "questionType": "PRIMARY",
-    "explanation": "According to the Three Lines Model and ISO/IEC 42001 (Clause 5.3) / NIST AI RMF (GOVERN 1.2), the primary responsibility of the second line of defense (Risk Management and Compliance) is to establish frameworks and policies, provide objective challenge to the first line's risk assessments, and monitor compliance against organizational risk appetite without directly owning operational processes.",
-    "distractorExplanations": [
-      "Option A represents wrong priority and technical direction; operational tuning, pipeline execution, and model optimization are first-line technical responsibilities, not second-line governance oversight.",
-      "Option B represents wrong sequence and timing, as conducting assurance assessments prior to defining policies and risk thresholds reverses governance order, and independent assurance is specifically a third-line function.",
-      "Option C represents wrong authorization and scope; managing data pipelines, directing operational processes, and approving day-to-day deployments belong to first-line business owners, and adopting them would compromise second-line independence."
-    ],
-    "source": "ISO/IEC 42001 Cl. 5.3; NIST AI RMF GOVERN 1.2; IIA/ISACA Three Lines Model",
+    "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles are part of management. Within authority delegated by top management and the governing body, the second line of defense (Risk Management and Compliance) establishes AI risk frameworks and policies, provides objective challenge to first-line risk assessments, and monitors compliance with organizational risk appetite without assuming direct ownership of daily operations.",
+    "distractorExplanations": ["Option A represents wrong priority and technical direction; operational tuning, pipeline execution, and model optimization are first-line technical responsibilities, not second-line governance oversight.","Option B represents wrong sequence and timing, as conducting assurance assessments prior to defining policies and risk thresholds reverses governance order, and independent assurance is specifically a third-line function.","Option C represents wrong authorization and scope; managing data pipelines, directing operational processes, and approving day-to-day deployments belong to first-line business owners, and adopting them would compromise objective second-line oversight and management role separation."],
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2; ISO/IEC 42001:2023 (verify Cl. 5.3 against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944007415-203-pe9ia",
     "domainId": "D1",
@@ -6329,7 +6247,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is a sequence error; conducting individual conformity assessments and audits without an enterprise-wide policy and risk categorization taxonomy creates inconsistent criteria and inefficient resource utilization.",
       "Option D violates the IIA Three Lines Model and governance scope by placing internal audit (3rd Line) into an operational management and approval role (1st/2nd Line), impairing their independence and objectivity."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944026808-205-hosed",
     "domainId": "D1",
@@ -6352,7 +6270,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Requiring developers to complete model cards without an overarching taxonomy, clear definitions, or tiering criteria is premature in sequence and leads to inconsistent documentation.",
       "Directing internal audit to build the inventory misaligns with the Three Lines Model, as inventory creation and risk ownership belong to operational business units (first line) with second-line oversight, not independent assurance (third line)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Control A.6.2; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944020928-206-13s0d",
     "domainId": "D2",
@@ -6375,7 +6293,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence/Timing: Deferring privacy verification to post-deployment continuous monitoring is reactive and occurs too late in the AI lifecycle, violating Privacy by Design principles which mandate proactive controls during data collection and pre-processing.",
       "Wrong Authorization/Scope: Delegating feature pruning decisions entirely to first-line technical operators based solely on algorithmic optimization bypasses second-line compliance review, enterprise risk appetite, and legal purpose-specification mandates."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7.2 (Data for AI systems); NIST AI RMF 1.0 (GOVERN 1.2, MAP 1.5)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944022162-207-p53nt",
     "domainId": "D2",
@@ -6398,7 +6316,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Executing technical retraining with synthetic data before re-assessing enterprise risk tolerances and systemic impacts represents an improper sequence of actions.",
       "Permitting first-line technical operators to unilaterally alter credit scoring thresholds violates governance authorization, decision rights, and the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 8.2; NIST AI RMF 1.0 MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944027025-208-and5t",
     "domainId": "D2",
@@ -6421,7 +6339,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This represents an appropriate sequencing and staging control, ensuring gating and validation occur before data artifacts enter production pipelines (wrong choice for a LEAST question).",
       "This represents appropriate organizational authorization and oversight under the Three Lines Model, ensuring second-line risk functions have the mandate to challenge technical parameters (wrong choice for a LEAST question)."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.6; NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.3",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944026080-209-02u0o",
     "domainId": "D2",
@@ -6444,7 +6362,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Demonstrates incorrect sequence by engaging in contract negotiation and vendor SLA structuring before establishing fundamental organizational risk appetite and evaluation criteria.",
       "Violates the Three Lines Model by delegating executive management and operational sourcing decisions to third-line internal audit, compromising audit independence."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Cl. 8.2; NIST AI RMF 1.0 GOVERN 1.2, MAP 1.5",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; ISO/IEC 42001:2023 (verify exact supplier/sourcing clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944042954-210-bxsl6",
     "domainId": "D3",
@@ -6467,7 +6385,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because post-implementation reviews are prematurely sequenced when baseline criteria and tracking frameworks have not yet been standardized or adopted.",
       "Option C is incorrect because Internal Audit (Third Line) must remain independent and cannot be assigned operational responsibility for validating and approving business case financial assumptions."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.2; NIST AI RMF 1.0 GOVERN 1.2 & 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 6.2 (verify exact wording against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944041777-211-py1tv",
     "domainId": "D3",
@@ -6490,7 +6408,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Represents an improper sequence and disproportionate reaction by decommissioning the system before evaluating the severity against established risk thresholds or conducting an impact assessment.",
       "Violates the Three Lines Model by assigning operational engineering tasks (hyperparameter recalibration) to third-line internal audit, compromising their independence."
     ],
-    "source": "NIST AI RMF 1.0 MEASURE 2.6 & MANAGE 2.4; ISO/IEC 42001:2023 Cl. 9.1",
+    "source": "NIST AI RMF 1.0 MEASURE 2.4, MEASURE 2.6, MANAGE 2.4 & MANAGE 4.1; ISO/IEC 42001:2023 Cl. 9.1 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944041150-212-airgq",
     "domainId": "D3",
@@ -6513,7 +6431,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing by procuring and implementing technical tooling before governance policies, risk taxonomies, and steering mandates have been formally approved.",
       "Option D represents wrong authorization and scope by delegating risk appetite decisions and trade-offs exclusively to the first line of defense, violating the Three Lines Model and undermining second-line risk oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Control A.6.2; NIST AI RMF 1.0 (GOVERN 1.2, MEASURE 2.8)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.8 & 2.9; EU AI Act Art. 13 & Art. 86; US ECOA / Regulation B (12 CFR § 1002.9); ISO/IEC 42001:2023 (verify transparency/explainability annex controls against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944042203-213-dbyap",
     "domainId": "D3",
@@ -6536,7 +6454,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Wrong Sequence/Timing: A candidate might mistakenly think monitoring baselines can be calibrated informally after deployment, but establishing validated baselines before production release is standard governance practice.",
       "Wrong Authorization/Scope: A candidate might mistakenly assume monitoring tools should be universally shared across teams, but maintaining organizational independence between first-line operational monitoring and third-line assurance tooling is critical for objective oversight."
     ],
-    "source": "ISO/IEC 42001:2023 Control A.8.4; NIST AI RMF 1.0 MEASURE 2.6 & GOVERN 4.1",
+    "source": "EU AI Act Arts. 12, 19 & 26(6); NIST AI RMF 1.0 MEASURE 2.4, 2.6, 2.7 & MANAGE 4.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 9.1 (verify logging controls against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944047836-214-9e3x2",
     "domainId": "D3",
@@ -6545,21 +6463,16 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational enterprise is preparing to deploy an automated recruitment and candidate evaluation platform across its European subsidiaries, qualifying it as a high-risk AI system under Annex III of the EU AI Act. The Chief Risk Officer seeks to institute an enterprise-wide governance mechanism to fulfill the organization's legal obligations as an AI deployer prior to system rollout.",
     "questionText": "Which of the following represents the BEST governance action for the enterprise to establish compliance and risk oversight?",
-    "options": [
-      "Direct the technical engineering staff to conduct deep algorithmic code reviews and automated statistical parity testing on the vendor's proprietary training weights.",
-      "Register the deployment in the EU high-risk AI database and initiate live applicant processing while developing organizational use policies in parallel.",
-      "Assign the internal audit function operational responsibility for executing daily logging reviews and verifying continuous post-market human oversight.",
-      "Establish a formal deployer governance framework defining post-market monitoring, human oversight protocols, and fundamental rights impact reviews."
-    ],
+    "options": ["Direct the technical engineering staff to conduct deep algorithmic code reviews and automated statistical parity testing on the vendor's proprietary training weights.","Register the deployment in the EU high-risk AI database and initiate live applicant processing while developing organizational use policies in parallel.","Assign the internal audit function operational responsibility for executing daily logging reviews and verifying continuous post-market human oversight.","Establish deployer governance policies requiring competent human oversight protocols, operational monitoring and log retention under EU AI Act Article 26, worker notification (Art. 26(7)), and applicable impact assessments (GDPR Art. 35 DPIA, or EU AI Act Art. 27 FRIA where covered as a public body or public-service operator)."],
     "correctIndex": 3,
     "questionType": "BEST",
-    "explanation": "Under the EU AI Act, deployers (users) of high-risk AI systems must establish operational and governance controls including ensuring human oversight by competent personnel, monitoring system operations according to instructions of use, retaining logs, and conducting Fundamental Rights Impact Assessments (FRIA) where required. Establishing a comprehensive deployer governance framework aligns organizational policy, risk appetite, and legal accountability prior to deployment.",
+    "explanation": "When the relevant requirements apply, EU AI Act Article 26 requires deployers of high-risk recruitment AI systems (Annex III point 4) to establish governance mechanisms to ensure use in accordance with instructions, assign competent human oversight (Art. 26(2)), monitor operation and report serious incidents (Art. 26(5)), retain automatically generated logs (Art. 26(6)), and inform workers' representatives and affected workers (Art. 26(7)). Note that pre-use Fundamental Rights Impact Assessments (FRIA, Art. 27) are statutorily mandatory for bodies governed by public law, private entities providing public services, and deployers of Annex III 5(b)/(c) credit/insurance systems. Private-sector employers must assess whether the personal-data processing triggers a DPIA under GDPR Article 35; a DPIA is required where the applicable criteria are met. Check applicable transition rules before determining current obligations.",
     "distractorExplanations": [
       "Option A focuses on a purely technical validation task (often infeasible for proprietary third-party models) rather than establishing enterprise-level deployer governance and accountability.",
       "Option B represents improper sequencing by initiating live processing and database registration before foundational organizational governance and acceptable use policies are enacted.",
       "Option C breaches the Three Lines Model by assigning first-line operational monitoring and oversight duties to internal audit (the third line), compromising audit independence."
     ],
-    "source": "EU AI Act (Regulation (EU) 2024/1689), Article 26 (Obligations of Deployers of High-Risk AI Systems) & Article 27; ISO/IEC 42001 Cl. 6.1",
+    "source": "Regulation (EU) 2024/1689 (EU AI Act) Arts. 9–17, 26, 27, 43 & 72; IIA Three Lines Model (2020); NIST AI RMF 1.0 GOVERN 1.1 & 1.2; ISO/IEC 42001:2023 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944067770-215-d7t0y",
     "domainId": "D4",
@@ -6628,7 +6541,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Implementing production drift monitoring is premature and sequentially out of order because operational runtime controls cannot precede contract execution or baseline policy definitions.",
       "Delegating unilateral risk acceptance to frontline business owners breaches the Three Lines Model by allowing the first line to bypass second-line risk oversight and governance frameworks."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 Annex A.10",
+    "source": "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2, MAP 4.1 & MANAGE 3.1; NIST AI 600-1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944069271-218-uf2rb",
     "domainId": "D4",
@@ -6651,7 +6564,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Misconception Axis: Sequence/Timing. An examinee might believe second-line validation introduces premature friction to urgent technical fixes, but independent verification prior to redeployment is mandatory continuous oversight sequencing.",
       "Misconception Axis: Authorization/Scope. An examinee might view steering committee escalation as an overreach for a technical drift alert, but breaches exceeding defined risk tolerances fall squarely within executive risk governance scope."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, 9.1; NIST AI RMF 1.0 GOVERN 1.2, MANAGE 2.4",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MANAGE 1.3, MANAGE 2.4 & MANAGE 4.1; IIA Three Lines Model (2020) Principles 2 & 3; ISO/IEC 42001:2023 Cl. 6.1 & 9.1 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944081044-219-3bwdr",
     "domainId": "D4",
@@ -6674,7 +6587,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Conducting detailed technical conformity assessments prior to establishing governance charters, policies, and criteria represents premature operational action without an established framework (wrong sequence/timing).",
       "Delegating sole risk acceptance and oversight to first-line business unit product owners eliminates independent oversight, violates the Three Lines Model, and fails board fiduciary duties (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1 & 5.3; NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944099056-220-u236q",
     "domainId": "D1",
@@ -6697,7 +6610,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents wrong sequence and timing; conducting specific algorithmic impact assessments is an operational control (NIST MAP/MANAGE) that must be guided by a previously established AI governance framework and charter.",
       "Option D represents wrong authorization and scope by violating the Three Lines Model; the internal audit function (third line) must maintain independence and cannot design operational risk thresholds or manage implementation criteria (first and second line responsibilities)."
     ],
-    "source": "ISO/IEC 42001:2023 Clause 5.1 & 5.2; NIST AI RMF 1.0 GOVERN 1.1 & 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 2.1 & MAP 1.3; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 & Cl. 6.2 (verify exact clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944097299-221-8325n",
     "domainId": "D1",
@@ -6720,7 +6633,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Scheduling audits six months post-deployment represents late detection (wrong sequence/timing) that allows unaligned and potentially biased models to operate in production without prior governance gating.",
       "Allowing first-line teams to self-certify without second-line oversight or formal governance checkpoints violates separation of duties and proper authorization boundaries (wrong authorization/scope)."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1, Cl. 8.1; NIST AI RMF 1.0 GOVERN 1.2 & 2.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5.2 & Cl. 6 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944097363-222-p23rc",
     "domainId": "D1",
@@ -6729,12 +6642,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial institution is deploying generative AI-enabled decision support systems across its retail credit underwriting division. To establish robust enterprise governance aligned with ISO/IEC 42001 and the IIA Three Lines Model, executive leadership must formally allocate organizational responsibilities across the AI lifecycle.",
     "questionText": "What is the PRIMARY responsibility of the Second Line of Defense (Risk Management and Compliance) in this governance structure?",
-    "options": [
-      "Standardize model hyperparameter tuning protocols and implement automated code-testing pipelines to eliminate algorithmic anomalies before production release.",
-      "Execute comprehensive post-incident root-cause evaluations and retrain the underlying credit decision neural networks following regulatory inquiries.",
-      "Assume direct ownership for credit underwriting outcomes and execute daily operational controls embedded directly within the AI inference pipeline.",
-      "Establish enterprise AI risk policies, set risk appetite metrics, and provide independent challenge to first-line risk management decisions."
-    ],
+    "options": ["Standardize model hyperparameter tuning protocols and implement automated code-testing pipelines to eliminate algorithmic anomalies before production release.","Execute comprehensive post-incident root-cause evaluations and retrain the underlying credit decision neural networks following regulatory inquiries.","Assume direct ownership for credit underwriting outcomes and execute daily operational controls embedded directly within the AI inference pipeline.","Establish enterprise AI risk policies, set risk appetite metrics, and provide objective, credible challenge to first-line risk management decisions."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
     "explanation": "Under the IIA Three Lines Model and ISO/IEC 42001 Clause 5.3, the Second Line of Defense (Risk and Compliance) is primarily responsible for establishing risk management frameworks, defining boundaries and tolerances, monitoring regulatory compliance, and providing objective, independent challenge to the First Line. First-line business units own the risk and operational controls.",
@@ -6743,7 +6651,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because post-incident model retraining and operational remediation are reactive first-line engineering activities, representing an operational sequence error rather than proactive oversight.",
       "Option C is incorrect because assuming direct ownership of risk outcomes and executing day-to-day operational controls is the exclusive purview of the First Line; second-line assumption of these tasks impairs independence and violates role boundaries."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.3; NIST AI RMF 1.0 GOVERN 1.2; IIA Three Lines Model",
+    "source": "IIA Three Lines Model (2020) Principles 2–4; NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; ISO/IEC 42001:2023 Cl. 5.3 (verify against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944099112-223-6goom",
     "domainId": "D1",
@@ -6766,7 +6674,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "This is an appropriate governance practice establishing proper lifecycle stage-gate controls prior to deployment to verify alignment with established organizational risk appetite.",
       "This is an appropriate governance practice representing proper Three Lines Model execution, where the third line provides independent assurance over ethical framework compliance."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.4; ISO/IEC 42001:2023 Cl. 5.2, 6.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); OECD AI Principles (2024); ISO/IEC 42001:2023 Cl. 5 & 6 (verify against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944097724-224-hl3b7",
     "domainId": "D1",
@@ -6789,7 +6697,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C represents an incorrect operational sequence; conducting decentralized impact assessments prior to establishing an approved governance charter and policy framework leads to inconsistent evaluations and lack of uniform risk criteria.",
       "Option D violates the IIA/ISACA Three Lines Model and governance scope by having third-line independent assurance (internal audit) design operational thresholds and first-line risk management controls, severely compromising audit objectivity."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 5.1-5.3; NIST AI RMF 1.0 GOVERN 1.1, 1.2",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020) Principles 2–4; ISO/IEC 42001:2023 Cl. 5 (verify exact subclauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944118503-225-l28ep",
     "domainId": "D1",
@@ -6812,7 +6720,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B is incorrect because mandating model card completion is a downstream operational procedure that cannot be systematically executed until the organization defines which assets fall within scope.",
       "Option D is incorrect because asset discovery and inventory ownership are first- and second-line operational management responsibilities; engaging Internal Audit (third line) to locate models misallocates assurance roles and violates the Three Lines Model."
     ],
-    "source": "ISO/IEC 42001:2023 Annex B.5.1; NIST AI RMF 1.0 GOVERN 1.1 & MAP 1.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, GOVERN 1.6 & MAP 1.1; Mitchell et al. (arXiv:1810.03993); ISO/IEC 42001:2023 (verify exact inventory clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944114348-226-zt13b",
     "domainId": "D2",
@@ -6835,7 +6743,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option B reflects a wrong sequence/timing misconception; performing impact assessments only after staging deployments constitutes reactive, post-hoc validation rather than proactive Privacy by Design embedded prior to pipeline ingestion.",
       "Option C reflects a wrong authorization/scope misconception; delegating compliance thresholds and legal retention trade-offs to first-line ML engineers violates the Three Lines Model by placing enterprise risk and regulatory compliance determination in the hands of delivery teams."
     ],
-    "source": "ISO/IEC 42001:2023 Cl. 6.1 & Annex A.7 (Data for AI systems); NIST AI RMF 1.0 (GOVERN 1.2, MAP 1.5)",
+    "source": "GDPR Arts. 5(1)(b)–(c), 25 & 35; NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.10; ISO/IEC 42001:2023 (verify exact data privacy clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944117191-227-p3ddh",
     "domainId": "D2",
@@ -6858,7 +6766,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Distractor 2 represents a wrong sequence/timing misconception by deploying an operational data fix before establishing root cause analysis, bias impact assessments, and governance sign-off.",
       "Distractor 3 represents a wrong authorization/scope misconception by improperly delegating risk appetite decisions to the first line of defense (engineering), violating the Three Lines Model which requires second-line oversight and governance committee approval for risk thresholds."
     ],
-    "source": "NIST AI RMF 1.0 GOVERN 1.2 & MEASURE 2.11; ISO/IEC 42001:2023 Cl. 9.1",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MEASURE 2.11 & MANAGE 2.4; EU AI Act Arts. 9 & 10; ISO/IEC 42001:2023 (verify exact clauses against licensed standard).",
     "difficulty": "Intermediate",
     "id": "aaig-pipe-1791944113567-228-dgi7q",
     "domainId": "D2",
@@ -6881,7 +6789,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Option C is an acceptable and vital second-line oversight practice ensuring pre-deployment model and data risk validation.",
       "Option D is an acceptable top-down governance practice establishing necessary steering-level authorization and usage boundaries."
     ],
-    "source": "ISO/IEC 42001:2023 Annex A.7 (Data for AI systems); NIST AI RMF 1.0 (MAP 1.5, MEASURE 2.6)",
+    "source": "NIST AI RMF 1.0 GOVERN 1.2, MAP 2.3 & MEASURE 2.7, 2.10, 2.11; NIST AI 600-1; Shumailov et al. (arXiv:2305.17493); EU AI Act Art. 10; ISO/IEC 42001:2023 (verify data provenance clauses against licensed standard).",
     "difficulty": "Director-Level",
     "id": "aaig-pipe-1791944119382-229-4qvqd",
     "domainId": "D2",
