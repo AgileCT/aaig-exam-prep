@@ -1,6 +1,6 @@
 # AAIG™ Study Companion
 
-An independent, open-source AI governance practice tool with original and AI-generated scenarios, flashcards, timed practice, and an optional Gemini tutor.
+An independent, open-source AI governance practice tool with original and AI-generated scenarios, flashcards, timed practice, and an optional multi-provider AI tutor.
 
 **This project is not affiliated with or endorsed by ISACA. Its materials have not been reviewed or approved by ISACA. Practice results do not predict certification success.** AAIG™ is an ISACA trademark.
 
@@ -10,7 +10,7 @@ An independent, open-source AI governance practice tool with original and AI-gen
 
 The public deployment may lag behind repository changes. Check the deployed version before treating a fix as live.
 
-Version 1.1.0 aligns navigation with the three publicly listed AAIG core areas, incorporates 313 returned-review content corrections, and preserves legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
+Version 1.2.0 adds selectable AI providers and editable models for tutoring and authoring. Version 1.1.0 aligned navigation with the three publicly listed AAIG core areas, incorporated 313 returned-review content corrections, and preserved legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
 
 ## Learning features
 
@@ -61,9 +61,11 @@ npm run preview
 
 ## AI processing and API key storage
 
-The optional tutor and authoring tools send your messages and any attached question context directly to Google's Gemini API. Your key authenticates those requests using the `x-goog-api-key` header. Google may charge for usage under your account.
+The optional tutor and authoring tools support Google Gemini, OpenAI, Anthropic Claude, and an OpenAI-compatible HTTPS endpoint. Open the API key settings, choose a provider, enter a model available to your account, and enter that provider's API key. Both tutoring and question/flashcard generation use this configuration. Model IDs are editable because access and availability differ between accounts; API access and billing are separate from consumer chat subscriptions.
 
-Keys are held in session storage by default. Explicitly selecting “remember” keeps the key in this browser's local storage; previously remembered keys retain their storage choice. Browser storage is not a secret vault. Clear a saved key from the settings panel when it is no longer needed. The app does not proxy requests through an AgileCT server.
+Requests send your key, messages, and any attached question context directly to the selected provider. The settings panel discloses the destination before saving. Preset destinations are fixed; a compatible endpoint uses your supplied HTTPS base URL with `/chat/completions` appended (for example, `https://provider.example/v1`). It must support browser CORS, bearer authentication, `max_tokens`, and non-streaming Chat Completions text responses. Compatibility with every provider or model is not guaranteed. Redirects are refused; browser credentials are omitted. No key appears in request URLs or provider error details.
+
+The single active configuration is held in session storage by default. Explicitly selecting “remember” keeps it in this browser's local storage; previously remembered Gemini keys retain their storage choice until changed. Existing Gemini keys remain usable and are migrated when a configuration is saved. Changing provider or custom endpoint clears the draft key to prevent sending a previous provider's key to another destination. Saving settings cancels any pending tutoring or authoring request when its configuration changes. Clearing removes both current and legacy key storage. Browser storage is not a secret vault. The app does not proxy requests through an AgileCT server. Provider quota limits and charges may apply.
 
 Requests have a timeout and can be cancelled. Returned content is checked before use, but AI answers and citations still need human verification. A valid model name or a successful API response does not prove the learning content is correct.
 

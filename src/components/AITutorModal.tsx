@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Question, TutorMode, TutorMessage } from '../types';
 import { callAITutor } from '../services/tutorPromptPolicy';
+import { AIConfig, defaultAIConfig, PROVIDERS } from '../services/ai';
 import { 
   X, 
   Send, 
@@ -15,7 +16,8 @@ interface AITutorModalProps {
   isOpen: boolean;
   onClose: () => void;
   contextQuestion?: Question;
-  apiKey: string;
+  apiKey?: string;
+  aiConfig?: AIConfig;
 }
 
 export const AITutorModal: React.FC<AITutorModalProps> = ({
@@ -23,7 +25,9 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
   onClose,
   contextQuestion,
   apiKey,
+  aiConfig,
 }) => {
+  const config = aiConfig || { ...defaultAIConfig(), apiKey: apiKey || '' };
   const [mode, setMode] = useState<TutorMode>('standard');
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -46,7 +50,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
       request.current?.abort();
       request.current = null;
     };
-  }, [isOpen, contextQuestion?.id, apiKey]);
+  }, [isOpen, contextQuestion?.id, config.apiKey, config.provider, config.model, config.baseUrl]);
 
   if (!isOpen) return null;
 
@@ -69,7 +73,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
     setLoading(true);
 
     try {
-      const reply = await callAITutor(apiKey, text, selectedMode, contextQuestion, { signal: controller.signal });
+      const reply = await callAITutor({ ...config }, text, selectedMode, contextQuestion, { signal: controller.signal });
       if (controller.signal.aborted || request.current !== controller) return;
       const assistantMsg: TutorMessage = {
         id: `a-${Date.now()}`,
@@ -139,7 +143,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
         </div>
 
         <p className="px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800">
-          With an API key, study messages and the current practice item go to Google Gemini. Quota limits and charges may apply.
+          With an API key, study messages and the current practice item go to {PROVIDERS[config.provider].name}. Quota limits and charges may apply.
           Do not submit personal, confidential, or protected ISACA exam/QAE content. Verify AI explanations against original sources.
         </p>
 
@@ -253,6 +257,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
           />
           <button
             onClick={() => handleSend()}
+            aria-label="Send message"
             disabled={!input.trim() || loading}
             className="p-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white transition-colors"
           >

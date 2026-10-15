@@ -1,5 +1,5 @@
 import { Question, TutorMode } from '../types';
-import { generateGeminiText, GeminiRequestOptions } from './gemini';
+import { AIConfig, AIRequestOptions, defaultAIConfig, generateAIText } from './ai';
 
 export const APPROVED_TUTOR_MODES: TutorMode[] = ['standard', 'socratic', 'teach-back', 'drill'];
 
@@ -82,19 +82,20 @@ ${contextQuestion.options.map((opt, i) => `${'ABCD'[i]}) ${opt}`).join('\n')}
 }
 
 /**
- * Direct browser-side Gemini API invocation using user's stored key.
+ * Direct browser-side provider invocation using a configuration snapshot.
  * If no key is set, returns an intelligent simulated tutor guidance.
  */
 export async function callAITutor(
-  apiKey: string,
+  configuration: string | AIConfig,
   userMessage: string,
   mode: TutorMode,
   contextQuestion?: Question,
-  options: GeminiRequestOptions = {},
+  options: AIRequestOptions = {},
 ): Promise<string> {
+  const config = typeof configuration === 'string' ? { ...defaultAIConfig(), apiKey: configuration } : { ...configuration };
   const systemPrompt = buildTutorSystemPrompt(mode, contextQuestion);
 
-  if (!apiKey) {
+  if (!config.apiKey) {
     // High quality offline fallback response in English
     if (mode === 'socratic' && contextQuestion) {
       return `[Offline Tutor - Socratic Mode] In this scenario, as the AI Governance Officer, what foundational mandate and decision authority must executive leadership establish before any technical tools or pilots are approved? (Tip: Configure your AI API key in the top right to unlock real-time dynamic AI dialogue).`;
@@ -105,7 +106,7 @@ export async function callAITutor(
     return `Please configure your AI API key in the top right header to unlock the full AI Study Tutor conversational experience!`;
   }
 
-  return generateGeminiText(apiKey, `${systemPrompt}\n\nCandidate Request: ${userMessage}`, {
+  return generateAIText(config, `${systemPrompt}\n\nCandidate Request: ${userMessage}`, {
     ...options, temperature: mode === 'drill' ? 0.4 : 0.6, maxOutputTokens: 1000,
   });
 }
