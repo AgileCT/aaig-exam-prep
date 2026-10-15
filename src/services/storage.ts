@@ -2,6 +2,7 @@ import { Question, Flashcard, UserProgress, FlashcardMastery, ExamRecord } from 
 import { INITIAL_QUESTIONS } from '../data/questions';
 import { INITIAL_FLASHCARDS } from '../data/flashcards';
 import { isFlashcard, isQuestion } from './contentValidation';
+import { normalizeFlashcardDomain, normalizeQuestionDomain } from './domainTaxonomy';
 
 const STORAGE_KEY_PROGRESS = 'aaig_user_progress_v1';
 const STORAGE_KEY_CUSTOM_QUESTIONS = 'aaig_custom_questions_v1';
@@ -39,7 +40,7 @@ export function loadAllQuestions(): Question[] {
     const rawCustom = localStorage.getItem(STORAGE_KEY_CUSTOM_QUESTIONS);
     const parsed: unknown = rawCustom ? JSON.parse(rawCustom) : [];
     const custom = Array.isArray(parsed) ? parsed.filter(isQuestion) : [];
-    return [...INITIAL_QUESTIONS, ...custom];
+    return [...INITIAL_QUESTIONS, ...custom.map(normalizeQuestionDomain)];
   } catch (e) {
     console.error('Failed to load custom questions', e);
     return INITIAL_QUESTIONS;
@@ -54,7 +55,7 @@ export function saveCustomQuestion(newQ: Question): Question[] {
     const custom = Array.isArray(parsed) ? parsed.filter(isQuestion) : [];
     const updated = [newQ, ...custom.filter(q => q.id !== newQ.id)];
     localStorage.setItem(STORAGE_KEY_CUSTOM_QUESTIONS, JSON.stringify(updated));
-    return [...INITIAL_QUESTIONS, ...updated];
+    return [...INITIAL_QUESTIONS, ...updated.map(normalizeQuestionDomain)];
   } catch {
     throw new Error('Question was not saved. Browser storage may be full or unavailable.');
   }
@@ -65,7 +66,7 @@ export function loadAllFlashcards(): Flashcard[] {
     const rawCustom = localStorage.getItem(STORAGE_KEY_CUSTOM_FLASHCARDS);
     const parsed: unknown = rawCustom ? JSON.parse(rawCustom) : [];
     const custom = Array.isArray(parsed) ? parsed.filter(isFlashcard) : [];
-    return [...INITIAL_FLASHCARDS, ...custom];
+    return [...INITIAL_FLASHCARDS, ...custom.map(normalizeFlashcardDomain)];
   } catch (e) {
     console.error('Failed to load custom flashcards', e);
     return INITIAL_FLASHCARDS;
@@ -80,7 +81,7 @@ export function saveCustomFlashcard(newCard: Flashcard): Flashcard[] {
     const custom = Array.isArray(parsed) ? parsed.filter(isFlashcard) : [];
     const updated = [newCard, ...custom.filter(c => c.id !== newCard.id)];
     localStorage.setItem(STORAGE_KEY_CUSTOM_FLASHCARDS, JSON.stringify(updated));
-    return [...INITIAL_FLASHCARDS, ...updated];
+    return [...INITIAL_FLASHCARDS, ...updated.map(normalizeFlashcardDomain)];
   } catch {
     throw new Error('Flashcard was not saved. Browser storage may be full or unavailable.');
   }

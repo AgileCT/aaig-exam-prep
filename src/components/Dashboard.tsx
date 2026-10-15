@@ -1,5 +1,5 @@
 import React from 'react';
-import { Question, UserProgress, Flashcard } from '../types';
+import { Question, UserProgress, Flashcard, StudyDomainId } from '../types';
 import { AAIG_DOMAINS } from '../data/domains';
 import { Target, Award, CheckCircle2, AlertTriangle, ArrowRight, BookOpen, Layers, Sparkles } from 'lucide-react';
 
@@ -8,7 +8,7 @@ interface DashboardProps {
   flashcards: Flashcard[];
   progress: UserProgress;
   onNavigate: (tab: 'quiz' | 'mockExam' | 'flashcards' | 'review' | 'generate') => void;
-  onSelectDomainQuiz: (domainId: 'D1' | 'D2' | 'D3' | 'D4') => void;
+  onSelectDomainQuiz: (domainId: StudyDomainId) => void;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
@@ -174,10 +174,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-              Progress by Study Category
+              Progress by Study Domain
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Four custom study categories with product-defined sampling allocations, not an official exam blueprint
+              Domain names align with ISACA's three public domains. Subtopics are App-defined; balanced sampling is a custom study choice, not official exam weighting.
             </p>
           </div>
           <span className="text-xs font-medium px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
@@ -201,7 +201,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   </span>
                 </div>
                 <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                  Study allocation: {dom.weight}%
+                  Balanced study sampling
                 </span>
               </div>
 

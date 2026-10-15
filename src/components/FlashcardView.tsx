@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Flashcard, DomainId, FlashcardMastery, UserProgress } from '../types';
-import { AAIG_DOMAINS } from '../data/domains';
+import { Flashcard, StudyDomainId, FlashcardMastery, UserProgress } from '../types';
+import { STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
 import { 
   RotateCw, 
   Check, 
@@ -23,7 +23,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   progress,
   onUpdateMastery,
 }) => {
-  const [selectedDomain, setSelectedDomain] = useState<DomainId | 'ALL'>('ALL');
+  const [selectedDomain, setSelectedDomain] = useState<StudyDomainId | 'ALL'>('ALL');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -96,7 +96,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           >
             All Cards ({flashcards.length})
           </button>
-          {(['D1', 'D2', 'D3', 'D4'] as DomainId[]).map(dId => (
+          {STUDY_DOMAIN_IDS.map(dId => (
             <button
               key={dId}
               onClick={() => { setSelectedDomain(dId); setCurrentIndex(0); setIsFlipped(false); }}
@@ -135,7 +135,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             <div>
               <div className="flex items-center justify-between mb-6">
                 <span className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold text-xs">
-                  {currentCard.domainId} · {AAIG_DOMAINS[currentCard.domainId].name}
+                  {currentCard.domainId} · {getDomainMeta(currentCard.domainId).name}
                 </span>
                 <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
                   currentMastery === 'mastered' 

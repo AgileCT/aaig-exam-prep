@@ -1,4 +1,5 @@
 import { Difficulty, DomainId, Flashcard, Question, QuestionType } from '../types';
+import { STUDY_DOMAIN_IDS } from '../data/domains';
 
 const domainIds = ['D1', 'D2', 'D3', 'D4'];
 const questionTypes = ['BEST', 'FIRST', 'MOST', 'PRIMARY', 'LEAST'];
@@ -33,6 +34,7 @@ export function parseGeneratedJson(raw: string): Record<string, unknown> {
 }
 
 export function parseGeneratedQuestion(raw: string, domainId: DomainId, subDomain: string, questionType: QuestionType, difficulty: Difficulty): Question {
+  if (!STUDY_DOMAIN_IDS.some(id => id === domainId)) throw new Error('Select one of the three current study domains.');
   const value = parseGeneratedJson(raw);
   const question: unknown = {
     id: `aaig-custom-${crypto.randomUUID()}`, domainId, subDomain, questionType, difficulty,
@@ -47,6 +49,7 @@ export function parseGeneratedQuestion(raw: string, domainId: DomainId, subDomai
 }
 
 export function parseGeneratedFlashcard(raw: string, domainId: DomainId): Flashcard {
+  if (!STUDY_DOMAIN_IDS.some(id => id === domainId)) throw new Error('Select one of the three current study domains.');
   const value = parseGeneratedJson(raw);
   const card: unknown = {
     id: `fc-custom-${crypto.randomUUID()}`, domainId,

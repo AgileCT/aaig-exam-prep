@@ -5,6 +5,7 @@ import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { INITIAL_FLASHCARDS } from '../src/data/flashcards';
 import { isQuestion, isFlashcard, passesLengthGate } from '../src/services/contentValidation';
 import { normalizeQuestionStem } from './generateQuestions';
+import { STUDY_DOMAIN_IDS } from '../src/data/domains';
 
 export function auditQuestionBank(questionValues: readonly unknown[], flashcardValues: readonly unknown[]) {
   const errors: string[] = [], warnings: string[] = [];
@@ -56,7 +57,7 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
     scope: 'Offline structural and concentration checks; no API calls, SME approval or official exam validation',
     questionCount: questions.length, flashcardCount: flashcards.length,
     unreviewedQuestions, unreviewedFlashcards,
-    domains: Object.fromEntries(['D1', 'D2', 'D3', 'D4'].map(domain => [domain, questions.filter(q => q.domainId === domain).length])),
+    domains: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, questions.filter(q => q.domainId === domain).length])),
     answerPositions: [0, 1, 2, 3].map(i => questions.filter(q => q.correctIndex === i).length),
     byTopic, errors, warnings,
   };

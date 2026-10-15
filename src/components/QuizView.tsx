@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Question, DomainId, UserProgress } from '../types';
-import { AAIG_DOMAINS } from '../data/domains';
+import { Question, DomainId, StudyDomainId, UserProgress } from '../types';
+import { STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
 import { 
   Bookmark, 
   Check, 
@@ -32,7 +32,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
   initialDomainId = 'ALL',
   initialQuestionId,
 }) => {
-  const [selectedDomain, setSelectedDomain] = useState<DomainId | 'ALL'>(initialDomainId);
+  const [selectedDomain, setSelectedDomain] = useState<StudyDomainId | 'ALL'>(initialDomainId === 'ALL' ? 'ALL' : getDomainMeta(initialDomainId).id);
   const filteredQuestions = useMemo(() => (selectedDomain === 'ALL'
     ? questions
     : questions.filter(q => q.domainId === selectedDomain)).map(q => shuffleQuestionOptions(q)), [questions, selectedDomain]);
@@ -110,7 +110,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           >
             All Domains ({questions.length})
           </button>
-          {(['D1', 'D2', 'D3', 'D4'] as DomainId[]).map(dId => (
+          {STUDY_DOMAIN_IDS.map(dId => (
             <button
               key={dId}
               onClick={() => { setSelectedDomain(dId); setCurrentIndex(0); }}
@@ -134,7 +134,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
         <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold text-xs">
-              {currentQ.domainId} · {AAIG_DOMAINS[currentQ.domainId].name}
+              {currentQ.domainId} · {getDomainMeta(currentQ.domainId).name}
             </span>
             <span className="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 font-semibold text-xs border border-amber-200/60 dark:border-amber-800/40">
               Type: {currentQ.questionType}

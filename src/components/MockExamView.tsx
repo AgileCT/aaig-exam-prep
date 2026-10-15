@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Question, DomainId, UserProgress, ExamRecord } from '../types';
-import { AAIG_DOMAINS } from '../data/domains';
+import { Question, StudyDomainId, UserProgress, ExamRecord } from '../types';
+import { AAIG_DOMAINS, STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
 import { 
   Clock, 
   Flag, 
@@ -40,7 +40,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     score: number;
     total: number;
     answers: Record<string, number>;
-    domainBreakdown: Record<DomainId, { correct: number; total: number }>;
+    domainBreakdown: Record<StudyDomainId, { correct: number; total: number }>;
   } | null>(null);
   const [reviewFilter, setReviewFilter] = useState<'all' | 'missed'>('all');
   const answersRef = useRef<Record<string, number>>({});
@@ -79,12 +79,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     const finalAnswers = { ...answersRef.current };
 
     let correctCount = 0;
-    const breakdown: Record<DomainId, { correct: number; total: number }> = {
-      D1: { correct: 0, total: 0 },
-      D2: { correct: 0, total: 0 },
-      D3: { correct: 0, total: 0 },
-      D4: { correct: 0, total: 0 },
-    };
+    const breakdown = Object.fromEntries(STUDY_DOMAIN_IDS.map(id => [id, { correct: 0, total: 0 }])) as Record<StudyDomainId, { correct: number; total: number }>;
 
     examQuestions.forEach(q => {
       const selected = finalAnswers[q.id];
@@ -96,10 +91,9 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
       }
       if (isCorrect) correctCount++;
 
-      if (breakdown[q.domainId]) {
-        breakdown[q.domainId].total++;
-        if (isCorrect) breakdown[q.domainId].correct++;
-      }
+      const domainId = getDomainMeta(q.domainId).id;
+      breakdown[domainId].total++;
+      if (isCorrect) breakdown[domainId].correct++;
     });
 
     const total = examQuestions.length;
@@ -201,10 +195,10 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
                 Mini Sprint Mock Exam
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
-                Up to 25 questions across the four custom study domains, with 40 minutes to review your current understanding.
+                Up to 25 questions across the three study domains, with 40 minutes to review your current understanding. Domain names align with ISACA's public domains; subtopics and balanced sampling are App-defined.
               </p>
               <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 mb-6">
-                <li>• {Math.min(25, questions.length)} questions sampled across D1–D4</li>
+                <li>• {Math.min(25, questions.length)} questions sampled across {STUDY_DOMAIN_IDS.join(', ')}</li>
                 <li>• 40 Minutes strict timer</li>
                 <li>• Raw accuracy & missed question review</li>
               </ul>
@@ -238,10 +232,10 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
                 Longer Mock Practice
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
-                Up to 90 questions with a self-selected 150-minute time limit. Sampling uses custom study weights: D1 30%, D2 20%, D3 25%, D4 25%. These are not an official exam blueprint; shortages in a domain are filled from the remaining bank.
+                Up to 90 questions with a self-selected 150-minute time limit. Sampling aims for an equal allocation across the three study domains; shortages are filled from the remaining bank. This App-defined study allocation does not represent official exam weights.
               </p>
               <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 mb-6">
-                <li>• {Math.min(90, questions.length)} questions using custom study weights</li>
+                <li>• {Math.min(90, questions.length)} questions using balanced study sampling</li>
                 <li>• 150 Minutes countdown & question grid</li>
                 <li>• Domain accuracy and question review</li>
               </ul>
@@ -299,7 +293,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
             Performance Breakdown by Domain
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {(['D1', 'D2', 'D3', 'D4'] as DomainId[]).map(dId => {
+            {STUDY_DOMAIN_IDS.map(dId => {
               const dom = AAIG_DOMAINS[dId];
               const stat = examResult.domainBreakdown[dId] || { correct: 0, total: 0 };
               const ratio = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
@@ -459,7 +453,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
         <div className="lg:col-span-3 space-y-6 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
-              {currentQ.domainId} · {AAIG_DOMAINS[currentQ.domainId].name}
+              {currentQ.domainId} · {getDomainMeta(currentQ.domainId).name}
             </span>
 
             <button

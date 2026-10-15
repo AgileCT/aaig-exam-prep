@@ -1,5 +1,6 @@
 import type { Question } from '../types';
 import { AAIG_DOMAINS } from '../data/domains';
+import { normalizeQuestionDomain } from './domainTaxonomy';
 
 function shuffle<T>(items: T[], rng: () => number): T[] {
   const result = [...items];
@@ -11,11 +12,12 @@ function shuffle<T>(items: T[], rng: () => number): T[] {
 }
 
 export function sampleStudyQuestions(questions: Question[], requestedCount: number, rng = Math.random): Question[] {
+  const normalizedQuestions = questions.map(normalizeQuestionDomain);
   const domains = Object.values(AAIG_DOMAINS);
   const count = Math.min(requestedCount, questions.length);
   const totalWeight = domains.reduce((sum, domain) => sum + domain.weight, 0);
   const groups = domains.map(domain => {
-    const candidates = shuffle(questions.filter(question => question.domainId === domain.id), rng);
+    const candidates = shuffle(normalizedQuestions.filter(question => question.domainId === domain.id), rng);
     const ideal = count * domain.weight / totalWeight;
     return { candidates, ideal, quota: Math.min(Math.floor(ideal), candidates.length) };
   });
