@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DomainId, Question, Flashcard, QuestionType, Difficulty } from '../types';
-import { AAIG_DOMAINS } from '../data/domains';
+import { StudyDomainId, Question, Flashcard, QuestionType, Difficulty } from '../types';
+import { AAIG_DOMAINS, STUDY_DOMAIN_IDS } from '../data/domains';
 import { Sparkles, AlertCircle, Plus, CheckCircle2, Layers, BookOpen, RotateCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { generateGeminiText } from '../services/gemini';
@@ -22,7 +22,7 @@ export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
   const [targetType, setTargetType] = useState<'mcq' | 'flashcard'>('mcq');
 
   // MCQ Form
-  const [domainId, setDomainId] = useState<DomainId>('D1');
+  const [domainId, setDomainId] = useState<StudyDomainId>('D1');
   const [questionType, setQuestionType] = useState<QuestionType>('FIRST');
   const [difficulty, setDifficulty] = useState<Difficulty>('Intermediate');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -234,10 +234,10 @@ Respond with STRICT RAW JSON only (no markdown code fence):
               </label>
               <select
                 value={domainId}
-                onChange={e => setDomainId(e.target.value as DomainId)}
+                onChange={e => setDomainId(e.target.value as StudyDomainId)}
                 className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-900 dark:text-slate-100"
               >
-                {(['D1', 'D2', 'D3', 'D4'] as DomainId[]).map(d => (
+                {STUDY_DOMAIN_IDS.map(d => (
                   <option key={d} value={d}>
                     {d} - {AAIG_DOMAINS[d].name}
                   </option>
@@ -287,10 +287,10 @@ Respond with STRICT RAW JSON only (no markdown code fence):
               </label>
               <select
                 value={domainId}
-                onChange={e => setDomainId(e.target.value as DomainId)}
+                onChange={e => setDomainId(e.target.value as StudyDomainId)}
                 className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-900 dark:text-slate-100"
               >
-                {(['D1', 'D2', 'D3', 'D4'] as DomainId[]).map(d => (
+                {STUDY_DOMAIN_IDS.map(d => (
                   <option key={d} value={d}>
                     {d} - {AAIG_DOMAINS[d].name}
                   </option>

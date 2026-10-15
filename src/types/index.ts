@@ -1,13 +1,14 @@
 export type DomainId = 'D1' | 'D2' | 'D3' | 'D4';
+export type StudyDomainId = Exclude<DomainId, 'D4'>;
 
 export type QuestionType = 'BEST' | 'FIRST' | 'MOST' | 'PRIMARY' | 'LEAST';
 
 export type Difficulty = 'Fundamental' | 'Intermediate' | 'Director-Level';
 
 export interface DomainMeta {
-  id: DomainId;
+  id: StudyDomainId;
   name: string;
-  weight: number; // Product-defined study allocation, not an official exam weight.
+  weight: number; // Relative practice allocation, not an official exam weight.
   description: string;
   subDomains: string[];
 }
@@ -16,6 +17,8 @@ export interface Question {
   id: string;
   domainId: DomainId;
   subDomain: string;
+  legacyDomainId?: DomainId;
+  legacySubDomain?: string;
   scenarioText?: string;
   questionText: string;
   options: string[];
@@ -36,6 +39,7 @@ export interface Flashcard {
   id: string;
   domainId: DomainId;
   topic: string;
+  legacyDomainId?: DomainId;
   front: string;
   back: string;
   source: string;
@@ -60,7 +64,8 @@ export interface ExamRecord {
   score: number;
   total: number;
   durationSeconds: number;
-  breakdown: Record<DomainId, { correct: number; total: number }>;
+  // Historical records retain their original domain keys, including legacy D4.
+  breakdown: Partial<Record<DomainId, { correct: number; total: number }>>;
 }
 
 export interface UserProgress {

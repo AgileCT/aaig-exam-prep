@@ -127,7 +127,7 @@ test('automatic submission scores the latest answer once and uses elapsed wall t
   assert.equal(records.length, 1);
 });
 
-test('sprint samples all four study domains using the declared custom weights', async t => {
+test('sprint balances three active domains and includes legacy D4 input', async t => {
   t.mock.method(Math, 'random', () => 0);
   const questions = (['D1', 'D2', 'D3', 'D4'] as DomainId[]).flatMap(domain =>
     Array.from({ length: 30 }, (_, i) => makeQuestion(`${domain}-${i}`, domain)));
@@ -136,7 +136,8 @@ test('sprint samples all four study domains using the declared custom weights', 
     onRecordExam={record => records.push(record)} onRecordAttempt={() => {}} />);
   await click(button(container, 'Start Mini Sprint (40m)'));
   await click(button(container, 'Submit Exam'));
-  assert.deepEqual(Object.values(records[0].breakdown).map(domain => domain.total), [8, 5, 6, 6]);
+  assert.deepEqual(Object.keys(records[0].breakdown), ['D1', 'D2', 'D3']);
+  assert.deepEqual(Object.values(records[0].breakdown).map(domain => domain!.total), [9, 8, 8]);
   assert.equal(records[0].total, 25);
 });
 
@@ -144,4 +145,21 @@ test('mock start is disabled with an empty question bank', async t => {
   const { container } = await mount(t, <MockExamView questions={[]} progress={emptyProgress()}
     onRecordExam={() => {}} onRecordAttempt={() => {}} />);
   assert.equal(button(container, 'Start Mini Sprint (40m)').disabled, true);
+});
+
+test('dashboard, practice, cards and authoring expose three active study domains', async t => {
+  const { container } = await mount(t, <App />);
+  assert.match(container.textContent || '', /AI Enterprise Integration and Performance Monitoring/);
+  assert.doesNotMatch(container.textContent || '', /Risk Oversight & Compliance Frameworks/);
+  for (const page of ['Practice', 'Flashcards']) {
+    await click(button(container, page));
+    const filters = [...container.querySelectorAll('button')].map(b => b.textContent?.trim() || '')
+      .filter(text => /^D\d \(/.test(text));
+    assert.equal(filters.length, 3, page);
+    assert.deepEqual(filters.map(text => text.slice(0, 2)), ['D1', 'D2', 'D3']);
+  }
+  await click(button(container, 'AI Gen'));
+  const domainSelect = [...container.querySelectorAll('select')].find(select => [...select.options].some(o => o.value === 'D1'))!;
+  assert.ok(domainSelect);
+  assert.deepEqual([...domainSelect.options].map(o => o.value), ['D1', 'D2', 'D3']);
 });

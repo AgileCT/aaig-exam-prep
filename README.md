@@ -11,7 +11,7 @@ The public deployment may lag behind repository changes. Check the deployed vers
 ## Learning features
 
 - **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Options are reordered without changing question IDs or stored answer meanings.
-- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Results show raw correctness, sample counts, and performance by custom study category. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
+- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Results show raw correctness, sample counts, and performance by study domain. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
 - **Flashcards:** track concepts as new, learning, or mastered.
 - **Review notebook:** open the exact missed question for another attempt.
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
@@ -21,16 +21,19 @@ The bundled content contains 317 questions (18 authored seed questions and 299 g
 
 ## Study categories and official information
 
-The four categories below are this application's own learning organization. Percentages control practice sampling; they are not official AAIG exam weights.
+The three top-level names below align with the core areas published on ISACA's public AAIG page. The subtopics, question assignments, and balanced practice sampling are this application's study design, not an official exam blueprint or examination weights.
 
-| Category | Focus | Custom allocation |
-|---|---|---:|
-| D1 | AI Enterprise Governance | 30% |
-| D2 | Data and AI Architecture Principles | 20% |
-| D3 | AI Enterprise Integration & Performance Monitoring | 25% |
-| D4 | Risk Oversight & Compliance Frameworks | 25% |
+| Domain | Public core-area name | Practice sampling |
+|---|---|---|
+| D1 | AI Enterprise Governance | Equal allocation |
+| D2 | Data and AI Architecture Principles | Equal allocation |
+| D3 | AI Enterprise Integration and Performance Monitoring | Equal allocation |
 
-ISACA's public AAIG page currently lists three core areas: AI Enterprise Governance; Data and AI Architecture Principles; AI Enterprise Integration and Performance Monitoring. No official four-domain weights or 90-item AAIG blueprint were verified for this project. The beta participation page states a 150-minute exam duration. Check the current [AAIG certification page](https://www.isaca.org/credentialing/aaig) and [beta information](https://engage.isaca.org/volunteeropportunities/opportunities-list-public/volunteer-opportunity-details?VolunteerOpportunityKey=7ff38991-79c8-461e-9f01-01a0b56e7eb3) before planning an exam. Last public-source check: 2026-10-13.
+Practice sessions divide the requested sample equally across the three domains, with rounding and redistribution when a domain has too few questions. The public page does not provide examination weights. Check the current [AAIG certification page](https://www.isaca.org/credentialing/aaig) and [beta information](https://engage.isaca.org/volunteeropportunities/opportunities-list-public/volunteer-opportunity-details?VolunteerOpportunityKey=7ff38991-79c8-461e-9f01-01a0b56e7eb3) before planning an exam. Core-area names last checked: 2026-10-14.
+
+The former custom D4 category is retired from navigation and authoring. Regulatory landscapes, standards, framework mapping, and risk appetite now sit under D1; supplier and supply-chain risk sit under D3. Former D4 flashcards are assigned by topic, including supplier diligence and red teaming under D3. These assignments are the app's interpretation of the public areas.
+
+Legacy D4 custom content remains readable and is classified on load, preserving its original classification in legacy metadata. Unknown legacy topics remain available under D1 for compatibility. Question IDs, canonical answer positions, bookmarks, missed items, and card mastery links are preserved. Existing four-domain exam breakdowns remain historical snapshots; new sessions record three domains. Loading does not destructively rewrite stored progress or custom content.
 
 ## Run locally
 

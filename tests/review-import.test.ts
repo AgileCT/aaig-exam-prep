@@ -22,7 +22,12 @@ function canonical(value: unknown): unknown {
   return value;
 }
 function hash(value: unknown): string {
-  return createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
+  // Compare teaching content against the signed snapshot while allowing the
+  // separately authorized taxonomy migration to retain its legacy metadata.
+  const { legacyDomainId, legacySubDomain, ...original } = value as Record<string, unknown>;
+  if (legacyDomainId) original.domainId = legacyDomainId;
+  if (legacySubDomain !== undefined) original.subDomain = legacySubDomain;
+  return createHash('sha256').update(JSON.stringify(canonical(original))).digest('hex');
 }
 
 test('review import preserves IDs, ordering and canonical answer indices for saved attempts', () => {
@@ -31,7 +36,7 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
   assert.equal(byId.size, 357);
 });
 
-test('all 313 explicit revisions are applied while retained, pending and unsent items remain unchanged', () => {
+test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {
   let revised = 0, pending = 0, protectedItems = 0;
   for (const entry of baseline.items) {
     const item = byId.get(entry.id);

@@ -1,5 +1,6 @@
 import { Question } from '../types';
 import { markQuestionUnreviewed } from '../services/questionOrder';
+import { normalizeQuestionDomain } from '../services/domainTaxonomy';
 
 const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
@@ -6797,4 +6798,4 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   }
 ];
 
-export const GENERATED_QUESTIONS: Question[] = GENERATED_QUESTION_DRAFTS.map(markQuestionUnreviewed);
+export const GENERATED_QUESTIONS: Question[] = GENERATED_QUESTION_DRAFTS.map(markQuestionUnreviewed).map(normalizeQuestionDomain);

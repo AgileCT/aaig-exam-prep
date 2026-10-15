@@ -1,5 +1,6 @@
 import { Flashcard } from '../types';
 import { draftSource } from '../services/questionOrder';
+import { normalizeFlashcardDomain } from '../services/domainTaxonomy';
 
 const FLASHCARD_DRAFTS: Flashcard[] = [
   // =========================================================================
@@ -380,5 +381,5 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
 ];
 
 export const INITIAL_FLASHCARDS: Flashcard[] = FLASHCARD_DRAFTS.map(card => ({
-  ...card, source: draftSource(card.source), reviewStatus: 'unreviewed',
-}));
+  ...card, source: draftSource(card.source), reviewStatus: 'unreviewed' as const,
+})).map(normalizeFlashcardDomain);

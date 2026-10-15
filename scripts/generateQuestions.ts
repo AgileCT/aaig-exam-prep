@@ -3,8 +3,8 @@ import 'dotenv/config';
 import { writeFileSync, mkdirSync, renameSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
-import type { DomainId, Question, QuestionType, Difficulty } from '../src/types';
-import { AAIG_DOMAINS } from '../src/data/domains';
+import type { StudyDomainId, Question, QuestionType, Difficulty } from '../src/types';
+import { AAIG_DOMAINS, STUDY_DOMAIN_IDS } from '../src/data/domains';
 import { GENERATED_QUESTIONS } from '../src/data/generatedQuestions';
 import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { isQuestion, passesLengthGate, parseGeneratedJson } from '../src/services/contentValidation';
@@ -12,8 +12,8 @@ import { draftSource } from '../src/services/questionOrder';
 
 const QTYPES: QuestionType[] = ['BEST', 'FIRST', 'MOST', 'PRIMARY', 'LEAST'];
 const DIFFS: Difficulty[] = ['Intermediate', 'Director-Level'];
-const DOMAINS = Object.keys(AAIG_DOMAINS) as DomainId[];
-export interface GenerationSlot { domain: DomainId; subDomain: string; qtype: QuestionType; diff: Difficulty; targetPos: number }
+const DOMAINS = STUDY_DOMAIN_IDS;
+export interface GenerationSlot { domain: StudyDomainId; subDomain: string; qtype: QuestionType; diff: Difficulty; targetPos: number }
 
 function shuffled<T>(items: T[], rng: () => number): T[] {
   const result = [...items];
@@ -32,8 +32,9 @@ function balancedPool<T>(count: number, values: T[], rng: () => number): T[] {
 export function buildGenerationPlan(count: number, rng = Math.random): GenerationSlot[] {
   if (!Number.isInteger(count) || count < 1 || count > 10_000) throw new Error('GEN_COUNT must be an integer between 1 and 10000');
   // App-defined study allocations, not official exam weights.
+  const totalWeight = DOMAINS.reduce((sum, domain) => sum + AAIG_DOMAINS[domain].weight, 0);
   const allocations = DOMAINS.map(domain => {
-    const exact = count * AAIG_DOMAINS[domain].weight / 100;
+    const exact = count * AAIG_DOMAINS[domain].weight / totalWeight;
     return { domain, count: Math.floor(exact), remainder: exact % 1 };
   });
   let remaining = count - allocations.reduce((sum, item) => sum + item.count, 0);
@@ -116,7 +117,7 @@ async function callGemini(prompt: string, apiKey: string, model: string, json = 
 }
 function saveGenerated(items: Question[]): void {
   const file = 'src/data/generatedQuestions.ts';
-  const content = `import { Question } from '../types';\nimport { markQuestionUnreviewed } from '../services/questionOrder';\n\nconst GENERATED_QUESTION_DRAFTS: Question[] = ${JSON.stringify(items, null, 2)};\n\nexport const GENERATED_QUESTIONS = GENERATED_QUESTION_DRAFTS.map(markQuestionUnreviewed);\n`;
+  const content = `import { Question } from '../types';\nimport { markQuestionUnreviewed } from '../services/questionOrder';\nimport { normalizeQuestionDomain } from '../services/domainTaxonomy';\n\nconst GENERATED_QUESTION_DRAFTS: Question[] = ${JSON.stringify(items, null, 2)};\n\nexport const GENERATED_QUESTIONS = GENERATED_QUESTION_DRAFTS.map(markQuestionUnreviewed).map(normalizeQuestionDomain);\n`;
   writeFileSync(`${file}.tmp`, content); renameSync(`${file}.tmp`, file);
 }
 

@@ -59,9 +59,9 @@ test('generation plans cover all domains and rotate every subdomain independentl
   const { buildGenerationPlan } = await generationModule();
   const small = buildGenerationPlan(10, () => 0.5);
   assert.equal(small.length, 10);
-  assert.equal(new Set(small.map(q => q.domain)).size, 4);
+  assert.equal(new Set(small.map(q => q.domain)).size, 3);
   const plan = buildGenerationPlan(100, () => 0.5);
-  assert.deepEqual(['D1', 'D2', 'D3', 'D4'].map(d => plan.filter(q => q.domain === d).length), [30, 20, 25, 25]);
+  assert.deepEqual(['D1', 'D2', 'D3'].map(d => plan.filter(q => q.domain === d).length), [34, 33, 33]);
   assert.equal(new Set(plan.map(q => q.subDomain)).size, 20);
   for (const topic of new Set(plan.map(q => q.subDomain))) {
     assert.ok(new Set(plan.filter(q => q.subDomain === topic).map(q => q.qtype)).size > 1);
@@ -133,7 +133,7 @@ test('malformed distractor axes return validation failures instead of throwing',
   assert.ok(auditQuestionBank([{ ...INITIAL_QUESTIONS[0], distractorAxes: 'bad' }], []).errors.some(error => error.includes('distractorAxes')));
 });
 
-test('dry-run covers four domains without API calls, reports or bank writes', async () => {
+test('dry-run covers three domains without API calls, reports or bank writes', async () => {
   const { runPipeline } = await generationModule();
   const originalCwd = process.cwd(), folder = mkdtempSync(join(tmpdir(), 'aaig-dry-run-'));
   const originalFetch = globalThis.fetch, originalLog = console.log;
@@ -155,7 +155,7 @@ test('dry-run covers four domains without API calls, reports or bank writes', as
     const report = JSON.parse(output[0]);
     assert.equal(report.dryRun, true);
     assert.equal(report.plan.length, 10);
-    assert.equal(new Set(report.plan.map((slot: { domain: string }) => slot.domain)).size, 4);
+    assert.equal(new Set(report.plan.map((slot: { domain: string }) => slot.domain)).size, 3);
   } finally {
     process.chdir(originalCwd); globalThis.fetch = originalFetch; console.log = originalLog;
     keys.forEach((key, i) => { if (saved[i] === undefined) delete process.env[key]; else process.env[key] = saved[i]; });
