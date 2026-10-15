@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 2026-10-15
+
+- Add real browser-side Gemini, OpenAI, Anthropic Claude, and OpenAI-compatible HTTPS adapters for both tutoring and question/flashcard authoring.
+- Add provider, editable model, and custom endpoint settings with destination disclosure and provider key links. Clear the draft key when changing destination.
+- Preserve existing Gemini keys; store one active configuration in session storage by default with opt-in device persistence. Clear both current and legacy key storage; restore prior entries on a failed save.
+- Cancel pending work on configuration changes; preserve timeouts, cancellation, structural checks, and safe status errors without raw provider responses or keys. Refuse redirects and omit browser credentials.
+- Account/model access and compatible-endpoint CORS vary. Automated provider tests use mocked responses; no real paid AI requests are part of validation.
+
 ## 1.1.0 2026-10-14
 
 - Align top-level navigation with the three core areas on ISACA's public AAIG page. Subtopics and balanced practice sampling remain app-defined, not official exam weights.

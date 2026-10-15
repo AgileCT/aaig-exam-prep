@@ -3,11 +3,12 @@ import { StudyDomainId, Question, Flashcard, QuestionType, Difficulty } from '..
 import { AAIG_DOMAINS, STUDY_DOMAIN_IDS } from '../data/domains';
 import { Sparkles, AlertCircle, Plus, CheckCircle2, Layers, BookOpen, RotateCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { generateGeminiText } from '../services/gemini';
+import { AIConfig, defaultAIConfig, generateAIText, PROVIDERS } from '../services/ai';
 import { parseGeneratedFlashcard, parseGeneratedQuestion, passesLengthGate, questionLengthRatio } from '../services/contentValidation';
 
 interface QuestionGeneratorModalProps {
-  apiKey: string;
+  apiKey?: string;
+  aiConfig?: AIConfig;
   onSaveQuestion: (q: Question) => void;
   onSaveFlashcard: (card: Flashcard) => void;
   onOpenApiKey: () => void;
@@ -15,10 +16,12 @@ interface QuestionGeneratorModalProps {
 
 export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
   apiKey,
+  aiConfig,
   onSaveQuestion,
   onSaveFlashcard,
   onOpenApiKey,
 }) => {
+  const config = aiConfig || { ...defaultAIConfig(), apiKey: apiKey || '' };
   const [targetType, setTargetType] = useState<'mcq' | 'flashcard'>('mcq');
 
   // MCQ Form
@@ -39,7 +42,7 @@ export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
   useEffect(() => {
     setIsGenerating(false);
     return () => { request.current?.abort(); request.current = null; };
-  }, [apiKey]);
+  }, [config.apiKey, config.provider, config.model, config.baseUrl]);
 
   const cancelGeneration = () => {
     request.current?.abort();
@@ -48,7 +51,7 @@ export const QuestionGeneratorModal: React.FC<QuestionGeneratorModalProps> = ({
   };
 
   const handleGenerateMCQ = async () => {
-    if (!apiKey) {
+    if (!config.apiKey) {
       onOpenApiKey();
       return;
     }
@@ -92,7 +95,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 }`;
 
     try {
-      const rawText = await generateGeminiText(apiKey, prompt, {
+      const rawText = await generateAIText({ ...config }, prompt, {
         signal: controller.signal, temperature: 0.4, maxOutputTokens: 1600, json: true,
       });
       if (controller.signal.aborted || request.current !== controller) return;
@@ -112,7 +115,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
   };
 
   const handleGenerateFlashcard = async () => {
-    if (!apiKey) {
+    if (!config.apiKey) {
       onOpenApiKey();
       return;
     }
@@ -143,7 +146,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 }`;
 
     try {
-      const rawText = await generateGeminiText(apiKey, prompt, {
+      const rawText = await generateAIText({ ...config }, prompt, {
         signal: controller.signal, temperature: 0.5, maxOutputTokens: 1200, json: true,
       });
       if (controller.signal.aborted || request.current !== controller) return;
@@ -221,7 +224,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
         </div>
 
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          Requests send your key, selected topic, and authoring prompt to Google Gemini. Quota limits and charges may apply.
+          Requests send your key, selected topic, and authoring prompt to {PROVIDERS[config.provider].name}. Quota limits and charges may apply.
           Do not enter personal, confidential, or protected ISACA exam/QAE material. Generated items remain unreviewed.
         </p>
 
@@ -315,7 +318,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
 
         {/* Action Button */}
         <div className="flex items-center justify-between pt-2">
-          {!apiKey ? (
+          {!config.apiKey ? (
             <div className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
               <AlertCircle className="w-4 h-4 shrink-0" />
               Configure your AI API key in the top-right to generate

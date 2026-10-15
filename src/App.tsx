@@ -15,17 +15,18 @@ import {
   saveCustomQuestion, 
   loadAllFlashcards,
   saveCustomFlashcard,
-  getApiKey, 
-  saveApiKey 
+  getAIConfig,
+  saveAIConfig
 } from './services/storage';
 import { Question, Flashcard, DomainId, FlashcardMastery, UserProgress, ExamRecord } from './types';
+import { AIConfig } from './services/ai';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'quiz' | 'mockExam' | 'flashcards' | 'review' | 'generate'>('dashboard');
   const [questions, setQuestions] = useState<Question[]>(() => loadAllQuestions());
   const [flashcards, setFlashcards] = useState<Flashcard[]>(() => loadAllFlashcards());
   const [progress, setProgress] = useState<UserProgress>(() => loadUserProgress());
-  const [apiKey, setApiKey] = useState<string>(() => getApiKey());
+  const [aiConfig, setAIConfig] = useState<AIConfig>(() => getAIConfig());
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -107,9 +108,9 @@ export const App: React.FC = () => {
     }));
   };
 
-  const handleSaveApiKey = (key: string, remember: boolean) => {
-    saveApiKey(key, remember);
-    setApiKey(key);
+  const handleSaveAIConfig = (config: AIConfig, remember: boolean) => {
+    saveAIConfig(config, remember);
+    setAIConfig({ ...config, apiKey: config.apiKey.trim() });
   };
 
   const handleSaveCustomQuestion = (newQ: Question) => {
@@ -155,7 +156,7 @@ export const App: React.FC = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenApiKey={() => setIsApiKeyModalOpen(true)}
-        hasApiKey={!!apiKey}
+        hasApiKey={!!aiConfig.apiKey}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
         wrongCount={progress.wrongIds.length}
@@ -213,7 +214,7 @@ export const App: React.FC = () => {
 
         {activeTab === 'generate' && (
           <QuestionGeneratorModal
-            apiKey={apiKey}
+            aiConfig={aiConfig}
             onSaveQuestion={handleSaveCustomQuestion}
             onSaveFlashcard={handleSaveCustomFlashcard}
             onOpenApiKey={() => setIsApiKeyModalOpen(true)}
@@ -244,14 +245,14 @@ export const App: React.FC = () => {
         isOpen={isTutorOpen}
         onClose={() => setIsTutorOpen(false)}
         contextQuestion={tutorContextQuestion}
-        apiKey={apiKey}
+        aiConfig={aiConfig}
       />
 
       <ApiKeyModal
         isOpen={isApiKeyModalOpen}
         onClose={() => setIsApiKeyModalOpen(false)}
-        apiKey={apiKey}
-        onSaveKey={handleSaveApiKey}
+        aiConfig={aiConfig}
+        onSaveConfig={handleSaveAIConfig}
       />
     </div>
   );

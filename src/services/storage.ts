@@ -3,11 +3,46 @@ import { INITIAL_QUESTIONS } from '../data/questions';
 import { INITIAL_FLASHCARDS } from '../data/flashcards';
 import { isFlashcard, isQuestion } from './contentValidation';
 import { normalizeFlashcardDomain, normalizeQuestionDomain } from './domainTaxonomy';
+import { AIConfig, defaultAIConfig, validateAIConfig } from './ai';
 
 const STORAGE_KEY_PROGRESS = 'aaig_user_progress_v1';
 const STORAGE_KEY_CUSTOM_QUESTIONS = 'aaig_custom_questions_v1';
 const STORAGE_KEY_CUSTOM_FLASHCARDS = 'aaig_custom_flashcards_v1';
 const STORAGE_KEY_API_KEY = 'aaig_gemini_api_key';
+const STORAGE_KEY_AI_CONFIG = 'aaig_ai_config_v1';
+
+export function getAIConfig(): AIConfig {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY_AI_CONFIG) || localStorage.getItem(STORAGE_KEY_AI_CONFIG);
+    if (raw) return validateAIConfig(JSON.parse(raw));
+    return { ...defaultAIConfig(), apiKey: getApiKey() };
+  } catch { return defaultAIConfig(); }
+}
+
+export function getAIConfigPreference(): boolean {
+  try { return !!localStorage.getItem(STORAGE_KEY_AI_CONFIG) || getApiKeyPreference(); }
+  catch { return false; }
+}
+
+export function saveAIConfig(input: AIConfig, remember = false): void {
+  const config = input.apiKey.trim() ? validateAIConfig(input) : null;
+  // Snapshot all affected entries before changing either store; restore on failure.
+  const stores = [sessionStorage, localStorage];
+  const keys = [STORAGE_KEY_AI_CONFIG, STORAGE_KEY_API_KEY];
+  const snapshot = stores.map(store => keys.map(key => store.getItem(key)));
+  try {
+    if (config) (remember ? localStorage : sessionStorage).setItem(STORAGE_KEY_AI_CONFIG, JSON.stringify(config));
+    for (const store of stores) {
+      if (!config || store !== (remember ? localStorage : sessionStorage)) store.removeItem(STORAGE_KEY_AI_CONFIG);
+      store.removeItem(STORAGE_KEY_API_KEY);
+    }
+  } catch {
+    for (const [i, store] of stores.entries()) for (const [j, key] of keys.entries()) {
+      try { const previous = snapshot[i][j]; if (previous === null) store.removeItem(key); else store.setItem(key, previous); } catch { /* Storage may be disabled; active React configuration remains unchanged. */ }
+    }
+    throw new Error(config ? 'AI configuration was not saved. Browser storage is unavailable.' : 'API key could not be cleared because browser storage is unavailable.');
+  }
+}
 
 export function loadUserProgress(): UserProgress {
   try {
