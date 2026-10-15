@@ -6,7 +6,11 @@ An independent, open-source AI governance practice tool with original and AI-gen
 
 [Public application](https://aaig-exam-prep.vercel.app) · [MIT License](LICENSE)
 
+[Release notes](CHANGELOG.md) · [GitHub releases](https://github.com/AgileCT/aaig-exam-prep/releases)
+
 The public deployment may lag behind repository changes. Check the deployed version before treating a fix as live.
+
+Version 1.1.0 aligns navigation with the three publicly listed AAIG core areas, incorporates 313 returned-review content corrections, and preserves legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
 
 ## Learning features
 
@@ -80,6 +84,10 @@ The dry run prints the sampling plan without API calls or file writes. A normal 
 The authoring pipeline independently samples topic, question type, difficulty, and answer position. It checks required fields, four options, answer bounds, explanation axes, the length-ratio range, and duplicate question text. A separate blind request must agree with the author key. Both requests use the configured model: agreement is a consistency check, not independent expert validation. Generated items remain unreviewed.
 
 The bundled bank retains limitations, including concentrated question types within some topics and unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
+
+## Production deployment
+
+The existing Vercel project is `aaig-exam-prep`. Its committed configuration selects Vite, installs with `npm ci`, builds with `npm run build`, and publishes only `dist`. Do not publish the repository root as static output. Link an authorized local checkout to the existing project, run `npm run verify`, and deploy the reviewed main commit. A successful local build alone is not proof that the public domain serves that commit.
 
 ## Contributions
 
