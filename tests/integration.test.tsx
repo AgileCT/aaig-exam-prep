@@ -13,7 +13,7 @@ test('failed API key clearing keeps the active key and displays the storage erro
   const root = createRoot(container);
   t.after(async () => { await act(() => root.unmount()); cleanup(); });
   await act(() => root.render(<App />));
-  const settings = container.querySelector<HTMLButtonElement>('button[aria-label="Configure Gemini API Key"]')!;
+  const settings = container.querySelector<HTMLButtonElement>('button[aria-label="Configure AI API Key"]')!;
   await act(() => settings.click());
   t.mock.method(Object.getPrototypeOf(localStorage), 'removeItem', () => { throw new Error('Storage denied'); });
   const clear = [...container.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent === 'Clear Key')!;

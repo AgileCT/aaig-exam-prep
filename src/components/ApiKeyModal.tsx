@@ -48,7 +48,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
               <Key className="w-4 h-4" />
             </div>
             <h3 className="font-bold text-base text-slate-900 dark:text-white">
-              Configure Gemini API Key
+              Configure AI API Key
             </h3>
           </div>
           <button
@@ -61,9 +61,10 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
         </div>
 
         <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-          Adding your Google Gemini API Key enables:
+          Adding your AI API key enables:
           <br />• 🤖 AI Study Tutor across 4 coaching modes (Socratic, Teach-Back, Drill, Standard).
           <br />• ⚡️ Draft question generation with structure and length checks; content still needs review.
+          <br />Current provider: Google Gemini. Use a key from this provider.
         </p>
 
         <div className="space-y-1.5">
@@ -76,7 +77,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
             autoComplete="off"
             value={val}
             onChange={e => setVal(e.target.value)}
-            placeholder="AIzaSy..."
+            placeholder="Enter your API key"
             className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-none text-xs text-slate-900 dark:text-white font-mono focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
           />
           <label className="flex items-center gap-2 pt-2 text-xs text-slate-600 dark:text-slate-300">
@@ -102,7 +103,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
             rel="noreferrer"
             className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
           >
-            Get Gemini Key <ExternalLink className="w-3 h-3" />
+            Get API Key <ExternalLink className="w-3 h-3" />
           </a>
 
           <div className="flex gap-2">

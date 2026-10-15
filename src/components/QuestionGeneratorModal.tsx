@@ -318,7 +318,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
           {!apiKey ? (
             <div className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
               <AlertCircle className="w-4 h-4 shrink-0" />
-              Configure your Gemini API Key in the top-right to generate
+              Configure your AI API key in the top-right to generate
             </div>
           ) : (
             <div className="text-xs text-slate-500">

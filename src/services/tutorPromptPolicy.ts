@@ -97,12 +97,12 @@ export async function callAITutor(
   if (!apiKey) {
     // High quality offline fallback response in English
     if (mode === 'socratic' && contextQuestion) {
-      return `[Offline Tutor - Socratic Mode] In this scenario, as the AI Governance Officer, what foundational mandate and decision authority must executive leadership establish before any technical tools or pilots are approved? (Tip: Configure your Gemini API Key in the top right to unlock real-time dynamic AI dialogue).`;
+      return `[Offline Tutor - Socratic Mode] In this scenario, as the AI Governance Officer, what foundational mandate and decision authority must executive leadership establish before any technical tools or pilots are approved? (Tip: Configure your AI API key in the top right to unlock real-time dynamic AI dialogue).`;
     }
     if (contextQuestion) {
-      return `[Offline Practice Explanation - Unreviewed]\nTested Topic: ${contextQuestion.subDomain}\n\n${contextQuestion.explanation}\n\nUnverified Reference: ${contextQuestion.source}\n\nCloud tutoring requires your Gemini API key. Google quota limits and charges may apply.`;
+      return `[Offline Practice Explanation - Unreviewed]\nTested Topic: ${contextQuestion.subDomain}\n\n${contextQuestion.explanation}\n\nUnverified Reference: ${contextQuestion.source}\n\nCloud tutoring requires your AI API key. Provider quota limits and charges may apply.`;
     }
-    return `Please configure your Gemini API Key in the top right header to unlock the full AI Study Tutor conversational experience!`;
+    return `Please configure your AI API key in the top right header to unlock the full AI Study Tutor conversational experience!`;
   }
 
   return generateGeminiText(apiKey, `${systemPrompt}\n\nCandidate Request: ${userMessage}`, {

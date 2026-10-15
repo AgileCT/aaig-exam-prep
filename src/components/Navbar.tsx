@@ -135,14 +135,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Actions */}
         <div className="flex items-center gap-2">
           <button
-            aria-label="Configure Gemini API Key"
+            aria-label="Configure AI API Key"
             onClick={onOpenApiKey}
             className={`p-2 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-colors ${
               hasApiKey
                 ? 'border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
                 : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
-            title="Configure Gemini API Key"
+            title="Configure AI API Key"
           >
             <Key className="w-4 h-4" />
             <span className="hidden lg:inline">{hasApiKey ? 'Key Saved' : 'Key'}</span>
