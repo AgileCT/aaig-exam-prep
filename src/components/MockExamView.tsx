@@ -214,19 +214,19 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
 
           {/* Longer Practice Session */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border-2 border-indigo-500/40 shadow-md flex flex-col justify-between space-y-4 relative overflow-hidden">
-            <div className="absolute top-3 right-3">
-              <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/30 font-bold text-[10px]">
-                Recommended
-              </span>
-            </div>
             <div>
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <span className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold text-xs">
                   Full Benchmark
                 </span>
-                <span className="text-xs text-slate-400 flex items-center gap-1 font-medium">
+                <div className="flex flex-col items-end gap-2 ml-auto">
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/30 font-bold text-[10px]">
+                    Recommended
+                  </span>
+                <span className="text-xs text-slate-400 flex items-center gap-1 font-medium whitespace-nowrap">
                   <Clock className="w-3.5 h-3.5" /> 150 Minutes
                 </span>
+                </div>
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                 Longer Mock Practice
