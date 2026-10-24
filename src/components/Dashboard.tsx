@@ -343,7 +343,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
         ) : (
           <div className="space-y-3">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 text-xs">
               <div>
                 <span className="text-slate-400 block text-[11px]">Total Simulated</span>
                 <span className="font-bold text-base text-slate-900 dark:text-white">{progress.examRecords.length} attempts</span>

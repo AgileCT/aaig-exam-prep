@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1 2026-10-24
+
+- Fix the dark mode button. Tailwind 4 answers `dark:` styles with the operating system setting unless told otherwise, while the button toggles a `dark` class on the page, so on a light system the button changed the class but not the page (and on a dark system it could not turn dark off). The `dark` variant now follows the class. A test guards this.
+- With dark mode working, the answer options in Practice showed light text on a white background: four components used two colors that Tailwind does not define (`slate-750`, `slate-850`), which had never been visible. They now use `slate-700` and `slate-800`.
+- At tablet widths (768 to 1023 px) the header's tab labels crowded the logo; the labels now appear from 1024 px and the tabs are icons below that.
+
 ## 1.3.0 2026-10-24
 
 - Add 18 hand-authored Data and AI Architecture questions. D2.1 Data Governance & Data Quality grows from 5 to 15 questions and now uses all five qualifier types and all four answer positions; D2.3, D2.4 and D2.5 gain 3, 2 and 3 questions. Citations remain unverified.

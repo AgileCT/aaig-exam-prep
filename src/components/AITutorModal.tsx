@@ -150,7 +150,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
         </p>
 
         {/* Mode Selector Tabs (4 tutor modes) */}
-        <div className="px-4 py-2 bg-slate-50 dark:bg-slate-850 border-b border-slate-100 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto text-xs shrink-0">
+        <div className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto text-xs shrink-0">
           <button
             onClick={() => setMode('standard')}
             className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${

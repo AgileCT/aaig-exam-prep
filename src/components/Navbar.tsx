@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <ShieldCheck className="w-4 h-4" />
-            <span className="hidden md:inline">Dashboard</span>
+            <span className="hidden lg:inline whitespace-nowrap">Dashboard</span>
           </button>
 
           <button
@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <BookOpen className="w-4 h-4" />
-            <span className="hidden md:inline">Practice</span>
+            <span className="hidden lg:inline whitespace-nowrap">Practice</span>
           </button>
 
           <button
@@ -84,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Clock className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            <span className="hidden md:inline">Mock Exam</span>
+            <span className="hidden lg:inline whitespace-nowrap">Mock Exam</span>
           </button>
 
           <button
@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Layers className="w-4 h-4" />
-            <span className="hidden md:inline">Flashcards</span>
+            <span className="hidden lg:inline whitespace-nowrap">Flashcards</span>
           </button>
 
           <button
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Bookmark className="w-4 h-4" />
-            <span className="hidden md:inline">Review</span>
+            <span className="hidden lg:inline whitespace-nowrap">Review</span>
             {wrongCount > 0 && (
               <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-rose-500 text-white">
                 {wrongCount}
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Sparkles className="w-4 h-4 text-amber-500" />
-            <span className="hidden md:inline">AI Gen</span>
+            <span className="hidden lg:inline whitespace-nowrap">AI Gen</span>
           </button>
         </nav>
 

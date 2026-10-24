@@ -208,7 +208,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
             const isSelected = selectedOption === idx;
             const isCorrect = idx === currentQ.correctIndex;
 
-            let optionStyle = 'border-slate-200 dark:border-slate-750 hover:border-indigo-300 dark:hover:border-indigo-700 bg-white dark:bg-slate-850';
+            let optionStyle = 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700 bg-white dark:bg-slate-800';
 
             if (isSelected) {
               optionStyle = 'border-indigo-600 dark:border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 ring-1 ring-indigo-500';
@@ -305,7 +305,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
         {/* Detailed Explanation Drawer */}
         {hasSubmitted && (
-          <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-4 animate-fadeIn">
+          <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 space-y-4 animate-fadeIn">
             <div className="flex items-center justify-between">
               <span className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
@@ -322,7 +322,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
             {/* Distractor Explanations */}
             {currentQ.distractorExplanations && currentQ.distractorExplanations.length > 0 && (
-              <div className="pt-3 border-t border-slate-200 dark:border-slate-750">
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-700">
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-2">
                   ❌ Distractor Breakdown (Trap Analysis):
                 </span>
@@ -338,7 +338,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
             )}
 
             {/* Source Reference & Direct Authoritative Links */}
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-750 space-y-2 text-xs text-slate-500 dark:text-slate-400">
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-700 space-y-2 text-xs text-slate-500 dark:text-slate-400">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span>📖 Reference: {currentQ.source}</span>
                 <span className="text-[11px] bg-slate-200/80 dark:bg-slate-800 px-2 py-0.5 rounded">

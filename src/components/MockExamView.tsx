@@ -466,7 +466,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
                   })}
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-850 text-xs space-y-2 leading-relaxed">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-xs space-y-2 leading-relaxed">
                   <div>
                     <span className="font-bold text-indigo-600 dark:text-indigo-400">Governance Rationale: </span>
                     <span className="text-slate-600 dark:text-slate-300">{q.explanation}</span>
