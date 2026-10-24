@@ -887,7 +887,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     domainId: "D2",
     topic: "Purpose limitation when reusing data",
     front: "What does purpose limitation mean when reusing personal data to train an AI model?",
-    back: "Personal data collected for one purpose must not be reused in a way that is incompatible with it (GDPR Art. 5(1)(b)). Before reusing it for training, assess whether the new purpose is compatible with the original one and record a lawful basis (Art. 6(4)).",
+    back: "Personal data collected for one purpose must not be reused in a way that is incompatible with it (GDPR Art. 5(1)(b)). Before reusing it for training, assess whether the new purpose is compatible with the original one using the Art. 6(4) factors, and record the result and the lawful basis relied on.",
     source: "GDPR Art. 5(1)(b) & Art. 6(4)",
     keyTakeaway: "Check that the new training purpose is compatible with the original purpose.",
     verification: 'pending'
