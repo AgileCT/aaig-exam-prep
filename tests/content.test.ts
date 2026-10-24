@@ -316,3 +316,17 @@ test('second expansion round weights crowded subtopics, stays non-financial and 
   const ids = new Set(EXPANSION_QUESTIONS_2.map(q => q.id));
   assert.deepEqual(findNearDuplicatePairs(ACTIVE_QUESTIONS).filter(([a, b]) => ids.has(a) || ids.has(b)), []);
 });
+
+test('audit reports flashcard form problems that make cards hard to recall', async () => {
+  const { auditQuestionBank } = await import('../scripts/auditQuestions');
+  const base = FLASHCARDS[0];
+  const clean = { ...base, id: 'fc-t1', front: 'What is the first line?', back: 'Short answer.' };
+  const long = { ...base, id: 'fc-t2', front: 'What is a model card, and how does it help?', back: 'x'.repeat(700) };
+  const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), [clean, long]);
+  assert.equal(report.flashcards.count, 2);
+  assert.equal(report.flashcards.longBacks, 1);
+  assert.equal(report.flashcards.compoundFronts, 1);
+  assert.ok(report.warnings.some((w: string) => w.includes('flashcard backs exceed 600')));
+  assert.ok(report.warnings.some((w: string) => w.includes('fc-t2')));
+  assert.equal(auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), [clean]).flashcards.longBacks, 0);
+});

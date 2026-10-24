@@ -1,4 +1,5 @@
 /** Offline structure and bias indicators only. No model calls or expert accuracy approval. */
+const FLASHCARD_BACK_LIMIT = 600;
 import { pathToFileURL } from 'node:url';
 import type { Question } from '../src/types';
 import { ACTIVE_QUESTIONS } from '../src/data/questions';
@@ -25,6 +26,10 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
       errors.push(`invalid distractorAxes: ${question.id}`);
     }
   }
+  const longBacks = flashcards.filter(card => card.back.length > FLASHCARD_BACK_LIMIT);
+  if (longBacks.length) warnings.push(`${longBacks.length} of ${flashcards.length} flashcard backs exceed ${FLASHCARD_BACK_LIMIT} characters (longest ${Math.max(...longBacks.map(card => card.back.length))}); long backs are cut off on the card and are hard to recall`);
+  const compoundFronts = flashcards.filter(card => / and (how|what|who|when|why|which)\b/i.test(card.front));
+  if (compoundFronts.length) warnings.push(`${compoundFronts.length} flashcard fronts ask more than one question: ${compoundFronts.map(card => card.id).join(', ')}`);
   const seenCards = new Set<string>();
   for (const card of flashcards) {
     if (seenCards.has(card.id)) errors.push(`duplicate flashcard ID: ${card.id}`);
@@ -68,6 +73,8 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
     domains: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, questions.filter(q => q.domainId === domain).length])),
     answerPositions: [0, 1, 2, 3].map(i => questions.filter(q => q.correctIndex === i).length),
     nearDuplicatePairs: duplicatePairs.length,
+    flashcards: { count: flashcards.length, longBacks: longBacks.length, compoundFronts: compoundFronts.length,
+      byDomain: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, flashcards.filter(card => card.domainId === domain).length])) },
     guessability: { rate: Number(guessability.toFixed(3)), target: GUESSABILITY_TARGET,
       byQuestionType: Object.fromEntries(['BEST', 'FIRST', 'PRIMARY', 'MOST', 'LEAST'].map(type => [type, Number(guessabilityRate(questions.filter(q => q.questionType === type)).toFixed(3))])) },
     byTopic, errors, warnings,
