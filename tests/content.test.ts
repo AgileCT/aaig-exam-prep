@@ -22,21 +22,21 @@ test('importing generation code does not contact an AI provider', async () => {
   finally { globalThis.fetch = previous; }
 });
 
-import { DISTRACTOR_REWRITES as DISTRACTOR_REWRITES_FOR_TEST } from '../src/data/distractorRewrites';
+import { ACTIVE_QUESTIONS as ACTIVE_FOR_REVIEW_LIST } from '../src/data/questions';
+const ACTIVE_FOR_REVIEW_TEST = () => ACTIVE_FOR_REVIEW_LIST;
 
-test('review records cover only reviewed questions and no question claims ISACA manual provenance', () => {
+test('every active question has a review record and none claims ISACA manual provenance', () => {
   assert.equal(INITIAL_QUESTIONS.length, 439);
   // 2026-10-24: review records exist only for questions the reviewer actually reviewed (see src/data/reviewRecords.ts).
   const reviewed = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed');
-  assert.equal(reviewed.length, 302);
+  assert.equal(reviewed.length, 436);
   for (const q of reviewed) {
     assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao', q.id);
     assert.ok(q.reviewedAt === '2026-10-14' || q.reviewedAt === '2026-10-24', q.id);
   }
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'reviewed' || q.reviewStatus === 'unreviewed'));
-  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 137);
-  // Everything added by hand after the 2026-10-14 review and not rewritten stays unreviewed, and so do the seven trimmed items.
-  assert.ok(INITIAL_QUESTIONS.filter(q => /^aaig-d\ds-/.test(q.id) && !(q.id in DISTRACTOR_REWRITES_FOR_TEST)).every(q => q.reviewStatus === 'unreviewed'));
+  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 3);
+  assert.ok(ACTIVE_FOR_REVIEW_TEST().every(q => q.reviewStatus === 'reviewed'));   // every active question has a review record
   // The three evidence-verified AIMS questions keep their source note and link.
   for (const id of ['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']) {
     const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
@@ -135,7 +135,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 137);
+  assert.equal(valid.unreviewedQuestions, 3);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
