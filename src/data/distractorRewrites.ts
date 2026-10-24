@@ -187,6 +187,56 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Execute automated decommission protocols', axis: 'Decommissioning before the inventory classification is updated' },
     { from: 'Authorize first-line model development teams', to: 'Rank all risks found in MEASURE by severity and publish the ranking in the central inventory.', why: 'Ranking is useful prioritization, but without treatment plans, owners and sign-off nothing is done about the ranked risks.', axis: 'Prioritization without treatment' },
   ],
+  'aaig-pipe-1791943131382-17-7wx7z': [
+    { from: 'Mandate automated continuous monitoring platforms', to: 'Ask each product team to map its own AI risks to the enterprise risk register and submit the mapping once a year.', why: 'Self-mapping by each team gives coverage, but it produces inconsistent categories and relies on each team\'s own judgement, so the fragmentation the CRO sees would continue.', axis: 'Decentralized mapping without a common structure' },
+    { from: 'Direct development squads to execute risk response', axis: 'Risk response before the risk taxonomy exists' },
+    { from: 'Authorize the internal audit department to formulate', to: 'Commission an external review of how peer firms align AI risk management with the NIST AI RMF and share the findings.', why: 'A peer review informs the design but does not itself put a governance structure, limits or a risk taxonomy mapping in place.', axis: 'Benchmarking mistaken for implementation' },
+  ],
+  'aaig-pipe-1791943089288-7-qyc29': [
+    { from: 'Deploying automated data retention and purge scripts', axis: 'Deletion after deployment instead of control at ingestion' },
+    { from: 'Empowering first-line data science leads', to: 'Train the data science teams on privacy principles and require them to certify once a year that they follow them.', why: 'Training and certification build awareness, but they do not stop unnecessary data entering the pipeline, because no control checks each use.', axis: 'Awareness and attestation instead of a control point' },
+    { from: 'Mandating post-hoc model explainability techniques', to: 'Keep a catalogue of privacy-enhancing techniques and recommend them to teams when they design new features.', why: 'Recommendations support good practice, but without a mandatory check at ingestion teams can still collect and keep data they do not need.', axis: 'Optional guidance instead of a mandatory check' },
+  ],
+  'aaig-pipe-1791942405270-13': [
+    { from: 'Mandate that model engineering teams immediately implement', to: 'Commission a fairness audit of the model by an independent team and send the report to the regulators.', why: 'An audit documents the problem, but the committee\'s primary objective is to set the limits and monitoring that govern the response over time.', axis: 'Evidence gathering mistaken for the governance objective' },
+    { from: 'Deploy automated feature-reweighting tools', axis: 'Technical fix before data collection policies are reviewed' },
+    { from: 'Authorize the first-line model development leads', to: 'Ask the model owner to retrain the model every quarter on the latest applicant data.', why: 'Regular retraining may help, but without agreed limits and monitoring nobody can tell whether the drift or the bias has actually been addressed.', axis: 'Routine maintenance mistaken for governance' },
+  ],
+  'aaig-pipe-1791942450897-22': [
+    { from: 'Deploying continuous automated retraining pipelines', to: 'Add reviewers to the model risk team so that every model can be reviewed by a person every month.', why: 'More reviewers improve coverage, but without agreed limits and automatic triggers, reviews still depend on people noticing the deterioration.', axis: 'Capacity increase instead of defined triggers' },
+    { from: 'Decommissioning the model immediately', axis: 'Withdrawal before root cause analysis' },
+    { from: 'Authorizing the independent internal audit function', to: 'Publish a dashboard of model accuracy to all business units and ask them to raise concerns.', why: 'Visibility helps, but a dashboard that relies on others to raise concerns has no agreed limit and nobody obliged to act when it is crossed.', axis: 'Visibility without an obligation to act' },
+  ],
+  'aaig-pipe-1791942429985-18': [
+    { from: 'To maximize mathematical interpretability metrics', to: 'To provide every applicant with a full technical description of how the underwriting model works.', why: 'A full technical description is not what most applicants need and does not give them reasons for their own decision. Explainability has to fit the audience.', axis: 'Technical disclosure at the wrong level' },
+    { from: 'To procure and implement post-hoc model interpretation toolkits', axis: 'Tooling before stakeholder needs are defined' },
+    { from: 'To task the internal audit function', to: 'To give model developers a way to debug errors faster during training and testing.', why: 'Debugging benefits developers, but the governance objective concerns the people affected and the oversight functions, not only the engineering team.', axis: 'Developer convenience mistaken for the governance objective' },
+  ],
+  'aaig-pipe-1791941180316-32': [
+    { from: 'Mandate the automated technical enforcement', to: 'Turn the policy into a one-page summary for staff and test their understanding with a short annual quiz.', why: 'Summaries and quizzes build awareness, but they do not create review cycles or duties, so the policy can still fall out of date or be ignored.', axis: 'Awareness activity mistaken for enforceability' },
+    { from: 'Deploy enterprise continuous monitoring tools', axis: 'Monitoring before policy baselines exist' },
+    { from: 'Designate the internal audit function to define', to: 'Let each business unit adapt the policy to its own needs and record its version in a central folder.', why: 'Local adaptation makes the policy workable for each unit, but without common review cycles and clear duties the versions drift and cannot be enforced consistently.', axis: 'Local versions without common review' },
+  ],
+  'aaig-pipe-1791943163595-28-3f1lb': [
+    { from: 'To delegate authorization to operational data science teams', to: 'To collect more demographic data about applicants so that the model can be tested for fairness more precisely.', why: 'More demographic data may help testing, but the primary objective is to bring outputs in line with the firm\'s agreed fairness criteria, whatever data is used.', axis: 'Data collection mistaken for the governance objective' },
+    { from: 'To immediately retrain the scoring algorithm', to: 'To publish quarterly fairness statistics so that regulators and customers can see how the model performs.', why: 'Publishing figures is a transparency step, but it does not itself correct drift or bring the model back within agreed criteria.', axis: 'Disclosure mistaken for correction' },
+    { from: 'To implement continuous runtime monitoring dashboards', axis: 'Monitoring before fairness thresholds are evaluated' },
+  ],
+  'aaig-pipe-1791943315649-58-7qd1l': [
+    { from: 'Require the direct technical execution of automated red-teaming', to: 'Approve each supplier contract personally and sign off the residual risk on behalf of the business.', why: 'Approving contracts and accepting residual risk are management decisions. The second line sets criteria and challenges, but does not take them over.', axis: 'Management decision assigned to the second line' },
+    { from: 'Implement real-time telemetry pipelines', axis: 'Production monitoring before contractual terms are final' },
+    { from: 'Assume full operational ownership for retraining', to: 'Maintain the register of approved suppliers and remove any supplier that has a security incident.', why: 'A register is a useful tool, but removal on an incident alone is not a risk-based due diligence approach, and keeping the list is not the second line\'s primary objective.', axis: 'Administrative list mistaken for the oversight objective' },
+  ],
+  'aaig-pipe-1791943198675-33-0tu1t': [
+    { from: 'Mandate universal post-hoc feature attribution', axis: 'One technique mandated for every pipeline' },
+    { from: 'Commission a third-line review to penalize', to: 'Ask the model vendor to supply an explanation module and use it for all reporting.', why: 'A vendor module may suit some decisions, but it does not define who needs which explanation or what regulation requires of the firm.', axis: 'Vendor tool mistaken for requirements' },
+    { from: 'Empower first-line machine learning engineers', to: 'Limit the firm to inherently interpretable models, whatever the decision or its impact.', why: 'Interpretable models fit some uses, but a blanket limit ignores context and decision impact and may sacrifice needed performance.', axis: 'Uniform technical mandate regardless of context' },
+  ],
+  'aaig-pipe-1791941505157-23': [
+    { from: 'Verify that the technical procurement team can inspect', axis: 'Technical inspection mistaken for allocated accountability' },
+    { from: 'Execute continuous automated red-teaming', to: 'Rely on the supplier\'s published model card and responsible-AI statement as the basis of assurance.', why: 'Supplier-published statements describe what the supplier chooses to say and are not verified, enforceable commitments to the institution.', axis: 'Supplier self-description mistaken for assurance' },
+    { from: 'Delegate final supply chain risk acceptance', to: 'Limit the integration to non-critical decisions for the first year and review the arrangement then.', why: 'A cautious start limits exposure, but it does not establish who is accountable, what can be audited, or how risk is allocated in the meantime.', axis: 'Cautious scope mistaken for governing terms' },
+  ],
 };
 
 /**
@@ -230,6 +280,16 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791941453475-14': 'Letting operations staff summarize or prune inference logs on their own whenever storage runs short on the platform.',
   'aaig-pipe-1791941407823-3': 'Set the criteria and binding contract terms that fix who answers for outcomes, who can audit, and who bears which risk.',
   'aaig-pipe-1791941527214-27': 'Turn MEASURE thresholds into risk treatment plans with second-line sign-off and ongoing residual risk checks.',
+  'aaig-pipe-1791943131382-17-7wx7z': 'Set up an enterprise AI structure that defines risk limits and maps AI risks into the enterprise risk categories.',
+  'aaig-pipe-1791943089288-7-qyc29': 'Add a mandatory second-line check of purpose and privacy impact before data enters training pipelines.',
+  'aaig-pipe-1791942405270-13': 'Set limits and ongoing monitoring that connect shifts in the applicant population to the firm\'s tolerance for harm.',
+  'aaig-pipe-1791942450897-22': 'Agree drift limits tied to what the firm can accept, which start predefined review and remediation steps.',
+  'aaig-pipe-1791942429985-18': 'To let affected people and oversight functions understand, check and challenge model outputs.',
+  'aaig-pipe-1791941180316-32': 'Set review cycles linked to the firm\'s risk limits and give first-line owners explicit compliance duties.',
+  'aaig-pipe-1791943163595-28-3f1lb': 'To bring model outputs back in line with the firm\'s risk limits and the fairness criteria its rules set.',
+  'aaig-pipe-1791943315649-58-7qd1l': 'Define risk-based due diligence criteria and the contract assurances that show a supplier meets the firm\'s risk limits.',
+  'aaig-pipe-1791943198675-33-0tu1t': 'Set explanation requirements by stakeholder need, decision impact and legal duties to inform people.',
+  'aaig-pipe-1791941505157-23': 'Make sure the supplier agreement lets the institution inspect the supplier\'s practices, share risk fairly and enforce its rights.',
 };
 
 /** Applies a pilot rewrite, keeping the correct option, its index and the main explanation unchanged. */
