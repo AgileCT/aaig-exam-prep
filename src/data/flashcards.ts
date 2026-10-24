@@ -4,7 +4,7 @@ import { normalizeFlashcardDomain } from '../services/domainTaxonomy';
 
 // 2026-10-24: restructured after the reviewer's decisions. Every back is at most 400 characters
 // and every takeaway one sentence; compound fronts and overlong cards were split (the original ID
-// stays with the first part, so saved mastery still points at it); new cards await verification.
+// stays with the first part, so saved mastery still points at it); reviewer 2026-10-24: all cards approved, fc-50 merged into fc-49.
 const FLASHCARD_DRAFTS: Flashcard[] = [
   {
     id: "fc-01",
@@ -13,7 +13,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Under the IIA Three Lines Model, what is the role of the First Line in AI governance?",
     back: "The First Line is operational management and AI delivery teams. They directly own, assess and manage operational AI risks, and carry out day-to-day testing, validation and controls. The Governing Body (Board) above them sets strategic direction and risk appetite.",
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
-    keyTakeaway: "The First Line owns and manages operational AI risk, and belongs to management."
+    keyTakeaway: "The First Line owns and manages operational AI risk, and belongs to management.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-01b",
@@ -22,7 +25,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Under the IIA Three Lines Model, what is the role of the Second Line in AI governance?",
     back: "The Second Line is enterprise risk management and AI compliance, which is also part of management. It provides complementary expertise, sets risk frameworks, policies and thresholds within delegated authority, monitors compliance, and gives objective, credible challenge to First Line decisions.",
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
-    keyTakeaway: "The Second Line sets policy and challenges the First Line, within delegated authority."
+    keyTakeaway: "The Second Line sets policy and challenges the First Line, within delegated authority.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-01c",
@@ -31,7 +37,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Under the IIA Three Lines Model, what is the role of the Third Line in AI governance?",
     back: "The Third Line is Internal Audit. It stays independent of management, reports to the Governing Body or Audit Committee, and gives independent, objective assurance on whether AI governance and risk management are adequate and effective.",
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
-    keyTakeaway: "Only the Third Line is independent of management; it gives assurance, not management."
+    keyTakeaway: "Only the Third Line is independent of management; it gives assurance, not management.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-02",
@@ -40,7 +49,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the PRIMARY mandate when establishing an enterprise AI Governance Steering Committee?",
     back: "To operate under formally delegated authority from top management or the governing body through a cross-functional Governance Charter that defines decision rights and accountabilities (e.g., RACI), recommends or operationalizes approved AI risk appetite and tolerance thresholds, and aligns AI investments with corporate strategy, legal obligations, and ethical principles.",
     source: "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 (verify exact subclause against licensed standard).",
-    keyTakeaway: "A steering committee holds authorized decision rights and sets risk guardrails across the AI portfolio."
+    keyTakeaway: "A steering committee holds authorized decision rights and sets risk guardrails across the AI portfolio.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-03",
@@ -49,7 +61,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What should an enterprise AI Acceptable Use Policy say about tools and data?",
     back: "1. Approved vs. prohibited AI tools and use cases: clear criteria separating sanctioned enterprise AI systems from unapproved consumer tools. 2. Data classification and handling: which inputs are permitted or barred (e.g., no confidential, trade-secret or regulated personal data in unvetted or public models), with controls and legal bases for approved enterprise environments.",
     source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
-    keyTakeaway: "An AUP names the approved tools and sets what data may go into them."
+    keyTakeaway: "An AUP names the approved tools and sets what data may go into them.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-03b",
@@ -58,7 +73,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What should an AI Acceptable Use Policy require for human oversight and incident reporting?",
     back: "1. Risk-proportionate human oversight: verification and review requirements calibrated to the impact of the use case. 2. Incident and escalation protocols: clear channels for reporting suspected data leakage, security vulnerabilities, bias or harmful outputs.",
     source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
-    keyTakeaway: "An AUP ties human review to impact and gives staff a clear way to report problems."
+    keyTakeaway: "An AUP ties human review to impact and gives staff a clear way to report problems.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-04",
@@ -67,7 +85,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How do Risk Appetite and Risk Tolerance differ in the context of enterprise AI governance?",
     back: "1. Risk Appetite: The broad amount and type of risk an organization is intentionally willing to accept in pursuit of its strategic AI objectives (set by the governing body or senior management).\n2. Risk Tolerance: The specific, measurable boundaries and acceptable variations around risk targets (e.g., maximum permissible error rates or drift thresholds before escalation).",
     source: "COBIT 2019 EDM03",
-    keyTakeaway: "Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds."
+    keyTakeaway: "Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-05",
@@ -76,7 +97,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What are the five core value-based OECD AI Principles for responsible stewardship of trustworthy AI?",
     back: "Under the OECD Recommendation on AI (OECD/LEGAL/0449, amended 2024), the five values-based principles are: 1. Inclusive growth, sustainable development and well-being; 2. Human rights and democratic values, including fairness and privacy; 3. Transparency and explainability; 4. Robustness, security and safety; 5. Accountability for AI actors across the lifecycle.",
     source: "OECD Recommendation of the Council on Artificial Intelligence (OECD/LEGAL/0449, 2019 / amended 2024), Section 1.",
-    keyTakeaway: "The OECD principles are an international reference point; legal duties must still be mapped per jurisdiction."
+    keyTakeaway: "The OECD principles are an international reference point; legal duties must still be mapped per jurisdiction.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-06",
@@ -85,7 +109,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is \"Shadow AI\"?",
     back: "'Shadow AI' means employees or business units using unsanctioned AI tools, models or APIs, such as unapproved consumer generative AI accounts, outside formal governance controls.",
     source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
-    keyTakeaway: "Shadow AI is AI use outside formal governance, such as unapproved consumer accounts."
+    keyTakeaway: "Shadow AI is AI use outside formal governance, such as unapproved consumer accounts.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-06b",
@@ -94,7 +121,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should an organization manage Shadow AI without stifling innovation?",
     back: "Combine three things: 1) assess unsanctioned use and contain urgent data exposure with discovery controls suited to the environment (software inventories, expense or procurement reviews, CASB/SWG telemetry); 2) provide vetted, secure enterprise AI alternatives with contractual data-privacy protections; 3) enforce clear acceptable-use policies with role-appropriate training.",
     source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
-    keyTakeaway: "Pair clear use rules and discovery controls with approved, secure alternatives."
+    keyTakeaway: "Pair clear use rules and discovery controls with approved, secure alternatives.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-07",
@@ -103,7 +133,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the Board of Directors' role in overseeing AI systems?",
     back: "The Governing Body (Board) is responsible for strategic oversight and accountability, not day-to-day management. That includes approving the organization's AI risk appetite, ensuring management sets up an effective AI governance and risk management system, and monitoring material legal, ethical and operational exposures.",
     source: "IIA Three Lines Model (2020) Principle 2; NIST AI RMF 1.0 GOVERN 1.2; COBIT 2019 EDM01 (verify against licensed text).",
-    keyTakeaway: "The Board oversees and holds accountability; management runs day-to-day AI controls."
+    keyTakeaway: "The Board oversees and holds accountability; management runs day-to-day AI controls.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-07b",
@@ -113,6 +146,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Under Delaware corporate law (In re Caremark, 1996), directors must make a good-faith effort to ensure that a reasonable board-level information and reporting system exists, and that it is monitored for mission-critical compliance and safety risks.",
     source: "In re Caremark Int'l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996).",
     keyTakeaway: "Caremark requires directors to maintain and monitor a board-level reporting system.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24',
     scope: "US-specific"
   },
   {
@@ -122,7 +158,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the role of an AI Governance Steering Committee?",
     back: "An internal cross-functional executive body chartered with formal decision rights to approve AI policies, stage-gate releases, prioritize resources and align risk tolerance. Exact mandates depend on the organization's governance charter and delegated decision rights.",
     source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
-    keyTakeaway: "A steering committee decides; check its actual authority in the charter."
+    keyTakeaway: "A steering committee decides; check its actual authority in the charter.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-08b",
@@ -131,7 +170,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the role of an AI Ethics Advisory Board, compared with a steering committee?",
     back: "A consultative body, often with multidisciplinary or external ethicists, domain experts and stakeholder representatives. It provides independent ethical evaluations, socio-technical impact reviews and advice to leadership or the steering committee. It advises, whereas the steering committee holds the decision rights.",
     source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
-    keyTakeaway: "An ethics board advises; the steering committee decides."
+    keyTakeaway: "An ethics board advises; the steering committee decides.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-09",
@@ -140,7 +182,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How do the EU AI Act and ISO/IEC 42001 address organizational AI literacy and workforce competence?",
     back: "EU AI Act Art. 4: providers and deployers must take measures to support AI literacy among staff and others who operate or use AI on their behalf, taking into account their knowledge, experience, training, the deployment context and who is affected. ISO/IEC 42001 separately sets voluntary AIMS competence requirements for personnel who affect AI performance.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 4; ISO/IEC 42001:2023 (verify competence clause against licensed standard).",
-    keyTakeaway: "Art. 4 is a statutory literacy duty; ISO/IEC 42001 competence requirements are voluntary."
+    keyTakeaway: "Art. 4 is a statutory literacy duty; ISO/IEC 42001 competence requirements are voluntary.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-10",
@@ -149,7 +194,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why should AI governance frameworks establish dedicated ethical reporting and safe harbor channels?",
     back: "Dedicated reporting and anti-retaliation ('safe harbor') channels let engineers, data scientists and staff escalate suspected algorithmic harms, safety flaws, bias or control failures early. These internal channels support timely remediation and operate alongside, never restricting, required regulatory notifications or legally protected external whistleblowing.",
     source: "Directive (EU) 2019/1937 (Whistleblower Directive); Regulation (EU) 2024/1689 (EU AI Act) Art. 87.",
-    keyTakeaway: "Internal escalation with anti-retaliation protection strengthens risk culture and preserves legal reporting rights."
+    keyTakeaway: "Internal escalation with anti-retaliation protection strengthens risk culture and preserves legal reporting rights.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-11",
@@ -158,7 +206,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why are Model Cards used in AI asset governance?",
     back: "Proposed by Mitchell et al. (2019), Model Cards give standardized transparency and accountability information that supplements the AI asset inventory. They record purpose, limitations, evaluation results and ownership, so decision-makers can judge whether and how a model may be used.",
     source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
-    keyTakeaway: "An inventory lists models; model cards describe what each is for and where it falls short."
+    keyTakeaway: "An inventory lists models; model cards describe what each is for and where it falls short.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-11b",
@@ -167,7 +218,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What core elements does a Model Card typically document?",
     back: "1. Model details, accountable owner, version history and risk tier; 2. Intended use cases and explicit out-of-scope or prohibited uses; 3. Training and evaluation data provenance, assumptions and known limitations; 4. Disaggregated performance benchmarks, fairness and bias evaluations across subgroups, and ethical or safety considerations.",
     source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
-    keyTakeaway: "Model cards cover purpose, limits, data, disaggregated results, risk tier and ownership."
+    keyTakeaway: "Model cards cover purpose, limits, data, disaggregated results, risk tier and ownership.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-12",
@@ -176,7 +230,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the fundamental difference between Data Drift and Concept Drift?",
     back: "1. Data Drift (Covariate Shift): Changes in the statistical distribution of input features P(X), such as shifts in customer demographics or user prompt language patterns over time.\n2. Concept Drift: Changes in the underlying statistical relationship between input features and target labels P(Y|X), such as fraudsters altering tactics so previously benign transactions now represent fraud.",
     source: "General machine-learning literature on dataset shift and concept drift (e.g., Gama et al., 'A survey on concept drift adaptation', ACM Computing Surveys, 2014).",
-    keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship."
+    keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-13",
@@ -185,7 +242,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is proxy discrimination in AI?",
     back: "Proxy discrimination occurs when an AI system learns to discriminate on protected characteristics (e.g., race, gender, religion) through neutral correlated variables (e.g., zip code, alma mater, browsing patterns), even when the protected attributes are excluded from training data.",
     source: "NIST AI RMF MEASURE 2.11",
-    keyTakeaway: "Excluding protected attributes does not prevent proxy discrimination."
+    keyTakeaway: "Excluding protected attributes does not prevent proxy discrimination.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-13b",
@@ -194,7 +254,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why is proxy discrimination hard to detect?",
     back: "Proxy variables are often related to protected characteristics indirectly and non-linearly, so removing the protected attribute does not remove the signal. It is found by testing outcomes by group (for example, disparate impact analysis), not by inspecting the inputs.",
     source: "NIST AI RMF MEASURE 2.11",
-    keyTakeaway: "Blinding a model to sensitive attributes is insufficient; test outcomes by group."
+    keyTakeaway: "Blinding a model to sensitive attributes is insufficient; test outcomes by group.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-14",
@@ -203,7 +266,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why is trustworthy data provenance and lineage tracking critical for AI governance and regulatory audits?",
     back: "Provenance and lineage document the data's lifecycle: origin, collection context, legal basis or licensing, preprocessing and synthetic augmentation. Proportionate, verifiable lineage supports auditability, copyright and data-governance compliance, poisoning investigations and GDPR Art. 17 erasure, while metadata retention follows privacy and deletion duties.",
     source: "GDPR Arts. 5(2) & 17; NIST AI RMF 1.0 MAP 2.3; ISO/IEC 42001:2023 (verify data management clauses against licensed standard).",
-    keyTakeaway: "Lineage lets an organization verify data permissions and investigate data issues, in proportion to risk."
+    keyTakeaway: "Lineage lets an organization verify data permissions and investigate data issues, in proportion to risk.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-15",
@@ -212,7 +278,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What key risks must be managed when utilizing synthetic data for AI model development?",
     back: "1. Model collapse (conditional): repeatedly training on uncurated synthetic outputs without real data degrades quality and erodes tail distributions. 2. Bias and artifact amplification: generator biases and gaps propagate downstream. 3. Residual privacy leakage: synthetic data is not automatically anonymous; poorly regularized generators can memorize PII or be open to membership inference.",
     source: "Shumailov et al. (arXiv:2305.17493); NIST AI 600-1; ISO/IEC 23894 (verify standard text).",
-    keyTakeaway: "Validate fidelity, bias and privacy leakage; never assume synthetic data is risk-free."
+    keyTakeaway: "Validate fidelity, bias and privacy leakage; never assume synthetic data is risk-free.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-16",
@@ -221,7 +290,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is a \"Datasheet for Datasets\"?",
     back: "Proposed by Gebru et al., a standardized transparency document that records seven lifecycle areas of a dataset: motivation, composition, collection process, preprocessing/cleaning/labeling, intended and non-intended uses, distribution, and maintenance.",
     source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
-    keyTakeaway: "A datasheet documents a dataset's motivation, composition, collection, processing, uses, distribution and upkeep."
+    keyTakeaway: "A datasheet documents a dataset's motivation, composition, collection, processing, uses, distribution and upkeep.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-16b",
@@ -230,7 +302,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What does a Datasheet for Datasets not replace?",
     back: "It helps practitioners, deployers and auditors assess dataset representativeness, sampling limits and governance gaps. It does not replace separate legal and technical verification of copyright compliance or of statutory data-governance duties such as EU AI Act Article 10.",
     source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
-    keyTakeaway: "A datasheet informs dataset selection; it is not proof of legal compliance."
+    keyTakeaway: "A datasheet informs dataset selection; it is not proof of legal compliance.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-17",
@@ -239,7 +314,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is Differential Privacy (DP)?",
     back: "DP adds mathematically calibrated noise (e.g., Laplace or Gaussian mechanisms, or DP-SGD during training) to bound how much an algorithm's output can change when any one individual's data is added, changed or removed.",
     source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
-    keyTakeaway: "Differential privacy bounds how much any one person's data can change the output."
+    keyTakeaway: "Differential privacy bounds how much any one person's data can change the output.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-17b",
@@ -248,7 +326,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should the privacy guarantee of Differential Privacy be understood?",
     back: "DP does not promise zero disclosure or eliminate membership inference attacks. It quantifies and bounds incremental privacy loss through parameters such as epsilon and delta, which must be evaluated together with query composition, implementation fidelity and residual inference risks.",
     source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
-    keyTakeaway: "DP bounds and quantifies privacy loss; it does not guarantee zero disclosure."
+    keyTakeaway: "DP bounds and quantifies privacy loss; it does not guarantee zero disclosure.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-18",
@@ -257,7 +338,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should access be controlled in an enterprise RAG vector database?",
     back: "Enforce authorization-aware retrieval: apply source-system access-control lists (ACLs) or role or tenant filtering at query time, so users retrieve only the chunks they are authorized to view.",
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
-    keyTakeaway: "Enforce source-system permissions at query time so users only retrieve what they may see."
+    keyTakeaway: "Enforce source-system permissions at query time so users only retrieve what they may see.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-18b",
@@ -266,7 +350,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should chunks and embeddings in a vector database be protected?",
     back: "Encrypt source text chunks and embedding vectors in transit and at rest, and restrict access to reduce embedding-inversion risk (recovering source content from vectors).",
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
-    keyTakeaway: "Protect chunks and embeddings in transit and at rest, and limit who can read them."
+    keyTakeaway: "Protect chunks and embeddings in transit and at rest, and limit who can read them.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-18c",
@@ -275,7 +362,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should retention and deletion be handled across a RAG architecture?",
     back: "Propagate retention expiries, updates and applicable statutory erasure requests (e.g., GDPR Article 17) across source repositories, vector indexes, caches and backups, so deleted data does not remain retrievable.",
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
-    keyTakeaway: "Deletion must reach the vector index, caches and backups, not just the source."
+    keyTakeaway: "Deletion must reach the vector index, caches and backups, not just the source.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-19",
@@ -285,6 +375,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Disparate treatment: intentional differential treatment based on protected status. Disparate impact: an ostensibly neutral practice that disproportionately disadvantages a protected group, subject to the applicable legal test (EU law: indirect discrimination). The US Four-Fifths Rule (29 CFR § 1607.4(D)) is only a screening rule of thumb.",
     source: "US Title VII (42 U.S.C. § 2000e-2(k)) & 29 CFR § 1607.4(D); EU Non-Discrimination Directives & EU AI Act Art. 10.",
     keyTakeaway: "Lack of intent is no defense to disparate impact, but a justified, job-related practice may be defended.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24',
     scope: "US-specific"
   },
   {
@@ -294,7 +387,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How does data minimization apply to the personal data in prompts?",
     back: "GDPR Art. 5(1)(c) requires personal data to be adequate, relevant and limited to what is necessary for the purpose. For prompts: strip or mask unnecessary direct identifiers (e.g., SSNs, contact details), or pseudonymize them, before model invocation when identity is not needed for the task.",
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
-    keyTakeaway: "Remove or mask identifiers from prompts unless the task needs them."
+    keyTakeaway: "Remove or mask identifiers from prompts unless the task needs them.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-20b",
@@ -303,7 +399,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How does data minimization apply to RAG indexing and retrieval?",
     back: "Index only authorized, purpose-relevant corpora, and retrieve only the context chunks needed to answer the query, so that personal data is not exposed or processed beyond what the purpose needs.",
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
-    keyTakeaway: "Index and retrieve only what the purpose needs."
+    keyTakeaway: "Index and retrieve only what the purpose needs.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-20c",
@@ -312,7 +411,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How should prompt logs and vendor use be limited for data minimization?",
     back: "Restrict how long prompts and outputs are logged, and contractually prohibit vendors from reusing enterprise prompts for model training.",
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
-    keyTakeaway: "Keep prompt logs short-lived and bar vendors from training on your prompts."
+    keyTakeaway: "Keep prompt logs short-lived and bar vendors from training on your prompts.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-21",
@@ -321,7 +423,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What data and confidentiality terms matter when buying a third-party AI model?",
     back: "Contractual prohibitions on the vendor retaining or reusing enterprise prompts and data for its own model training, together with data residency controls.",
     source: "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1.",
-    keyTakeaway: "Buying a model must not mean giving away rights to your prompts and data."
+    keyTakeaway: "Buying a model must not mean giving away rights to your prompts and data.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-21b",
@@ -330,7 +435,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "When does a deployer take on provider obligations under EU AI Act Article 25(1)?",
     back: "It may be treated as the provider if it (a) puts its name or trademark on an existing high-risk system, (b) substantially modifies an existing high-risk system so that it remains high-risk, or (c) changes the intended purpose of a non-high-risk system so that it becomes high-risk. Vendor documentation and evaluation evidence help clarify the roles.",
     source: "EU AI Act Arts. 25 & 26.",
-    keyTakeaway: "Outsourcing model development does not outsource accountability; Art. 25 triggers can make you the provider."
+    keyTakeaway: "Outsourcing model development does not outsource accountability; Art. 25 triggers can make you the provider.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-21c",
@@ -339,7 +447,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which exit and cost factors should a buy-versus-build decision include?",
     back: "Vendor concentration and exit resilience: portability of prompts, embeddings and workflows to limit lock-in. Total cost of ownership: full lifecycle licensing, compute, monitoring, assurance and switching costs.",
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; COBIT 2019 BAI03 (verify against licensed text).",
-    keyTakeaway: "Include lock-in, exit and lifecycle costs, not just the licence price."
+    keyTakeaway: "Include lock-in, exit and lifecycle costs, not just the licence price.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-22",
@@ -348,7 +459,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why must affected individuals be able to obtain explanations and challenge high-impact AI decisions?",
     back: "Where applicable law requires it, affected individuals must get clear, meaningful explanations or appeal routes (e.g., EU AI Act Art. 86 for specified Annex III high-risk decisions with legal or similarly significant adverse effects). Without transparency they cannot contest the decision.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
-    keyTakeaway: "Art. 86 gives qualified individuals a right to explanation for specified high-risk decisions."
+    keyTakeaway: "Art. 86 gives qualified individuals a right to explanation for specified high-risk decisions.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-22b",
@@ -357,7 +471,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Why does explainability matter for evaluating AI risk?",
     back: "Explanations let organizations investigate proxy discrimination, bias, model limitations and decision behavior (NIST AI RMF MEASURE 2.8 and 2.9). Complex models are not automatically prohibited, but explanations, documentation and controls must match the use case.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
-    keyTakeaway: "Explainability supports bias and limitation checks; match it to the use case."
+    keyTakeaway: "Explainability supports bias and limitation checks; match it to the use case.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-22c",
@@ -366,7 +483,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How does EU AI Act Article 13 support effective human oversight?",
     back: "Art. 13 requires high-risk systems to be transparent enough for deployers to interpret outputs, so reviewers can understand them and intervene appropriately. This is transparency to deployers, which is distinct from individuals' right to explanation under Art. 86.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
-    keyTakeaway: "Art. 13 is deployer-facing transparency; Art. 86 is the individual's right to explanation."
+    keyTakeaway: "Art. 13 is deployer-facing transparency; Art. 86 is the individual's right to explanation.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-23",
@@ -375,7 +495,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What should be assessed before a retrained model goes into production?",
     back: "1. Impact and trigger analysis: drift causes, data lineage, and whether the update falls within predetermined change parameters or is a 'substantial modification' (EU AI Act Art. 43(4): a new conformity assessment). 2. Pre-deployment validation: regression testing of performance, robustness, security and fairness baselines.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
-    keyTakeaway: "Check whether retraining is a substantial modification, then validate against baselines."
+    keyTakeaway: "Check whether retraining is a substantial modification, then validate against baselines.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-23b",
@@ -384,7 +507,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What approvals and safeguards should apply when deploying a retrained model?",
     back: "1. Tiered governance sign-off: documented approval by the model owner and, where risk tier or material change requires it, second-line oversight under delegated authority. 2. Deployment safeguards: canary or shadow release telemetry and tested rollback procedures.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
-    keyTakeaway: "Approve by risk tier and release with telemetry and a tested rollback."
+    keyTakeaway: "Approve by risk tier and release with telemetry and a tested rollback.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-24",
@@ -393,7 +519,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is an AI \"Circuit Breaker\" or \"Kill Switch\"?",
     back: "An automated or manual containment control that halts or throttles model inference, rerouting transactions to deterministic fallback rules or human reviewers when anomalies or harm occur.",
     source: "NIST AI RMF MANAGE 2.4",
-    keyTakeaway: "A circuit breaker stops or limits an AI system and hands work to a fallback."
+    keyTakeaway: "A circuit breaker stops or limits an AI system and hands work to a fallback.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-24b",
@@ -402,7 +531,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Who should hold the decision rights to trigger an AI kill switch?",
     back: "Decision rights must be predefined in the AI Incident Playbook, giving designated AI Governance or Incident Commanders explicit authority to disable production models immediately.",
     source: "NIST AI RMF MANAGE 2.4",
-    keyTakeaway: "Pre-authorize who can pull the plug; authority must not be ambiguous during harm."
+    keyTakeaway: "Pre-authorize who can pull the plug; authority must not be ambiguous during harm.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-25",
@@ -411,7 +543,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is Human-in-the-Loop (HITL) oversight?",
     back: "A human participates in or approves decisions before they are executed. Reviewing individual outputs adds latency, and effectiveness depends on reviewer competence, authority and process design. HITL is an operational pattern, not a statutory category.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
-    keyTakeaway: "HITL means a human approves before execution, which adds latency."
+    keyTakeaway: "HITL means a human approves before execution, which adds latency.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-25b",
@@ -420,7 +555,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is Human-on-the-Loop (HOTL) oversight?",
     back: "The system executes autonomously while humans monitor operation and can intervene, override or abort when anomalies occur. HOTL is an operational pattern, not a statutory category.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
-    keyTakeaway: "HOTL means the system runs and humans monitor and can intervene."
+    keyTakeaway: "HOTL means the system runs and humans monitor and can intervene.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-25c",
@@ -429,7 +567,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is Human-in-Command (HIC) oversight?",
     back: "Humans govern the overarching deployment boundaries, context and lifecycle decisions, including whether and when the AI system may operate. Under EU AI Act Art. 14, oversight must be proportionate to risk and give competent reviewers the authority, tools and anti-automation-bias safeguards to intervene.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
-    keyTakeaway: "HIC governs whether and when the system operates; a label alone does not ensure compliance."
+    keyTakeaway: "HIC governs whether and when the system operates; a label alone does not ensure compliance.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-26",
@@ -438,7 +579,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is automation bias?",
     back: "Automation bias is the human tendency to over-rely on, or uncritically accept, automated AI outputs.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
-    keyTakeaway: "Automation bias is over-reliance on AI outputs by human reviewers."
+    keyTakeaway: "Automation bias is over-reliance on AI outputs by human reviewers.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-26b",
@@ -447,7 +591,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What do EU AI Act Articles 14 and 26(2) require to counter automation bias?",
     back: "For high-risk systems, Art. 14 requires risk-proportionate oversight measures so reviewers can understand capabilities and limits, stay aware of automation bias (Art. 14(4)(b)), interpret outputs, override them and halt the system. Under Art. 26(2), deployers assign oversight to people with competence, training, authority and support.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
-    keyTakeaway: "Reviewers need competence, authority, and the ability to override and halt (Arts. 14, 26(2))."
+    keyTakeaway: "Reviewers need competence, authority, and the ability to override and halt (Arts. 14, 26(2)).",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-27",
@@ -456,7 +603,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What often-overlooked lifecycle cost components must be included in enterprise AI TCO calculations?",
     back: "Beyond initial licensing, development and inference compute, include: 1) continuous monitoring, telemetry and drift-detection infrastructure; 2) data curation, fine-tuning and retraining labor; 3) security hardening, guardrail upkeep and red-teaming; 4) governance, legal review, conformity and impact assessments and audits; 5) vendor switching, decommissioning and migration costs.",
     source: "NIST AI RMF 1.0 MAP 1.3; COBIT 2019 BAI03 / ISO/IEC 42001:2023 (verify standard references against licensed texts).",
-    keyTakeaway: "Budget for monitoring, retraining, security, compliance and exit, not just compute and licences."
+    keyTakeaway: "Budget for monitoring, retraining, security, compliance and exit, not just compute and licences.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-28",
@@ -465,7 +615,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How do AI KPIs and KRIs differ in governance performance reporting?",
     back: "1. KPIs (Value & Efficiency): Measure business outcomes (e.g., customer resolution time saved, query latency, user adoption rate, cost per transaction).\n2. KRIs (Risk Signaling): Forward-looking metrics signaling increasing risk exposure before harm occurs (e.g., rate of drift deviation, number of guardrail blocks, fairness disparity index, percentage of unclassified prompts).",
     source: "COBIT 2019 MEA01",
-    keyTakeaway: "KPIs track value creation; KRIs serve as early-warning tripwires for governance intervention."
+    keyTakeaway: "KPIs track value creation; KRIs serve as early-warning tripwires for governance intervention.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-29",
@@ -474,7 +627,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which technical controls reduce generative AI hallucination (confabulation)?",
     back: "1. Retrieval-augmented generation (RAG) that grounds answers in authoritative, curated repositories. 2. Prompt and decoding constraints, such as requiring verifiable inline citations, allowing abstention when evidence is missing, and using lower sampling temperatures for factual tasks.",
     source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
-    keyTakeaway: "Ground answers in curated sources and constrain how the model generates them."
+    keyTakeaway: "Ground answers in curated sources and constrain how the model generates them.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-29b",
@@ -483,7 +639,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which governance controls reduce hallucination risk in high-impact use?",
     back: "1. Automated input and output guardrails and factual-consistency evaluators. 2. Task-specific benchmark evaluation, user-facing uncertainty disclosures and risk-proportionate human review for high-impact outputs. These controls reduce confabulation but never eliminate it.",
     source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
-    keyTakeaway: "Layer guardrails, evaluation and human review; no control removes hallucination entirely."
+    keyTakeaway: "Layer guardrails, evaluation and human review; no control removes hallucination entirely.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-30",
@@ -492,7 +651,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What does EU AI Act Article 72 require of providers once a high-risk system is on the market?",
     back: "Providers must establish and document a proportionate post-market monitoring system, based on a monitoring plan in the Annex IV technical documentation, to actively and systematically collect, document and analyze data (including deployer-supplied data) on performance over the system's lifetime and continuing compliance.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
-    keyTakeaway: "Providers of high-risk AI must run a documented post-market monitoring system (Art. 72)."
+    keyTakeaway: "Providers of high-risk AI must run a documented post-market monitoring system (Art. 72).",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-30b",
@@ -501,7 +663,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What must deployers of high-risk AI systems do about monitoring under Article 26(5)?",
     back: "Deployers must monitor the system's operation according to the instructions for use, and inform providers and authorities of serious incidents or risks.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 26(5).",
-    keyTakeaway: "Deployers monitor operation and report serious incidents (Art. 26(5))."
+    keyTakeaway: "Deployers monitor operation and report serious incidents (Art. 26(5)).",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-30c",
@@ -510,7 +675,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How does ISO/IEC 42001 monitoring differ from EU AI Act post-market monitoring?",
     back: "ISO/IEC 42001 sets internal AI management system (AIMS) performance evaluation and monitoring processes. These complement, but are legally distinct from, the statutory post-market surveillance rules of the EU AI Act.",
     source: "ISO/IEC 42001:2023 (verify Cl. 9.1 wording against licensed standard); Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
-    keyTakeaway: "42001 monitoring is voluntary internal assurance; Art. 72 is a legal duty."
+    keyTakeaway: "42001 monitoring is voluntary internal assurance; Art. 72 is a legal duty.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-31",
@@ -519,7 +687,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which AI practices does the EU AI Act prohibit?",
     back: "Prohibited practices (Art. 5) are unacceptable uses such as social scoring and manipulative or exploitative AI. Law-enforcement real-time remote biometric identification in publicly accessible spaces is also prohibited, subject to narrow statutory exceptions (Art. 5(1)(h)).",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 5.",
-    keyTakeaway: "Art. 5 bans unacceptable uses outright, with narrow exceptions."
+    keyTakeaway: "Art. 5 bans unacceptable uses outright, with narrow exceptions.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-31b",
@@ -529,7 +700,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What obligations apply to high-risk AI systems under the EU AI Act?",
     back: "High-risk systems (Art. 6, Annexes I and III) carry role-specific requirements: providers need risk management, conformity assessment and CE marking. A pre-use Fundamental Rights Impact Assessment (Art. 27) applies only to public-law bodies, private entities providing public services, and deployers of Annex III 5(b)/(c) credit or insurance systems.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 6 & 27.",
-    keyTakeaway: "High-risk duties are role-specific; the FRIA applies only to specified deployers."
+    keyTakeaway: "High-risk duties are role-specific; the FRIA applies only to specified deployers.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-31c",
@@ -539,7 +713,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What transparency duties does EU AI Act Article 50 create?",
     back: "Providers must mark synthetic audio, image, video or text in a machine-readable, detectable format, and inform people of direct AI interactions unless an exception applies. Deployers have specified disclosure duties for emotion recognition, biometric categorization and deepfakes, subject to statutory exceptions.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 50.",
-    keyTakeaway: "Art. 50 duties differ for providers and deployers."
+    keyTakeaway: "Art. 50 duties differ for providers and deployers.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-31d",
@@ -549,7 +726,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What applies to minimal-risk AI systems under the EU AI Act?",
     back: "Other AI systems are free from the high-risk and Art. 50 product requirements, but organizations still face the Art. 4 AI literacy duty and other applicable laws such as the GDPR. Application dates are phased under Article 113.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 4 & 113.",
-    keyTakeaway: "Minimal risk is not no obligation: Art. 4 literacy and other laws still apply."
+    keyTakeaway: "Minimal risk is not no obligation: Art. 4 literacy and other laws still apply.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-32",
@@ -558,7 +738,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is ISO/IEC 42001?",
     back: "The international certifiable standard for an Artificial Intelligence Management System (AIMS), based on the Plan-Do-Check-Act (PDCA) lifecycle.",
     source: "ISO/IEC 42001:2023",
-    keyTakeaway: "ISO/IEC 42001 is the certifiable AI management system standard."
+    keyTakeaway: "ISO/IEC 42001 is the certifiable AI management system standard.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-32b",
@@ -568,7 +751,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is the function of the Statement of Applicability (SoA) in ISO/IEC 42001?",
     back: "The SoA documents which Annex A controls the organization has selected or excluded, with justifications tied to its AI risk assessment.",
     source: "ISO/IEC 42001:2023 Cl. 6.1.3",
-    keyTakeaway: "The SoA links risk assessment to the choice of Annex A controls."
+    keyTakeaway: "The SoA links risk assessment to the choice of Annex A controls.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-33",
@@ -577,7 +763,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What are the four core functions of NIST AI RMF 1.0?",
     back: "1. GOVERN: establishes risk culture, accountability, policies and workforce competence; 2. MAP: frames context, intended purpose, stakeholders and impacts; 3. MEASURE: analyzes, benchmarks and monitors AI risk and trustworthiness with quantitative, qualitative or mixed methods; 4. MANAGE: allocates resources and plans to prioritize, respond to, recover from and monitor mapped and measured risks.",
     source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
-    keyTakeaway: "The four functions are GOVERN, MAP, MEASURE and MANAGE."
+    keyTakeaway: "The four functions are GOVERN, MAP, MEASURE and MANAGE.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-33b",
@@ -587,7 +776,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How do the NIST AI RMF 1.0 functions interact?",
     back: "The functions are iterative and apply continuously across the AI lifecycle. GOVERN is cross-cutting and infused throughout, supplying the culture, accountability and policies on which MAP, MEASURE and MANAGE rely.",
     source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
-    keyTakeaway: "GOVERN is cross-cutting; MAP, MEASURE and MANAGE are applied iteratively."
+    keyTakeaway: "GOVERN is cross-cutting; MAP, MEASURE and MANAGE are applied iteratively.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-34",
@@ -596,7 +788,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What obligations apply to all providers of general-purpose AI (GPAI) models under EU AI Act Article 53?",
     back: "Providers must keep technical documentation (Annex XI, including known or estimated energy consumption) for the AI Office and national authorities, give information to downstream providers (Annex XII), set a copyright-compliance policy (including TDM opt-outs, Directive (EU) 2019/790 Art. 4(3)), and publish a sufficiently detailed summary of training content.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
-    keyTakeaway: "Open-source non-systemic models are exempt only from the Art. 53(1)(a)–(b) documentation duties."
+    keyTakeaway: "Open-source non-systemic models are exempt only from the Art. 53(1)(a)–(b) documentation duties.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-34b",
@@ -606,7 +801,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What additional obligations apply to GPAI models with systemic risk?",
     back: "Systemic risk is designated through high-impact capabilities (presumed above 10^25 FLOPs of cumulative training compute) or by Commission decision (Art. 51). Providers must also evaluate models and test them adversarially, assess and mitigate systemic risks, report serious incidents and corrective measures to the AI Office, and ensure adequate cybersecurity (Art. 55).",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
-    keyTakeaway: "Systemic-risk GPAI (presumed above 10^25 FLOPs) adds evaluation, incident reporting and cybersecurity duties."
+    keyTakeaway: "Systemic-risk GPAI (presumed above 10^25 FLOPs) adds evaluation, incident reporting and cybersecurity duties.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-35",
@@ -615,7 +813,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What assurance evidence should be reviewed before onboarding a third-party AI vendor?",
     back: "Review independent security and AI governance assurance evidence proportionate to the risk tier, e.g., SOC 2 Type II, ISO/IEC 27001 or 42001 certifications, model cards and red-team or evaluation reports.",
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
-    keyTakeaway: "Match the depth of assurance evidence to the vendor's risk tier."
+    keyTakeaway: "Match the depth of assurance evidence to the vendor's risk tier.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-35b",
@@ -625,7 +826,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which contract and data-governance terms should a third-party AI agreement include?",
     back: "Define data ownership, retention and deletion, privacy and security obligations, restrictions on training on customer data, and right-to-audit or assurance-reporting clauses.",
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
-    keyTakeaway: "Contracts should fix data rights, deletion, training limits and audit rights."
+    keyTakeaway: "Contracts should fix data rights, deletion, training limits and audit rights.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-35c",
@@ -635,7 +839,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which operational and supply-chain factors matter in third-party AI due diligence?",
     back: "Assess SLAs, notification terms for material model updates, upstream dependencies (including foundation models and open-source weights), and exit and contingency plans.",
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
-    keyTakeaway: "Look through to upstream dependencies and plan the exit before onboarding."
+    keyTakeaway: "Look through to upstream dependencies and plan the exit before onboarding.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-36",
@@ -644,7 +851,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Who must carry out a Fundamental Rights Impact Assessment (FRIA) under EU AI Act Article 27?",
     back: "Only specified deployers of Annex III high-risk systems (Art. 6(2), excluding Annex III point 2 critical infrastructure): bodies governed by public law; private entities providing public services; and deployers of Annex III 5(b) credit scoring of natural persons (except fraud detection) and 5(c) life and health insurance risk assessment and pricing.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
-    keyTakeaway: "A FRIA is mandatory only for specified deployers, not for every high-risk deployer."
+    keyTakeaway: "A FRIA is mandatory only for specified deployers, not for every high-risk deployer.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-36b",
@@ -654,7 +864,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What must a FRIA assess before first use?",
     back: "The intended processes, period and frequency of use, affected categories of natural persons, specific risks of harm to fundamental rights, how human oversight will work, and mitigation measures if risks materialize. The assessment is updated when relevant conditions change.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
-    keyTakeaway: "A FRIA is done before first use and updated when conditions change."
+    keyTakeaway: "A FRIA is done before first use and updated when conditions change.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-37",
@@ -663,7 +876,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is ISO/IEC 23894?",
     back: "Guidance on managing AI-related risks, based on the generic ISO 31000 risk management framework. It covers AI-specific risk identification (e.g., autonomous agency, opacity, data poisoning), risk analysis, evaluation against risk criteria, and risk treatment across the AI lifecycle.",
     source: "ISO/IEC 23894:2023",
-    keyTakeaway: "ISO/IEC 23894 applies AI-specific guidance to the ISO 31000 risk process."
+    keyTakeaway: "ISO/IEC 23894 applies AI-specific guidance to the ISO 31000 risk process.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-37b",
@@ -673,7 +889,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "How does ISO/IEC 23894 relate to ISO 31000?",
     back: "ISO/IEC 23894 builds on ISO 31000. It applies the established ISO 31000 risk management process to the particular vulnerabilities of the AI lifecycle rather than creating a separate process.",
     source: "ISO/IEC 23894:2023",
-    keyTakeaway: "23894 extends ISO 31000 to AI; it does not replace it."
+    keyTakeaway: "23894 extends ISO 31000 to AI; it does not replace it.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-38",
@@ -682,7 +901,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What are the regulatory notification requirements when a serious AI safety incident occurs under the EU AI Act?",
     back: "EU AI Act Art. 73 sets deadlines for providers of high-risk AI. General rule: report immediately once a causal link or reasonable likelihood is established, and no later than 15 days after awareness. Widespread infringement or serious, irreversible disruption of critical infrastructure: no later than 2 days. Death: no later than 10 days after awareness. Do not wait for the maximum.",
     source: "EU AI Act Article 73",
-    keyTakeaway: "Outer limits are 2, 10 and 15 days depending on the incident; report immediately where possible."
+    keyTakeaway: "Outer limits are 2, 10 and 15 days depending on the incident; report immediately where possible.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-39",
@@ -691,7 +913,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is an AI Conformity Assessment under the EU AI Act?",
     back: "An evaluation of whether an in-scope high-risk AI system meets the applicable requirements, including Articles 8–15. The provider is responsible for the applicable assessment.",
     source: "EU AI Act Article 43, Annexes VI & VII",
-    keyTakeaway: "The provider carries out the conformity assessment of a high-risk system."
+    keyTakeaway: "The provider carries out the conformity assessment of a high-risk system.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-39b",
@@ -701,7 +926,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Under EU AI Act Article 43, how do conformity assessment routes differ by high-risk system category?",
     back: "Annex III points 2–8 generally use internal control (Annex VI). Annex III point 1 may use internal control or a notified body (Annex VII), depending on applicable standards and conditions. AI covered by Annex I follows the relevant sector legislation. Check category, dates and conditions before choosing a route.",
     source: "EU AI Act Article 43, Annexes VI & VII",
-    keyTakeaway: "A notified body is not required for every biometric system; the route depends on category."
+    keyTakeaway: "A notified body is not required for every biometric system; the route depends on category.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-40",
@@ -710,7 +938,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "What is AI Red Teaming?",
     back: "Structured adversarial testing to find security vulnerabilities, safety failures and undesirable behaviors before or during deployment. Scope it to the system's architecture (e.g., LLM, RAG pipeline, predictive ML) and threat model; document, remediate and retest findings alongside production monitoring.",
     source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
-    keyTakeaway: "Red teaming tests a system adversarially, scoped to its architecture and threat model."
+    keyTakeaway: "Red teaming tests a system adversarially, scoped to its architecture and threat model.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-40b",
@@ -720,7 +951,10 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     front: "Which adversarial attack vectors should AI red teaming cover?",
     back: "1) Direct and indirect prompt injection; 2) jailbreaking and guardrail bypass; 3) training or fine-tuning data poisoning and backdoor triggers; 4) model inversion, membership inference and training-data extraction; 5) resource-exhaustion or denial-of-wallet attacks.",
     source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
-    keyTakeaway: "Choose attack vectors that match the system's architecture."
+    keyTakeaway: "Choose attack vectors that match the system's architecture.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-41",
@@ -730,7 +964,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Link each initiative to a named strategic objective, a measurable outcome and an accountable sponsor; review the AI portfolio against strategy periodically; stop or redirect initiatives that no longer support the objectives.",
     source: "COBIT 2019 EDM02; NIST AI RMF 1.0 GOVERN 1.3",
     keyTakeaway: "Alignment means a traceable link from each initiative to an objective, outcome and sponsor.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-42",
@@ -740,7 +976,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Score each on strategic fit, expected value, risk and delivery capacity using common criteria. Sponsor enthusiasm, lowest cost or technological novelty are not reliable indicators of benefit.",
     source: "COBIT 2019 EDM02 & APO05",
     keyTakeaway: "Choose with common criteria: fit, value, risk and delivery capacity.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-43",
@@ -750,7 +988,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Commonly: completeness, accuracy, consistency, timeliness, validity and uniqueness, plus relevance and representativeness for the intended use. Quality is judged against the intended purpose, not in the abstract.",
     source: "EU AI Act Art. 10; NIST AI RMF 1.0 MAP 2.3",
     keyTakeaway: "Judge data quality against the intended use.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-44",
@@ -760,7 +1000,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "The business function that creates and depends on the data should own its quality, with data governance providing standards and support. It should not rest only with the team that trains the model or the team that hosts the data.",
     source: "COBIT 2019 APO14; NIST AI RMF 1.0 GOVERN 2.1",
     keyTakeaway: "Data quality belongs to the business function that creates and uses the data.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-45",
@@ -770,7 +1012,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "A data contract states the expected structure, units, ranges and meaning of a data feed and is checked automatically when data arrives. It stops changes, such as a switch of units, from silently reaching the model.",
     source: "NIST AI RMF 1.0 MAP 2.3 & MANAGE 4.1",
     keyTakeaway: "A data contract is checked at ingestion so bad input never reaches the model.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-46",
@@ -780,7 +1024,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Inputs, outputs, the model version, retrieved sources where applicable, and human overrides. The records should let investigators trace a specific output back to its cause.",
     source: "EU AI Act Art. 12; NIST AI RMF 1.0 MEASURE 2.8",
     keyTakeaway: "Log enough to trace one output to its inputs, version, sources and overrides.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-47",
@@ -790,7 +1036,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "For a period set by risk, purpose and legal requirements, not by storage cost. Under EU AI Act Art. 26(6), deployers of high-risk systems keep the logs they control for a period appropriate to the intended purpose, at least six months unless other law provides otherwise.",
     source: "EU AI Act Arts. 12, 19 & 26(6)",
     keyTakeaway: "Retention follows risk and law; high-risk deployers keep logs at least six months (Art. 26(6)).",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-48",
@@ -800,27 +1048,21 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Ongoing automated monitoring that alerts owners when metrics cross agreed thresholds, plus independent periodic review: the second line challenges and internal audit tests controls by sampling. Self-assessment by the project team alone is not enough.",
     source: "IIA Three Lines Model (2020); NIST AI RMF 1.0 MANAGE 4.1",
     keyTakeaway: "Combine automated threshold monitoring with independent second- and third-line review.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-49",
     domainId: "D3",
     topic: "Tracking realized value",
     front: "How should value realization be tracked after an AI system goes live?",
-    back: "Compare outcomes with the pre-deployment baseline at set checkpoints, name an owner accountable for the benefits, and stop or redirect the initiative if results stay below agreed thresholds.",
+    back: "Set a baseline before deployment; without it the business-case benefits cannot be verified later. After go-live, compare outcomes with the baseline at set checkpoints, name an owner accountable for the benefits, and stop or redirect the initiative if results stay below agreed thresholds.",
     source: "COBIT 2019 EDM02; NIST AI RMF 1.0 MAP 3.1",
-    keyTakeaway: "Measure realized benefits against the baseline, with a named benefit owner.",
-    verification: 'pending'
-  },
-  {
-    id: "fc-50",
-    domainId: "D3",
-    topic: "Baseline before deployment",
-    front: "Why set a baseline before deploying an AI system?",
-    back: "Without a baseline, the benefits promised in the business case cannot be verified later, because there is nothing to compare the results with.",
-    source: "COBIT 2019 EDM02",
-    keyTakeaway: "No baseline, no proof of value.",
-    verification: 'pending'
+    keyTakeaway: "Measure realized benefits against a pre-deployment baseline, with a named benefit owner.",
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-51",
@@ -830,7 +1072,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Escalate through the agreed route, activate the predefined fallback, and investigate the cause. The tolerance is not raised after the breach, and the first line does not adjust it on its own.",
     source: "NIST AI RMF 1.0 GOVERN 1.3 & MANAGE 2.4; COBIT 2019 EDM03",
     keyTakeaway: "Escalate and fall back; never move the limit after a breach.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-52",
@@ -840,7 +1084,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "The governing body and senior management set them, and changes need approval and a record. The first line cannot change them unilaterally.",
     source: "COBIT 2019 EDM03; IIA Three Lines Model (2020)",
     keyTakeaway: "Appetite and tolerance are set at the top; the first line cannot change them alone.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-53",
@@ -850,7 +1096,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "A named accountable owner, the intended purpose, risk tier, data sources, model or vendor and version, deployment status, and links to the model card and key approvals. Without an owner and a risk tier the inventory cannot direct oversight.",
     source: "NIST AI RMF 1.0 GOVERN 1.6; ISO/IEC 42001:2023 Annex A (verify against licensed standard)",
     keyTakeaway: "Record owner, purpose, risk tier, data, version, status and links to approvals.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-54",
@@ -860,7 +1108,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Staff often use AI features built into purchased software that the organization did not build or register. An inventory that lists only in-house systems misses them, so its scope must state whether embedded AI counts and how it will be found, for example through procurement checks and cloud billing review.",
     source: "NIST AI RMF 1.0 GOVERN 1.6",
     keyTakeaway: "Define whether embedded AI is in scope, and how it will be found.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-55",
@@ -870,7 +1120,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Confirm that use has actually stopped, update the system's status, and keep its documentation for the retention period. Do not delete the record straight away, because it is the audit trail for decisions the system made.",
     source: "NIST AI RMF 1.0 GOVERN 1.7",
     keyTakeaway: "Retire the status, keep the record: it is the audit trail.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-56",
@@ -880,7 +1132,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Under GDPR Art. 35, a DPIA is required before processing that is likely to result in a high risk to individuals, for example large-scale processing of special-category data such as health data. It must be completed before the processing starts, not after go-live.",
     source: "GDPR Art. 35(1) & (3)(b)",
     keyTakeaway: "Do the DPIA before high-risk processing begins, not after launch.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-57",
@@ -890,7 +1144,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Personal data collected for one purpose must not be reused in a way that is incompatible with it (GDPR Art. 5(1)(b)). Before reusing it for training, assess whether the new purpose is compatible with the original one using the Art. 6(4) factors, and record the result and the lawful basis relied on.",
     source: "GDPR Art. 5(1)(b) & Art. 6(4)",
     keyTakeaway: "Check that the new training purpose is compatible with the original purpose.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-58",
@@ -900,7 +1156,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "The population the system serves changes while the model stays the same, so its training data no longer represents the people now being scored. Performance can fall first for the new group, which overall accuracy can hide.",
     source: "NIST AI RMF 1.0 MAP 2.3 & MEASURE 2.4",
     keyTakeaway: "Representation drift means the served population no longer matches the training data.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-59",
@@ -910,7 +1168,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "High overall accuracy can hide large differences in error rates between groups. Test outcomes for each relevant group in the deployment context, involve affected communities in defining fairness criteria, and repeat the test after material changes to the data or the model.",
     source: "NIST AI RMF 1.0 MEASURE 2.11; NIST SP 1270",
     keyTakeaway: "Test outcomes by group; overall accuracy can hide unfairness.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-60",
@@ -920,7 +1180,9 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Tag synthetic records when they are created and carry the tag through every dataset version, so later analysis can separate their effect and lineage can show which records were generated.",
     source: "NIST AI RMF 1.0 MAP 4.1; ISO/IEC 42001:2023 Annex A.7.5 (verify against licensed standard)",
     keyTakeaway: "Tag synthetic records at creation and keep the tag in every version.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   },
   {
     id: "fc-61",
@@ -930,10 +1192,12 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     back: "Do not assume synthetic data is anonymous. Check for near-duplicates of real records and test whether real individuals can be matched or inferred from it, using attack testing, and record the results before release.",
     source: "GDPR Recital 26; NIST AI RMF 1.0 MEASURE 2.10",
     keyTakeaway: "Test for matching and inference attacks before sharing synthetic data.",
-    verification: 'pending'
+    reviewStatus: 'reviewed',
+    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedAt: '2026-10-24'
   }
 ];
 
 export const INITIAL_FLASHCARDS: Flashcard[] = FLASHCARD_DRAFTS.map(card => ({
-  ...card, source: draftSource(card.source), reviewStatus: 'unreviewed' as const,
+  ...card, source: draftSource(card.source),
 })).map(normalizeFlashcardDomain);

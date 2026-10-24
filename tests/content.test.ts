@@ -26,7 +26,7 @@ test('retained questions are unreviewed and do not claim ISACA manual provenance
   assert.equal(INITIAL_QUESTIONS.length, 439);
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
-  assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
+  assert.ok(FLASHCARDS.every(q => !/ISACA/i.test(q.source)));
 });
 
 test('retained canonical indices stay compatible with historical attempts', () => {
@@ -348,18 +348,21 @@ test('reviewer-requested explanation updates use the plainer wording of the new 
 
 test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
   const by = (id: string) => FLASHCARDS.find(card => card.id === id)!;
-  assert.equal(FLASHCARDS.length, 99);
+  assert.equal(FLASHCARDS.length, 98);
   for (const card of FLASHCARDS) {
     assert.ok(card.back.length <= 400, `${card.id} back is ${card.back.length} characters`);       // J1
     assert.ok(card.keyTakeaway.length <= 130, `${card.id} takeaway is ${card.keyTakeaway.length}`);  // J2
     assert.ok((card.front.match(/\?/g) || []).length === 1, `${card.id} front must be one question`);
     assert.doesNotMatch(card.front, / and (how|what|who|when|why|which)\b/i, `${card.id} front is compound`); // J3
-    assert.equal(card.reviewStatus, 'unreviewed');
+    // 2026-10-24 second review: all cards approved by the reviewer, who asked for the name and date to be recorded (Q5).
+    assert.equal(card.reviewStatus, 'reviewed');
+    assert.equal(card.reviewedBy, 'Xiaoli (Shelly) Zhao');
+    assert.equal(card.reviewedAt, '2026-10-24');
   }
   assert.deepEqual(FLASHCARDS.filter(card => card.scope).map(card => `${card.id}:${card.scope}`).sort(), ['fc-07b:US-specific', 'fc-19:US-specific']); // J4
-  const pending = FLASHCARDS.filter(card => card.verification === 'pending').map(card => card.id);       // J5
-  assert.deepEqual(pending, Array.from({ length: 21 }, (_, i) => `fc-${41 + i}`));
-  assert.ok(!FLASHCARDS.filter(card => !pending.includes(card.id)).some(card => card.verification));
+  assert.ok(!FLASHCARDS.some(card => card.verification));                                               // J5: pending labels lifted by the second review
+  assert.ok(!FLASHCARDS.some(card => card.id === 'fc-50'));                                              // Q3: merged into fc-49
+  assert.match(FLASHCARDS.find(card => card.id === 'fc-49')!.back, /baseline before deployment/i);
   assert.equal(by('fc-12').domainId, 'D3');                                                              // J7
   assert.doesNotMatch(by('fc-12').source, /23894/);
   assert.match(by('fc-04').back, /governing body or senior management/);                                  // J8
@@ -395,5 +398,5 @@ test('the audit no longer flags flashcard length or compound fronts', async () =
   const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), FLASHCARDS);
   assert.equal(report.flashcards.longBacks, 0);
   assert.equal(report.flashcards.compoundFronts, 0);
-  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 99);
+  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 98);
 });

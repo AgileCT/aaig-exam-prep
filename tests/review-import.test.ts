@@ -23,7 +23,8 @@ const optionOnly = new Map(optionBalance.items.map(item => [item.id, item.hashWi
 // A swap is its own inverse, so undoing it must reproduce the signed content.
 const undoMove = (q: Question) => CORRECT_POSITION_MOVES[q.id] ? swapQuestionOptions(q, ...CORRECT_POSITION_MOVES[q.id]) : q;
 const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...undoMove(q) })),
-  ...INITIAL_FLASHCARDS.map(c => ({ type: 'flashcard', ...c }))];
+  // 2026-10-24 second review: cards now carry reviewer metadata. The signed snapshot predates it, so compare content only.
+  ...INITIAL_FLASHCARDS.map(({ reviewedBy, reviewedAt, ...c }) => ({ type: 'flashcard', ...c, reviewStatus: 'unreviewed' as const }))];
 const byId = new Map(items.map(item => [item.id, item]));
 
 const AUTHORIZED_CARD_CHANGES = new Set(['fc-04', 'fc-12', 'fc-13', 'fc-24', 'fc-32', 'fc-37', 'fc-38', 'fc-39']);
@@ -54,7 +55,7 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
   const cardIds = INITIAL_FLASHCARDS.map(c => c.id);
   assert.deepEqual(cardIds.filter(id => baseline.flashcards.includes(id)), baseline.flashcards);
   assert.ok(cardIds.filter(id => !baseline.flashcards.includes(id)).every(id => /^fc-(\d\d[b-d]|4[1-9]|5[0-9]|6[01])$/.test(id)));
-  assert.equal(byId.size, 538);
+  assert.equal(byId.size, 537);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {
