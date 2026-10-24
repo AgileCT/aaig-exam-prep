@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { shuffleQuestionOptions } from '../services/questionOrder';
 import { resolveReferences } from '../services/referenceResolver';
+import { orderWeakFirst } from '../services/studyStats';
 
 interface QuizViewProps {
   questions: Question[];
@@ -35,9 +36,17 @@ export const QuizView: React.FC<QuizViewProps> = ({
   initialQuestionId,
 }) => {
   const [selectedDomain, setSelectedDomain] = useState<StudyDomainId | 'ALL'>(initialDomainId === 'ALL' ? 'ALL' : getDomainMeta(initialDomainId).id);
-  const filteredQuestions = useMemo(() => (selectedDomain === 'ALL'
-    ? questions
-    : questions.filter(q => q.domainId === selectedDomain)).map(q => shuffleQuestionOptions(q)), [questions, selectedDomain]);
+  const [selectedSub, setSelectedSub] = useState<string>('ALL');
+  const [weakFirst, setWeakFirst] = useState(false);
+  // Read progress at selection time only, so answering a question does not reorder the queue.
+  const progressRef = useRef(progress);
+  progressRef.current = progress;
+  const domainQuestions = useMemo(() => selectedDomain === 'ALL' ? questions : questions.filter(q => q.domainId === selectedDomain), [questions, selectedDomain]);
+  const subtopics = useMemo(() => [...new Set(domainQuestions.map(q => q.subDomain))], [domainQuestions]);
+  const filteredQuestions = useMemo(() => {
+    const scoped = selectedSub === 'ALL' ? domainQuestions : domainQuestions.filter(q => q.subDomain === selectedSub);
+    return (weakFirst ? orderWeakFirst(scoped, progressRef.current.history) : scoped).map(q => shuffleQuestionOptions(q));
+  }, [domainQuestions, selectedSub, weakFirst]);
   const [currentIndex, setCurrentIndex] = useState(() => Math.max(0, filteredQuestions.findIndex(q => q.id === initialQuestionId)));
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -49,7 +58,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setSelectedOption(null);
     setHasSubmitted(false);
     submittedRef.current = false;
-  }, [currentIndex, selectedDomain, currentQ?.id]);
+  }, [currentIndex, selectedDomain, selectedSub, weakFirst, currentQ?.id]);
 
   if (!currentQ) {
     return (
@@ -103,7 +112,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
         {/* Domain Filter */}
         <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
           <button
-            onClick={() => { setSelectedDomain('ALL'); setCurrentIndex(0); }}
+            onClick={() => { setSelectedDomain('ALL'); setSelectedSub('ALL'); setCurrentIndex(0); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
               selectedDomain === 'ALL'
                 ? 'bg-indigo-600 text-white shadow-sm'
@@ -115,7 +124,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           {STUDY_DOMAIN_IDS.map(dId => (
             <button
               key={dId}
-              onClick={() => { setSelectedDomain(dId); setCurrentIndex(0); }}
+              onClick={() => { setSelectedDomain(dId); setSelectedSub('ALL'); setCurrentIndex(0); }}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 selectedDomain === dId
                   ? 'bg-indigo-600 text-white shadow-sm'
@@ -125,6 +134,24 @@ export const QuizView: React.FC<QuizViewProps> = ({
               {dId} ({questions.filter(q => q.domainId === dId).length})
             </button>
           ))}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            aria-label="Subtopic"
+            value={selectedSub}
+            onChange={e => { setSelectedSub(e.target.value); setCurrentIndex(0); }}
+            className="max-w-[16rem] text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-1.5"
+          >
+            <option value="ALL">All subtopics ({domainQuestions.length})</option>
+            {subtopics.map(topic => (
+              <option key={topic} value={topic}>{topic} ({domainQuestions.filter(q => q.subDomain === topic).length})</option>
+            ))}
+          </select>
+          <label className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 cursor-pointer">
+            <input type="checkbox" checked={weakFirst} onChange={e => { setWeakFirst(e.target.checked); setCurrentIndex(0); }} />
+            Weak subtopics first
+          </label>
         </div>
 
         <span className="text-xs text-slate-500">Practice · confirm each answer for feedback</span>

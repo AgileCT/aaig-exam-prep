@@ -4,6 +4,9 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { INITIAL_FLASHCARDS } from '../src/data/flashcards';
+import { CORRECT_POSITION_MOVES } from '../src/data/correctPositionMoves';
+import { swapQuestionOptions, swappedIndex } from '../src/services/questionOrder';
+import type { Question } from '../src/types';
 
 interface Baseline {
   questions: [string, number][];
@@ -11,9 +14,26 @@ interface Baseline {
   items: { id: string; decision: string; beforeHash: string }[];
 }
 const baseline: Baseline = JSON.parse(readFileSync(new URL('./fixtures/review-20261014-baseline.json', import.meta.url), 'utf8'));
-const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...q })),
-  ...INITIAL_FLASHCARDS.map(c => ({ type: 'flashcard', ...c }))];
+// 2026-10-24: option wording was rebalanced on some items outside the returned
+// review. Everything except the options must still match the signed snapshot.
+const optionBalance: { items: { id: string; hashWithoutOptions: string }[] } =
+  JSON.parse(readFileSync(new URL('./fixtures/option-balance-20261024.json', import.meta.url), 'utf8'));
+const optionOnly = new Map(optionBalance.items.map(item => [item.id, item.hashWithoutOptions]));
+// 2026-10-24: canonical answer positions were rebalanced by swapping options.
+// A swap is its own inverse, so undoing it must reproduce the signed content.
+const undoMove = (q: Question) => CORRECT_POSITION_MOVES[q.id] ? swapQuestionOptions(q, ...CORRECT_POSITION_MOVES[q.id]) : q;
+// 2026-10-24: review records (reviewStatus, reviewedBy, reviewedAt) were written for reviewed questions. The signed snapshot predates them, so compare content only.
+const stripReview = (q: Question) => { const { reviewedBy, reviewedAt, ...rest } = q; return { ...rest, reviewStatus: 'unreviewed' as const }; };
+const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...stripReview(undoMove(q)) })),
+  // 2026-10-24 second review: cards now carry reviewer metadata. The signed snapshot predates it, so compare content only.
+  ...INITIAL_FLASHCARDS.map(({ reviewedBy, reviewedAt, ...c }) => ({ type: 'flashcard', ...c, reviewStatus: 'unreviewed' as const }))];
 const byId = new Map(items.map(item => [item.id, item]));
+
+const AUTHORIZED_CARD_CHANGES = new Set(['fc-04', 'fc-12', 'fc-13', 'fc-24', 'fc-32', 'fc-37', 'fc-38', 'fc-39']);
+// 2026-10-24: the reviewer authorized rewriting these 15 items, which the 2026-10-14 review had not covered ('not-in-review'). Nothing held by a 'retain' or 'needs-more-evidence' decision is on this list.
+// 2026-10-24: the reviewer verified the evidence for these three 'needs-more-evidence' AIMS questions and asked for the verification to be recorded.
+const AUTHORIZED_EVIDENCE_CHANGES = new Set(['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']);
+const AUTHORIZED_QUESTION_CHANGES = new Set(['aaig-d1-003', 'aaig-d3-001', 'aaig-d3-002', 'aaig-pipe-1791941135450-22', 'aaig-pipe-1791942357652-0', 'aaig-pipe-1791942382711-7', 'aaig-pipe-1791942453233-20', 'aaig-pipe-1791942474428-27', 'aaig-pipe-1791943199602-32-6yeaz', 'aaig-pipe-1791943341406-62-gtqhu', 'aaig-pipe-1791943422117-82-qmv4j', 'aaig-pipe-1791943598884-122-ahzg5', 'aaig-pipe-1791943870183-174-fbxgh', 'aaig-pipe-1791943937415-185-ft3m7', 'aaig-pipe-1791944061542-217-i1geg']);
 
 function canonical(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(canonical);
@@ -21,19 +41,27 @@ function canonical(value: unknown): unknown {
     Object.entries(value).sort(([a], [b]) => a.localeCompare(b)).map(([key, child]) => [key, canonical(child)]));
   return value;
 }
-function hash(value: unknown): string {
+function hash(value: unknown, omit: string[] = []): string {
   // Compare teaching content against the signed snapshot while allowing the
   // separately authorized taxonomy migration to retain its legacy metadata.
   const { legacyDomainId, legacySubDomain, ...original } = value as Record<string, unknown>;
+  for (const key of omit) delete original[key];
   if (legacyDomainId) original.domainId = legacyDomainId;
   if (legacySubDomain !== undefined) original.subDomain = legacySubDomain;
   return createHash('sha256').update(JSON.stringify(canonical(original))).digest('hex');
 }
 
 test('review import preserves IDs, ordering and canonical answer indices for saved attempts', () => {
-  assert.deepEqual(INITIAL_QUESTIONS.map(q => [q.id, q.correctIndex]), baseline.questions);
-  assert.deepEqual(INITIAL_FLASHCARDS.map(c => c.id), baseline.flashcards);
-  assert.equal(byId.size, 357);
+  // Reviewed questions keep their positions; later supplements are appended after them.
+  assert.deepEqual(INITIAL_QUESTIONS.slice(0, baseline.questions.length).map(q => [q.id, q.correctIndex]),
+    baseline.questions.map(([id, index]) => [id, CORRECT_POSITION_MOVES[id] ? swappedIndex(index, CORRECT_POSITION_MOVES[id]) : index]));
+  assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => /^aaig-d[123]s-/.test(q.id)));
+  // 2026-10-24: cards were split and new ones added. Every original ID survives, in its original
+  // relative order, so saved mastery still points at the first part of each split card.
+  const cardIds = INITIAL_FLASHCARDS.map(c => c.id);
+  assert.deepEqual(cardIds.filter(id => baseline.flashcards.includes(id)), baseline.flashcards);
+  assert.ok(cardIds.filter(id => !baseline.flashcards.includes(id)).every(id => /^fc-(\d\d[b-d]|4[1-9]|5[0-9]|6[01])$/.test(id)));
+  assert.equal(byId.size, 537);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {
@@ -44,6 +72,25 @@ test('all 313 explicit revisions remain applied and other teaching content survi
     if (entry.decision === 'revise') {
       assert.notEqual(hash(item), entry.beforeHash, `Missing revision: ${entry.id}`);
       revised++;
+    } else if (AUTHORIZED_EVIDENCE_CHANGES.has(entry.id)) {
+      assert.equal(entry.decision, 'needs-more-evidence', `Evidence verification applies to evidence-pending items only: ${entry.id}`);
+      assert.notEqual(hash(item), entry.beforeHash, `Evidence verification missing: ${entry.id}`);
+      protectedItems++;
+      pending++;
+    } else if (AUTHORIZED_QUESTION_CHANGES.has(entry.id)) {
+      // Authorized rewrite of an item the 2026-10-14 review did not cover; it may also have had its options rebalanced.
+      assert.equal(entry.decision, 'not-in-review', `Only items outside the review may be rewritten here: ${entry.id}`);
+      assert.notEqual(hash(item), entry.beforeHash, `Authorized change missing: ${entry.id}`);
+      protectedItems++;
+    } else if (optionOnly.has(entry.id)) {
+      assert.equal(entry.decision, 'not-in-review', `Option rebalance must not touch reviewer decisions: ${entry.id}`);
+      assert.equal(hash(item, ['options']), optionOnly.get(entry.id), `Change beyond option wording: ${entry.id}`);
+      protectedItems++;
+    } else if (AUTHORIZED_CARD_CHANGES.has(entry.id)) {
+      // Changed on 2026-10-24 on the reviewer's explicit decisions (J7-J15, split of compound fronts).
+      assert.notEqual(hash(item), entry.beforeHash, `Authorized change missing: ${entry.id}`);
+      protectedItems++;
+      if (entry.decision === 'needs-more-evidence') pending++;
     } else {
       assert.equal(hash(item), entry.beforeHash, `Unauthorized change: ${entry.id}`);
       protectedItems++;
@@ -70,11 +117,12 @@ test('follow-up review uses the NIST role and privacy locators consistently', ()
 
 test('reviewed teaching text excludes editing markers and distinguishes AI Act actors', () => {
   for (const card of INITIAL_FLASHCARDS) assert.doesNotMatch(card.back, /^\(Retained Existing Answer\)/, card.id);
-  const riskCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-31')!;
-  assert.match(riskCard.back, /providers must inform people of direct AI interactions/);
+  const riskCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-31c')!;
+  assert.match(riskCard.back, /Providers must mark synthetic/);
+  assert.match(riskCard.back, /inform people of direct AI interactions/);
   assert.doesNotMatch(riskCard.back, /deployers must disclose human-facing AI interactions/);
-  const sourcingCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-21')!;
-  assert.match(sourcingCard.keyTakeaway, /high-risk/);
+  const sourcingCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-21b')!;
+  assert.match(sourcingCard.back, /high-risk/);
 });
 
 test('recruitment DPIA explanations retain the processing-risk trigger and applicability conditions', () => {

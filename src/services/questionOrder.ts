@@ -28,6 +28,18 @@ export function reorderQuestionOptions(question: Question, order: number[]): Que
   };
 }
 
+/** Swaps two option positions, remapping explanations and axes. A swap is its own inverse. */
+export function swapQuestionOptions(question: Question, a: number, b: number): Question {
+  const order = question.options.map((_, i) => i);
+  [order[a], order[b]] = [order[b], order[a]];
+  return reorderQuestionOptions(question, order);
+}
+
+/** Maps a canonical option index recorded before a swap to its index after it. */
+export function swappedIndex(index: number, [a, b]: readonly [number, number]): number {
+  return index === a ? b : index === b ? a : index;
+}
+
 export function shuffleQuestionOptions(question: Question, rng = Math.random): Question {
   const order = question.options.map((_, i) => i);
   for (let i = order.length - 1; i > 0; i--) {

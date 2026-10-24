@@ -19,8 +19,8 @@ test('active domains match the three public ISACA areas and built-in content con
   assert.deepEqual(Object.values(AAIG_DOMAINS).map(d => d.name), [
     'AI Enterprise Governance', 'Data and AI Architecture Principles', 'AI Enterprise Integration and Performance Monitoring',
   ]);
-  assert.equal(INITIAL_QUESTIONS.length, 317);
-  assert.equal(INITIAL_FLASHCARDS.length, 40);
+  assert.equal(INITIAL_QUESTIONS.length, 439);
+  assert.equal(INITIAL_FLASHCARDS.length, 98);
   assert.ok([...INITIAL_QUESTIONS, ...INITIAL_FLASHCARDS].every(item => item.domainId !== 'D4'));
   assert.ok(INITIAL_QUESTIONS.every(q => !q.subDomain.startsWith('D4.')));
 });
@@ -46,12 +46,12 @@ test('legacy custom questions are classified without rewriting stored originals 
   assert.equal(mapped.correctIndex, vendor.correctIndex);
   assert.equal(loaded.find(q => q.id === unknown.id)!.domainId, 'D1');
   assert.equal(localStorage.getItem('aaig_custom_questions_v1'), stored, 'loading must not rewrite originals');
-  assert.deepEqual(loadUserProgress(), progress, 'historical four-domain exam snapshots must remain intact');
+  assert.deepEqual(loadUserProgress(), { ...progress, optionOrderRevision: 1 }, 'historical four-domain exam snapshots must remain intact');
   const saved = saveCustomQuestion({ ...INITIAL_QUESTIONS[0], id: 'new-three-domain' });
   const reread = loadAllQuestions();
   assert.deepEqual(reread.find(q => q.id === vendor.id), saved.find(q => q.id === vendor.id));
   assert.ok(reread.some(q => q.id === unknown.id));
-  assert.deepEqual(loadUserProgress(), progress);
+  assert.deepEqual(loadUserProgress(), { ...progress, optionOrderRevision: 1 });
 });
 
 test('legacy cards survive reads and saves and retain their mastery linkage', t => {

@@ -10,18 +10,18 @@ An independent, open-source AI governance practice tool with original and AI-gen
 
 The public deployment may lag behind repository changes. Check the deployed version before treating a fix as live.
 
-Version 1.2.0 adds selectable AI providers and editable models for tutoring and authoring. Version 1.1.0 aligned navigation with the three publicly listed AAIG core areas, incorporated 313 returned-review content corrections, and preserved legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
+Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebalances option wording so the correct answer is no longer the longest choice. Version 1.2.0 adds selectable AI providers and editable models for tutoring and authoring. Version 1.1.0 aligned navigation with the three publicly listed AAIG core areas, incorporated 313 returned-review content corrections, and preserved legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
 
 ## Learning features
 
-- **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Options are reordered without changing question IDs or stored answer meanings.
-- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Results show raw correctness, sample counts, and performance by study domain. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
-- **Flashcards:** track concepts as new, learning, or mastered.
+- **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Narrow practice to one subtopic, or order it with the weakest subtopics (by first-attempt accuracy) and unseen questions first. Options are reordered without changing question IDs or stored answer meanings.
+- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Mock exams draw questions you have not answered before and tell you how many were repeats. Results show raw correctness, sample counts, and performance by study domain. The dashboard's headline accuracy counts each question's first attempt only, because re-answering after reading the explanation inflates the latest-answer figure. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
+- **Flashcards:** one point per card; rate each card as difficult, needs review, or mastered. Difficult and not-yet-rated cards come first. Cards on US-only law carry a "US-specific" label, and new cards show "Pending verification" until their content is checked against sources.
 - **Review notebook:** open the exact missed question for another attempt.
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The bundled content contains 317 questions (18 authored seed questions and 299 generated questions) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The source data contains 439 questions (18 authored seed questions, 299 generated questions, and 122 hand-authored questions added in 1.3.0); 66 questions are retired (63 near-duplicates, plus three that the reviewer retired on 2026-10-24 because six questions asked the same ISO/IEC 42001 fact) and the app practices from the remaining 373. There are 98 flashcards (the original 40, split so each card covers one point, plus 20 new cards). On 2026-10-24 the reviewer approved all flashcards and asked for the name and date to be recorded, so the cards show "Reviewed by Xiaoli (Shelly) Zhao on 2026-10-24"; this is a practitioner review, not ISACA approval, and no card has a `sourceUrl`. All 373 active questions now carry a review record (reviewed by Xiaoli (Shelly) Zhao on 2026-10-14 or 2026-10-24, three of them with the evidence check of 2026-10-24); the sixth review packet covered the last 134. A review record is a practitioner review, not ISACA approval and not independent expert certification. Most questions still have no `sourceUrl`, and the reference labels were not checked against the source texts. Quantity is not evidence of answer quality.
 
 ## Study categories and official information
 
@@ -37,7 +37,7 @@ Practice sessions divide the requested sample equally across the three domains, 
 
 The former custom D4 category is retired from navigation and authoring. Regulatory landscapes, standards, framework mapping, and risk appetite now sit under D1; supplier and supply-chain risk sit under D3. Former D4 flashcards are assigned by topic, including supplier diligence and red teaming under D3. These assignments are the app's interpretation of the public areas.
 
-Legacy D4 custom content remains readable and is classified on load, preserving its original classification in legacy metadata. Unknown legacy topics remain available under D1 for compatibility. Question IDs, canonical answer positions, bookmarks, missed items, and card mastery links are preserved. Existing four-domain exam breakdowns remain historical snapshots; new sessions record three domains. Loading does not destructively rewrite stored progress or custom content.
+Legacy D4 custom content remains readable and is classified on load, preserving its original classification in legacy metadata. Unknown legacy topics remain available under D1 for compatibility. Question IDs, bookmarks, missed items, and card mastery links are preserved. Version 1.3.0 rebalanced canonical answer positions within each subtopic; recorded attempts and imported backups from earlier versions are remapped once so each still points to the option the learner chose. Existing four-domain exam breakdowns remain historical snapshots; new sessions record three domains. Loading does not destructively rewrite stored progress or custom content.
 
 ## Run locally
 
@@ -57,7 +57,7 @@ npm run verify
 npm run preview
 ```
 
-`verify` runs regression tests, an offline content audit, and the TypeScript/production build. CI uses the same command. The audit reports structural failures and remaining topic/type concentration; it is not a model judge, domain expert review, or certification of correctness.
+`verify` runs regression tests, an offline content audit, and the TypeScript/production build. CI uses the same command. The audit reports structural failures, remaining topic/type concentration, and a guessability indicator (the share of questions a scenario-blind keyword guesser answers correctly; random is 25%, the target is 40% or lower); it is not a model judge, domain expert review, or certification of correctness.
 
 ## AI processing and API key storage
 
@@ -85,7 +85,7 @@ The dry run prints the sampling plan without API calls or file writes. A normal 
 
 The authoring pipeline independently samples topic, question type, difficulty, and answer position. It checks required fields, four options, answer bounds, explanation axes, the length-ratio range, and duplicate question text. A separate blind request must agree with the author key. Both requests use the configured model: agreement is a consistency check, not independent expert validation. Generated items remain unreviewed.
 
-The bundled bank retains limitations, including concentrated question types within some topics and unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
+The bundled bank retains limitations, including unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
 
 ## Production deployment
 

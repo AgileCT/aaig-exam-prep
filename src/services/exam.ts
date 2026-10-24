@@ -11,13 +11,21 @@ function shuffle<T>(items: T[], rng: () => number): T[] {
   return result;
 }
 
-export function sampleStudyQuestions(questions: Question[], requestedCount: number, rng = Math.random): Question[] {
+/**
+ * Samples a balanced practice set. When `seenIds` is given, questions the
+ * learner has not answered before are drawn first within each domain, so
+ * repeated mock exams measure unfamiliar material rather than memory.
+ */
+export function sampleStudyQuestions(questions: Question[], requestedCount: number, rng = Math.random, seenIds?: ReadonlySet<string>): Question[] {
   const normalizedQuestions = questions.map(normalizeQuestionDomain);
   const domains = Object.values(AAIG_DOMAINS);
   const count = Math.min(requestedCount, questions.length);
   const totalWeight = domains.reduce((sum, domain) => sum + domain.weight, 0);
   const groups = domains.map(domain => {
-    const candidates = shuffle(normalizedQuestions.filter(question => question.domainId === domain.id), rng);
+    const pool = normalizedQuestions.filter(question => question.domainId === domain.id);
+    const candidates = seenIds
+      ? [...shuffle(pool.filter(question => !seenIds.has(question.id)), rng), ...shuffle(pool.filter(question => seenIds.has(question.id)), rng)]
+      : shuffle(pool, rng);
     const ideal = count * domain.weight / totalWeight;
     return { candidates, ideal, quota: Math.min(Math.floor(ideal), candidates.length) };
   });

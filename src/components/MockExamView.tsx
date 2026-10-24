@@ -18,6 +18,7 @@ import { shuffleQuestionOptions } from '../services/questionOrder';
 import { sampleStudyQuestions } from '../services/exam';
 import { loadExamSession, saveExamSession, clearExamSession } from '../services/storage';
 import { resolveReferences } from '../services/referenceResolver';
+import { seenQuestionIds } from '../services/studyStats';
 
 interface MockExamViewProps {
   questions: Question[];
@@ -28,6 +29,7 @@ interface MockExamViewProps {
 
 export const MockExamView: React.FC<MockExamViewProps> = ({
   questions,
+  progress,
   onRecordExam,
   onRecordAttempt,
 }) => {
@@ -47,6 +49,8 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     domainBreakdown: Record<StudyDomainId, { correct: number; total: number }>;
   } | null>(null);
   const [reviewFilter, setReviewFilter] = useState<'all' | 'missed'>('all');
+  // null when the exam was resumed from a saved session and prior exposure is unknown.
+  const [seenInExam, setSeenInExam] = useState<number | null>(0);
   const [resumedFromSnapshot, setResumedFromSnapshot] = useState(false);
   const [pendingAutoFinish, setPendingAutoFinish] = useState(false);
   const answersRef = useRef<Record<string, number>>({});
@@ -65,7 +69,11 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     const targetCount = type === 'full' ? Math.min(90, questions.length) : Math.min(25, questions.length);
     const targetSeconds = type === 'full' ? 150 * 60 : 40 * 60; // 150 mins or 40 mins
 
-    const shuffled = sampleStudyQuestions(questions, targetCount).map(q => shuffleQuestionOptions(q));
+    // Unseen questions are drawn first so repeated exams do not just test memory.
+    const seen = seenQuestionIds(progress.history);
+    const sampled = sampleStudyQuestions(questions, targetCount, Math.random, seen);
+    setSeenInExam(sampled.filter(q => seen.has(q.id)).length);
+    const shuffled = sampled.map(q => shuffleQuestionOptions(q));
     setExamQuestions(shuffled);
     answersRef.current = {};
     finishedRef.current = false;
@@ -160,6 +168,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     durationRef.current = snapshot.durationSeconds;
     deadlineRef.current = snapshot.examEndsAt;
     setTimeLeftSeconds(Math.max(0, Math.ceil((snapshot.examEndsAt - Date.now()) / 1000)));
+    setSeenInExam(null);
     setIsExamFinished(false);
     setExamResult(null);
     setIsExamActive(true);
@@ -334,7 +343,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
                 Accuracy: {examResult.total > 0 ? Math.round(examResult.score / examResult.total * 100) : 0}%
               </h2>
               <p className="text-xs text-slate-300 mt-1">
-                You answered {examResult.score} of {examResult.total} questions correctly. Unanswered questions count as missed. This practice result does not predict an official exam outcome.
+                You answered {examResult.score} of {examResult.total} questions correctly. Unanswered questions count as missed. {seenInExam === null ? '' : seenInExam > 0 ? `${seenInExam} of ${examResult.total} questions had been answered before, so this score may overstate how you would do on new material. ` : 'All questions were new to you. '}This practice result does not predict an official exam outcome.
               </p>
             </div>
 

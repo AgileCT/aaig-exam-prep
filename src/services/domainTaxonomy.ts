@@ -20,7 +20,7 @@ export function normalizeQuestionDomain(question: Question): Question {
 // testing belongs with monitoring. Remaining former D4 cards cover governance.
 const legacyCardDomains: Record<string, StudyDomainId> = {
   'fc-31': 'D1', 'fc-32': 'D1', 'fc-33': 'D1', 'fc-34': 'D1',
-  'fc-35': 'D3', 'fc-36': 'D1', 'fc-37': 'D1', 'fc-38': 'D1',
+  'fc-35': 'D3', 'fc-36': 'D1', 'fc-37': 'D1', 'fc-38': 'D3',
   'fc-39': 'D1', 'fc-40': 'D3',
 };
 

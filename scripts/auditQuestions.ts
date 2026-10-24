@@ -1,11 +1,14 @@
 /** Offline structure and bias indicators only. No model calls or expert accuracy approval. */
+const FLASHCARD_BACK_LIMIT = 600;
 import { pathToFileURL } from 'node:url';
 import type { Question } from '../src/types';
-import { INITIAL_QUESTIONS } from '../src/data/questions';
+import { ACTIVE_QUESTIONS } from '../src/data/questions';
 import { INITIAL_FLASHCARDS } from '../src/data/flashcards';
 import { isQuestion, isFlashcard, passesLengthGate } from '../src/services/contentValidation';
 import { normalizeQuestionStem } from './generateQuestions';
 import { STUDY_DOMAIN_IDS } from '../src/data/domains';
+import { GUESSABILITY_TARGET, guessabilityRate } from '../src/services/guessability';
+import { DUPLICATE_SIMILARITY, findNearDuplicatePairs } from '../src/services/duplicateDetection';
 
 export function auditQuestionBank(questionValues: readonly unknown[], flashcardValues: readonly unknown[]) {
   const errors: string[] = [], warnings: string[] = [];
@@ -23,6 +26,10 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
       errors.push(`invalid distractorAxes: ${question.id}`);
     }
   }
+  const longBacks = flashcards.filter(card => card.back.length > FLASHCARD_BACK_LIMIT);
+  if (longBacks.length) warnings.push(`${longBacks.length} of ${flashcards.length} flashcard backs exceed ${FLASHCARD_BACK_LIMIT} characters (longest ${Math.max(...longBacks.map(card => card.back.length))}); long backs are cut off on the card and are hard to recall`);
+  const compoundFronts = flashcards.filter(card => / and (how|what|who|when|why|which)\b/i.test(card.front));
+  if (compoundFronts.length) warnings.push(`${compoundFronts.length} flashcard fronts ask more than one question: ${compoundFronts.map(card => card.id).join(', ')}`);
   const seenCards = new Set<string>();
   for (const card of flashcards) {
     if (seenCards.has(card.id)) errors.push(`duplicate flashcard ID: ${card.id}`);
@@ -39,6 +46,12 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
   if (outsideParity.length) warnings.push(`${outsideParity.length} retained questions fall outside length parity [0.75, 1.45]: ${outsideParity.map(q => q.id).join(', ')}`);
   const longestCorrect = questions.filter(q => q.options[q.correctIndex].length === Math.max(...q.options.map(option => option.length))).length;
   if (longestCorrect) warnings.push(`${longestCorrect} retained questions have a longest correct option (including ties); display shuffling removes position cues only`);
+  const duplicatePairs = findNearDuplicatePairs(questions);
+  if (duplicatePairs.length) warnings.push(`${duplicatePairs.length} near-duplicate question pairs remain (stem plus correct answer similarity >= ${DUPLICATE_SIMILARITY}): ${duplicatePairs.slice(0, 5).map(([a, b]) => `${a}~${b}`).join(', ')}${duplicatePairs.length > 5 ? ', ...' : ''}`);
+  const guessability = guessabilityRate(questions);
+  if (guessability > GUESSABILITY_TARGET) {
+    warnings.push(`scenario-blind keyword guesser answers ${(100 * guessability).toFixed(1)}% of questions correctly (random 25%, target <= ${100 * GUESSABILITY_TARGET}%); correct options are identifiable by wording rather than by the scenario`);
+  }
   const byTopic: Record<string, { count: number; answerPositions: number[]; questionTypes: string[] }> = {};
   const grouped = new Map<string, Question[]>();
   for (const question of questions) grouped.set(question.subDomain, [...(grouped.get(question.subDomain) || []), question]);
@@ -59,12 +72,17 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
     unreviewedQuestions, unreviewedFlashcards,
     domains: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, questions.filter(q => q.domainId === domain).length])),
     answerPositions: [0, 1, 2, 3].map(i => questions.filter(q => q.correctIndex === i).length),
+    nearDuplicatePairs: duplicatePairs.length,
+    flashcards: { count: flashcards.length, longBacks: longBacks.length, compoundFronts: compoundFronts.length,
+      byDomain: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, flashcards.filter(card => card.domainId === domain).length])) },
+    guessability: { rate: Number(guessability.toFixed(3)), target: GUESSABILITY_TARGET,
+      byQuestionType: Object.fromEntries(['BEST', 'FIRST', 'PRIMARY', 'MOST', 'LEAST'].map(type => [type, Number(guessabilityRate(questions.filter(q => q.questionType === type)).toFixed(3))])) },
     byTopic, errors, warnings,
   };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const report = auditQuestionBank(INITIAL_QUESTIONS, INITIAL_FLASHCARDS);
+  const report = auditQuestionBank(ACTIVE_QUESTIONS, INITIAL_FLASHCARDS);
   console.log(JSON.stringify(report, null, 2));
   if (report.errors.length) process.exitCode = 1;
 }

@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { GENERATED_QUESTIONS } from '../src/data/generatedQuestions';
 import { INITIAL_FLASHCARDS as FLASHCARDS } from '../src/data/flashcards';
+import { SUPPLEMENTAL_QUESTIONS } from '../src/data/supplementalQuestions';
+import { passesLengthGate } from '../src/services/contentValidation';
 import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -20,11 +22,30 @@ test('importing generation code does not contact an AI provider', async () => {
   finally { globalThis.fetch = previous; }
 });
 
-test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
-  assert.equal(INITIAL_QUESTIONS.length, 317);
-  assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
+import { ACTIVE_QUESTIONS as ACTIVE_FOR_REVIEW_LIST } from '../src/data/questions';
+const ACTIVE_FOR_REVIEW_TEST = () => ACTIVE_FOR_REVIEW_LIST;
+
+test('every active question has a review record and none claims ISACA manual provenance', () => {
+  assert.equal(INITIAL_QUESTIONS.length, 439);
+  // 2026-10-24: review records exist only for questions the reviewer actually reviewed (see src/data/reviewRecords.ts).
+  const reviewed = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed');
+  assert.equal(reviewed.length, 436);
+  for (const q of reviewed) {
+    assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao', q.id);
+    assert.ok(q.reviewedAt === '2026-10-14' || q.reviewedAt === '2026-10-24', q.id);
+  }
+  assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'reviewed' || q.reviewStatus === 'unreviewed'));
+  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 3);
+  assert.ok(ACTIVE_FOR_REVIEW_TEST().every(q => q.reviewStatus === 'reviewed'));   // every active question has a review record
+  // The three evidence-verified AIMS questions keep their source note and link.
+  for (const id of ['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']) {
+    const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
+    assert.match(q.source, /not the licensed full text/);
+    assert.equal(q.sourceUrl, 'https://www.iso.org/standard/81230.html');
+    assert.equal(q.reviewedAt, '2026-10-24');
+  }
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
-  assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
+  assert.ok(FLASHCARDS.every(q => !/ISACA/i.test(q.source)));
 });
 
 test('retained canonical indices stay compatible with historical attempts', () => {
@@ -114,9 +135,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 317);
-  assert.ok(valid.warnings.some((warning: string) => warning.includes('single question type')));
-  assert.ok(valid.warnings.some((warning: string) => warning.includes('fixed answer position')));
+  assert.equal(valid.unreviewedQuestions, 3);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -124,6 +143,9 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   const concentrationReport = module.auditQuestionBank(concentrated, []);
   assert.deepEqual(concentrationReport.errors, []);
   assert.ok(concentrationReport.warnings.some((warning: string) => warning.includes('dominant answer position') && warning.includes('80.0%')));
+  const fixed = module.auditQuestionBank(concentrated.map(q => ({ ...q, correctIndex: 0 })), []);
+  assert.ok(fixed.warnings.some((warning: string) => warning.includes('fixed answer position')));
+  assert.ok(fixed.warnings.some((warning: string) => warning.includes('single question type')));
 });
 
 test('malformed distractor axes return validation failures instead of throwing', async () => {
@@ -161,4 +183,250 @@ test('dry-run covers three domains without API calls, reports or bank writes', a
     keys.forEach((key, i) => { if (saved[i] === undefined) delete process.env[key]; else process.env[key] = saved[i]; });
     rmSync(folder, { recursive: true, force: true });
   }
+});
+
+test('hand-authored supplement meets authoring gates and varies type and answer position', () => {
+  assert.equal(SUPPLEMENTAL_QUESTIONS.length, 26);
+  assert.ok(SUPPLEMENTAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
+  for (const q of SUPPLEMENTAL_QUESTIONS) {
+    assert.ok(passesLengthGate(q), q.id);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.distractorExplanations?.length, 3, q.id);
+  }
+  const d21 = INITIAL_QUESTIONS.filter(q => q.subDomain.startsWith('D2.1'));
+  assert.ok(d21.length >= 15);
+  assert.ok(new Set(d21.map(q => q.questionType)).size >= 4);
+  assert.ok(new Set(d21.map(q => q.correctIndex)).size === 4);
+  for (const topic of ['D1.3', 'D3.2']) {
+    assert.ok(new Set(INITIAL_QUESTIONS.filter(q => q.subDomain.startsWith(topic)).map(q => q.questionType)).size >= 4, topic);
+  }
+});
+
+test('correct option is never the longest, except two items held by reviewer decisions', () => {
+  const longest = INITIAL_QUESTIONS.filter(q => q.options[q.correctIndex].length === Math.max(...q.options.map(o => o.length)));
+  // aaig-d4-003 was retained as-is and x6j7d awaits ISO/IEC 42001 evidence in the 2026-10-14 review.
+  assert.deepEqual(longest.map(q => q.id).sort(), ['aaig-d4-003', 'aaig-pipe-1791943409756-76-x6j7d']);
+});
+
+test('every bank question passes the option length-parity gate', () => {
+  assert.deepEqual(INITIAL_QUESTIONS.filter(q => !passesLengthGate(q)).map(q => q.id), []);
+});
+
+test('explanations cite options only in the "Option X" form that shuffling can remap', () => {
+  // Legal locators such as Annex III 5(b) are not option references.
+  const unmappable = /\b[Oo]ptions\s+[ABCD]\b|(?<![\w)/])\([ABCD]\)|\b[Cc]hoices?\s+[ABCD]\b|\b[Aa]nswer\s+[ABCD]\b/;
+  const offenders = INITIAL_QUESTIONS.filter(q => [q.explanation, ...(q.distractorExplanations || [])].some(t => unmappable.test(t)));
+  assert.deepEqual(offenders.map(q => q.id), []);
+});
+
+test('guessability indicator separates reasoning-dependent items from wording-dependent items', async () => {
+  const { guessabilityRate, guessProbability } = await import('../src/services/guessability');
+  const wordy = { options: ['Deploy an automated dashboard without review', 'Establish a charter with decision rights and risk appetite', 'Let engineers decide alone', 'Wait'], questionType: 'BEST' as const, correctIndex: 1 };
+  assert.equal(guessProbability(wordy), 1);
+  assert.equal(guessProbability({ ...wordy, correctIndex: 3 }), 0);
+  const tied = { options: ['one', 'two', 'three', 'four'], questionType: 'BEST' as const, correctIndex: 2 };
+  assert.equal(guessProbability(tied), 0.25, 'ties are broken at random, not by option position');
+  assert.equal(guessabilityRate([]), 0);
+  const { FUNDAMENTAL_QUESTIONS } = await import('../src/data/fundamentalQuestions');
+  assert.ok(guessabilityRate(FUNDAMENTAL_QUESTIONS) <= 0.4, 'new Fundamental items must not be answerable from wording alone');
+  const report = (await import('../scripts/auditQuestions')).auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
+  assert.equal(typeof report.guessability.rate, 'number');
+});
+
+test('distractor rewrites keep answers, passes gates and removes the vocabulary cue without inverting it', async () => {
+  const { DISTRACTOR_REWRITES, CORRECT_REWRITES } = await import('../src/data/distractorRewrites');
+  const { guessabilityRate } = await import('../src/services/guessability');
+  const ids = Object.keys(DISTRACTOR_REWRITES);
+  assert.equal(ids.length, 161);
+  assert.deepEqual(Object.keys(CORRECT_REWRITES).sort(), [...ids].sort());
+  const rewritten = INITIAL_QUESTIONS.filter(q => ids.includes(q.id));
+  assert.equal(rewritten.length, ids.length);
+  for (const q of rewritten) {
+    assert.ok(passesLengthGate(q), `${q.id} length parity`);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.distractorExplanations?.length, 3, q.id);
+    assert.equal(q.reviewStatus, 'reviewed');            // every rewrite went through a review packet and was approved
+    assert.equal(q.reviewedAt, '2026-10-24');
+  }
+  const rate = guessabilityRate(rewritten);
+  // Before the pilot every one of these items was answered correctly by the guesser.
+  assert.ok(rate <= 0.4, `pilot guessability ${rate}`);
+  assert.ok(rate >= 0.15, `pilot guessability ${rate} is below chance, which would invert the cue`);
+});
+
+test('retired near-duplicates leave the active bank, never touch protected items, and keep every subtopic usable', async () => {
+  const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+  const { RETIRED_QUESTIONS, RETIRED_QUESTION_IDS } = await import('../src/data/retiredQuestions');
+  const { findNearDuplicatePairs } = await import('../src/services/duplicateDetection');
+  const baseline = JSON.parse(readFileSync(new URL('./fixtures/review-20261014-baseline.json', import.meta.url), 'utf8'));
+  const decisions = new Map<string, string>(baseline.items.map((item: { id: string; decision: string }) => [item.id, item.decision]));
+  // Retired on the reviewer's own decision on 2026-10-24 (six questions on one ISO/IEC 42001 fact, three kept).
+  const REVIEWER_RETIRED = new Set(['aaig-pipe-1791943409756-76-x6j7d', 'aaig-pipe-1791943579801-116-pccul', 'aaig-pipe-1791943982371-196-b3ogk']);
+  const isProtected = (id: string) => !/^aaig-pipe/.test(id) || (decisions.has(id) && decisions.get(id) !== 'revise');
+  const byId = new Map(INITIAL_QUESTIONS.map(q => [q.id, q]));
+  assert.equal(ACTIVE_QUESTIONS.length, INITIAL_QUESTIONS.length - RETIRED_QUESTIONS.length);
+  assert.ok(ACTIVE_QUESTIONS.every(q => !RETIRED_QUESTION_IDS.has(q.id)));
+  for (const entry of RETIRED_QUESTIONS) {
+    const retired = byId.get(entry.id), twin = byId.get(entry.keptTwin);
+    assert.ok(retired && twin, entry.id);
+    assert.ok(REVIEWER_RETIRED.has(entry.id) || !isProtected(entry.id), `${entry.id} is held by a reviewer decision or is not generated`);
+    assert.ok(!RETIRED_QUESTION_IDS.has(entry.keptTwin), `${entry.id} points at a retired twin`);
+    assert.equal(retired.subDomain, twin.subDomain);
+  }
+  const perTopic = new Map<string, number>();
+  for (const q of ACTIVE_QUESTIONS) perTopic.set(q.subDomain, (perTopic.get(q.subDomain) || 0) + 1);
+  assert.ok([...perTopic.values()].every(count => count >= 9), 'every subtopic keeps at least nine questions');
+  // Pairs that remain involve only items held by reviewer decisions, so they cannot be retired here.
+  assert.ok(findNearDuplicatePairs(ACTIVE_QUESTIONS).every(([a, b]) => isProtected(a) && isProtected(b)));
+});
+
+test('the app loads the active bank, so retired questions never reach practice or mock exams', async () => {
+  const { setupDom } = await import('./dom');
+  const cleanup = setupDom();
+  try {
+    const { loadAllQuestions } = await import('../src/services/storage');
+    const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+    assert.deepEqual(loadAllQuestions().map(q => q.id), ACTIVE_QUESTIONS.map(q => q.id));
+  } finally { cleanup(); }
+});
+
+test('expansion questions cover thin subtopics outside the financial sector and meet every authoring gate', async () => {
+  const { EXPANSION_QUESTIONS } = await import('../src/data/expansionQuestions');
+  const { guessabilityRate } = await import('../src/services/guessability');
+  const { findNearDuplicatePairs } = await import('../src/services/duplicateDetection');
+  const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+  assert.equal(EXPANSION_QUESTIONS.length, 40);
+  assert.deepEqual(['D1', 'D2', 'D3'].map(d => EXPANSION_QUESTIONS.filter(q => q.domainId === d).length), [12, 16, 12]);
+  for (const q of EXPANSION_QUESTIONS) {
+    assert.ok(passesLengthGate(q), `${q.id} length parity`);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.reviewStatus, 'unreviewed');
+    assert.doesNotMatch(q.scenarioText || '', /financ|bank|credit|lending|insur|wealth|underwrit/i, `${q.id} scenario should not be financial`);
+  }
+  assert.ok(new Set(EXPANSION_QUESTIONS.map(q => q.questionType)).size === 5);
+  assert.ok(new Set(EXPANSION_QUESTIONS.map(q => q.correctIndex)).size === 4);
+  const rate = guessabilityRate(EXPANSION_QUESTIONS);
+  assert.ok(rate >= 0.15 && rate <= 0.4, `guessability ${rate}`);
+  const ids = new Set(EXPANSION_QUESTIONS.map(q => q.id));
+  assert.deepEqual(findNearDuplicatePairs(ACTIVE_QUESTIONS).filter(([a, b]) => ids.has(a) || ids.has(b)), [], 'new questions must not duplicate existing ones');
+  const stems = ACTIVE_QUESTIONS.map(q => q.questionText.toLowerCase());
+  assert.equal(new Set(stems).size, stems.length, 'question stems are unique');
+});
+
+test('second expansion round weights crowded subtopics, stays non-financial and meets every authoring gate', async () => {
+  const { EXPANSION_QUESTIONS_2 } = await import('../src/data/expansionQuestions2');
+  const { guessabilityRate } = await import('../src/services/guessability');
+  const { findNearDuplicatePairs } = await import('../src/services/duplicateDetection');
+  const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+  assert.equal(EXPANSION_QUESTIONS_2.length, 40);
+  assert.deepEqual(['D1', 'D2', 'D3'].map(d => EXPANSION_QUESTIONS_2.filter(q => q.domainId === d).length), [18, 12, 10]);
+  assert.equal(EXPANSION_QUESTIONS_2.filter(q => q.subDomain.startsWith('D1.1') || q.subDomain.startsWith('D1.3')).length, 12);
+  for (const q of EXPANSION_QUESTIONS_2) {
+    assert.ok(passesLengthGate(q), `${q.id} length parity`);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.reviewStatus, 'unreviewed');
+    assert.doesNotMatch(q.scenarioText || '', /financ|bank|credit|lending|insur|wealth|underwrit/i, q.id);
+  }
+  assert.ok(new Set(EXPANSION_QUESTIONS_2.map(q => q.questionType)).size === 5);
+  assert.ok(new Set(EXPANSION_QUESTIONS_2.map(q => q.correctIndex)).size === 4);
+  const rate = guessabilityRate(EXPANSION_QUESTIONS_2);
+  assert.ok(rate >= 0.15 && rate <= 0.4, `guessability ${rate}`);
+  const ids = new Set(EXPANSION_QUESTIONS_2.map(q => q.id));
+  assert.deepEqual(findNearDuplicatePairs(ACTIVE_QUESTIONS).filter(([a, b]) => ids.has(a) || ids.has(b)), []);
+});
+
+test('audit reports flashcard form problems that make cards hard to recall', async () => {
+  const { auditQuestionBank } = await import('../scripts/auditQuestions');
+  const base = FLASHCARDS[0];
+  const clean = { ...base, id: 'fc-t1', front: 'What is the first line?', back: 'Short answer.' };
+  const long = { ...base, id: 'fc-t2', front: 'What is a model card, and how does it help?', back: 'x'.repeat(700) };
+  const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), [clean, long]);
+  assert.equal(report.flashcards.count, 2);
+  assert.equal(report.flashcards.longBacks, 1);
+  assert.equal(report.flashcards.compoundFronts, 1);
+  assert.ok(report.warnings.some((w: string) => w.includes('flashcard backs exceed 600')));
+  assert.ok(report.warnings.some((w: string) => w.includes('fc-t2')));
+  assert.equal(auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), [clean]).flashcards.longBacks, 0);
+});
+
+test('reviewer-requested explanation updates use the plainer wording of the new correct options', async () => {
+  const { EXPLANATION_REWRITES, DISTRACTOR_REWRITES } = await import('../src/data/distractorRewrites');
+  const ids = Object.keys(EXPLANATION_REWRITES);
+  assert.equal(ids.length, 63);
+  const NO_ISO = new Set(['aaig-pipe-1791943428696-83-84pke', 'aaig-pipe-1791943759533-157-mrv74', 'aaig-pipe-1791943988538-197-p3hhf', 'aaig-pipe-1791942382711-7', 'aaig-pipe-1791944061542-217-i1geg']);
+  // Hand-written D2.1 and D3.2 explanations cite no framework at all; none was added.
+  const NO_CITATION = new Set(['aaig-d2s-001', 'aaig-d2s-005', 'aaig-d2s-007', 'aaig-d2s-008', 'aaig-pipe-1791943736083-151-32qho']);
+  const NO_CLAUSE = new Set([...NO_ISO, 'aaig-pipe-1791943386735-73-ro93k', 'aaig-pipe-1791943732362-150-ey9df', 'aaig-pipe-1791943737090-153-3s2x0']);
+  for (const id of ids) {
+    assert.ok(DISTRACTOR_REWRITES[id], `${id} must also be one of the rewritten questions`);
+    const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
+    assert.equal(q.explanation, EXPLANATION_REWRITES[id]);
+    assert.doesNotMatch(q.explanation, /charter|steering committee/i, `${id} still uses the old wording`);
+    // Five explanations never cited ISO/IEC 42001 and eight never cited a clause; no citation was added to satisfy this test.
+    if (NO_CITATION.has(id)) { /* no framework was cited originally */ }
+    else if (!NO_ISO.has(id)) assert.match(q.explanation, /ISO\/IEC 42001/, `${id} keeps its framework citation`);
+    else assert.match(q.explanation, /NIST AI RMF|Three Lines/, `${id} keeps its framework citation`);
+    if (!NO_CLAUSE.has(id) && !NO_CITATION.has(id)) assert.match(q.explanation, /Clauses? \d/, `${id} keeps its clause citation`);
+    assert.doesNotMatch(q.explanation, /\bOption [ABCD]\b/, id);
+  }
+});
+
+test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
+  const by = (id: string) => FLASHCARDS.find(card => card.id === id)!;
+  assert.equal(FLASHCARDS.length, 98);
+  for (const card of FLASHCARDS) {
+    assert.ok(card.back.length <= 400, `${card.id} back is ${card.back.length} characters`);       // J1
+    assert.ok(card.keyTakeaway.length <= 130, `${card.id} takeaway is ${card.keyTakeaway.length}`);  // J2
+    assert.ok((card.front.match(/\?/g) || []).length === 1, `${card.id} front must be one question`);
+    assert.doesNotMatch(card.front, / and (how|what|who|when|why|which)\b/i, `${card.id} front is compound`); // J3
+    // 2026-10-24 second review: all cards approved by the reviewer, who asked for the name and date to be recorded (Q5).
+    assert.equal(card.reviewStatus, 'reviewed');
+    assert.equal(card.reviewedBy, 'Xiaoli (Shelly) Zhao');
+    assert.equal(card.reviewedAt, '2026-10-24');
+  }
+  assert.deepEqual(FLASHCARDS.filter(card => card.scope).map(card => `${card.id}:${card.scope}`).sort(), ['fc-07b:US-specific', 'fc-19:US-specific']); // J4
+  assert.ok(!FLASHCARDS.some(card => card.verification));                                               // J5: pending labels lifted by the second review
+  assert.ok(!FLASHCARDS.some(card => card.id === 'fc-50'));                                              // Q3: merged into fc-49
+  assert.match(FLASHCARDS.find(card => card.id === 'fc-49')!.back, /baseline before deployment/i);
+  assert.equal(by('fc-12').domainId, 'D3');                                                              // J7
+  assert.doesNotMatch(by('fc-12').source, /23894/);
+  assert.equal(by('fc-12').sourceUrl, 'https://doi.org/10.1145/2523813');                                  // DOI supplied by the reviewer on 2026-10-24
+  assert.match(by('fc-04').back, /governing body or senior management/);                                  // J8
+  assert.match(by('fc-04').source, /COBIT 2019 EDM03/);
+  assert.doesNotMatch(by('fc-32').back + by('fc-32b').back, /legal compliance/i);                         // J9
+  assert.match(by('fc-32').back, /Plan-Do-Check-Act/);
+  assert.match(by('fc-10').source, /2019\/1937/);                                                         // J10
+  assert.match(by('fc-10').source, /Art\. 87/);
+  assert.doesNotMatch(by('fc-10').source, /GOVERN 4/);
+  assert.match(by('fc-13b').back, /non-linear/);                                                          // J11
+  assert.doesNotMatch(by('fc-02').keyTakeaway, /parallel/);                                               // J12
+  assert.match(by('fc-39b').front, /Article 43/);                                                         // J13
+  assert.equal(by('fc-38').domainId, 'D3');                                                               // J14
+  assert.match(by('fc-07b').back, /Caremark/);                                                            // J15
+  assert.doesNotMatch(by('fc-07').back, /Caremark/);
+  for (const id of ['fc-38']) { for (const days of [/2 days/, /10 days/, /15 days/]) assert.match(by(id).back, days); }
+});
+
+test('split cards keep their original ID on the first part so saved mastery still applies', () => {
+  const splits: Record<string, string[]> = { 'fc-01': ['fc-01b', 'fc-01c'], 'fc-31': ['fc-31b', 'fc-31c', 'fc-31d'], 'fc-25': ['fc-25b', 'fc-25c'], 'fc-21': ['fc-21b', 'fc-21c'] };
+  const ids = FLASHCARDS.map(card => card.id);
+  for (const [first, rest] of Object.entries(splits)) {
+    assert.ok(ids.includes(first));
+    assert.deepEqual(rest.filter(id => !ids.includes(id)), []);
+    assert.ok(ids.indexOf(first) < ids.indexOf(rest[0]));
+  }
+  assert.equal(new Set(ids).size, ids.length);
+  assert.ok(FLASHCARDS.filter(card => card.legacyDomainId === 'D4').every(card => card.domainId !== 'D4'));
+});
+
+test('the audit no longer flags flashcard length or compound fronts', async () => {
+  const { auditQuestionBank } = await import('../scripts/auditQuestions');
+  const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), FLASHCARDS);
+  assert.equal(report.flashcards.longBacks, 0);
+  assert.equal(report.flashcards.compoundFronts, 0);
+  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 98);
 });

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Flashcard, StudyDomainId, FlashcardMastery, UserProgress } from '../types';
 import { STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
+import { orderCardsForReview } from '../services/studyStats';
 import { 
   RotateCw, 
   Check, 
@@ -28,12 +29,30 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const [selectedDomain, setSelectedDomain] = useState<StudyDomainId | 'ALL'>('ALL');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  // Many card backs are taller than the card, so tell the learner when more text is below.
+  const backRef = useRef<HTMLDivElement>(null);
+  const [moreBelow, setMoreBelow] = useState(false);
+  const updateMoreBelow = () => {
+    const el = backRef.current;
+    setMoreBelow(!!el && el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+  };
 
+  // Difficult and unseen cards come first. Ordered once from the mastery at the time the
+  // deck is opened, so rating a card does not reshuffle the cards still to come.
+  const masteryRef = useRef(progress.flashcardMastery);
+  masteryRef.current = progress.flashcardMastery;
+  const orderedCards = useMemo(() => orderCardsForReview(flashcards, masteryRef.current), [flashcards]);
   const filteredCards = selectedDomain === 'ALL'
-    ? flashcards
-    : flashcards.filter(c => c.domainId === selectedDomain);
+    ? orderedCards
+    : orderedCards.filter(c => c.domainId === selectedDomain);
 
   const currentCard = filteredCards[currentIndex];
+
+  useEffect(() => {
+    if (backRef.current) backRef.current.scrollTop = 0;
+    const timer = setTimeout(updateMoreBelow, 0);
+    return () => clearTimeout(timer);
+  }, [isFlipped, currentCard?.id]);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -121,15 +140,17 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       <p className="text-xs text-slate-500 dark:text-slate-400">
         {currentCard.reviewStatus === 'reviewed' && currentCard.reviewedBy && currentCard.reviewedAt
           ? `Reviewed by ${currentCard.reviewedBy} on ${currentCard.reviewedAt}`
-          : 'Unreviewed study material · verify the explanation and references before relying on them.'}
+          : currentCard.verification === 'pending'
+            ? 'New card, pending verification · its content and references have not been checked against sources yet.'
+            : 'Unreviewed study material · verify the explanation and references before relying on them.'}
       </p>
 
       {/* 3D Flip Card Container */}
       <div 
         onClick={handleFlip}
-        className="w-full min-h-[360px] cursor-pointer perspective-1000 select-none"
+        className="w-full min-h-[440px] cursor-pointer perspective-1000 select-none"
       >
-        <div className={`relative w-full min-h-[360px] rounded-3xl transition-transform duration-500 transform-style-3d ${
+        <div className={`relative w-full min-h-[440px] rounded-3xl transition-transform duration-500 transform-style-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}>
           {/* FRONT */}
@@ -142,17 +163,33 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
                   currentMastery === 'mastered' 
                     ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400' 
+                    : currentMastery === 'hard'
+                    ? 'bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400'
                     : currentMastery === 'learning' 
                     ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400' 
                     : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
                 }`}>
-                  {currentMastery === 'mastered' ? 'Mastered' : currentMastery === 'learning' ? 'Reviewing' : 'New Card'}
+                  {currentMastery === 'mastered' ? 'Mastered' : currentMastery === 'hard' ? 'Difficult' : currentMastery === 'learning' ? 'Reviewing' : 'New Card'}
                 </span>
               </div>
 
               <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 {currentCard.topic}
               </div>
+              {(currentCard.scope || currentCard.verification === 'pending') && (
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {currentCard.scope && (
+                    <span className="px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 text-[11px] font-semibold">
+                      {currentCard.scope}
+                    </span>
+                  )}
+                  {currentCard.verification === 'pending' && (
+                    <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 text-[11px] font-semibold">
+                      Pending verification
+                    </span>
+                  )}
+                </div>
+              )}
 
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed">
                 {currentCard.front}
@@ -165,7 +202,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           </div>
 
           {/* BACK */}
-          <div className="absolute inset-0 w-full h-full p-8 rounded-3xl bg-slate-900 dark:bg-slate-950 text-white border-2 border-indigo-500/40 shadow-xl flex flex-col justify-between rotate-y-180 backface-hidden overflow-y-auto">
+          <div ref={backRef} onScroll={updateMoreBelow} className="absolute inset-0 w-full h-full p-8 rounded-3xl bg-slate-900 dark:bg-slate-950 text-white border-2 border-indigo-500/40 shadow-xl flex flex-col justify-between rotate-y-180 backface-hidden overflow-y-auto">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <span className="text-xs font-bold text-indigo-400">
@@ -212,6 +249,11 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400 pt-4 border-t border-slate-800">
               <RotateCw className="w-3.5 h-3.5" /> Click card to flip back
             </div>
+            {moreBelow && (
+              <div className="sticky bottom-0 -mx-8 -mb-8 pt-10 pb-3 text-center text-[11px] font-semibold text-indigo-300 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent pointer-events-none">
+                Scroll for the rest and the study takeaway ↓
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -223,7 +265,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         </div>
         <div className="grid grid-cols-3 gap-3">
           <button
-            onClick={() => handleMastery('learning')}
+            onClick={() => handleMastery('hard')}
             className="py-3 px-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/30 hover:bg-rose-100 text-rose-700 dark:text-rose-400 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
           >
             <X className="w-4 h-4" /> Difficult (Hard)
