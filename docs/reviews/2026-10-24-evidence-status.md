@@ -36,3 +36,13 @@ ISO/IEC 42001 为付费标准，即使网络放开，也需要正版文本才能
 1. 在环境网络设置中放行上述域名。
 2. 逐条对照 NIST AI RMF、EU AI Act 和 GDPR 原文，仅为已核实条目写入 `sourceUrl`，并同步记录核验人和日期。
 3. 取得 ISO/IEC 42001 正版文本后处理 7 项条款核验。
+
+## 2026-10-24 更新：核验工作表
+
+复核人（Xiaoli (Shelly) Zhao）要求处理这 9 项。网络仍被拦截（iso.org、nist.gov、eur-lex、dl.acm.org、gdpr-info.eu 等，已再次尝试），且 ISO/IEC 42001:2023 和 COBIT 2019 是付费文本，所以我没有核验，也没有写任何 `sourceUrl`，9 项仍保持"待补证"。
+
+已做的：生成 `2026-10-24-evidence-worksheet.docx`。它把需要对照原文的陈述逐条列出（6 条 ISO/IEC 42001 事实、fc-04 的 3 个问题、fc-12 的 3 个问题），写了我凭记忆的理解（明确标为未核实），并留出勾选和填写条款号的位置。同时提出两个需要复核人决定的内容问题：①六道"建立 AIMS 先做什么"的题是同一个知识点，建议保留 3 道、退休 3 道；②fc-12 的出处建议改成 Gama 等 2014（concept drift / virtual drift）与 Quiñonero-Candela 等 2009（covariate / dataset shift）并列，因为 "Data Drift（Covariate Shift）" 这个名称并不出自 Gama 的综述。
+
+我还发现并标出两处可疑引用：x6j7d、pccul 两道题引用了 "ISO/IEC 23894 Clause 5.2"（领导与承诺），与"确定范围"无关；b3ogk 的解析提到"统一结构"，我没有核实。
+
+复核人返回工作表后，只把勾选"属实"的条目写入 `sourceUrl`，并记录核验人、日期和所用文本版本。
