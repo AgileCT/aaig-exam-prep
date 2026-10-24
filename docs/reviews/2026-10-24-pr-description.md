@@ -18,8 +18,8 @@ An EdTech and exam-quality review of the app found that the question bank could 
 
 ### Question bank (439 source questions → 373 active)
 - **Retired 66** near-duplicates (63 by the similarity rule, 3 on the reviewer's decision). They stay in the source data (`src/data/retiredQuestions.ts`) and are excluded from practice, mock exams and statistics.
-- **Added 158 hand-written questions** across D1 to D3 with mostly non-financial scenarios (the earlier bank was 80.7% financial; the active bank is now about 61%).
-- **Rewrote 159 questions** (`src/data/distractorRewrites.ts`): two or three wrong options per item became legitimate governance actions that fail on scope or sequence, the correct option was put in plainer wording, kept wrong options got an error-axis tag, and 63 main explanations were synced to the new wording. LEAST questions only had the wording of the bad practice changed. The rewrite layer now also applies to hand-written questions.
+- **Added 122 hand-written questions** across D1 to D3 with mostly non-financial scenarios (the earlier bank was 80.7% financial; the active bank is now about 61%).
+- **Rewrote 161 questions (159 still active)** (`src/data/distractorRewrites.ts`): two or three wrong options per item became legitimate governance actions that fail on scope or sequence, the correct option was put in plainer wording, kept wrong options got an error-axis tag, and 63 main explanations were synced to the new wording. LEAST questions only had the wording of the bad practice changed. The rewrite layer now also applies to hand-written questions.
 - A **guessability indicator** and a regression test were added to the offline audit. The scenario-blind guesser now gets **31.3%** of the active bank right (from 71%; chance is 25%); every question type is below 40% (FIRST 32.6%, BEST 34.3%, PRIMARY 33.2%, MOST 33.0%, LEAST 21.6%).
 - The correct option is no longer the longest option (two items held by earlier reviewer decisions excepted), and the option length-parity gate holds for the whole bank.
 
@@ -50,6 +50,13 @@ An EdTech and exam-quality review of the app found that the question bank could 
 - Saved progress is migrated on load (answer-position remap); backups from before 1.3.0 are remapped on import. There are tests for both. Mastery recorded on fc-50 no longer points at a card.
 - Retired questions are excluded everywhere the app reads the bank (`ACTIVE_QUESTIONS`); their saved attempts remain in storage.
 - No dependency changes. `bun.lock` was removed; npm is the canonical installer.
+
+## Regression check (2026-10-24)
+
+- `npm run verify`: 96 tests pass, offline audit has no errors, `tsc` and the production build pass. Active bank 373 questions (D1 162, D2 102, D3 109), 98 flashcards, all with review records.
+- Browser smoke test (Chromium against the production build): Dashboard loads; Practice shows the subtopic selector (21 options), answering a question shows the rationale and reference; Mock Exam starts and shows the timer; Flashcards show 98 cards, rating a card Difficult persists across a reload and the card shows "Reviewed by Xiaoli (Shelly) Zhao"; Dashboard shows first-attempt and latest accuracy; dark mode toggles; no console errors or page errors in any flow.
+- **One defect found and fixed:** the header was wider than a phone screen (556 px of content in a 390 px viewport, so the whole page scrolled sideways on every tab). It predates this branch. The brand text is now hidden below the `sm` breakpoint and the nav padding is tighter on phones; the page no longer scrolls sideways at 390 px or 360 px on any tab. The domain tabs in Practice still scroll inside their own container, as designed.
+- Not covered: real devices and browsers other than Chromium, the AI tutor and AI generation with a real provider key (provider calls are covered by mocked tests only), and the Vercel deployment.
 
 ## How to review
 
