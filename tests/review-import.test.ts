@@ -22,7 +22,9 @@ const optionOnly = new Map(optionBalance.items.map(item => [item.id, item.hashWi
 // 2026-10-24: canonical answer positions were rebalanced by swapping options.
 // A swap is its own inverse, so undoing it must reproduce the signed content.
 const undoMove = (q: Question) => CORRECT_POSITION_MOVES[q.id] ? swapQuestionOptions(q, ...CORRECT_POSITION_MOVES[q.id]) : q;
-const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...undoMove(q) })),
+// 2026-10-24: review records (reviewStatus, reviewedBy, reviewedAt) were written for reviewed questions. The signed snapshot predates them, so compare content only.
+const stripReview = (q: Question) => { const { reviewedBy, reviewedAt, ...rest } = q; return { ...rest, reviewStatus: 'unreviewed' as const }; };
+const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...stripReview(undoMove(q)) })),
   // 2026-10-24 second review: cards now carry reviewer metadata. The signed snapshot predates it, so compare content only.
   ...INITIAL_FLASHCARDS.map(({ reviewedBy, reviewedAt, ...c }) => ({ type: 'flashcard', ...c, reviewStatus: 'unreviewed' as const }))];
 const byId = new Map(items.map(item => [item.id, item]));

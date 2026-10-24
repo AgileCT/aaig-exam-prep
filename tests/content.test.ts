@@ -22,19 +22,28 @@ test('importing generation code does not contact an AI provider', async () => {
   finally { globalThis.fetch = previous; }
 });
 
-test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
+import { DISTRACTOR_REWRITES as DISTRACTOR_REWRITES_FOR_TEST } from '../src/data/distractorRewrites';
+
+test('review records cover only reviewed questions and no question claims ISACA manual provenance', () => {
   assert.equal(INITIAL_QUESTIONS.length, 439);
-  // Three AIMS questions carry the reviewer's evidence verification of 2026-10-24; everything else is unreviewed.
-  const verified = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed').map(q => q.id).sort();
-  assert.deepEqual(verified, ['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']);
-  for (const q of INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed')) {
-    assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao');
-    assert.equal(q.reviewedAt, '2026-10-24');
-    assert.match(q.source, /not the licensed full text/);
-    assert.equal(q.sourceUrl, 'https://www.iso.org/standard/81230.html');
+  // 2026-10-24: review records exist only for questions the reviewer actually reviewed (see src/data/reviewRecords.ts).
+  const reviewed = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed');
+  assert.equal(reviewed.length, 302);
+  for (const q of reviewed) {
+    assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao', q.id);
+    assert.ok(q.reviewedAt === '2026-10-14' || q.reviewedAt === '2026-10-24', q.id);
   }
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'reviewed' || q.reviewStatus === 'unreviewed'));
-  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 436);
+  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 137);
+  // Everything added by hand after the 2026-10-14 review and not rewritten stays unreviewed, and so do the seven trimmed items.
+  assert.ok(INITIAL_QUESTIONS.filter(q => /^aaig-d\ds-/.test(q.id) && !(q.id in DISTRACTOR_REWRITES_FOR_TEST)).every(q => q.reviewStatus === 'unreviewed'));
+  // The three evidence-verified AIMS questions keep their source note and link.
+  for (const id of ['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']) {
+    const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
+    assert.match(q.source, /not the licensed full text/);
+    assert.equal(q.sourceUrl, 'https://www.iso.org/standard/81230.html');
+    assert.equal(q.reviewedAt, '2026-10-24');
+  }
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => !/ISACA/i.test(q.source)));
 });
@@ -126,7 +135,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 436);
+  assert.equal(valid.unreviewedQuestions, 137);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -238,7 +247,8 @@ test('distractor rewrites keep answers, passes gates and removes the vocabulary 
     assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
     assert.equal(q.distractorAxes?.length, 3, q.id);
     assert.equal(q.distractorExplanations?.length, 3, q.id);
-    assert.equal(q.reviewStatus, 'unreviewed');
+    assert.equal(q.reviewStatus, 'reviewed');            // every rewrite went through a review packet and was approved
+    assert.equal(q.reviewedAt, '2026-10-24');
   }
   const rate = guessabilityRate(rewritten);
   // Before the pilot every one of these items was answered correctly by the guesser.

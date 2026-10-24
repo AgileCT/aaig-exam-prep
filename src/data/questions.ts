@@ -6,6 +6,7 @@ import { EXPANSION_QUESTIONS } from './expansionQuestions';
 import { EXPANSION_QUESTIONS_2 } from './expansionQuestions2';
 import { applyDistractorRewrite } from './distractorRewrites';
 import { applyEvidenceVerification } from './evidenceVerification';
+import { applyReviewRecord } from './reviewRecords';
 import { RETIRED_QUESTION_IDS } from './retiredQuestions';
 import { CORRECT_POSITION_MOVES } from './correctPositionMoves';
 import { markQuestionUnreviewed, swapQuestionOptions } from '../services/questionOrder';
@@ -506,7 +507,7 @@ function applyCorrectPositionMove(question: Question): Question {
 export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
-].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2).map(applyDistractorRewrite).map(applyEvidenceVerification);
+].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2).map(applyDistractorRewrite).map(applyEvidenceVerification).map(applyReviewRecord);
 
 /** The bank learners practice from: every question except retired near-duplicates. */
 export const ACTIVE_QUESTIONS: Question[] = INITIAL_QUESTIONS.filter(question => !RETIRED_QUESTION_IDS.has(question.id));
