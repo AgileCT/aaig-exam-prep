@@ -348,7 +348,7 @@ test('reviewer-requested explanation updates use the plainer wording of the new 
 
 test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
   const by = (id: string) => FLASHCARDS.find(card => card.id === id)!;
-  assert.equal(FLASHCARDS.length, 90);
+  assert.equal(FLASHCARDS.length, 99);
   for (const card of FLASHCARDS) {
     assert.ok(card.back.length <= 400, `${card.id} back is ${card.back.length} characters`);       // J1
     assert.ok(card.keyTakeaway.length <= 130, `${card.id} takeaway is ${card.keyTakeaway.length}`);  // J2
@@ -358,7 +358,7 @@ test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
   }
   assert.deepEqual(FLASHCARDS.filter(card => card.scope).map(card => `${card.id}:${card.scope}`).sort(), ['fc-07b:US-specific', 'fc-19:US-specific']); // J4
   const pending = FLASHCARDS.filter(card => card.verification === 'pending').map(card => card.id);       // J5
-  assert.deepEqual(pending, Array.from({ length: 12 }, (_, i) => `fc-${41 + i}`));
+  assert.deepEqual(pending, Array.from({ length: 21 }, (_, i) => `fc-${41 + i}`));
   assert.ok(!FLASHCARDS.filter(card => !pending.includes(card.id)).some(card => card.verification));
   assert.equal(by('fc-12').domainId, 'D3');                                                              // J7
   assert.doesNotMatch(by('fc-12').source, /23894/);
@@ -395,5 +395,5 @@ test('the audit no longer flags flashcard length or compound fronts', async () =
   const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), FLASHCARDS);
   assert.equal(report.flashcards.longBacks, 0);
   assert.equal(report.flashcards.compoundFronts, 0);
-  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 90);
+  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 99);
 });

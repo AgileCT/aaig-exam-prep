@@ -53,8 +53,8 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
   // relative order, so saved mastery still points at the first part of each split card.
   const cardIds = INITIAL_FLASHCARDS.map(c => c.id);
   assert.deepEqual(cardIds.filter(id => baseline.flashcards.includes(id)), baseline.flashcards);
-  assert.ok(cardIds.filter(id => !baseline.flashcards.includes(id)).every(id => /^fc-(\d\d[b-d]|4[1-9]|5[0-2])$/.test(id)));
-  assert.equal(byId.size, 529);
+  assert.ok(cardIds.filter(id => !baseline.flashcards.includes(id)).every(id => /^fc-(\d\d[b-d]|4[1-9]|5[0-9]|6[01])$/.test(id)));
+  assert.equal(byId.size, 538);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {

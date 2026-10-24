@@ -841,6 +841,96 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM03; IIA Three Lines Model (2020)",
     keyTakeaway: "Appetite and tolerance are set at the top; the first line cannot change them alone.",
     verification: 'pending'
+  },
+  {
+    id: "fc-53",
+    domainId: "D2",
+    topic: "AI inventory: what to record",
+    front: "What should an AI inventory record for each system?",
+    back: "A named accountable owner, the intended purpose, risk tier, data sources, model or vendor and version, deployment status, and links to the model card and key approvals. Without an owner and a risk tier the inventory cannot direct oversight.",
+    source: "NIST AI RMF 1.0 GOVERN 1.6; ISO/IEC 42001:2023 Annex A (verify against licensed standard)",
+    keyTakeaway: "Record owner, purpose, risk tier, data, version, status and links to approvals.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-54",
+    domainId: "D2",
+    topic: "AI inventory: embedded and third-party AI",
+    front: "Why must an AI inventory cover embedded and third-party AI features?",
+    back: "Staff often use AI features built into purchased software that the organization did not build or register. An inventory that lists only in-house systems misses them, so its scope must state whether embedded AI counts and how it will be found, for example through procurement checks and cloud billing review.",
+    source: "NIST AI RMF 1.0 GOVERN 1.6",
+    keyTakeaway: "Define whether embedded AI is in scope, and how it will be found.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-55",
+    domainId: "D2",
+    topic: "AI inventory: retiring a system",
+    front: "How should a retired AI system be handled in the inventory?",
+    back: "Confirm that use has actually stopped, update the system's status, and keep its documentation for the retention period. Do not delete the record straight away, because it is the audit trail for decisions the system made.",
+    source: "NIST AI RMF 1.0 GOVERN 1.7",
+    keyTakeaway: "Retire the status, keep the record: it is the audit trail.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-56",
+    domainId: "D2",
+    topic: "DPIA for high-risk AI processing",
+    front: "When must a data protection impact assessment (DPIA) be carried out for AI that processes personal data?",
+    back: "Under GDPR Art. 35, a DPIA is required before processing that is likely to result in a high risk to individuals, for example large-scale processing of special-category data such as health data. It must be completed before the processing starts, not after go-live.",
+    source: "GDPR Art. 35(1) & (3)(b)",
+    keyTakeaway: "Do the DPIA before high-risk processing begins, not after launch.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-57",
+    domainId: "D2",
+    topic: "Purpose limitation when reusing data",
+    front: "What does purpose limitation mean when reusing personal data to train an AI model?",
+    back: "Personal data collected for one purpose must not be reused in a way that is incompatible with it (GDPR Art. 5(1)(b)). Before reusing it for training, assess whether the new purpose is compatible with the original one and record a lawful basis (Art. 6(4)).",
+    source: "GDPR Art. 5(1)(b) & Art. 6(4)",
+    keyTakeaway: "Check that the new training purpose is compatible with the original purpose.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-58",
+    domainId: "D2",
+    topic: "Representation drift",
+    front: "What is representation drift in an AI system?",
+    back: "The population the system serves changes while the model stays the same, so its training data no longer represents the people now being scored. Performance can fall first for the new group, which overall accuracy can hide.",
+    source: "NIST AI RMF 1.0 MAP 2.3 & MEASURE 2.4",
+    keyTakeaway: "Representation drift means the served population no longer matches the training data.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-59",
+    domainId: "D2",
+    topic: "Group-level fairness testing",
+    front: "Why must AI fairness be tested by group and not only by overall accuracy?",
+    back: "High overall accuracy can hide large differences in error rates between groups. Test outcomes for each relevant group in the deployment context, involve affected communities in defining fairness criteria, and repeat the test after material changes to the data or the model.",
+    source: "NIST AI RMF 1.0 MEASURE 2.11; NIST SP 1270",
+    keyTakeaway: "Test outcomes by group; overall accuracy can hide unfairness.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-60",
+    domainId: "D2",
+    topic: "Synthetic data: keeping it distinguishable",
+    front: "How should synthetic data be kept distinguishable from real data?",
+    back: "Tag synthetic records when they are created and carry the tag through every dataset version, so later analysis can separate their effect and lineage can show which records were generated.",
+    source: "NIST AI RMF 1.0 MAP 4.1; ISO/IEC 42001:2023 Annex A.7.5 (verify against licensed standard)",
+    keyTakeaway: "Tag synthetic records at creation and keep the tag in every version.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-61",
+    domainId: "D2",
+    topic: "Synthetic data: testing privacy",
+    front: "How should the privacy of synthetic data be tested before it is shared?",
+    back: "Do not assume synthetic data is anonymous. Check for near-duplicates of real records and test whether real individuals can be matched or inferred from it, using attack testing, and record the results before release.",
+    source: "GDPR Recital 26; NIST AI RMF 1.0 MEASURE 2.10",
+    keyTakeaway: "Test for matching and inference attacks before sharing synthetic data.",
+    verification: 'pending'
   }
 ];
 
