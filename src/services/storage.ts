@@ -4,6 +4,8 @@ import { INITIAL_FLASHCARDS } from '../data/flashcards';
 import { isFlashcard, isQuestion } from './contentValidation';
 import { normalizeFlashcardDomain, normalizeQuestionDomain } from './domainTaxonomy';
 import { AIConfig, defaultAIConfig, validateAIConfig } from './ai';
+import { CORRECT_POSITION_MOVES, OPTION_ORDER_REVISION } from '../data/correctPositionMoves';
+import { swappedIndex } from './questionOrder';
 
 const STORAGE_KEY_PROGRESS = 'aaig_user_progress_v1';
 const STORAGE_KEY_CUSTOM_QUESTIONS = 'aaig_custom_questions_v1';
@@ -45,11 +47,26 @@ export function saveAIConfig(input: AIConfig, remember = false): void {
   }
 }
 
+/**
+ * Remaps recorded answer indices from before the canonical option-order
+ * revision so each attempt still points at the option the learner chose.
+ */
+export function migrateProgress(progress: UserProgress): UserProgress {
+  if ((progress.optionOrderRevision ?? 0) >= OPTION_ORDER_REVISION) return progress;
+  const history = Object.fromEntries(Object.entries(progress.history || {}).map(([id, attempts]) => {
+    const move = CORRECT_POSITION_MOVES[id];
+    if (!move || !Array.isArray(attempts)) return [id, attempts];
+    return [id, attempts.map(attempt => typeof attempt?.answeredIndex === 'number'
+      ? { ...attempt, answeredIndex: swappedIndex(attempt.answeredIndex, move) } : attempt)];
+  }));
+  return { ...progress, history, optionOrderRevision: OPTION_ORDER_REVISION };
+}
+
 export function loadUserProgress(): UserProgress {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_PROGRESS);
     if (raw) {
-      return JSON.parse(raw);
+      return migrateProgress(JSON.parse(raw));
     }
   } catch (e) {
     console.error('Failed to parse user progress from localStorage', e);
@@ -60,6 +77,7 @@ export function loadUserProgress(): UserProgress {
     wrongIds: [],
     flashcardMastery: {},
     examRecords: [],
+    optionOrderRevision: OPTION_ORDER_REVISION,
   };
 }
 
@@ -175,7 +193,7 @@ export function clearExamSession(): void {
 
 export function exportProgressJSON(progress: UserProgress): string {
   const exportPayload = {
-    version: '1.2.0',
+    version: '1.3.0',
     exportedAt: new Date().toISOString(),
     progress,
   };
@@ -202,10 +220,13 @@ export function importProgressJSON(rawJson: string): UserProgress {
     wrongIds: Array.isArray(candidate.wrongIds) ? candidate.wrongIds.filter((id: unknown) => typeof id === 'string') : [],
     flashcardMastery: typeof candidate.flashcardMastery === 'object' && candidate.flashcardMastery !== null ? candidate.flashcardMastery : {},
     examRecords: Array.isArray(candidate.examRecords) ? candidate.examRecords.filter((rec: any) => rec && typeof rec.score === 'number') : [],
+    // Backups from before 1.3.0 carry no revision and are migrated below.
+    ...(typeof candidate.optionOrderRevision === 'number' ? { optionOrderRevision: candidate.optionOrderRevision } : {}),
   };
 
-  saveUserProgress(validProgress);
-  return validProgress;
+  const migrated = migrateProgress(validProgress);
+  saveUserProgress(migrated);
+  return migrated;
 }
 
 export function resetUserProgress(): UserProgress {
@@ -215,6 +236,7 @@ export function resetUserProgress(): UserProgress {
     wrongIds: [],
     flashcardMastery: {},
     examRecords: [],
+    optionOrderRevision: OPTION_ORDER_REVISION,
   };
   saveUserProgress(blank);
   return blank;

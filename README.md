@@ -37,7 +37,7 @@ Practice sessions divide the requested sample equally across the three domains, 
 
 The former custom D4 category is retired from navigation and authoring. Regulatory landscapes, standards, framework mapping, and risk appetite now sit under D1; supplier and supply-chain risk sit under D3. Former D4 flashcards are assigned by topic, including supplier diligence and red teaming under D3. These assignments are the app's interpretation of the public areas.
 
-Legacy D4 custom content remains readable and is classified on load, preserving its original classification in legacy metadata. Unknown legacy topics remain available under D1 for compatibility. Question IDs, canonical answer positions, bookmarks, missed items, and card mastery links are preserved. Existing four-domain exam breakdowns remain historical snapshots; new sessions record three domains. Loading does not destructively rewrite stored progress or custom content.
+Legacy D4 custom content remains readable and is classified on load, preserving its original classification in legacy metadata. Unknown legacy topics remain available under D1 for compatibility. Question IDs, bookmarks, missed items, and card mastery links are preserved. Version 1.3.0 rebalanced canonical answer positions within each subtopic; recorded attempts and imported backups from earlier versions are remapped once so each still points to the option the learner chose. Existing four-domain exam breakdowns remain historical snapshots; new sessions record three domains. Loading does not destructively rewrite stored progress or custom content.
 
 ## Run locally
 
@@ -85,7 +85,7 @@ The dry run prints the sampling plan without API calls or file writes. A normal 
 
 The authoring pipeline independently samples topic, question type, difficulty, and answer position. It checks required fields, four options, answer bounds, explanation axes, the length-ratio range, and duplicate question text. A separate blind request must agree with the author key. Both requests use the configured model: agreement is a consistency check, not independent expert validation. Generated items remain unreviewed.
 
-The bundled bank retains limitations, including concentrated question types within some topics and unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
+The bundled bank retains limitations, including a single question type in two topics (D1.3 and D3.2) and unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
 
 ## Production deployment
 

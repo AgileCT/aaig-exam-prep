@@ -33,7 +33,7 @@ test('exportProgressJSON produces valid JSON backup with metadata', () => {
     const exported = exportProgressJSON(progress);
     const parsed = JSON.parse(exported);
 
-    assert.equal(parsed.version, '1.2.0');
+    assert.equal(parsed.version, '1.3.0');
     assert.ok(typeof parsed.exportedAt === 'string');
     assert.deepEqual(parsed.progress, progress);
   } finally {
@@ -55,8 +55,9 @@ test('importProgressJSON restores valid progress and persists to storage', () =>
     const exported = exportProgressJSON(sample);
     const imported = importProgressJSON(exported);
 
-    assert.deepEqual(imported, sample);
-    assert.deepEqual(loadUserProgress(), sample);
+    // Pre-1.3.0 backups carry no option-order revision and are stamped on import.
+    assert.deepEqual(imported, { ...sample, optionOrderRevision: 1 });
+    assert.deepEqual(loadUserProgress(), imported);
   } finally {
     cleanup();
   }
@@ -90,8 +91,34 @@ test('resetUserProgress resets all history and records to blank state', () => {
       wrongIds: [],
       flashcardMastery: {},
       examRecords: [],
+      optionOrderRevision: 1,
     });
     assert.deepEqual(loadUserProgress(), reset);
+  } finally {
+    cleanup();
+  }
+});
+
+test('option-order migration remaps pre-1.3.0 attempts to the same option text, once', async () => {
+  const cleanup = setupDom();
+  try {
+    const { CORRECT_POSITION_MOVES } = await import('../src/data/correctPositionMoves');
+    const { INITIAL_QUESTIONS } = await import('../src/data/questions');
+    const { swapQuestionOptions } = await import('../src/services/questionOrder');
+    const [id, move] = Object.entries(CORRECT_POSITION_MOVES)[0];
+    const current = INITIAL_QUESTIONS.find(q => q.id === id)!;
+    const before = swapQuestionOptions(current, ...move);
+    const chosen = before.options[before.correctIndex];
+    localStorage.setItem('aaig_user_progress_v1', JSON.stringify({
+      history: { [id]: [{ answeredIndex: before.correctIndex, isCorrect: true, timestamp: 1 }], 'custom-q': [{ answeredIndex: 2, isCorrect: false, timestamp: 2 }] },
+      bookmarkedIds: [], wrongIds: [], flashcardMastery: {}, examRecords: [],
+    }));
+    const migrated = loadUserProgress();
+    assert.equal(current.options[migrated.history[id][0].answeredIndex], chosen);
+    assert.equal(migrated.history['custom-q'][0].answeredIndex, 2);
+    assert.equal(migrated.optionOrderRevision, 1);
+    saveUserProgress(migrated);
+    assert.deepEqual(loadUserProgress(), migrated, 'already-migrated progress is not remapped again');
   } finally {
     cleanup();
   }

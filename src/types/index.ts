@@ -91,6 +91,8 @@ export interface UserProgress {
   wrongIds: string[];
   flashcardMastery: Record<string, FlashcardMastery>;
   examRecords: ExamRecord[];
+  // Canonical option order revision that history answeredIndex values refer to.
+  optionOrderRevision?: number;
 }
 
 export type TutorMode = 'standard' | 'socratic' | 'teach-back' | 'drill';

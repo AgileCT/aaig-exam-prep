@@ -1,7 +1,8 @@
 import { Question } from '../types';
 import { GENERATED_QUESTIONS } from './generatedQuestions';
 import { SUPPLEMENTAL_QUESTIONS } from './supplementalQuestions';
-import { markQuestionUnreviewed } from '../services/questionOrder';
+import { CORRECT_POSITION_MOVES } from './correctPositionMoves';
+import { markQuestionUnreviewed, swapQuestionOptions } from '../services/questionOrder';
 import { normalizeQuestionDomain } from '../services/domainTaxonomy';
 
 const BASE_QUESTIONS: Question[] = [
@@ -489,8 +490,14 @@ const BASE_QUESTIONS: Question[] = [
   }
 ];
 
+// Skips items whose correct option is no longer at the recorded origin, so a
+// move already written into the source data is never applied twice.
+function applyCorrectPositionMove(question: Question): Question {
+  const move = CORRECT_POSITION_MOVES[question.id];
+  return move && question.correctIndex === move[0] ? swapQuestionOptions(question, move[0], move[1]) : question;
+}
+
 export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
-  ...SUPPLEMENTAL_QUESTIONS,
-];
+].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS);

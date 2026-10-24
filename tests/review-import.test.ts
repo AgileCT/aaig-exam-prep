@@ -4,6 +4,9 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { INITIAL_FLASHCARDS } from '../src/data/flashcards';
+import { CORRECT_POSITION_MOVES } from '../src/data/correctPositionMoves';
+import { swapQuestionOptions, swappedIndex } from '../src/services/questionOrder';
+import type { Question } from '../src/types';
 
 interface Baseline {
   questions: [string, number][];
@@ -16,7 +19,10 @@ const baseline: Baseline = JSON.parse(readFileSync(new URL('./fixtures/review-20
 const optionBalance: { items: { id: string; hashWithoutOptions: string }[] } =
   JSON.parse(readFileSync(new URL('./fixtures/option-balance-20261024.json', import.meta.url), 'utf8'));
 const optionOnly = new Map(optionBalance.items.map(item => [item.id, item.hashWithoutOptions]));
-const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...q })),
+// 2026-10-24: canonical answer positions were rebalanced by swapping options.
+// A swap is its own inverse, so undoing it must reproduce the signed content.
+const undoMove = (q: Question) => CORRECT_POSITION_MOVES[q.id] ? swapQuestionOptions(q, ...CORRECT_POSITION_MOVES[q.id]) : q;
+const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...undoMove(q) })),
   ...INITIAL_FLASHCARDS.map(c => ({ type: 'flashcard', ...c }))];
 const byId = new Map(items.map(item => [item.id, item]));
 
@@ -38,7 +44,8 @@ function hash(value: unknown, omit: string[] = []): string {
 
 test('review import preserves IDs, ordering and canonical answer indices for saved attempts', () => {
   // Reviewed questions keep their positions; later supplements are appended after them.
-  assert.deepEqual(INITIAL_QUESTIONS.slice(0, baseline.questions.length).map(q => [q.id, q.correctIndex]), baseline.questions);
+  assert.deepEqual(INITIAL_QUESTIONS.slice(0, baseline.questions.length).map(q => [q.id, q.correctIndex]),
+    baseline.questions.map(([id, index]) => [id, CORRECT_POSITION_MOVES[id] ? swappedIndex(index, CORRECT_POSITION_MOVES[id]) : index]));
   assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => q.id.startsWith('aaig-d2s-')));
   assert.deepEqual(INITIAL_FLASHCARDS.map(c => c.id), baseline.flashcards);
   assert.equal(byId.size, 375);
