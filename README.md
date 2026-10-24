@@ -21,7 +21,7 @@ Version 1.2.0 adds selectable AI providers and editable models for tutoring and 
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The bundled content contains 317 questions (18 authored seed questions and 299 generated questions) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The bundled content contains 335 questions (18 authored seed questions, 299 generated questions, and 18 hand-authored Data and AI Architecture questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
 
 ## Study categories and official information
 

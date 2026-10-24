@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { INITIAL_QUESTIONS } from '../src/data/questions';
 import { GENERATED_QUESTIONS } from '../src/data/generatedQuestions';
 import { INITIAL_FLASHCARDS as FLASHCARDS } from '../src/data/flashcards';
+import { SUPPLEMENTAL_QUESTIONS } from '../src/data/supplementalQuestions';
+import { passesLengthGate } from '../src/services/contentValidation';
 import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -21,7 +23,7 @@ test('importing generation code does not contact an AI provider', async () => {
 });
 
 test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
-  assert.equal(INITIAL_QUESTIONS.length, 317);
+  assert.equal(INITIAL_QUESTIONS.length, 335);
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
@@ -114,9 +116,8 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 317);
+  assert.equal(valid.unreviewedQuestions, 335);
   assert.ok(valid.warnings.some((warning: string) => warning.includes('single question type')));
-  assert.ok(valid.warnings.some((warning: string) => warning.includes('fixed answer position')));
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -124,6 +125,8 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   const concentrationReport = module.auditQuestionBank(concentrated, []);
   assert.deepEqual(concentrationReport.errors, []);
   assert.ok(concentrationReport.warnings.some((warning: string) => warning.includes('dominant answer position') && warning.includes('80.0%')));
+  const fixed = module.auditQuestionBank(concentrated.map(q => ({ ...q, correctIndex: 0 })), []);
+  assert.ok(fixed.warnings.some((warning: string) => warning.includes('fixed answer position')));
 });
 
 test('malformed distractor axes return validation failures instead of throwing', async () => {
@@ -161,4 +164,19 @@ test('dry-run covers three domains without API calls, reports or bank writes', a
     keys.forEach((key, i) => { if (saved[i] === undefined) delete process.env[key]; else process.env[key] = saved[i]; });
     rmSync(folder, { recursive: true, force: true });
   }
+});
+
+test('D2 supplement meets authoring gates and varies type and answer position', () => {
+  assert.equal(SUPPLEMENTAL_QUESTIONS.length, 18);
+  assert.ok(SUPPLEMENTAL_QUESTIONS.every(q => q.domainId === 'D2' && q.reviewStatus === 'unreviewed'));
+  for (const q of SUPPLEMENTAL_QUESTIONS) {
+    assert.ok(passesLengthGate(q), q.id);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.distractorExplanations?.length, 3, q.id);
+  }
+  const d21 = INITIAL_QUESTIONS.filter(q => q.subDomain.startsWith('D2.1'));
+  assert.ok(d21.length >= 15);
+  assert.ok(new Set(d21.map(q => q.questionType)).size >= 4);
+  assert.ok(new Set(d21.map(q => q.correctIndex)).size === 4);
 });
