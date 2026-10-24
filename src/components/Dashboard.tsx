@@ -91,7 +91,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
   };
   // Compute stats
   const totalQuestions = questions.length;
-  const attemptedQuestionIds = Object.keys(progress.history);
+  // Retired questions can still appear in saved progress; only count questions in the active bank.
+  const activeIds = new Set(questions.map(q => q.id));
+  const attemptedQuestionIds = Object.keys(progress.history).filter(id => activeIds.has(id));
+  const wrongCount = progress.wrongIds.filter(id => activeIds.has(id)).length;
   const totalAttempted = attemptedQuestionIds.length;
   
   let totalCorrect = 0;
@@ -230,7 +233,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <AlertTriangle className="w-4 h-4 text-rose-500" />
           </div>
           <div className="text-2xl font-bold text-slate-900 dark:text-white">
-            {progress.wrongIds.length} <span className="text-xs font-normal text-slate-400">items</span>
+            {wrongCount} <span className="text-xs font-normal text-slate-400">items</span>
           </div>
           <div 
             onClick={() => onNavigate('review')}

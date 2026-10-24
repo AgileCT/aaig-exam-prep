@@ -1,5 +1,5 @@
 import { Question, Flashcard, UserProgress, FlashcardMastery, ExamRecord, ExamSession } from '../types';
-import { INITIAL_QUESTIONS } from '../data/questions';
+import { ACTIVE_QUESTIONS } from '../data/questions';
 import { INITIAL_FLASHCARDS } from '../data/flashcards';
 import { isFlashcard, isQuestion } from './contentValidation';
 import { normalizeFlashcardDomain, normalizeQuestionDomain } from './domainTaxonomy';
@@ -94,10 +94,10 @@ export function loadAllQuestions(): Question[] {
     const rawCustom = localStorage.getItem(STORAGE_KEY_CUSTOM_QUESTIONS);
     const parsed: unknown = rawCustom ? JSON.parse(rawCustom) : [];
     const custom = Array.isArray(parsed) ? parsed.filter(isQuestion) : [];
-    return [...INITIAL_QUESTIONS, ...custom.map(normalizeQuestionDomain)];
+    return [...ACTIVE_QUESTIONS, ...custom.map(normalizeQuestionDomain)];
   } catch (e) {
     console.error('Failed to load custom questions', e);
-    return INITIAL_QUESTIONS;
+    return ACTIVE_QUESTIONS;
   }
 }
 
@@ -109,7 +109,7 @@ export function saveCustomQuestion(newQ: Question): Question[] {
     const custom = Array.isArray(parsed) ? parsed.filter(isQuestion) : [];
     const updated = [newQ, ...custom.filter(q => q.id !== newQ.id)];
     localStorage.setItem(STORAGE_KEY_CUSTOM_QUESTIONS, JSON.stringify(updated));
-    return [...INITIAL_QUESTIONS, ...updated.map(normalizeQuestionDomain)];
+    return [...ACTIVE_QUESTIONS, ...updated.map(normalizeQuestionDomain)];
   } catch {
     throw new Error('Question was not saved. Browser storage may be full or unavailable.');
   }

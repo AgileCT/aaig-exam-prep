@@ -3,6 +3,7 @@ import { GENERATED_QUESTIONS } from './generatedQuestions';
 import { SUPPLEMENTAL_QUESTIONS } from './supplementalQuestions';
 import { FUNDAMENTAL_QUESTIONS } from './fundamentalQuestions';
 import { applyDistractorRewrite } from './distractorRewrites';
+import { RETIRED_QUESTION_IDS } from './retiredQuestions';
 import { CORRECT_POSITION_MOVES } from './correctPositionMoves';
 import { markQuestionUnreviewed, swapQuestionOptions } from '../services/questionOrder';
 import { normalizeQuestionDomain } from '../services/domainTaxonomy';
@@ -503,3 +504,6 @@ export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
 ].map(applyCorrectPositionMove).map(applyDistractorRewrite).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS);
+
+/** The bank learners practice from: every question except retired near-duplicates. */
+export const ACTIVE_QUESTIONS: Question[] = INITIAL_QUESTIONS.filter(question => !RETIRED_QUESTION_IDS.has(question.id));

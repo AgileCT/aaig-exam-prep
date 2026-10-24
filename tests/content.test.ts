@@ -235,3 +235,37 @@ test('distractor rewrites keep answers, passes gates and removes the vocabulary 
   assert.ok(rate <= 0.4, `pilot guessability ${rate}`);
   assert.ok(rate >= 0.15, `pilot guessability ${rate} is below chance, which would invert the cue`);
 });
+
+test('retired near-duplicates leave the active bank, never touch protected items, and keep every subtopic usable', async () => {
+  const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+  const { RETIRED_QUESTIONS, RETIRED_QUESTION_IDS } = await import('../src/data/retiredQuestions');
+  const { findNearDuplicatePairs } = await import('../src/services/duplicateDetection');
+  const baseline = JSON.parse(readFileSync(new URL('./fixtures/review-20261014-baseline.json', import.meta.url), 'utf8'));
+  const decisions = new Map<string, string>(baseline.items.map((item: { id: string; decision: string }) => [item.id, item.decision]));
+  const isProtected = (id: string) => !/^aaig-pipe/.test(id) || (decisions.has(id) && decisions.get(id) !== 'revise');
+  const byId = new Map(INITIAL_QUESTIONS.map(q => [q.id, q]));
+  assert.equal(ACTIVE_QUESTIONS.length, INITIAL_QUESTIONS.length - RETIRED_QUESTIONS.length);
+  assert.ok(ACTIVE_QUESTIONS.every(q => !RETIRED_QUESTION_IDS.has(q.id)));
+  for (const entry of RETIRED_QUESTIONS) {
+    const retired = byId.get(entry.id), twin = byId.get(entry.keptTwin);
+    assert.ok(retired && twin, entry.id);
+    assert.ok(!isProtected(entry.id), `${entry.id} is held by a reviewer decision or is not generated`);
+    assert.ok(!RETIRED_QUESTION_IDS.has(entry.keptTwin), `${entry.id} points at a retired twin`);
+    assert.equal(retired.subDomain, twin.subDomain);
+  }
+  const perTopic = new Map<string, number>();
+  for (const q of ACTIVE_QUESTIONS) perTopic.set(q.subDomain, (perTopic.get(q.subDomain) || 0) + 1);
+  assert.ok([...perTopic.values()].every(count => count >= 9), 'every subtopic keeps at least nine questions');
+  // Pairs that remain involve only items held by reviewer decisions, so they cannot be retired here.
+  assert.ok(findNearDuplicatePairs(ACTIVE_QUESTIONS).every(([a, b]) => isProtected(a) && isProtected(b)));
+});
+
+test('the app loads the active bank, so retired questions never reach practice or mock exams', async () => {
+  const { setupDom } = await import('./dom');
+  const cleanup = setupDom();
+  try {
+    const { loadAllQuestions } = await import('../src/services/storage');
+    const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+    assert.deepEqual(loadAllQuestions().map(q => q.id), ACTIVE_QUESTIONS.map(q => q.id));
+  } finally { cleanup(); }
+});

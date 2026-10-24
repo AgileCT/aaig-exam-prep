@@ -21,7 +21,7 @@ Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebal
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The bundled content contains 359 questions (18 authored seed questions, 299 generated questions, and 42 hand-authored questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The source data contains 359 questions (18 authored seed questions, 299 generated questions, and 42 hand-authored questions added in 1.3.0); 63 near-duplicates are retired and the app practices from the remaining 296 and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
 
 ## Study categories and official information
 
