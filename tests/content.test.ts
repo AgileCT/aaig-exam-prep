@@ -334,15 +334,15 @@ test('audit reports flashcard form problems that make cards hard to recall', asy
 test('reviewer-requested explanation updates use the plainer wording of the new correct options', async () => {
   const { EXPLANATION_REWRITES, DISTRACTOR_REWRITES } = await import('../src/data/distractorRewrites');
   const ids = Object.keys(EXPLANATION_REWRITES);
-  assert.equal(ids.length, 33);
-  const NO_ISO = new Set(['aaig-pipe-1791943428696-83-84pke', 'aaig-pipe-1791943759533-157-mrv74', 'aaig-pipe-1791943988538-197-p3hhf']);
+  assert.equal(ids.length, 54);
+  const NO_ISO = new Set(['aaig-pipe-1791943428696-83-84pke', 'aaig-pipe-1791943759533-157-mrv74', 'aaig-pipe-1791943988538-197-p3hhf', 'aaig-pipe-1791942382711-7', 'aaig-pipe-1791944061542-217-i1geg']);
   const NO_CLAUSE = new Set([...NO_ISO, 'aaig-pipe-1791943386735-73-ro93k', 'aaig-pipe-1791943732362-150-ey9df', 'aaig-pipe-1791943737090-153-3s2x0']);
   for (const id of ids) {
     assert.ok(DISTRACTOR_REWRITES[id], `${id} must also be one of the rewritten questions`);
     const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
     assert.equal(q.explanation, EXPLANATION_REWRITES[id]);
     assert.doesNotMatch(q.explanation, /charter|steering committee/i, `${id} still uses the old wording`);
-    // Three explanations never cited ISO/IEC 42001 and six never cited a clause; no citation was added to satisfy this test.
+    // Five explanations never cited ISO/IEC 42001 and eight never cited a clause; no citation was added to satisfy this test.
     if (!NO_ISO.has(id)) assert.match(q.explanation, /ISO\/IEC 42001/, `${id} keeps its framework citation`);
     else assert.match(q.explanation, /NIST AI RMF|Three Lines/, `${id} keeps its framework citation`);
     if (!NO_CLAUSE.has(id)) assert.match(q.explanation, /Clauses? \d/, `${id} keeps its clause citation`);
