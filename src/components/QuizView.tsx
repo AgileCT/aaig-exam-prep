@@ -10,8 +10,10 @@ import {
   ArrowRight, 
   BookOpen,
   CheckCircle2,
+  ExternalLink,
 } from 'lucide-react';
 import { shuffleQuestionOptions } from '../services/questionOrder';
+import { resolveReferences } from '../services/referenceResolver';
 
 interface QuizViewProps {
   questions: Question[];
@@ -308,12 +310,38 @@ export const QuizView: React.FC<QuizViewProps> = ({
               </div>
             )}
 
-            {/* Source Reference */}
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-750 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
-               <span>📖 Reference: {currentQ.source}</span>
-              <span className="text-[11px] bg-slate-200/80 dark:bg-slate-800 px-2 py-0.5 rounded">
-                Difficulty: {currentQ.difficulty}
-              </span>
+            {/* Source Reference & Direct Authoritative Links */}
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-750 space-y-2 text-xs text-slate-500 dark:text-slate-400">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span>📖 Reference: {currentQ.source}</span>
+                <span className="text-[11px] bg-slate-200/80 dark:bg-slate-800 px-2 py-0.5 rounded">
+                  Difficulty: {currentQ.difficulty}
+                </span>
+              </div>
+
+              {(() => {
+                const refs = resolveReferences(currentQ.source, currentQ.sourceUrl);
+                if (refs.length === 0) return null;
+                return (
+                  <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                    <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                      Primary Sources:
+                    </span>
+                    {refs.map((r, i) => (
+                      <a
+                        key={i}
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 text-indigo-600 dark:text-indigo-300 font-medium text-[11px] transition-colors"
+                      >
+                        {r.label}
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
           </div>
         )}

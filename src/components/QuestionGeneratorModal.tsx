@@ -90,6 +90,7 @@ Respond with STRICT RAW JSON only (no markdown code fence):
   "questionType": "${questionType}",
   "explanation": "Why correct answer reflects ISACA top-down governance",
   "distractorExplanations": ["Why distractor 1 wrong", "Why distractor 2 wrong", "Why distractor 3 wrong"],
+  "distractorAxes": ["Priority misconception trap", "Sequence or timing trap", "Scope or governance level trap"],
   "source": "e.g. ISO/IEC 42001 Cl. 6; NIST AI RMF GOVERN 1.2",
   "difficulty": "${difficulty}"
 }`;

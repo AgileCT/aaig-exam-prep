@@ -40,7 +40,9 @@ export function parseGeneratedQuestion(raw: string, domainId: DomainId, subDomai
     id: `aaig-custom-${crypto.randomUUID()}`, domainId, subDomain, questionType, difficulty,
     scenarioText: value.scenarioText, questionText: value.questionText, options: value.options,
     correctIndex: value.correctIndex, explanation: value.explanation,
-    distractorExplanations: value.distractorExplanations, source: value.source, reviewStatus: 'unreviewed',
+    distractorExplanations: value.distractorExplanations,
+    distractorAxes: strings(value.distractorAxes, 3) ? value.distractorAxes : undefined,
+    source: value.source, reviewStatus: 'unreviewed',
   };
   if (!isQuestion(question) || !strings(value.distractorExplanations, 3)) {
     throw new Error('AI question failed schema checks: four text options, a valid answer index, and complete explanations are required.');

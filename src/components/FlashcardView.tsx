@@ -9,8 +9,10 @@ import {
   ArrowLeft, 
   ArrowRight, 
   BookMarked,
+  ExternalLink,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { resolveReferences } from '../services/referenceResolver';
 
 interface FlashcardViewProps {
   flashcards: Flashcard[];
@@ -165,13 +167,34 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           {/* BACK */}
           <div className="absolute inset-0 w-full h-full p-8 rounded-3xl bg-slate-900 dark:bg-slate-950 text-white border-2 border-indigo-500/40 shadow-xl flex flex-col justify-between rotate-y-180 backface-hidden overflow-y-auto">
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <span className="text-xs font-bold text-indigo-400">
                   💡 Study Explanation & References
                 </span>
-                <span className="text-xs text-slate-400">
-                  {currentCard.source}
-                </span>
+                <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-400">
+                  <span>{currentCard.source}</span>
+                  {(() => {
+                    const refs = resolveReferences(currentCard.source, currentCard.sourceUrl);
+                    if (refs.length === 0) return null;
+                    return (
+                      <div className="flex flex-wrap gap-1">
+                        {refs.map((r, i) => (
+                          <a
+                            key={i}
+                            href={r.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 font-medium text-[10px] border border-indigo-700/50"
+                          >
+                            {r.label}
+                            <ExternalLink className="w-2.5 h-2.5" />
+                          </a>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
 
               <div className="text-sm text-slate-200 leading-relaxed font-sans whitespace-pre-line mb-6">

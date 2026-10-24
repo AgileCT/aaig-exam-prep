@@ -12,10 +12,12 @@ import {
   RotateCcw,
   Award,
   Play,
+  ExternalLink,
 } from 'lucide-react';
 import { shuffleQuestionOptions } from '../services/questionOrder';
 import { sampleStudyQuestions } from '../services/exam';
 import { loadExamSession, saveExamSession, clearExamSession } from '../services/storage';
+import { resolveReferences } from '../services/referenceResolver';
 
 interface MockExamViewProps {
   questions: Question[];
@@ -455,9 +457,36 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
                   })}
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-850 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  <span className="font-bold text-indigo-600 dark:text-indigo-400">Governance Rationale: </span>
-                  {q.explanation}
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-850 text-xs space-y-2 leading-relaxed">
+                  <div>
+                    <span className="font-bold text-indigo-600 dark:text-indigo-400">Governance Rationale: </span>
+                    <span className="text-slate-600 dark:text-slate-300">{q.explanation}</span>
+                  </div>
+                  {q.source && (
+                    <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex flex-wrap items-center justify-between gap-1.5 text-[11px] text-slate-500">
+                      <span>📖 {q.source}</span>
+                      {(() => {
+                        const refs = resolveReferences(q.source, q.sourceUrl);
+                        if (refs.length === 0) return null;
+                        return (
+                          <div className="flex flex-wrap items-center gap-1">
+                            {refs.map((r, i) => (
+                              <a
+                                key={i}
+                                href={r.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 text-indigo-600 dark:text-indigo-300 font-medium text-[10px]"
+                              >
+                                {r.label}
+                                <ExternalLink className="w-2.5 h-2.5" />
+                              </a>
+                            ))}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
                 </div>
               </div>
             );
