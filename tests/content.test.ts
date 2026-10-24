@@ -384,6 +384,7 @@ test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
   assert.match(FLASHCARDS.find(card => card.id === 'fc-49')!.back, /baseline before deployment/i);
   assert.equal(by('fc-12').domainId, 'D3');                                                              // J7
   assert.doesNotMatch(by('fc-12').source, /23894/);
+  assert.equal(by('fc-12').sourceUrl, 'https://doi.org/10.1145/2523813');                                  // DOI supplied by the reviewer on 2026-10-24
   assert.match(by('fc-04').back, /governing body or senior management/);                                  // J8
   assert.match(by('fc-04').source, /COBIT 2019 EDM03/);
   assert.doesNotMatch(by('fc-32').back + by('fc-32b').back, /legal compliance/i);                         // J9

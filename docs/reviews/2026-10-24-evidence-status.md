@@ -78,3 +78,5 @@ ISO/IEC 42001 为付费标准，即使网络放开，也需要正版文本才能
 - fc-32b 的"理由与 AI 风险评估相关"：复核人的说明是排除的理由与风险处置的需要或缺乏外部要求有关，卡片文字保持"tied to its AI risk assessment"。
 - 在 10-14 基线里这 3 道题的决定仍记录为 `needs-more-evidence`（基线是已签核的历史记录，不改）；解除通过 `tests/review-import.test.ts` 中的 `AUTHORIZED_EVIDENCE_CHANGES` 记录。
 - 所有其他题目仍是 unreviewed，且大部分的出处没有 `sourceUrl`。
+
+更新：复核人提供了 fc-12 论文的 DOI 链接 https://doi.org/10.1145/2523813（备用：https://dl.acm.org/doi/10.1145/2523813），已写入 fc-12 的 `sourceUrl`。我在这个环境里无法打开该链接，链接由复核人核对，不是我核对的。

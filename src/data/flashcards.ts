@@ -234,7 +234,8 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship.",
     reviewStatus: 'reviewed',
     reviewedBy: 'Xiaoli (Shelly) Zhao',
-    reviewedAt: '2026-10-24'
+    reviewedAt: '2026-10-24',
+    sourceUrl: "https://doi.org/10.1145/2523813"
   },
   {
     id: "fc-13",
