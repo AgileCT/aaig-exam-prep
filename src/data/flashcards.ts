@@ -2,381 +2,845 @@ import { Flashcard } from '../types';
 import { draftSource } from '../services/questionOrder';
 import { normalizeFlashcardDomain } from '../services/domainTaxonomy';
 
+// 2026-10-24: restructured after the reviewer's decisions. Every back is at most 400 characters
+// and every takeaway one sentence; compound fronts and overlong cards were split (the original ID
+// stays with the first part, so saved mastery still points at it); new cards await verification.
 const FLASHCARD_DRAFTS: Flashcard[] = [
-  // =========================================================================
-  // DOMAIN 1: AI ENTERPRISE GOVERNANCE (30%)
-  // =========================================================================
   {
-    id: 'fc-01',
-    domainId: 'D1',
-    topic: 'Three Lines Model in AI Governance',
-    front: 'What are the distinct responsibilities of the IIA Three Lines Model in Enterprise AI Governance?',
-    back: "Under the IIA Three Lines Model (2020) applied to AI governance (overseen by the Governing Body / Board, which sets strategic direction and risk appetite): 1. First Line Roles (Operational Management & AI Delivery Teams): Directly own, assess, and manage operational AI risks, executing day-to-day testing, validation, and controls; 2. Second Line Roles (Enterprise Risk Management & AI Compliance — also part of Management): Provide complementary expertise, establish risk frameworks, policies, and thresholds within delegated authority, monitor compliance, and provide objective, credible challenge to First Line decisions; 3. Third Line Roles (Internal Audit): Maintain independence from management and report to the Governing Body/Audit Committee, providing independent and objective assurance on the adequacy and effectiveness of AI governance and risk management.",
-    source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3; COBIT 2019 (verify specific governance/management objectives against licensed text).",
-    keyTakeaway: "Both First and Second Line roles belong to management: First Line owns operational AI risk, Second Line provides policy oversight and objective challenge within delegated authority, and Third Line (Internal Audit) provides independent assurance to the Governing Body."
+    id: "fc-01",
+    domainId: "D1",
+    topic: "Three Lines Model: First Line",
+    front: "Under the IIA Three Lines Model, what is the role of the First Line in AI governance?",
+    back: "The First Line is operational management and AI delivery teams. They directly own, assess and manage operational AI risks, and carry out day-to-day testing, validation and controls. The Governing Body (Board) above them sets strategic direction and risk appetite.",
+    source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
+    keyTakeaway: "The First Line owns and manages operational AI risk, and belongs to management."
   },
   {
-    id: 'fc-02',
-    domainId: 'D1',
-    topic: 'AI Governance Steering Committee Charter',
-    front: 'What is the PRIMARY mandate when establishing an enterprise AI Governance Steering Committee?',
+    id: "fc-01b",
+    domainId: "D1",
+    topic: "Three Lines Model: Second Line",
+    front: "Under the IIA Three Lines Model, what is the role of the Second Line in AI governance?",
+    back: "The Second Line is enterprise risk management and AI compliance, which is also part of management. It provides complementary expertise, sets risk frameworks, policies and thresholds within delegated authority, monitors compliance, and gives objective, credible challenge to First Line decisions.",
+    source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
+    keyTakeaway: "The Second Line sets policy and challenges the First Line, within delegated authority."
+  },
+  {
+    id: "fc-01c",
+    domainId: "D1",
+    topic: "Three Lines Model: Third Line",
+    front: "Under the IIA Three Lines Model, what is the role of the Third Line in AI governance?",
+    back: "The Third Line is Internal Audit. It stays independent of management, reports to the Governing Body or Audit Committee, and gives independent, objective assurance on whether AI governance and risk management are adequate and effective.",
+    source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
+    keyTakeaway: "Only the Third Line is independent of management; it gives assurance, not management."
+  },
+  {
+    id: "fc-02",
+    domainId: "D1",
+    topic: "AI Governance Steering Committee Charter",
+    front: "What is the PRIMARY mandate when establishing an enterprise AI Governance Steering Committee?",
     back: "To operate under formally delegated authority from top management or the governing body through a cross-functional Governance Charter that defines decision rights and accountabilities (e.g., RACI), recommends or operationalizes approved AI risk appetite and tolerance thresholds, and aligns AI investments with corporate strategy, legal obligations, and ethical principles.",
     source: "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 (verify exact subclause against licensed standard).",
-    keyTakeaway: "An AI Governance Steering Committee establishes authorized decision rights and risk guardrails across the portfolio while allowing urgent operational harms or exposures to be contained in parallel."
+    keyTakeaway: "A steering committee holds authorized decision rights and sets risk guardrails across the AI portfolio."
   },
   {
-    id: 'fc-03',
-    domainId: 'D1',
-    topic: 'AI Acceptable Use Policy (AUP)',
-    front: 'What core components must an enterprise AI Acceptable Use Policy (AUP) enforce?',
-    back: "1. Approved vs. Prohibited AI Tools and Use Cases: Clear criteria distinguishing sanctioned enterprise AI systems from unapproved consumer tools; 2. Data Classification and Handling Rules: Defining permitted vs. prohibited inputs (e.g., barring confidential, trade-secret, or regulated personal data from unvetted or public models, while specifying controls and legal bases for approved enterprise environments); 3. Risk-Proportionate Human Oversight: Specifying verification and review requirements calibrated to use-case impact; 4. Incident and Escalation Protocols: Clear channels for reporting suspected data leakage, security vulnerabilities, bias, or harmful outputs.",
+    id: "fc-03",
+    domainId: "D1",
+    topic: "AI Acceptable Use Policy: tools and data",
+    front: "What should an enterprise AI Acceptable Use Policy say about tools and data?",
+    back: "1. Approved vs. prohibited AI tools and use cases: clear criteria separating sanctioned enterprise AI systems from unapproved consumer tools. 2. Data classification and handling: which inputs are permitted or barred (e.g., no confidential, trade-secret or regulated personal data in unvetted or public models), with controls and legal bases for approved enterprise environments.",
     source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
-    keyTakeaway: "An effective AI Acceptable Use Policy defines enforceable boundaries for approved tools, data classification, risk-proportionate human oversight, and incident reporting."
+    keyTakeaway: "An AUP names the approved tools and sets what data may go into them."
   },
   {
-    id: 'fc-04',
-    domainId: 'D1',
-    topic: 'AI Risk Appetite vs. Risk Tolerance',
-    front: 'How do Risk Appetite and Risk Tolerance differ in the context of enterprise AI governance?',
-    back: '1. Risk Appetite: The broad amount and type of risk an organization is intentionally willing to accept in pursuit of its strategic AI objectives (set by the Board).\n2. Risk Tolerance: The specific, measurable boundaries and acceptable variations around risk targets (e.g., maximum permissible error rates or drift thresholds before escalation).',
-    source: 'ISACA AAIG D1; COBIT 2019 EDM03',
-    keyTakeaway: 'Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds.'
+    id: "fc-03b",
+    domainId: "D1",
+    topic: "AI Acceptable Use Policy: oversight and incidents",
+    front: "What should an AI Acceptable Use Policy require for human oversight and incident reporting?",
+    back: "1. Risk-proportionate human oversight: verification and review requirements calibrated to the impact of the use case. 2. Incident and escalation protocols: clear channels for reporting suspected data leakage, security vulnerabilities, bias or harmful outputs.",
+    source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
+    keyTakeaway: "An AUP ties human review to impact and gives staff a clear way to report problems."
   },
   {
-    id: 'fc-05',
-    domainId: 'D1',
-    topic: 'OECD AI Principles',
-    front: 'What are the five core value-based OECD AI Principles for responsible stewardship of trustworthy AI?',
-    back: "Under the OECD Recommendation on AI (OECD/LEGAL/0449, updated in May 2024), the five complementary values-based principles are: 1. Inclusive growth, sustainable development, and well-being; 2. Human rights and democratic values, including fairness and privacy (upholding rule of law, human rights, democratic and human-centred values, privacy, data protection, and non-discrimination); 3. Transparency and explainability; 4. Robustness, security, and safety; 5. Accountability for AI actors across the AI system lifecycle.",
+    id: "fc-04",
+    domainId: "D1",
+    topic: "AI Risk Appetite vs. Risk Tolerance",
+    front: "How do Risk Appetite and Risk Tolerance differ in the context of enterprise AI governance?",
+    back: "1. Risk Appetite: The broad amount and type of risk an organization is intentionally willing to accept in pursuit of its strategic AI objectives (set by the governing body or senior management).\n2. Risk Tolerance: The specific, measurable boundaries and acceptable variations around risk targets (e.g., maximum permissible error rates or drift thresholds before escalation).",
+    source: "COBIT 2019 EDM03",
+    keyTakeaway: "Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds."
+  },
+  {
+    id: "fc-05",
+    domainId: "D1",
+    topic: "OECD AI Principles",
+    front: "What are the five core value-based OECD AI Principles for responsible stewardship of trustworthy AI?",
+    back: "Under the OECD Recommendation on AI (OECD/LEGAL/0449, amended 2024), the five values-based principles are: 1. Inclusive growth, sustainable development and well-being; 2. Human rights and democratic values, including fairness and privacy; 3. Transparency and explainability; 4. Robustness, security and safety; 5. Accountability for AI actors across the lifecycle.",
     source: "OECD Recommendation of the Council on Artificial Intelligence (OECD/LEGAL/0449, 2019 / amended 2024), Section 1.",
-    keyTakeaway: "Updated in 2024, the five OECD AI Principles serve as a foundational international reference point for trustworthy AI governance; organizations must still map specific legal obligations to each applicable jurisdiction and standard."
+    keyTakeaway: "The OECD principles are an international reference point; legal duties must still be mapped per jurisdiction."
   },
   {
-    id: 'fc-06',
-    domainId: 'D1',
-    topic: 'Shadow AI Governance & Discovery',
-    front: 'What is "Shadow AI", and what is the primary governance mechanism to manage it without stifling innovation?',
-    back: "'Shadow AI' refers to employees or business units using unsanctioned AI tools, models, or APIs (such as unapproved consumer generative AI accounts) outside formal governance controls. Effective governance combines: 1) Assessing unsanctioned AI usage and containing urgent data exposures using environment-appropriate discovery controls (e.g., software inventories, expense/procurement reviews, or CASB/SWG telemetry); 2) Providing vetted, secure enterprise AI alternatives with contractual data-privacy protections; and 3) Enforcing clear acceptable-use policies alongside role-appropriate workforce training.",
+    id: "fc-06",
+    domainId: "D1",
+    topic: "Shadow AI",
+    front: "What is \"Shadow AI\"?",
+    back: "'Shadow AI' means employees or business units using unsanctioned AI tools, models or APIs, such as unapproved consumer generative AI accounts, outside formal governance controls.",
     source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
-    keyTakeaway: "Managing Shadow AI requires pairing clear acceptable-use boundaries and environment-appropriate discovery controls with approved, secure enterprise AI alternatives."
+    keyTakeaway: "Shadow AI is AI use outside formal governance, such as unapproved consumer accounts."
   },
   {
-    id: 'fc-07',
-    domainId: 'D1',
-    topic: 'Board Oversight & Fiduciary Responsibility',
-    front: 'What is the fiduciary duty of the Board of Directors regarding artificial intelligence systems?',
-    back: "Across corporate governance frameworks, the Governing Body (Board of Directors) is responsible for strategic oversight and accountability rather than day-to-day management. This includes approving organizational AI risk appetite, ensuring management establishes an effective AI governance and risk management system, and monitoring material legal, ethical, and operational exposures. Under US (Delaware) corporate law (the Caremark doctrine), directors must make a good-faith effort to ensure that a reasonable board-level information and reporting system exists and is monitored for mission-critical compliance and safety risks.",
-    source: "IIA Three Lines Model (2020) Principle 2; NIST AI RMF 1.0 GOVERN 1.2; In re Caremark Int'l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996); COBIT 2019 EDM01 (verify against licensed text).",
-    keyTakeaway: "While management executes day-to-day AI controls, the Board retains oversight accountability for ensuring enterprise AI risk management and reporting systems exist and operate effectively (including Caremark oversight duties in applicable US jurisdictions)."
+    id: "fc-06b",
+    domainId: "D1",
+    topic: "Shadow AI: governance response",
+    front: "How should an organization manage Shadow AI without stifling innovation?",
+    back: "Combine three things: 1) assess unsanctioned use and contain urgent data exposure with discovery controls suited to the environment (software inventories, expense or procurement reviews, CASB/SWG telemetry); 2) provide vetted, secure enterprise AI alternatives with contractual data-privacy protections; 3) enforce clear acceptable-use policies with role-appropriate training.",
+    source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
+    keyTakeaway: "Pair clear use rules and discovery controls with approved, secure alternatives."
   },
   {
-    id: 'fc-08',
-    domainId: 'D1',
-    topic: 'AI Ethics Advisory Board vs. AI Steering Committee',
-    front: 'How do an AI Ethics Advisory Board and an AI Steering Committee differ in mandate and authority?',
-    back: "While exact mandates depend on each organization's formal governance charter and delegated decision rights, enterprises commonly distinguish between: 1. AI Governance Steering Committee: An internal cross-functional executive body chartered with formal decision rights to approve AI policies, stage-gate releases, resource prioritization, and risk-tolerance alignment; and 2. AI Ethics Advisory Board / Panel: A consultative body (often incorporating multidisciplinary or external ethicists, domain experts, and stakeholder representatives) chartered to provide independent ethical evaluations, socio-technical impact reviews, and advisory recommendations to leadership or the Steering Committee.",
+    id: "fc-07",
+    domainId: "D1",
+    topic: "Board Oversight of AI",
+    front: "What is the Board of Directors' role in overseeing AI systems?",
+    back: "The Governing Body (Board) is responsible for strategic oversight and accountability, not day-to-day management. That includes approving the organization's AI risk appetite, ensuring management sets up an effective AI governance and risk management system, and monitoring material legal, ethical and operational exposures.",
+    source: "IIA Three Lines Model (2020) Principle 2; NIST AI RMF 1.0 GOVERN 1.2; COBIT 2019 EDM01 (verify against licensed text).",
+    keyTakeaway: "The Board oversees and holds accountability; management runs day-to-day AI controls."
+  },
+  {
+    id: "fc-07b",
+    domainId: "D1",
+    topic: "Board Oversight: Caremark duty (US)",
+    front: "What does the Caremark doctrine require of directors on oversight systems (US, Delaware)?",
+    back: "Under Delaware corporate law (In re Caremark, 1996), directors must make a good-faith effort to ensure that a reasonable board-level information and reporting system exists, and that it is monitored for mission-critical compliance and safety risks.",
+    source: "In re Caremark Int'l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996).",
+    keyTakeaway: "Caremark requires directors to maintain and monitor a board-level reporting system.",
+    scope: "US-specific"
+  },
+  {
+    id: "fc-08",
+    domainId: "D1",
+    topic: "AI Governance Steering Committee",
+    front: "What is the role of an AI Governance Steering Committee?",
+    back: "An internal cross-functional executive body chartered with formal decision rights to approve AI policies, stage-gate releases, prioritize resources and align risk tolerance. Exact mandates depend on the organization's governance charter and delegated decision rights.",
     source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
-    keyTakeaway: "Distinguish executive steering bodies (chartered with formal decision and enforcement rights) from consultative ethics advisory panels (chartered to provide multidisciplinary ethical review and guidance), verifying each body's actual authority in its organizational charter."
+    keyTakeaway: "A steering committee decides; check its actual authority in the charter."
   },
   {
-    id: 'fc-09',
-    domainId: 'D1',
-    topic: 'AI Literacy & Workforce Competence',
+    id: "fc-08b",
+    domainId: "D1",
+    topic: "AI Ethics Advisory Board",
+    front: "What is the role of an AI Ethics Advisory Board, compared with a steering committee?",
+    back: "A consultative body, often with multidisciplinary or external ethicists, domain experts and stakeholder representatives. It provides independent ethical evaluations, socio-technical impact reviews and advice to leadership or the steering committee. It advises, whereas the steering committee holds the decision rights.",
+    source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
+    keyTakeaway: "An ethics board advises; the steering committee decides."
+  },
+  {
+    id: "fc-09",
+    domainId: "D1",
+    topic: "AI Literacy & Workforce Competence",
     front: "How do the EU AI Act and ISO/IEC 42001 address organizational AI literacy and workforce competence?",
-    back: "Under EU AI Act Article 4, providers and deployers must take measures to support AI literacy development among staff and other persons operating or using AI systems on their behalf, taking into account their technical knowledge, experience, education, training, deployment context, and affected persons or groups (without mandating a guaranteed literacy level for each individual). Separately, ISO/IEC 42001 establishes voluntary AI management system (AIMS) competence requirements for personnel affecting AI performance and governance.",
+    back: "EU AI Act Art. 4: providers and deployers must take measures to support AI literacy among staff and others who operate or use AI on their behalf, taking into account their knowledge, experience, training, the deployment context and who is affected. ISO/IEC 42001 separately sets voluntary AIMS competence requirements for personnel who affect AI performance.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 4; ISO/IEC 42001:2023 (verify competence clause against licensed standard).",
-    keyTakeaway: "EU AI Act Article 4 imposes a statutory duty on providers and deployers to take role- and context-appropriate AI literacy measures, whereas ISO/IEC 42001 provides a voluntary management-system framework for organizational competence."
+    keyTakeaway: "Art. 4 is a statutory literacy duty; ISO/IEC 42001 competence requirements are voluntary."
   },
   {
-    id: 'fc-10',
-    domainId: 'D1',
-    topic: 'AI Whistleblowing & Safe Harbor Channels',
-    front: 'Why should AI governance frameworks establish dedicated ethical reporting and safe harbor channels?',
-    back: "Dedicated reporting and anti-retaliation ('safe harbor') channels enable engineers, data scientists, and staff to escalate suspected algorithmic harms, safety flaws, bias, or control failures early without fear of retaliation. These internal escalation mechanisms support timely risk remediation while operating alongside—and never restricting—statutorily required regulatory notifications or legally protected external whistleblowing disclosures.",
-    source: "NIST AI RMF 1.0 GOVERN 4.2 & 4.3.",
-    keyTakeaway: "Accessible escalation channels and anti-retaliation protections strengthen organizational risk culture and early issue remediation while preserving legally protected external reporting rights."
+    id: "fc-10",
+    domainId: "D1",
+    topic: "AI Whistleblowing & Safe Harbor Channels",
+    front: "Why should AI governance frameworks establish dedicated ethical reporting and safe harbor channels?",
+    back: "Dedicated reporting and anti-retaliation ('safe harbor') channels let engineers, data scientists and staff escalate suspected algorithmic harms, safety flaws, bias or control failures early. These internal channels support timely remediation and operate alongside, never restricting, required regulatory notifications or legally protected external whistleblowing.",
+    source: "Directive (EU) 2019/1937 (Whistleblower Directive); Regulation (EU) 2024/1689 (EU AI Act) Art. 87.",
+    keyTakeaway: "Internal escalation with anti-retaliation protection strengthens risk culture and preserves legal reporting rights."
   },
-
-  // =========================================================================
-  // DOMAIN 2: DATA AND AI ARCHITECTURE PRINCIPLES (20%)
-  // =========================================================================
   {
-    id: 'fc-11',
-    domainId: 'D2',
-    topic: 'Model Cards & AI Asset Inventory',
-    front: 'Why are Model Cards indispensable for AI asset governance, and what core elements must they contain?',
-    back: "Proposed by Mitchell et al. (2019) and operationalized in enterprise AI registries, Model Cards provide standardized transparency and accountability metadata to supplement an AI asset inventory, typically documenting: 1. Model Details, Accountable Owner, Version History, and Risk Tier; 2. Intended Use Cases alongside explicit out-of-scope or prohibited uses; 3. Training and Evaluation Dataset Provenance, assumptions, and known limitations; 4. Disaggregated Performance Benchmarks, fairness/bias evaluations across relevant subgroups, and ethical/safety considerations.",
+    id: "fc-11",
+    domainId: "D2",
+    topic: "Model Cards & AI Asset Inventory",
+    front: "Why are Model Cards used in AI asset governance?",
+    back: "Proposed by Mitchell et al. (2019), Model Cards give standardized transparency and accountability information that supplements the AI asset inventory. They record purpose, limitations, evaluation results and ownership, so decision-makers can judge whether and how a model may be used.",
     source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
-    keyTakeaway: "A code repository is not an AI governance inventory: effective oversight requires a formal AI asset inventory (NIST AI RMF GOVERN 1.6) paired with standardized Model Cards documenting purpose, limitations, disaggregated evaluations, risk tier, and accountable ownership."
+    keyTakeaway: "An inventory lists models; model cards describe what each is for and where it falls short."
   },
   {
-    id: 'fc-12',
-    domainId: 'D2',
-    topic: 'Data Drift vs. Concept Drift',
-    front: 'What is the fundamental difference between Data Drift and Concept Drift?',
-    back: '1. Data Drift (Covariate Shift): Changes in the statistical distribution of input features P(X), such as shifts in customer demographics or user prompt language patterns over time.\n2. Concept Drift: Changes in the underlying statistical relationship between input features and target labels P(Y|X), such as fraudsters altering tactics so previously benign transactions now represent fraud.',
-    source: 'ISACA AAIG D2; ISO/IEC 23894',
-    keyTakeaway: 'Continuous baseline telemetry: Data drift monitors the input distribution; concept drift monitors the fundamental prediction relationship.'
+    id: "fc-11b",
+    domainId: "D2",
+    topic: "Model Card contents",
+    front: "What core elements does a Model Card typically document?",
+    back: "1. Model details, accountable owner, version history and risk tier; 2. Intended use cases and explicit out-of-scope or prohibited uses; 3. Training and evaluation data provenance, assumptions and known limitations; 4. Disaggregated performance benchmarks, fairness and bias evaluations across subgroups, and ethical or safety considerations.",
+    source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
+    keyTakeaway: "Model cards cover purpose, limits, data, disaggregated results, risk tier and ownership."
   },
   {
-    id: 'fc-13',
-    domainId: 'D2',
-    topic: 'Proxy Discrimination & Algorithmic Fairness',
-    front: 'What is Proxy Discrimination in AI training datasets, and why is it difficult to detect?',
-    back: 'Proxy discrimination occurs when an AI system inadvertently learns to discriminate based on protected characteristics (e.g., race, gender, religion) through neutral correlated variables (e.g., zip code, alma mater, browsing patterns) even when protected attributes are explicitly excluded from training data.',
-    source: 'ISACA AAIG D2; NIST AI RMF MEASURE 2.11',
-    keyTakeaway: 'Blinding a model to sensitive attributes is insufficient: Rigorous fairness testing and disparate impact analyses are required.'
+    id: "fc-12",
+    domainId: "D3",
+    topic: "Data Drift vs. Concept Drift",
+    front: "What is the fundamental difference between Data Drift and Concept Drift?",
+    back: "1. Data Drift (Covariate Shift): Changes in the statistical distribution of input features P(X), such as shifts in customer demographics or user prompt language patterns over time.\n2. Concept Drift: Changes in the underlying statistical relationship between input features and target labels P(Y|X), such as fraudsters altering tactics so previously benign transactions now represent fraud.",
+    source: "General machine-learning literature on dataset shift and concept drift (e.g., Gama et al., 'A survey on concept drift adaptation', ACM Computing Surveys, 2014).",
+    keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship."
   },
   {
-    id: 'fc-14',
-    domainId: 'D2',
-    topic: 'Data Provenance & Lineage Tracking',
+    id: "fc-13",
+    domainId: "D2",
+    topic: "Proxy Discrimination",
+    front: "What is proxy discrimination in AI?",
+    back: "Proxy discrimination occurs when an AI system learns to discriminate on protected characteristics (e.g., race, gender, religion) through neutral correlated variables (e.g., zip code, alma mater, browsing patterns), even when the protected attributes are excluded from training data.",
+    source: "NIST AI RMF MEASURE 2.11",
+    keyTakeaway: "Excluding protected attributes does not prevent proxy discrimination."
+  },
+  {
+    id: "fc-13b",
+    domainId: "D2",
+    topic: "Proxy Discrimination: detection",
+    front: "Why is proxy discrimination hard to detect?",
+    back: "Proxy variables are often related to protected characteristics indirectly and non-linearly, so removing the protected attribute does not remove the signal. It is found by testing outcomes by group (for example, disparate impact analysis), not by inspecting the inputs.",
+    source: "NIST AI RMF MEASURE 2.11",
+    keyTakeaway: "Blinding a model to sensitive attributes is insufficient; test outcomes by group."
+  },
+  {
+    id: "fc-14",
+    domainId: "D2",
+    topic: "Data Provenance & Lineage Tracking",
     front: "Why is trustworthy data provenance and lineage tracking critical for AI governance and regulatory audits?",
-    back: "Data provenance and lineage document the lifecycle chain of data—including origin, collection context, legal basis or licensing permissions, preprocessing transformations, and synthetic augmentations. Maintaining proportionate, verifiable lineage records supports auditability, copyright and data-governance compliance, poisoning investigations, and handling of statutory data-subject rights (such as GDPR Article 17 erasure requests), while aligning metadata retention with applicable privacy and deletion obligations.",
+    back: "Provenance and lineage document the data's lifecycle: origin, collection context, legal basis or licensing, preprocessing and synthetic augmentation. Proportionate, verifiable lineage supports auditability, copyright and data-governance compliance, poisoning investigations and GDPR Art. 17 erasure, while metadata retention follows privacy and deletion duties.",
     source: "GDPR Arts. 5(2) & 17; NIST AI RMF 1.0 MAP 2.3; ISO/IEC 42001:2023 (verify data management clauses against licensed standard).",
-    keyTakeaway: "Trustworthy, risk-proportionate data lineage enables organizations to verify data permissions, investigate data-integrity issues, and align AI lifecycle documentation with privacy and regulatory obligations."
+    keyTakeaway: "Lineage lets an organization verify data permissions and investigate data issues, in proportion to risk."
   },
   {
-    id: 'fc-15',
-    domainId: 'D2',
-    topic: 'Synthetic Data Governance',
-    front: 'What key risks must be managed when utilizing synthetic data for AI model development?',
-    back: "Key risks in synthetic data governance include: 1. Model Collapse (Conditional Recursive Risk): Repeatedly training models on uncurated synthetic outputs across generations without sufficient real-world data anchoring can degrade output quality and erode tail distributions; 2. Bias and Artifact Amplification: Biases, distributional gaps, or confabulations in the generator model can propagate into downstream models; 3. Residual Privacy Leakage: Synthetic data is not automatically anonymous—poorly regularized generators can memorize and leak source PII or remain vulnerable to membership inference attacks.",
+    id: "fc-15",
+    domainId: "D2",
+    topic: "Synthetic Data Governance",
+    front: "What key risks must be managed when utilizing synthetic data for AI model development?",
+    back: "1. Model collapse (conditional): repeatedly training on uncurated synthetic outputs without real data degrades quality and erodes tail distributions. 2. Bias and artifact amplification: generator biases and gaps propagate downstream. 3. Residual privacy leakage: synthetic data is not automatically anonymous; poorly regularized generators can memorize PII or be open to membership inference.",
     source: "Shumailov et al. (arXiv:2305.17493); NIST AI 600-1; ISO/IEC 23894 (verify standard text).",
-    keyTakeaway: "Synthetic data governance requires validating distributional fidelity, representativeness, bias propagation, recursive-training effects, and empirical privacy leakage rather than assuming synthetic data is risk-free."
+    keyTakeaway: "Validate fidelity, bias and privacy leakage; never assume synthetic data is risk-free."
   },
   {
-    id: 'fc-16',
-    domainId: 'D2',
-    topic: 'Datasheets for Datasets',
-    front: 'What is a "Datasheet for Datasets" and how does it support AI compliance?',
-    back: "Proposed by Gebru et al., a 'Datasheet for Datasets' is a standardized transparency artifact that documents seven lifecycle areas of a dataset: motivation, composition, collection process, preprocessing/cleaning/labeling, intended and non-intended uses, distribution, and maintenance. It helps practitioners, deployers, and auditors evaluate dataset representativeness, sampling limitations, and governance gaps, though separate legal and technical verification is still required to establish copyright compliance or satisfy statutory data-governance rules (such as EU AI Act Article 10).",
+    id: "fc-16",
+    domainId: "D2",
+    topic: "Datasheets for Datasets",
+    front: "What is a \"Datasheet for Datasets\"?",
+    back: "Proposed by Gebru et al., a standardized transparency document that records seven lifecycle areas of a dataset: motivation, composition, collection process, preprocessing/cleaning/labeling, intended and non-intended uses, distribution, and maintenance.",
     source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
-    keyTakeaway: "Dataset datasheets standardize lifecycle transparency across motivation, composition, collection, processing, uses, distribution, and maintenance to support informed dataset selection and risk assessment."
+    keyTakeaway: "A datasheet documents a dataset's motivation, composition, collection, processing, uses, distribution and upkeep."
   },
   {
-    id: 'fc-17',
-    domainId: 'D2',
-    topic: 'Differential Privacy in AI',
-    front: 'What is Differential Privacy (DP), and how does it protect training data from extraction?',
-    back: "Differential Privacy (DP) adds mathematically calibrated noise (e.g., Laplace or Gaussian mechanisms, or DP-SGD during training) to bound how much an algorithm's output distribution can change when any single individual's contribution is added, modified, or removed. Rather than guaranteeing zero disclosure or completely eliminating membership inference attacks, DP quantifies and bounds incremental privacy loss through privacy parameters (such as epsilon and delta) that must be evaluated alongside query composition, implementation fidelity, and residual inference risks.",
+    id: "fc-16b",
+    domainId: "D2",
+    topic: "Datasheets for Datasets: limits",
+    front: "What does a Datasheet for Datasets not replace?",
+    back: "It helps practitioners, deployers and auditors assess dataset representativeness, sampling limits and governance gaps. It does not replace separate legal and technical verification of copyright compliance or of statutory data-governance duties such as EU AI Act Article 10.",
+    source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
+    keyTakeaway: "A datasheet informs dataset selection; it is not proof of legal compliance."
+  },
+  {
+    id: "fc-17",
+    domainId: "D2",
+    topic: "Differential Privacy",
+    front: "What is Differential Privacy (DP)?",
+    back: "DP adds mathematically calibrated noise (e.g., Laplace or Gaussian mechanisms, or DP-SGD during training) to bound how much an algorithm's output can change when any one individual's data is added, changed or removed.",
     source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
-    keyTakeaway: "Differential privacy mathematically bounds and quantifies incremental privacy loss from individual records, reducing—rather than guaranteeing zero—membership inference and data extraction risks depending on privacy parameters and composition."
+    keyTakeaway: "Differential privacy bounds how much any one person's data can change the output."
   },
   {
-    id: 'fc-18',
-    domainId: 'D2',
-    topic: 'Vector Database & Embedding Governance',
-    front: "What key security and privacy controls should be implemented for vector databases in enterprise RAG architectures?",
-    back: "Recommended security and privacy controls for enterprise RAG vector stores include: 1. Authorization-Aware Retrieval: Enforcing source-system access-control lists (ACLs) or role/tenant filtering at query time so users only retrieve chunks they are authorized to view; 2. Data and Embedding Protection: Encrypting source text chunks and embedding vectors in transit and at rest, and restricting access to mitigate embedding-inversion risks; 3. Lifecycle Retention and Deletion Synchronization: Propagating data retention expirations, updates, and applicable statutory erasure requests (e.g., GDPR Article 17) across source repositories, vector indexes, caches, and backups.",
+    id: "fc-17b",
+    domainId: "D2",
+    topic: "Differential Privacy: what it guarantees",
+    front: "How should the privacy guarantee of Differential Privacy be understood?",
+    back: "DP does not promise zero disclosure or eliminate membership inference attacks. It quantifies and bounds incremental privacy loss through parameters such as epsilon and delta, which must be evaluated together with query composition, implementation fidelity and residual inference risks.",
+    source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
+    keyTakeaway: "DP bounds and quantifies privacy loss; it does not guarantee zero disclosure."
+  },
+  {
+    id: "fc-18",
+    domainId: "D2",
+    topic: "Vector Database: access control",
+    front: "How should access be controlled in an enterprise RAG vector database?",
+    back: "Enforce authorization-aware retrieval: apply source-system access-control lists (ACLs) or role or tenant filtering at query time, so users retrieve only the chunks they are authorized to view.",
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
-    keyTakeaway: "Vector databases in RAG architectures require query-time authorization enforcement, storage/transit protection for chunks and embeddings, and synchronized lifecycle retention and deletion controls."
+    keyTakeaway: "Enforce source-system permissions at query time so users only retrieve what they may see."
   },
   {
-    id: 'fc-19',
-    domainId: 'D2',
-    topic: 'Disparate Impact vs. Disparate Treatment',
-    front: 'How do "Disparate Treatment" and "Disparate Impact" differ in AI legal compliance?',
-    back: "1. Disparate Treatment: Intentional differential treatment based on protected status; explicit protected-class fields are not the only possible mechanism. 2. Disparate Impact: An ostensibly neutral practice disproportionately disadvantages a protected group, subject to the applicable legal test. The US employment Four-Fifths Rule (29 CFR § 1607.4(D)) is a practical screening rule of thumb, not a universal legal definition of discrimination or a guarantee of compliance.",
+    id: "fc-18b",
+    domainId: "D2",
+    topic: "Vector Database: data protection",
+    front: "How should chunks and embeddings in a vector database be protected?",
+    back: "Encrypt source text chunks and embedding vectors in transit and at rest, and restrict access to reduce embedding-inversion risk (recovering source content from vectors).",
+    source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
+    keyTakeaway: "Protect chunks and embeddings in transit and at rest, and limit who can read them."
+  },
+  {
+    id: "fc-18c",
+    domainId: "D2",
+    topic: "Vector Database: retention and deletion",
+    front: "How should retention and deletion be handled across a RAG architecture?",
+    back: "Propagate retention expiries, updates and applicable statutory erasure requests (e.g., GDPR Article 17) across source repositories, vector indexes, caches and backups, so deleted data does not remain retrievable.",
+    source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
+    keyTakeaway: "Deletion must reach the vector index, caches and backups, not just the source."
+  },
+  {
+    id: "fc-19",
+    domainId: "D2",
+    topic: "Disparate Impact vs. Disparate Treatment",
+    front: "How do \"Disparate Treatment\" and \"Disparate Impact\" differ in US-based AI compliance?",
+    back: "Disparate treatment: intentional differential treatment based on protected status. Disparate impact: an ostensibly neutral practice that disproportionately disadvantages a protected group, subject to the applicable legal test (EU law: indirect discrimination). The US Four-Fifths Rule (29 CFR § 1607.4(D)) is only a screening rule of thumb.",
     source: "US Title VII (42 U.S.C. § 2000e-2(k)) & 29 CFR § 1607.4(D); EU Non-Discrimination Directives & EU AI Act Art. 10.",
-    keyTakeaway: "While lack of discriminatory intent is not a defense to a prima facie disparate-impact (or EU indirect-discrimination) claim, a practice may be legally defended if proven job-related and consistent with business necessity without a less discriminatory alternative (under US Title VII) or objectively justified by a legitimate aim achieved through appropriate and necessary means (under EU non-discrimination law)."
+    keyTakeaway: "Lack of intent is no defense to disparate impact, but a justified, job-related practice may be defended.",
+    scope: "US-specific"
   },
   {
-    id: 'fc-20',
-    domainId: 'D2',
-    topic: 'Data Minimization for Generative AI',
-    front: 'How is the principle of Data Minimization applied to prompt engineering and retrieval-augmented generation (RAG)?',
-    back: "Under GDPR Article 5(1)(c), data minimization requires that personal data be adequate, relevant, and limited to what is necessary for the specified processing purpose. In prompt engineering and RAG workflows, practical implementation controls include: 1. Input Redaction or Pseudonymization: Stripping or masking unnecessary direct identifiers (e.g., SSNs, contact details) before model invocation when individual identity is not required for the task; 2. Scoped RAG Indexing and Retrieval: Indexing only authorized, purpose-relevant corpora and retrieving only context chunks necessary to answer the query; 3. Proportionate Retention and Vendor Controls: Restricting prompt/output logging retention and contractually prohibiting vendors from reusing enterprise prompts for model training.",
+    id: "fc-20",
+    domainId: "D2",
+    topic: "Data Minimization: prompts",
+    front: "How does data minimization apply to the personal data in prompts?",
+    back: "GDPR Art. 5(1)(c) requires personal data to be adequate, relevant and limited to what is necessary for the purpose. For prompts: strip or mask unnecessary direct identifiers (e.g., SSNs, contact details), or pseudonymize them, before model invocation when identity is not needed for the task.",
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
-    keyTakeaway: "Applying data minimization to generative AI means limiting personal data in corpora, retrieved context, prompts, and logs to what is strictly necessary for the lawful processing purpose."
-  },
-
-  // =========================================================================
-  // DOMAIN 3: AI ENTERPRISE INTEGRATION & PERFORMANCE MONITORING (25%)
-  // =========================================================================
-  {
-    id: 'fc-21',
-    domainId: 'D3',
-    topic: 'Buy vs. Build AI Governance Criteria',
-    front: 'What are the critical governance considerations when evaluating commercial third-party foundation models versus in-house development?',
-    back: "Critical governance considerations when evaluating commercial third-party models ('buy') versus in-house development ('build') include: 1. Data Rights, Privacy & Confidentiality: Contractual prohibitions against retaining or reusing enterprise prompts/data for vendor model training, alongside data residency controls; 2. Transparency, Assurance & Regulatory Role Allocation: Access to documentation, evaluation/red-team evidence, and clarity on provider vs. deployer obligations (including EU AI Act Article 25(1) triggers: putting one's name or trademark on an existing high-risk system, substantially modifying an existing high-risk system so that it remains high-risk, or changing the intended purpose of a non-high-risk system so that it becomes high-risk; the enterprise may assume provider obligations when an Article 25 trigger is met); 3. Vendor Concentration & Exit Resilience: Portability of prompts, embeddings, and workflows to mitigate lock-in; and 4. Total Cost of Ownership (TCO): Full lifecycle licensing, compute, monitoring, assurance, and switching costs.",
-    source: "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1; EU AI Act Arts. 25 & 26; COBIT 2019 BAI03 (verify against licensed text).",
-    keyTakeaway: "Outsourcing AI model development does not outsource governance accountability: the deploying enterprise retains applicable deployer obligations and may assume provider obligations when an Article 25 trigger is met, including rebranding an existing high-risk system, substantially modifying an existing high-risk system so that it remains high-risk, or changing a non-high-risk system's intended purpose so that it becomes high-risk."
+    keyTakeaway: "Remove or mask identifiers from prompts unless the task needs them."
   },
   {
-    id: 'fc-22',
-    domainId: 'D3',
-    topic: 'Explainability & Contestability (XAI)',
-    front: 'Why do high-impact AI decisions require appropriate transparency and explanations (e.g., credit underwriting, hiring)?',
-    back: "Insufficient transparency can impede: 1. Contestability and Individual Explanation: Providing affected individuals with clear, meaningful explanations or appeal avenues where applicable law requires them (e.g., EU AI Act Article 86 for specified Annex III high-risk decisions producing legal or similarly significant adverse effects). 2. Risk Evaluation: Investigating proxy discrimination, bias, model limitations, and decision behavior (NIST AI RMF MEASURE 2.8/2.9). 3. Effective Human Oversight: Enabling deployers and reviewers to interpret outputs and intervene appropriately (EU AI Act Article 13 transparency to deployers). Complex models are not automatically prohibited; organizations must verify that explanations, documentation, and controls match the specific use case and statutory scope.",
+    id: "fc-20b",
+    domainId: "D2",
+    topic: "Data Minimization: RAG",
+    front: "How does data minimization apply to RAG indexing and retrieval?",
+    back: "Index only authorized, purpose-relevant corpora, and retrieve only the context chunks needed to answer the query, so that personal data is not exposed or processed beyond what the purpose needs.",
+    source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
+    keyTakeaway: "Index and retrieve only what the purpose needs."
+  },
+  {
+    id: "fc-20c",
+    domainId: "D2",
+    topic: "Data Minimization: logs and vendors",
+    front: "How should prompt logs and vendor use be limited for data minimization?",
+    back: "Restrict how long prompts and outputs are logged, and contractually prohibit vendors from reusing enterprise prompts for model training.",
+    source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
+    keyTakeaway: "Keep prompt logs short-lived and bar vendors from training on your prompts."
+  },
+  {
+    id: "fc-21",
+    domainId: "D3",
+    topic: "Buy vs. Build: data rights",
+    front: "What data and confidentiality terms matter when buying a third-party AI model?",
+    back: "Contractual prohibitions on the vendor retaining or reusing enterprise prompts and data for its own model training, together with data residency controls.",
+    source: "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1.",
+    keyTakeaway: "Buying a model must not mean giving away rights to your prompts and data."
+  },
+  {
+    id: "fc-21b",
+    domainId: "D3",
+    topic: "Buy vs. Build: provider obligations (Art. 25)",
+    front: "When does a deployer take on provider obligations under EU AI Act Article 25(1)?",
+    back: "It may be treated as the provider if it (a) puts its name or trademark on an existing high-risk system, (b) substantially modifies an existing high-risk system so that it remains high-risk, or (c) changes the intended purpose of a non-high-risk system so that it becomes high-risk. Vendor documentation and evaluation evidence help clarify the roles.",
+    source: "EU AI Act Arts. 25 & 26.",
+    keyTakeaway: "Outsourcing model development does not outsource accountability; Art. 25 triggers can make you the provider."
+  },
+  {
+    id: "fc-21c",
+    domainId: "D3",
+    topic: "Buy vs. Build: exit and cost",
+    front: "Which exit and cost factors should a buy-versus-build decision include?",
+    back: "Vendor concentration and exit resilience: portability of prompts, embeddings and workflows to limit lock-in. Total cost of ownership: full lifecycle licensing, compute, monitoring, assurance and switching costs.",
+    source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; COBIT 2019 BAI03 (verify against licensed text).",
+    keyTakeaway: "Include lock-in, exit and lifecycle costs, not just the licence price."
+  },
+  {
+    id: "fc-22",
+    domainId: "D3",
+    topic: "Explainability: contestability",
+    front: "Why must affected individuals be able to obtain explanations and challenge high-impact AI decisions?",
+    back: "Where applicable law requires it, affected individuals must get clear, meaningful explanations or appeal routes (e.g., EU AI Act Art. 86 for specified Annex III high-risk decisions with legal or similarly significant adverse effects). Without transparency they cannot contest the decision.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
-    keyTakeaway: "Distinguish deployer-facing system transparency (EU AI Act Art. 13) from qualified individual rights to explanation (Art. 86), aligning explainability and contestability controls with the specific use case and applicable legal requirements."
+    keyTakeaway: "Art. 86 gives qualified individuals a right to explanation for specified high-risk decisions."
   },
   {
-    id: 'fc-23',
-    domainId: 'D3',
-    topic: 'Model Retraining & Controlled Change Management',
-    front: 'What governance approvals and controls must precede deploying a retrained production model?',
-    back: "Deploying a retrained production model should follow risk-proportionate change management controls: 1. Impact and Trigger Analysis: Evaluating drift causes, data lineage, and whether the update falls within predetermined change parameters or constitutes a 'substantial modification' (e.g., under EU AI Act Article 43(4) requiring a new conformity assessment); 2. Pre-Deployment Validation: Regression testing across performance, robustness, security, and fairness baselines; 3. Tiered Governance Sign-Off: Documented approval by the model owner and—where risk tier or material change thresholds require—second-line risk/compliance oversight under delegated authority; 4. Deployment Safeguards: Canary/shadow release telemetry and tested rollback procedures.",
+    id: "fc-22b",
+    domainId: "D3",
+    topic: "Explainability: risk evaluation",
+    front: "Why does explainability matter for evaluating AI risk?",
+    back: "Explanations let organizations investigate proxy discrimination, bias, model limitations and decision behavior (NIST AI RMF MEASURE 2.8 and 2.9). Complex models are not automatically prohibited, but explanations, documentation and controls must match the use case.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
+    keyTakeaway: "Explainability supports bias and limitation checks; match it to the use case."
+  },
+  {
+    id: "fc-22c",
+    domainId: "D3",
+    topic: "Transparency to deployers (Art. 13)",
+    front: "How does EU AI Act Article 13 support effective human oversight?",
+    back: "Art. 13 requires high-risk systems to be transparent enough for deployers to interpret outputs, so reviewers can understand them and intervene appropriately. This is transparency to deployers, which is distinct from individuals' right to explanation under Art. 86.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
+    keyTakeaway: "Art. 13 is deployer-facing transparency; Art. 86 is the individual's right to explanation."
+  },
+  {
+    id: "fc-23",
+    domainId: "D3",
+    topic: "Model Retraining: assessment",
+    front: "What should be assessed before a retrained model goes into production?",
+    back: "1. Impact and trigger analysis: drift causes, data lineage, and whether the update falls within predetermined change parameters or is a 'substantial modification' (EU AI Act Art. 43(4): a new conformity assessment). 2. Pre-deployment validation: regression testing of performance, robustness, security and fairness baselines.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
-    keyTakeaway: "Apply risk-tiered change control to model retraining—validating data quality, regression baselines, rollback readiness, and whether the update triggers escalated risk sign-off or a new statutory conformity assessment."
+    keyTakeaway: "Check whether retraining is a substantial modification, then validate against baselines."
   },
   {
-    id: 'fc-24',
-    domainId: 'D3',
-    topic: 'Circuit Breakers & AI Kill Switches',
-    front: 'What is an AI "Circuit Breaker" or "Kill Switch", and who should hold the decision rights to trigger it?',
-    back: 'An automated or manual containment control that halts or throttles model inference, rerouting transactions to deterministic fallback rules or human reviewers when anomalies or harm occur.\nDecision rights must be predefined in the AI Incident Playbook, granting explicit authority to designated AI Governance / Incident Commanders to disable production models immediately.',
-    source: 'ISACA AAIG D3; NIST AI RMF MANAGE 2.4',
-    keyTakeaway: 'Containment authority cannot be ambiguous during active harm: Decision rights to pull the plug must be pre-authorized.'
+    id: "fc-23b",
+    domainId: "D3",
+    topic: "Model Retraining: approval and rollout",
+    front: "What approvals and safeguards should apply when deploying a retrained model?",
+    back: "1. Tiered governance sign-off: documented approval by the model owner and, where risk tier or material change requires it, second-line oversight under delegated authority. 2. Deployment safeguards: canary or shadow release telemetry and tested rollback procedures.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
+    keyTakeaway: "Approve by risk tier and release with telemetry and a tested rollback."
   },
   {
-    id: 'fc-25',
-    domainId: 'D3',
-    topic: 'Human-in-the-Loop (HITL) vs. Human-on-the-Loop (HOTL)',
-    front: 'What is the operational and governance distinction between HITL, HOTL, and HIC (Human-in-Command)?',
-    back: "1. Human-in-the-Loop (HITL): A human participates in or approves decisions prior to execution; reviewing individual outputs adds latency, and effectiveness depends on reviewer competence, authority, and process design. 2. Human-on-the-Loop (HOTL): The system executes autonomously while humans monitor operation and can intervene, override, or abort when anomalies occur. 3. Human-in-Command (HIC): Humans govern overarching deployment boundaries, context, and lifecycle decisions, including whether and when the AI system is permitted to operate. (Note: HITL/HOTL/HIC are operational oversight patterns rather than statutory categories.)",
+    id: "fc-24",
+    domainId: "D3",
+    topic: "Circuit Breakers & AI Kill Switches",
+    front: "What is an AI \"Circuit Breaker\" or \"Kill Switch\"?",
+    back: "An automated or manual containment control that halts or throttles model inference, rerouting transactions to deterministic fallback rules or human reviewers when anomalies or harm occur.",
+    source: "NIST AI RMF MANAGE 2.4",
+    keyTakeaway: "A circuit breaker stops or limits an AI system and hands work to a fallback."
+  },
+  {
+    id: "fc-24b",
+    domainId: "D3",
+    topic: "Circuit Breakers: decision rights",
+    front: "Who should hold the decision rights to trigger an AI kill switch?",
+    back: "Decision rights must be predefined in the AI Incident Playbook, giving designated AI Governance or Incident Commanders explicit authority to disable production models immediately.",
+    source: "NIST AI RMF MANAGE 2.4",
+    keyTakeaway: "Pre-authorize who can pull the plug; authority must not be ambiguous during harm."
+  },
+  {
+    id: "fc-25",
+    domainId: "D3",
+    topic: "Human-in-the-Loop (HITL)",
+    front: "What is Human-in-the-Loop (HITL) oversight?",
+    back: "A human participates in or approves decisions before they are executed. Reviewing individual outputs adds latency, and effectiveness depends on reviewer competence, authority and process design. HITL is an operational pattern, not a statutory category.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
-    keyTakeaway: "Nominal oversight labels do not guarantee compliance: under EU AI Act Article 14, human oversight must be proportionate to system risk and context, equipping competent reviewers with the authority, tools, and anti-automation-bias safeguards to intervene effectively."
+    keyTakeaway: "HITL means a human approves before execution, which adds latency."
   },
   {
-    id: 'fc-26',
-    domainId: 'D3',
-    topic: 'Automation Bias Mitigation',
-    front: 'What is Automation Bias, and how must governance frameworks mitigate it in human reviewers?',
-    back: "Automation bias is the human tendency to over-rely on or uncritically accept automated AI outputs. For high-risk AI systems, EU AI Act Article 14 requires risk-proportionate oversight measures that enable human reviewers to understand system capabilities and limitations, remain aware of automation bias (Art. 14(4)(b)), interpret outputs accurately, override or disregard outputs, and intervene or halt system operation. Under Article 26(2), deployers must assign oversight to natural persons with appropriate competence, training, authority, and support. Governance controls such as reasoned-review interfaces, training on failure modes, and controlled quality testing are practical context-specific mitigations rather than universally mandated statutory mechanisms.",
+    id: "fc-25b",
+    domainId: "D3",
+    topic: "Human-on-the-Loop (HOTL)",
+    front: "What is Human-on-the-Loop (HOTL) oversight?",
+    back: "The system executes autonomously while humans monitor operation and can intervene, override or abort when anomalies occur. HOTL is an operational pattern, not a statutory category.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
+    keyTakeaway: "HOTL means the system runs and humans monitor and can intervene."
+  },
+  {
+    id: "fc-25c",
+    domainId: "D3",
+    topic: "Human-in-Command (HIC)",
+    front: "What is Human-in-Command (HIC) oversight?",
+    back: "Humans govern the overarching deployment boundaries, context and lifecycle decisions, including whether and when the AI system may operate. Under EU AI Act Art. 14, oversight must be proportionate to risk and give competent reviewers the authority, tools and anti-automation-bias safeguards to intervene.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
+    keyTakeaway: "HIC governs whether and when the system operates; a label alone does not ensure compliance."
+  },
+  {
+    id: "fc-26",
+    domainId: "D3",
+    topic: "Automation Bias",
+    front: "What is automation bias?",
+    back: "Automation bias is the human tendency to over-rely on, or uncritically accept, automated AI outputs.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
-    keyTakeaway: "Under EU AI Act Articles 14 and 26, effective human oversight of high-risk AI requires proportionate measures addressing automation bias and ensuring reviewer competence, authority, and intervention capability."
+    keyTakeaway: "Automation bias is over-reliance on AI outputs by human reviewers."
   },
   {
-    id: 'fc-27',
-    domainId: 'D3',
-    topic: 'AI Total Cost of Ownership (TCO)',
-    front: 'What often-overlooked lifecycle cost components must be included in enterprise AI TCO calculations?',
-    back: "Beyond initial model licensing, development, and inference compute, comprehensive enterprise AI TCO estimates should include: 1) Continuous production monitoring, telemetry, and drift-detection infrastructure; 2) Periodic data curation, fine-tuning, and retraining labor; 3) Security hardening, guardrail maintenance, and adversarial red-teaming; 4) Governance, legal review, conformity assessments, impact assessments, and assurance audits; and 5) Vendor switching, decommissioning, and data/model migration costs.",
+    id: "fc-26b",
+    domainId: "D3",
+    topic: "Automation Bias: legal mitigation",
+    front: "What do EU AI Act Articles 14 and 26(2) require to counter automation bias?",
+    back: "For high-risk systems, Art. 14 requires risk-proportionate oversight measures so reviewers can understand capabilities and limits, stay aware of automation bias (Art. 14(4)(b)), interpret outputs, override them and halt the system. Under Art. 26(2), deployers assign oversight to people with competence, training, authority and support.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
+    keyTakeaway: "Reviewers need competence, authority, and the ability to override and halt (Arts. 14, 26(2))."
+  },
+  {
+    id: "fc-27",
+    domainId: "D3",
+    topic: "AI Total Cost of Ownership (TCO)",
+    front: "What often-overlooked lifecycle cost components must be included in enterprise AI TCO calculations?",
+    back: "Beyond initial licensing, development and inference compute, include: 1) continuous monitoring, telemetry and drift-detection infrastructure; 2) data curation, fine-tuning and retraining labor; 3) security hardening, guardrail upkeep and red-teaming; 4) governance, legal review, conformity and impact assessments and audits; 5) vendor switching, decommissioning and migration costs.",
     source: "NIST AI RMF 1.0 MAP 1.3; COBIT 2019 BAI03 / ISO/IEC 42001:2023 (verify standard references against licensed texts).",
-    keyTakeaway: "Complete AI business cases must account for full-lifecycle monitoring, retraining, security, compliance, and exit expenses alongside compute and licensing costs, estimating their relative weight for each specific deployment model."
+    keyTakeaway: "Budget for monitoring, retraining, security, compliance and exit, not just compute and licences."
   },
   {
-    id: 'fc-28',
-    domainId: 'D3',
-    topic: 'Key Performance Indicators (KPIs) vs. Key Risk Indicators (KRIs)',
-    front: 'How do AI KPIs and KRIs differ in governance performance reporting?',
-    back: '1. KPIs (Value & Efficiency): Measure business outcomes (e.g., customer resolution time saved, query latency, user adoption rate, cost per transaction).\n2. KRIs (Risk Signaling): Forward-looking metrics signaling increasing risk exposure before harm occurs (e.g., rate of drift deviation, number of guardrail blocks, fairness disparity index, percentage of unclassified prompts).',
-    source: 'ISACA AAIG D3; COBIT 2019 MEA01',
-    keyTakeaway: 'KPIs track value creation; KRIs serve as early-warning tripwires for governance intervention.'
+    id: "fc-28",
+    domainId: "D3",
+    topic: "Key Performance Indicators (KPIs) vs. Key Risk Indicators (KRIs)",
+    front: "How do AI KPIs and KRIs differ in governance performance reporting?",
+    back: "1. KPIs (Value & Efficiency): Measure business outcomes (e.g., customer resolution time saved, query latency, user adoption rate, cost per transaction).\n2. KRIs (Risk Signaling): Forward-looking metrics signaling increasing risk exposure before harm occurs (e.g., rate of drift deviation, number of guardrail blocks, fairness disparity index, percentage of unclassified prompts).",
+    source: "COBIT 2019 MEA01",
+    keyTakeaway: "KPIs track value creation; KRIs serve as early-warning tripwires for governance intervention."
   },
   {
-    id: 'fc-29',
-    domainId: 'D3',
-    topic: 'Hallucination Mitigation & Output Grounding',
-    front: 'What architectural and governance mechanisms best mitigate generative AI hallucination risk?',
-    back: "Layered technical and governance controls to reduce generative AI confabulation (hallucination) risk include: 1. Retrieval-Augmented Generation (RAG) grounding responses in authoritative, curated knowledge repositories; 2. Prompt and decoding constraints (such as requiring verifiable inline citations, permitting abstention when evidence is missing, and using lower sampling temperatures for factual tasks); 3. Automated input/output guardrails and factual-consistency evaluators; and 4. Task-specific benchmark evaluation, user-facing uncertainty disclosures, and risk-proportionate human review for high-impact outputs.",
+    id: "fc-29",
+    domainId: "D3",
+    topic: "Hallucination Mitigation: technical controls",
+    front: "Which technical controls reduce generative AI hallucination (confabulation)?",
+    back: "1. Retrieval-augmented generation (RAG) that grounds answers in authoritative, curated repositories. 2. Prompt and decoding constraints, such as requiring verifiable inline citations, allowing abstention when evidence is missing, and using lower sampling temperatures for factual tasks.",
     source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
-    keyTakeaway: "Grounding, decoding constraints, and automated guardrails reduce—but never completely eliminate—confabulation risk; high-impact use cases require layered technical checks paired with human verification."
+    keyTakeaway: "Ground answers in curated sources and constrain how the model generates them."
   },
   {
-    id: 'fc-30',
-    domainId: 'D3',
-    topic: 'Post-Market Monitoring Obligations',
-    front: "How do the EU AI Act and ISO/IEC 42001 address ongoing operational and post-market monitoring of AI systems?",
-    back: "Under EU AI Act Article 72, providers of high-risk AI systems must establish and document a proportionate post-market monitoring system—based on a post-market monitoring plan included in Annex IV technical documentation—to actively and systematically collect, document, and analyze relevant data (including deployer-supplied data) on lifetime system performance and continuing compliance. Separately, under Article 26(5), deployers of high-risk AI systems must monitor operation according to instructions for use and inform providers and authorities of serious incidents or risks. ISO/IEC 42001 establishes internal AI management system (AIMS) performance evaluation and monitoring processes, which complement—but are legally distinct from—EU statutory post-market surveillance rules.",
-    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 72 & Art. 26(5); ISO/IEC 42001:2023 (verify Cl. 9.1 wording against licensed standard).",
-    keyTakeaway: "EU AI Act Article 72 mandates documented post-market monitoring plans and systems for providers of high-risk AI systems (complemented by deployer monitoring duties under Art. 26(5)), while ISO/IEC 42001 governs internal AIMS performance evaluation."
-  },
-
-  // =========================================================================
-  // DOMAIN 4: RISK OVERSIGHT & COMPLIANCE FRAMEWORKS (25%)
-  // =========================================================================
-  {
-    id: 'fc-31',
-    domainId: 'D4',
-    topic: 'EU AI Act Risk Classification Pyramid',
-    front: 'How does the EU AI Act categorize artificial intelligence systems under its risk-based framework?',
-    back: "The EU AI Act uses a risk-proportionate framework (alongside General-Purpose AI rules in Chapter V): 1. Prohibited Practices (Art. 5): Bans unacceptable uses such as social scoring and manipulative/exploitative AI, and prohibits law-enforcement real-time remote biometric identification in publicly accessible spaces subject to narrow statutory exceptions (Art. 5(1)(h)). 2. High-Risk AI Systems (Art. 6, Annexes I & III): Subject to role-specific requirements including risk management, conformity assessment, and CE marking for providers; pre-use Fundamental Rights Impact Assessments (FRIA, Art. 27) apply only to public-law bodies, private entities providing public services, and deployers of Annex III 5(b)/(c) credit/insurance systems. 3. Specific Transparency Risk (Art. 50): Providers must ensure synthetic audio, image, video, or text content is marked in a machine-readable format and detectable, providers must inform people of direct AI interactions unless an exception applies; deployers have specified disclosure duties for emotion recognition/biometric categorization and deepfakes (subject to statutory exceptions). 4. Other (Minimal-Risk) AI Systems: Free from high-risk or Art. 50 product requirements, though organizations still face Article 4 AI literacy duties and other applicable laws (e.g., GDPR).",
-    source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 4, 5, 6, 27, 50 & 113.",
-    keyTakeaway: "The EU AI Act imposes tiered, role-specific obligations across prohibited practices, high-risk systems, Article 50 transparency duties, and baseline Article 4 AI literacy requirements, subject to phased application dates under Article 113."
+    id: "fc-29b",
+    domainId: "D3",
+    topic: "Hallucination Mitigation: governance controls",
+    front: "Which governance controls reduce hallucination risk in high-impact use?",
+    back: "1. Automated input and output guardrails and factual-consistency evaluators. 2. Task-specific benchmark evaluation, user-facing uncertainty disclosures and risk-proportionate human review for high-impact outputs. These controls reduce confabulation but never eliminate it.",
+    source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
+    keyTakeaway: "Layer guardrails, evaluation and human review; no control removes hallucination entirely."
   },
   {
-    id: 'fc-32',
-    domainId: 'D4',
-    topic: 'ISO/IEC 42001:2023 (AIMS) & Statement of Applicability',
-    front: 'What is ISO/IEC 42001, and what is the function of the Statement of Applicability (SoA)?',
-    back: 'ISO/IEC 42001 is the international certifiable standard for an Artificial Intelligence Management System (AIMS) based on the Plan-Do-Check-Act (PDCA) lifecycle.\nThe Statement of Applicability (SoA) formally documents which Annex A controls the organization has selected or excluded, supported by risk assessment justifications and legal compliance obligations.',
-    source: 'ISO/IEC 42001:2023 Cl. 6.1.3; ISACA AAIG D4',
-    keyTakeaway: 'The SoA bridges enterprise risk assessment with standardized Annex A control selection.'
+    id: "fc-30",
+    domainId: "D3",
+    topic: "Post-Market Monitoring (Art. 72)",
+    front: "What does EU AI Act Article 72 require of providers once a high-risk system is on the market?",
+    back: "Providers must establish and document a proportionate post-market monitoring system, based on a monitoring plan in the Annex IV technical documentation, to actively and systematically collect, document and analyze data (including deployer-supplied data) on performance over the system's lifetime and continuing compliance.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
+    keyTakeaway: "Providers of high-risk AI must run a documented post-market monitoring system (Art. 72)."
   },
   {
-    id: 'fc-33',
-    domainId: 'D4',
-    topic: 'NIST AI RMF 1.0 Core Functions',
-    front: 'What are the four core functions of NIST AI RMF 1.0, and how do they interact?',
-    back: "NIST AI RMF 1.0 organizes AI risk management into four iterative Core functions: 1. GOVERN: A cross-cutting function infused throughout the lifecycle that establishes organizational risk culture, accountability structures, policies, and workforce competence; 2. MAP: Establishes context to frame risks related to an AI system, its intended purpose, stakeholders, and potential impacts; 3. MEASURE: Employs quantitative, qualitative, or mixed-method tools, techniques, and metrics to analyze, assess, benchmark, and monitor AI risk and trustworthiness characteristics; 4. MANAGE: Allocates resources and implements plans to prioritize, respond to, recover from, and monitor mapped and measured AI risks.",
+    id: "fc-30b",
+    domainId: "D3",
+    topic: "Deployer monitoring (Art. 26(5))",
+    front: "What must deployers of high-risk AI systems do about monitoring under Article 26(5)?",
+    back: "Deployers must monitor the system's operation according to the instructions for use, and inform providers and authorities of serious incidents or risks.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 26(5).",
+    keyTakeaway: "Deployers monitor operation and report serious incidents (Art. 26(5))."
+  },
+  {
+    id: "fc-30c",
+    domainId: "D3",
+    topic: "ISO/IEC 42001 monitoring vs. EU rules",
+    front: "How does ISO/IEC 42001 monitoring differ from EU AI Act post-market monitoring?",
+    back: "ISO/IEC 42001 sets internal AI management system (AIMS) performance evaluation and monitoring processes. These complement, but are legally distinct from, the statutory post-market surveillance rules of the EU AI Act.",
+    source: "ISO/IEC 42001:2023 (verify Cl. 9.1 wording against licensed standard); Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
+    keyTakeaway: "42001 monitoring is voluntary internal assurance; Art. 72 is a legal duty."
+  },
+  {
+    id: "fc-31",
+    domainId: "D4",
+    topic: "EU AI Act: prohibited practices",
+    front: "Which AI practices does the EU AI Act prohibit?",
+    back: "Prohibited practices (Art. 5) are unacceptable uses such as social scoring and manipulative or exploitative AI. Law-enforcement real-time remote biometric identification in publicly accessible spaces is also prohibited, subject to narrow statutory exceptions (Art. 5(1)(h)).",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 5.",
+    keyTakeaway: "Art. 5 bans unacceptable uses outright, with narrow exceptions."
+  },
+  {
+    id: "fc-31b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "EU AI Act: high-risk systems",
+    front: "What obligations apply to high-risk AI systems under the EU AI Act?",
+    back: "High-risk systems (Art. 6, Annexes I and III) carry role-specific requirements: providers need risk management, conformity assessment and CE marking. A pre-use Fundamental Rights Impact Assessment (Art. 27) applies only to public-law bodies, private entities providing public services, and deployers of Annex III 5(b)/(c) credit or insurance systems.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 6 & 27.",
+    keyTakeaway: "High-risk duties are role-specific; the FRIA applies only to specified deployers."
+  },
+  {
+    id: "fc-31c",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "EU AI Act: transparency duties (Art. 50)",
+    front: "What transparency duties does EU AI Act Article 50 create?",
+    back: "Providers must mark synthetic audio, image, video or text in a machine-readable, detectable format, and inform people of direct AI interactions unless an exception applies. Deployers have specified disclosure duties for emotion recognition, biometric categorization and deepfakes, subject to statutory exceptions.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 50.",
+    keyTakeaway: "Art. 50 duties differ for providers and deployers."
+  },
+  {
+    id: "fc-31d",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "EU AI Act: minimal-risk systems",
+    front: "What applies to minimal-risk AI systems under the EU AI Act?",
+    back: "Other AI systems are free from the high-risk and Art. 50 product requirements, but organizations still face the Art. 4 AI literacy duty and other applicable laws such as the GDPR. Application dates are phased under Article 113.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 4 & 113.",
+    keyTakeaway: "Minimal risk is not no obligation: Art. 4 literacy and other laws still apply."
+  },
+  {
+    id: "fc-32",
+    domainId: "D4",
+    topic: "ISO/IEC 42001:2023 (AIMS)",
+    front: "What is ISO/IEC 42001?",
+    back: "The international certifiable standard for an Artificial Intelligence Management System (AIMS), based on the Plan-Do-Check-Act (PDCA) lifecycle.",
+    source: "ISO/IEC 42001:2023",
+    keyTakeaway: "ISO/IEC 42001 is the certifiable AI management system standard."
+  },
+  {
+    id: "fc-32b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "Statement of Applicability (SoA)",
+    front: "What is the function of the Statement of Applicability (SoA) in ISO/IEC 42001?",
+    back: "The SoA documents which Annex A controls the organization has selected or excluded, with justifications tied to its AI risk assessment.",
+    source: "ISO/IEC 42001:2023 Cl. 6.1.3",
+    keyTakeaway: "The SoA links risk assessment to the choice of Annex A controls."
+  },
+  {
+    id: "fc-33",
+    domainId: "D4",
+    topic: "NIST AI RMF 1.0 Core Functions",
+    front: "What are the four core functions of NIST AI RMF 1.0?",
+    back: "1. GOVERN: establishes risk culture, accountability, policies and workforce competence; 2. MAP: frames context, intended purpose, stakeholders and impacts; 3. MEASURE: analyzes, benchmarks and monitors AI risk and trustworthiness with quantitative, qualitative or mixed methods; 4. MANAGE: allocates resources and plans to prioritize, respond to, recover from and monitor mapped and measured risks.",
     source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
-    keyTakeaway: "In NIST AI RMF 1.0, GOVERN is a cross-cutting function while MAP, MEASURE (using qualitative and quantitative methods), and MANAGE are applied iteratively and continuously across the AI lifecycle."
+    keyTakeaway: "The four functions are GOVERN, MAP, MEASURE and MANAGE."
   },
   {
-    id: 'fc-34',
-    domainId: 'D4',
-    topic: 'General Purpose AI (GPAI) Obligations',
-    front: 'What obligations does the EU AI Act impose on providers of General Purpose AI (GPAI) models?',
-    back: "1. Baseline GPAI Models (Art. 53): Providers must draw up and keep technical documentation (Annex XI, including known or estimated energy consumption) for the AI Office and national authorities, provide information/documentation to downstream AI system providers (Annex XII), establish a policy to comply with EU copyright law (including TDM opt-outs under Directive (EU) 2019/790 Art. 4(3)), and publish a sufficiently detailed summary of training content (open-source GPAI models without systemic risk are exempt from the documentation duties in Art. 53(1)(a)–(b) but must still fulfill copyright and training-summary obligations). 2. GPAI Models with Systemic Risk (Arts. 51 & 55): Designated via high-impact capabilities—presumed when cumulative training compute exceeds 10^25 FLOPs—or by European Commission decision. Providers must additionally perform model evaluations and adversarial testing, assess and mitigate systemic risks, track and report serious incidents and corrective measures to the AI Office (and relevant national authorities), and ensure adequate cybersecurity protection for the model and its physical infrastructure.",
+    id: "fc-33b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "NIST AI RMF: how the functions interact",
+    front: "How do the NIST AI RMF 1.0 functions interact?",
+    back: "The functions are iterative and apply continuously across the AI lifecycle. GOVERN is cross-cutting and infused throughout, supplying the culture, accountability and policies on which MAP, MEASURE and MANAGE rely.",
+    source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
+    keyTakeaway: "GOVERN is cross-cutting; MAP, MEASURE and MANAGE are applied iteratively."
+  },
+  {
+    id: "fc-34",
+    domainId: "D4",
+    topic: "GPAI: baseline obligations (Art. 53)",
+    front: "What obligations apply to all providers of general-purpose AI (GPAI) models under EU AI Act Article 53?",
+    back: "Providers must keep technical documentation (Annex XI, including known or estimated energy consumption) for the AI Office and national authorities, give information to downstream providers (Annex XII), set a copyright-compliance policy (including TDM opt-outs, Directive (EU) 2019/790 Art. 4(3)), and publish a sufficiently detailed summary of training content.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
-    keyTakeaway: "All GPAI providers face Article 53 copyright and training-summary duties (plus documentation duties unless exempt as non-systemic open-source), while systemic-risk GPAI models (presumed above 10^25 FLOPs or designated under Art. 51) face heightened evaluation, adversarial testing, serious-incident reporting, and cybersecurity obligations under Article 55."
+    keyTakeaway: "Open-source non-systemic models are exempt only from the Art. 53(1)(a)–(b) documentation duties."
   },
   {
-    id: 'fc-35',
-    domainId: 'D4',
-    topic: 'Third-Party AI Supply Chain Due Diligence',
-    front: "What risk-based due diligence and governance controls should be applied before onboarding third-party AI vendors?",
-    back: "Proportionate third-party AI supply chain due diligence includes: 1. Assurance and Risk Evaluation: Reviewing independent security and AI governance assurance evidence appropriate to the risk tier (e.g., SOC 2 Type II, ISO/IEC 27001 or 42001 certifications, model cards, and red-team/evaluation reports); 2. Contractual and Data Governance Controls: Defining data ownership, retention, deletion, privacy/security obligations, restrictions on training on customer data, and right-to-audit or assurance-reporting clauses; 3. Operational and Supply-Chain Resilience: Assessing SLAs, material model-update notification terms, upstream dependencies (including foundation models and open-source weights), and exit/contingency plans.",
+    id: "fc-34b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "GPAI: systemic-risk obligations (Arts. 51 & 55)",
+    front: "What additional obligations apply to GPAI models with systemic risk?",
+    back: "Systemic risk is designated through high-impact capabilities (presumed above 10^25 FLOPs of cumulative training compute) or by Commission decision (Art. 51). Providers must also evaluate models and test them adversarially, assess and mitigate systemic risks, report serious incidents and corrective measures to the AI Office, and ensure adequate cybersecurity (Art. 55).",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
+    keyTakeaway: "Systemic-risk GPAI (presumed above 10^25 FLOPs) adds evaluation, incident reporting and cybersecurity duties."
+  },
+  {
+    id: "fc-35",
+    domainId: "D4",
+    topic: "Third-party AI due diligence: assurance",
+    front: "What assurance evidence should be reviewed before onboarding a third-party AI vendor?",
+    back: "Review independent security and AI governance assurance evidence proportionate to the risk tier, e.g., SOC 2 Type II, ISO/IEC 27001 or 42001 certifications, model cards and red-team or evaluation reports.",
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
-    keyTakeaway: "Third-party AI vendor governance applies risk-tiered due diligence, contractual data protections, upstream dependency visibility, and exit planning aligned with NIST AI RMF GOVERN 6.1–6.2."
+    keyTakeaway: "Match the depth of assurance evidence to the vendor's risk tier."
   },
   {
-    id: 'fc-36',
-    domainId: 'D4',
-    topic: 'Fundamental Rights Impact Assessment (FRIA)',
-    front: 'When is a Fundamental Rights Impact Assessment (FRIA) mandatory under the EU AI Act?',
-    back: "Under Article 27 of the EU AI Act, a pre-use Fundamental Rights Impact Assessment (FRIA) is mandatory only for specified deployers of Annex III high-risk AI systems (covered by Article 6(2), explicitly excluding Annex III point 2 critical infrastructure): 1) Bodies governed by public law; 2) Private entities providing public services; and 3) Deployers of high-risk AI systems listed in Annex III point 5(b) (creditworthiness or credit-scoring evaluation of natural persons, except financial fraud detection) and point 5(c) (risk assessment and pricing in relation to natural persons for life and health insurance). Prior to first use, covered deployers must assess the intended processes, period and frequency of use, affected categories of natural persons, specific risks of harm to fundamental rights, human oversight implementation, and mitigation measures if risks materialize, updating the assessment when relevant conditions change.",
+    id: "fc-35b",
+    domainId: "D3",
+    legacyDomainId: "D4",
+    topic: "Third-party AI due diligence: contract terms",
+    front: "Which contract and data-governance terms should a third-party AI agreement include?",
+    back: "Define data ownership, retention and deletion, privacy and security obligations, restrictions on training on customer data, and right-to-audit or assurance-reporting clauses.",
+    source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
+    keyTakeaway: "Contracts should fix data rights, deletion, training limits and audit rights."
+  },
+  {
+    id: "fc-35c",
+    domainId: "D3",
+    legacyDomainId: "D4",
+    topic: "Third-party AI due diligence: resilience",
+    front: "Which operational and supply-chain factors matter in third-party AI due diligence?",
+    back: "Assess SLAs, notification terms for material model updates, upstream dependencies (including foundation models and open-source weights), and exit and contingency plans.",
+    source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
+    keyTakeaway: "Look through to upstream dependencies and plan the exit before onboarding."
+  },
+  {
+    id: "fc-36",
+    domainId: "D4",
+    topic: "FRIA: who must perform it",
+    front: "Who must carry out a Fundamental Rights Impact Assessment (FRIA) under EU AI Act Article 27?",
+    back: "Only specified deployers of Annex III high-risk systems (Art. 6(2), excluding Annex III point 2 critical infrastructure): bodies governed by public law; private entities providing public services; and deployers of Annex III 5(b) credit scoring of natural persons (except fraud detection) and 5(c) life and health insurance risk assessment and pricing.",
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
-    keyTakeaway: "EU AI Act Article 27 mandates a pre-deployment FRIA for public bodies, private operators of public services, and deployers of Annex III 5(b)/(c) retail credit and life/health insurance AI systems (excluding Annex III point 2), rather than all high-risk AI deployers indiscriminately."
+    keyTakeaway: "A FRIA is mandatory only for specified deployers, not for every high-risk deployer."
   },
   {
-    id: 'fc-37',
-    domainId: 'D4',
-    topic: 'ISO/IEC 23894 AI Risk Management',
-    front: 'What is ISO/IEC 23894 and how does it relate to ISO 31000?',
-    back: 'ISO/IEC 23894 provides guidance on managing AI-related risks based on the generic ISO 31000 risk management framework. It details AI-specific risk identification (e.g., autonomous agency, opacity, data poisoning), risk analysis, evaluation against risk criteria, and risk treatment throughout the AI lifecycle.',
-    source: 'ISO/IEC 23894:2023; ISACA AAIG D4',
-    keyTakeaway: 'ISO 23894 applies the established ISO 31000 risk process specifically to unique AI lifecycle vulnerabilities.'
+    id: "fc-36b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "FRIA: what it must assess",
+    front: "What must a FRIA assess before first use?",
+    back: "The intended processes, period and frequency of use, affected categories of natural persons, specific risks of harm to fundamental rights, how human oversight will work, and mitigation measures if risks materialize. The assessment is updated when relevant conditions change.",
+    source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
+    keyTakeaway: "A FRIA is done before first use and updated when conditions change."
   },
   {
-    id: 'fc-38',
-    domainId: 'D4',
-    topic: 'AI Incident Reporting Timelines',
-    front: 'What are the regulatory notification requirements when a serious AI safety incident occurs under the EU AI Act?',
-    back: 'EU AI Act Article 73 distinguishes reporting deadlines for providers of high-risk AI systems. The general rule is immediately after a causal link or reasonable likelihood is established, and no later than 15 days after awareness. Widespread infringement or a serious incident involving serious and irreversible disruption of critical infrastructure must be reported immediately and no later than 2 days. A death must be reported immediately once a causal link is established or suspected, and no later than 10 days after awareness. Check applicable scope, transition dates and sector-specific provisions; do not wait for the maximum deadline.',
-    source: 'EU AI Act Article 73; ISACA AAIG D4',
-    keyTakeaway: 'Article 73 has 2, 10 and 15 day outer limits depending on the incident, with immediate reporting triggers.'
+    id: "fc-37",
+    domainId: "D4",
+    topic: "ISO/IEC 23894 AI Risk Management",
+    front: "What is ISO/IEC 23894?",
+    back: "Guidance on managing AI-related risks, based on the generic ISO 31000 risk management framework. It covers AI-specific risk identification (e.g., autonomous agency, opacity, data poisoning), risk analysis, evaluation against risk criteria, and risk treatment across the AI lifecycle.",
+    source: "ISO/IEC 23894:2023",
+    keyTakeaway: "ISO/IEC 23894 applies AI-specific guidance to the ISO 31000 risk process."
   },
   {
-    id: 'fc-39',
-    domainId: 'D4',
-    topic: 'Conformity Assessment Procedures (CE-Marking)',
-    front: 'What is an AI Conformity Assessment under the EU AI Act, and what are the two main pathways?',
-    back: 'A conformity assessment evaluates whether an in-scope high-risk AI system meets applicable requirements, including Articles 8-15. The provider is responsible for the applicable assessment. Article 43 provides different routes: Annex III points 2-8 generally use internal control under Annex VI; Annex III point 1 may use internal control or a notified body under Annex VII depending on applicable standards and conditions. Product-related AI covered by Annex I follows the relevant sector legislation. Check system category, applicable dates and conditions before selecting a route.',
-    source: 'EU AI Act Article 43, Annexes VI & VII; ISACA AAIG D4',
-    keyTakeaway: 'Assessment routes depend on system category and conditions; a notified body is not universally required for every biometric system.'
+    id: "fc-37b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "ISO/IEC 23894 and ISO 31000",
+    front: "How does ISO/IEC 23894 relate to ISO 31000?",
+    back: "ISO/IEC 23894 builds on ISO 31000. It applies the established ISO 31000 risk management process to the particular vulnerabilities of the AI lifecycle rather than creating a separate process.",
+    source: "ISO/IEC 23894:2023",
+    keyTakeaway: "23894 extends ISO 31000 to AI; it does not replace it."
   },
   {
-    id: 'fc-40',
-    domainId: 'D4',
-    topic: 'Adversarial Robustness & Red Teaming',
-    front: "What is AI Red Teaming, and what key adversarial attack vectors should governance frameworks evaluate based on system architecture?",
-    back: "AI Red Teaming is structured adversarial testing designed to discover security vulnerabilities, safety failures, and undesirable behaviors before or during deployment. Depending on the model architecture (e.g., generative LLMs, RAG pipelines, or predictive ML) and threat model, priority attack vectors include: 1) Direct and indirect prompt injection; 2) Jailbreaking and safety-guardrail bypass; 3) Training or fine-tuning data poisoning and backdoor triggers; 4) Model inversion, membership inference, and training-data extraction; and 5) Resource-exhaustion or denial-of-wallet attacks. Findings must be documented, remediated, and retested alongside ongoing production monitoring.",
+    id: "fc-38",
+    domainId: "D4",
+    topic: "AI Incident Reporting Timelines",
+    front: "What are the regulatory notification requirements when a serious AI safety incident occurs under the EU AI Act?",
+    back: "EU AI Act Art. 73 sets deadlines for providers of high-risk AI. General rule: report immediately once a causal link or reasonable likelihood is established, and no later than 15 days after awareness. Widespread infringement or serious, irreversible disruption of critical infrastructure: no later than 2 days. Death: no later than 10 days after awareness. Do not wait for the maximum.",
+    source: "EU AI Act Article 73",
+    keyTakeaway: "Outer limits are 2, 10 and 15 days depending on the incident; report immediately where possible."
+  },
+  {
+    id: "fc-39",
+    domainId: "D4",
+    topic: "Conformity Assessment (CE-Marking)",
+    front: "What is an AI Conformity Assessment under the EU AI Act?",
+    back: "An evaluation of whether an in-scope high-risk AI system meets the applicable requirements, including Articles 8–15. The provider is responsible for the applicable assessment.",
+    source: "EU AI Act Article 43, Annexes VI & VII",
+    keyTakeaway: "The provider carries out the conformity assessment of a high-risk system."
+  },
+  {
+    id: "fc-39b",
+    domainId: "D1",
+    legacyDomainId: "D4",
+    topic: "Conformity Assessment routes (Art. 43)",
+    front: "Under EU AI Act Article 43, how do conformity assessment routes differ by high-risk system category?",
+    back: "Annex III points 2–8 generally use internal control (Annex VI). Annex III point 1 may use internal control or a notified body (Annex VII), depending on applicable standards and conditions. AI covered by Annex I follows the relevant sector legislation. Check category, dates and conditions before choosing a route.",
+    source: "EU AI Act Article 43, Annexes VI & VII",
+    keyTakeaway: "A notified body is not required for every biometric system; the route depends on category."
+  },
+  {
+    id: "fc-40",
+    domainId: "D4",
+    topic: "Adversarial Robustness & Red Teaming",
+    front: "What is AI Red Teaming?",
+    back: "Structured adversarial testing to find security vulnerabilities, safety failures and undesirable behaviors before or during deployment. Scope it to the system's architecture (e.g., LLM, RAG pipeline, predictive ML) and threat model; document, remediate and retest findings alongside production monitoring.",
     source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
-    keyTakeaway: "AI red teaming scopes adversarial testing to the system's architecture and threat profile, validating security and safety controls prior to release and complementing continuous production monitoring."
+    keyTakeaway: "Red teaming tests a system adversarially, scoped to its architecture and threat model."
+  },
+  {
+    id: "fc-40b",
+    domainId: "D3",
+    legacyDomainId: "D4",
+    topic: "Red Teaming: attack vectors",
+    front: "Which adversarial attack vectors should AI red teaming cover?",
+    back: "1) Direct and indirect prompt injection; 2) jailbreaking and guardrail bypass; 3) training or fine-tuning data poisoning and backdoor triggers; 4) model inversion, membership inference and training-data extraction; 5) resource-exhaustion or denial-of-wallet attacks.",
+    source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
+    keyTakeaway: "Choose attack vectors that match the system's architecture."
+  },
+  {
+    id: "fc-41",
+    domainId: "D1",
+    topic: "Strategic alignment of AI initiatives",
+    front: "How can an organization show that an AI initiative is strategically aligned?",
+    back: "Link each initiative to a named strategic objective, a measurable outcome and an accountable sponsor; review the AI portfolio against strategy periodically; stop or redirect initiatives that no longer support the objectives.",
+    source: "COBIT 2019 EDM02; NIST AI RMF 1.0 GOVERN 1.3",
+    keyTakeaway: "Alignment means a traceable link from each initiative to an objective, outcome and sponsor.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-42",
+    domainId: "D1",
+    topic: "Prioritizing AI initiatives",
+    front: "What criteria should be used to choose among competing AI initiatives?",
+    back: "Score each on strategic fit, expected value, risk and delivery capacity using common criteria. Sponsor enthusiasm, lowest cost or technological novelty are not reliable indicators of benefit.",
+    source: "COBIT 2019 EDM02 & APO05",
+    keyTakeaway: "Choose with common criteria: fit, value, risk and delivery capacity.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-43",
+    domainId: "D2",
+    topic: "Data quality dimensions",
+    front: "Which quality dimensions matter for AI training data?",
+    back: "Commonly: completeness, accuracy, consistency, timeliness, validity and uniqueness, plus relevance and representativeness for the intended use. Quality is judged against the intended purpose, not in the abstract.",
+    source: "EU AI Act Art. 10; NIST AI RMF 1.0 MAP 2.3",
+    keyTakeaway: "Judge data quality against the intended use.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-44",
+    domainId: "D2",
+    topic: "Data quality ownership",
+    front: "Who should own the quality of data used by an AI system?",
+    back: "The business function that creates and depends on the data should own its quality, with data governance providing standards and support. It should not rest only with the team that trains the model or the team that hosts the data.",
+    source: "COBIT 2019 APO14; NIST AI RMF 1.0 GOVERN 2.1",
+    keyTakeaway: "Data quality belongs to the business function that creates and uses the data.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-45",
+    domainId: "D2",
+    topic: "Data contracts",
+    front: "How does a data contract protect an AI system from bad input data?",
+    back: "A data contract states the expected structure, units, ranges and meaning of a data feed and is checked automatically when data arrives. It stops changes, such as a switch of units, from silently reaching the model.",
+    source: "NIST AI RMF 1.0 MAP 2.3 & MANAGE 4.1",
+    keyTakeaway: "A data contract is checked at ingestion so bad input never reaches the model.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-46",
+    domainId: "D3",
+    topic: "Logging for investigation",
+    front: "What should AI system logs capture to support an investigation?",
+    back: "Inputs, outputs, the model version, retrieved sources where applicable, and human overrides. The records should let investigators trace a specific output back to its cause.",
+    source: "EU AI Act Art. 12; NIST AI RMF 1.0 MEASURE 2.8",
+    keyTakeaway: "Log enough to trace one output to its inputs, version, sources and overrides.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-47",
+    domainId: "D3",
+    topic: "Log retention",
+    front: "How long should AI system logs be retained?",
+    back: "For a period set by risk, purpose and legal requirements, not by storage cost. Under EU AI Act Art. 26(6), deployers of high-risk systems keep the logs they control for a period appropriate to the intended purpose, at least six months unless other law provides otherwise.",
+    source: "EU AI Act Arts. 12, 19 & 26(6)",
+    keyTakeaway: "Retention follows risk and law; high-risk deployers keep logs at least six months (Art. 26(6)).",
+    verification: 'pending'
+  },
+  {
+    id: "fc-48",
+    domainId: "D3",
+    topic: "Continuous assurance",
+    front: "What is continuous assurance for AI systems?",
+    back: "Ongoing automated monitoring that alerts owners when metrics cross agreed thresholds, plus independent periodic review: the second line challenges and internal audit tests controls by sampling. Self-assessment by the project team alone is not enough.",
+    source: "IIA Three Lines Model (2020); NIST AI RMF 1.0 MANAGE 4.1",
+    keyTakeaway: "Combine automated threshold monitoring with independent second- and third-line review.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-49",
+    domainId: "D3",
+    topic: "Tracking realized value",
+    front: "How should value realization be tracked after an AI system goes live?",
+    back: "Compare outcomes with the pre-deployment baseline at set checkpoints, name an owner accountable for the benefits, and stop or redirect the initiative if results stay below agreed thresholds.",
+    source: "COBIT 2019 EDM02; NIST AI RMF 1.0 MAP 3.1",
+    keyTakeaway: "Measure realized benefits against the baseline, with a named benefit owner.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-50",
+    domainId: "D3",
+    topic: "Baseline before deployment",
+    front: "Why set a baseline before deploying an AI system?",
+    back: "Without a baseline, the benefits promised in the business case cannot be verified later, because there is nothing to compare the results with.",
+    source: "COBIT 2019 EDM02",
+    keyTakeaway: "No baseline, no proof of value.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-51",
+    domainId: "D1",
+    topic: "Responding to a tolerance breach",
+    front: "What should happen when an AI system breaches a risk tolerance?",
+    back: "Escalate through the agreed route, activate the predefined fallback, and investigate the cause. The tolerance is not raised after the breach, and the first line does not adjust it on its own.",
+    source: "NIST AI RMF 1.0 GOVERN 1.3 & MANAGE 2.4; COBIT 2019 EDM03",
+    keyTakeaway: "Escalate and fall back; never move the limit after a breach.",
+    verification: 'pending'
+  },
+  {
+    id: "fc-52",
+    domainId: "D1",
+    topic: "Authority over risk appetite",
+    front: "Who has authority to set and change AI risk appetite and tolerance?",
+    back: "The governing body and senior management set them, and changes need approval and a record. The first line cannot change them unilaterally.",
+    source: "COBIT 2019 EDM03; IIA Three Lines Model (2020)",
+    keyTakeaway: "Appetite and tolerance are set at the top; the first line cannot change them alone.",
+    verification: 'pending'
   }
 ];
 

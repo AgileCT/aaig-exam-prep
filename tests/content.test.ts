@@ -345,3 +345,55 @@ test('reviewer-requested explanation updates use the plainer wording of the new 
     assert.doesNotMatch(q.explanation, /\bOption [ABCD]\b/, id);
   }
 });
+
+test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
+  const by = (id: string) => FLASHCARDS.find(card => card.id === id)!;
+  assert.equal(FLASHCARDS.length, 90);
+  for (const card of FLASHCARDS) {
+    assert.ok(card.back.length <= 400, `${card.id} back is ${card.back.length} characters`);       // J1
+    assert.ok(card.keyTakeaway.length <= 130, `${card.id} takeaway is ${card.keyTakeaway.length}`);  // J2
+    assert.ok((card.front.match(/\?/g) || []).length === 1, `${card.id} front must be one question`);
+    assert.doesNotMatch(card.front, / and (how|what|who|when|why|which)\b/i, `${card.id} front is compound`); // J3
+    assert.equal(card.reviewStatus, 'unreviewed');
+  }
+  assert.deepEqual(FLASHCARDS.filter(card => card.scope).map(card => `${card.id}:${card.scope}`).sort(), ['fc-07b:US-specific', 'fc-19:US-specific']); // J4
+  const pending = FLASHCARDS.filter(card => card.verification === 'pending').map(card => card.id);       // J5
+  assert.deepEqual(pending, Array.from({ length: 12 }, (_, i) => `fc-${41 + i}`));
+  assert.ok(!FLASHCARDS.filter(card => !pending.includes(card.id)).some(card => card.verification));
+  assert.equal(by('fc-12').domainId, 'D3');                                                              // J7
+  assert.doesNotMatch(by('fc-12').source, /23894/);
+  assert.match(by('fc-04').back, /governing body or senior management/);                                  // J8
+  assert.match(by('fc-04').source, /COBIT 2019 EDM03/);
+  assert.doesNotMatch(by('fc-32').back + by('fc-32b').back, /legal compliance/i);                         // J9
+  assert.match(by('fc-32').back, /Plan-Do-Check-Act/);
+  assert.match(by('fc-10').source, /2019\/1937/);                                                         // J10
+  assert.match(by('fc-10').source, /Art\. 87/);
+  assert.doesNotMatch(by('fc-10').source, /GOVERN 4/);
+  assert.match(by('fc-13b').back, /non-linear/);                                                          // J11
+  assert.doesNotMatch(by('fc-02').keyTakeaway, /parallel/);                                               // J12
+  assert.match(by('fc-39b').front, /Article 43/);                                                         // J13
+  assert.equal(by('fc-38').domainId, 'D3');                                                               // J14
+  assert.match(by('fc-07b').back, /Caremark/);                                                            // J15
+  assert.doesNotMatch(by('fc-07').back, /Caremark/);
+  for (const id of ['fc-38']) { for (const days of [/2 days/, /10 days/, /15 days/]) assert.match(by(id).back, days); }
+});
+
+test('split cards keep their original ID on the first part so saved mastery still applies', () => {
+  const splits: Record<string, string[]> = { 'fc-01': ['fc-01b', 'fc-01c'], 'fc-31': ['fc-31b', 'fc-31c', 'fc-31d'], 'fc-25': ['fc-25b', 'fc-25c'], 'fc-21': ['fc-21b', 'fc-21c'] };
+  const ids = FLASHCARDS.map(card => card.id);
+  for (const [first, rest] of Object.entries(splits)) {
+    assert.ok(ids.includes(first));
+    assert.deepEqual(rest.filter(id => !ids.includes(id)), []);
+    assert.ok(ids.indexOf(first) < ids.indexOf(rest[0]));
+  }
+  assert.equal(new Set(ids).size, ids.length);
+  assert.ok(FLASHCARDS.filter(card => card.legacyDomainId === 'D4').every(card => card.domainId !== 'D4'));
+});
+
+test('the audit no longer flags flashcard length or compound fronts', async () => {
+  const { auditQuestionBank } = await import('../scripts/auditQuestions');
+  const report = auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), FLASHCARDS);
+  assert.equal(report.flashcards.longBacks, 0);
+  assert.equal(report.flashcards.compoundFronts, 0);
+  assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 90);
+});

@@ -37,6 +37,10 @@ export interface Question {
 
 export interface Flashcard {
   id: string;
+  // Jurisdiction label shown on the card, e.g. 'US-specific'.
+  scope?: string;
+  // 'pending' marks cards whose content has not yet been checked against sources.
+  verification?: 'pending';
   domainId: DomainId;
   topic: string;
   legacyDomainId?: DomainId;
@@ -50,7 +54,8 @@ export interface Flashcard {
   reviewedAt?: string;
 }
 
-export type FlashcardMastery = 'new' | 'learning' | 'mastered';
+// 'hard' marks cards the learner found difficult; 'learning' means needs review.
+export type FlashcardMastery = 'new' | 'learning' | 'hard' | 'mastered';
 
 export interface QuestionAttempt {
   answeredIndex: number;

@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Flashcard, StudyDomainId, FlashcardMastery, UserProgress } from '../types';
 import { STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
+import { orderCardsForReview } from '../services/studyStats';
 import { 
   RotateCw, 
   Check, 
@@ -36,9 +37,14 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     setMoreBelow(!!el && el.scrollHeight - el.scrollTop - el.clientHeight > 8);
   };
 
+  // Difficult and unseen cards come first. Ordered once from the mastery at the time the
+  // deck is opened, so rating a card does not reshuffle the cards still to come.
+  const masteryRef = useRef(progress.flashcardMastery);
+  masteryRef.current = progress.flashcardMastery;
+  const orderedCards = useMemo(() => orderCardsForReview(flashcards, masteryRef.current), [flashcards]);
   const filteredCards = selectedDomain === 'ALL'
-    ? flashcards
-    : flashcards.filter(c => c.domainId === selectedDomain);
+    ? orderedCards
+    : orderedCards.filter(c => c.domainId === selectedDomain);
 
   const currentCard = filteredCards[currentIndex];
 
@@ -134,15 +140,17 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       <p className="text-xs text-slate-500 dark:text-slate-400">
         {currentCard.reviewStatus === 'reviewed' && currentCard.reviewedBy && currentCard.reviewedAt
           ? `Reviewed by ${currentCard.reviewedBy} on ${currentCard.reviewedAt}`
-          : 'Unreviewed study material · verify the explanation and references before relying on them.'}
+          : currentCard.verification === 'pending'
+            ? 'New card, pending verification · its content and references have not been checked against sources yet.'
+            : 'Unreviewed study material · verify the explanation and references before relying on them.'}
       </p>
 
       {/* 3D Flip Card Container */}
       <div 
         onClick={handleFlip}
-        className="w-full min-h-[360px] cursor-pointer perspective-1000 select-none"
+        className="w-full min-h-[440px] cursor-pointer perspective-1000 select-none"
       >
-        <div className={`relative w-full min-h-[360px] rounded-3xl transition-transform duration-500 transform-style-3d ${
+        <div className={`relative w-full min-h-[440px] rounded-3xl transition-transform duration-500 transform-style-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}>
           {/* FRONT */}
@@ -155,17 +163,33 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
                   currentMastery === 'mastered' 
                     ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400' 
+                    : currentMastery === 'hard'
+                    ? 'bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400'
                     : currentMastery === 'learning' 
                     ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400' 
                     : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
                 }`}>
-                  {currentMastery === 'mastered' ? 'Mastered' : currentMastery === 'learning' ? 'Reviewing' : 'New Card'}
+                  {currentMastery === 'mastered' ? 'Mastered' : currentMastery === 'hard' ? 'Difficult' : currentMastery === 'learning' ? 'Reviewing' : 'New Card'}
                 </span>
               </div>
 
               <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 {currentCard.topic}
               </div>
+              {(currentCard.scope || currentCard.verification === 'pending') && (
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {currentCard.scope && (
+                    <span className="px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 text-[11px] font-semibold">
+                      {currentCard.scope}
+                    </span>
+                  )}
+                  {currentCard.verification === 'pending' && (
+                    <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 text-[11px] font-semibold">
+                      Pending verification
+                    </span>
+                  )}
+                </div>
+              )}
 
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed">
                 {currentCard.front}
@@ -241,7 +265,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         </div>
         <div className="grid grid-cols-3 gap-3">
           <button
-            onClick={() => handleMastery('learning')}
+            onClick={() => handleMastery('hard')}
             className="py-3 px-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/30 hover:bg-rose-100 text-rose-700 dark:text-rose-400 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
           >
             <X className="w-4 h-4" /> Difficult (Hard)

@@ -20,7 +20,7 @@ test('active domains match the three public ISACA areas and built-in content con
     'AI Enterprise Governance', 'Data and AI Architecture Principles', 'AI Enterprise Integration and Performance Monitoring',
   ]);
   assert.equal(INITIAL_QUESTIONS.length, 439);
-  assert.equal(INITIAL_FLASHCARDS.length, 40);
+  assert.equal(INITIAL_FLASHCARDS.length, 90);
   assert.ok([...INITIAL_QUESTIONS, ...INITIAL_FLASHCARDS].every(item => item.domainId !== 'D4'));
   assert.ok(INITIAL_QUESTIONS.every(q => !q.subDomain.startsWith('D4.')));
 });

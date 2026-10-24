@@ -16,12 +16,12 @@ Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebal
 
 - **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Narrow practice to one subtopic, or order it with the weakest subtopics (by first-attempt accuracy) and unseen questions first. Options are reordered without changing question IDs or stored answer meanings.
 - **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Mock exams draw questions you have not answered before and tell you how many were repeats. Results show raw correctness, sample counts, and performance by study domain. The dashboard's headline accuracy counts each question's first attempt only, because re-answering after reading the explanation inflates the latest-answer figure. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
-- **Flashcards:** track concepts as new, learning, or mastered.
+- **Flashcards:** one point per card; rate each card as difficult, needs review, or mastered. Difficult and not-yet-rated cards come first. Cards on US-only law carry a "US-specific" label, and new cards show "Pending verification" until their content is checked against sources.
 - **Review notebook:** open the exact missed question for another attempt.
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The source data contains 439 questions (18 authored seed questions, 299 generated questions, and 122 hand-authored questions added in 1.3.0); 63 near-duplicates are retired and the app practices from the remaining 376 and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The source data contains 439 questions (18 authored seed questions, 299 generated questions, and 122 hand-authored questions added in 1.3.0); 63 near-duplicates are retired and the app practices from the remaining 376. There are 90 flashcards (the original 40, split so each card covers one point, plus 12 new cards that are marked as pending verification). Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
 
 ## Study categories and official information
 

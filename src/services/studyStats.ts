@@ -1,4 +1,4 @@
-import type { Question, UserProgress } from '../types';
+import type { Flashcard, FlashcardMastery, Question, UserProgress } from '../types';
 
 type History = UserProgress['history'];
 
@@ -51,4 +51,17 @@ export function orderWeakFirst(questions: readonly Question[], history: History,
 
 export function seenQuestionIds(history: History): Set<string> {
   return new Set(Object.keys(history).filter(id => history[id]?.length > 0));
+}
+
+const CARD_PRIORITY: Record<FlashcardMastery, number> = { hard: 0, new: 1, learning: 2, mastered: 3 };
+
+/**
+ * Orders flashcards for review: difficult cards first, then cards not yet rated, then
+ * cards marked for review, then mastered ones. Ties keep the deck's own order.
+ */
+export function orderCardsForReview(cards: readonly Flashcard[], mastery: Readonly<Record<string, FlashcardMastery>>): Flashcard[] {
+  return cards
+    .map((card, index) => ({ card, index, priority: CARD_PRIORITY[mastery[card.id] ?? 'new'] ?? CARD_PRIORITY.new }))
+    .sort((a, b) => a.priority - b.priority || a.index - b.index)
+    .map(entry => entry.card);
 }

@@ -26,6 +26,8 @@ const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...undoMove(q) })),
   ...INITIAL_FLASHCARDS.map(c => ({ type: 'flashcard', ...c }))];
 const byId = new Map(items.map(item => [item.id, item]));
 
+const AUTHORIZED_CARD_CHANGES = new Set(['fc-04', 'fc-12', 'fc-13', 'fc-24', 'fc-32', 'fc-37', 'fc-38', 'fc-39']);
+
 function canonical(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(canonical);
   if (value && typeof value === 'object') return Object.fromEntries(
@@ -47,8 +49,12 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
   assert.deepEqual(INITIAL_QUESTIONS.slice(0, baseline.questions.length).map(q => [q.id, q.correctIndex]),
     baseline.questions.map(([id, index]) => [id, CORRECT_POSITION_MOVES[id] ? swappedIndex(index, CORRECT_POSITION_MOVES[id]) : index]));
   assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => /^aaig-d[123]s-/.test(q.id)));
-  assert.deepEqual(INITIAL_FLASHCARDS.map(c => c.id), baseline.flashcards);
-  assert.equal(byId.size, 479);
+  // 2026-10-24: cards were split and new ones added. Every original ID survives, in its original
+  // relative order, so saved mastery still points at the first part of each split card.
+  const cardIds = INITIAL_FLASHCARDS.map(c => c.id);
+  assert.deepEqual(cardIds.filter(id => baseline.flashcards.includes(id)), baseline.flashcards);
+  assert.ok(cardIds.filter(id => !baseline.flashcards.includes(id)).every(id => /^fc-(\d\d[b-d]|4[1-9]|5[0-2])$/.test(id)));
+  assert.equal(byId.size, 529);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {
@@ -63,6 +69,11 @@ test('all 313 explicit revisions remain applied and other teaching content survi
       assert.equal(entry.decision, 'not-in-review', `Option rebalance must not touch reviewer decisions: ${entry.id}`);
       assert.equal(hash(item, ['options']), optionOnly.get(entry.id), `Change beyond option wording: ${entry.id}`);
       protectedItems++;
+    } else if (AUTHORIZED_CARD_CHANGES.has(entry.id)) {
+      // Changed on 2026-10-24 on the reviewer's explicit decisions (J7-J15, split of compound fronts).
+      assert.notEqual(hash(item), entry.beforeHash, `Authorized change missing: ${entry.id}`);
+      protectedItems++;
+      if (entry.decision === 'needs-more-evidence') pending++;
     } else {
       assert.equal(hash(item), entry.beforeHash, `Unauthorized change: ${entry.id}`);
       protectedItems++;
@@ -89,11 +100,12 @@ test('follow-up review uses the NIST role and privacy locators consistently', ()
 
 test('reviewed teaching text excludes editing markers and distinguishes AI Act actors', () => {
   for (const card of INITIAL_FLASHCARDS) assert.doesNotMatch(card.back, /^\(Retained Existing Answer\)/, card.id);
-  const riskCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-31')!;
-  assert.match(riskCard.back, /providers must inform people of direct AI interactions/);
+  const riskCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-31c')!;
+  assert.match(riskCard.back, /Providers must mark synthetic/);
+  assert.match(riskCard.back, /inform people of direct AI interactions/);
   assert.doesNotMatch(riskCard.back, /deployers must disclose human-facing AI interactions/);
-  const sourcingCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-21')!;
-  assert.match(sourcingCard.keyTakeaway, /high-risk/);
+  const sourcingCard = INITIAL_FLASHCARDS.find(c => c.id === 'fc-21b')!;
+  assert.match(sourcingCard.back, /high-risk/);
 });
 
 test('recruitment DPIA explanations retain the processing-risk trigger and applicability conditions', () => {

@@ -39,3 +39,12 @@ test('mock exam sampling draws unseen questions first and falls back to seen one
   assert.equal(heavy.length, 90, 'a fully seen bank still yields a full exam');
   assert.deepEqual([...seenQuestionIds({ x: [attempt(true)], y: [] })], ['x']);
 });
+
+test('flashcard review order puts difficult cards first, then unrated, then review, then mastered', async () => {
+  const { INITIAL_FLASHCARDS } = await import('../src/data/flashcards');
+  const { orderCardsForReview } = await import('../src/services/studyStats');
+  const [a, b, c, d, e] = INITIAL_FLASHCARDS;
+  const ordered = orderCardsForReview([a, b, c, d, e], { [a.id]: 'mastered', [b.id]: 'learning', [d.id]: 'hard' });
+  assert.deepEqual(ordered.map(card => card.id), [d.id, c.id, e.id, b.id, a.id]);
+  assert.deepEqual(orderCardsForReview([a, b], {}).map(card => card.id), [a.id, b.id], 'ties keep the deck order');
+});
