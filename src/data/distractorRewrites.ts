@@ -337,6 +337,56 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Commissioning an immediate architectural', axis: 'Redesign before revised performance metrics exist' },
     { from: 'Tasking the third-line internal audit team', to: 'Have the second line sample model outputs each month and report the error rate to the risk committee.', why: 'Sampling gives some assurance, but with no set limit and no required response the report does not trigger action.', axis: 'Sampling without a trigger' },
   ],
+  'aaig-pipe-1791942414357-14': [
+    { from: 'Prioritizing the capture of tamper-evident', axis: 'Sound practice: tamper-evident capture balanced with privacy' },
+    { from: 'Establishing data logging formats', axis: 'Sound practice: formats, retention and baselines set before launch' },
+    { from: 'Assigning independent verification of logging', axis: 'Sound practice: independent verification of logging controls' },
+  ],
+  'aaig-pipe-1791943115211-14-nny8a': [
+    { from: 'Scheduling periodic retrospective audits', axis: 'Sound practice: retrospective audits of high-risk decisions' },
+    { from: 'Establishing immutable, time-stamped', axis: 'Sound practice: immutable time-stamped logging' },
+    { from: 'Authorizing the second-line risk function', axis: 'Sound practice: second-line review of alert calibration' },
+  ],
+  'aaig-pipe-1791943330756-59-in7ze': [
+    { from: 'Prioritizing escalation protocols', axis: 'Sound practice: escalation by aggregate enterprise impact' },
+    { from: 'Formally defining quantitative residual', axis: 'Sound practice: tolerance bands and escalation set before monitoring starts' },
+    { from: 'Tasking second-line risk management', axis: 'Sound practice: second-line challenge of threshold changes' },
+  ],
+  'aaig-pipe-1791943346650-64-3nlj2': [
+    { from: 'Empowering second-line risk functions', axis: 'Sound practice: second-line challenge with power to stop deployments' },
+    { from: 'Mandating that technical development teams', axis: 'Sound practice: fairness metrics tracked before release' },
+    { from: 'Requiring multi-disciplinary stakeholder', axis: 'Sound practice: stakeholder consultation before fairness thresholds' },
+  ],
+  'aaig-pipe-1791943564576-114-jdy9q': [
+    { from: 'Capturing comprehensive input prompts', axis: 'Sound practice: write-once tamper-evident capture' },
+    { from: 'Establishing continuous automated baseline', axis: 'Sound practice: drift alerts set before logging expands' },
+    { from: 'Requiring the internal audit function', axis: 'Sound practice: independent assessment of monitoring controls' },
+  ],
+  'aaig-pipe-1791943983566-199-mxwfl': [
+    { from: 'Establishing dynamic operational key risk', axis: 'Sound practice: indicators that escalate before a breach' },
+    { from: 'Calibrating model-level tolerance', axis: 'Sound practice: model thresholds calibrated to board-approved appetite' },
+    { from: 'Mandating that the second-line risk', axis: 'Sound practice: second-line challenge of metrics' },
+  ],
+  'aaig-pipe-1791943026259-0-006uc': [
+    { from: 'Direct operational product teams', axis: 'Thresholds set by product teams before the mandate' },
+    { from: 'Deploy centralized model monitoring', to: 'Ask each product team to report its AI risks to the board in its own format once a year.', why: 'Unit reports give the board some visibility, but with no common format and no decision rights they cannot be compared or acted upon.', axis: 'Reporting without a mandate' },
+    { from: 'Require the internal audit function', to: 'Ask the board to appoint an AI specialist to its audit committee before any other step is taken.', why: 'Expertise on the board helps, but it does not create the mandate that sets who decides on AI and how much risk is accepted.', axis: 'Expertise added before a mandate' },
+  ],
+  'aaig-pipe-1791943242476-42-b4cm9': [
+    { from: 'Deploying automated real-time input', to: 'Publish the AI principles in the code of conduct and ask all staff to sign every year that they have read it.', why: 'A signed statement builds awareness, but it adds no procedure or approval step that can stop a use that breaches the principles.', axis: 'Awareness mistaken for control' },
+    { from: 'Conducting comprehensive third-party algorithmic', axis: 'Impact assessments before the policy statements exist' },
+    { from: 'Empowering individual business unit application', to: 'Let each business unit adopt the principles in its own procedures and report breaches to the ethics office.', why: 'Local procedures adapt the principles to each unit, but without common mandatory controls adherence differs between units.', axis: 'Local procedures without common controls' },
+  ],
+  'aaig-pipe-1791943290779-52-tsbao': [
+    { from: 'Authorize the first-line machine learning', to: 'Ask the model owner to compare live results with the launch figures every month and file the comparison with the model record.', why: 'A monthly comparison records the decline, but with no agreed limit nothing obliges anyone to re-evaluate the model.', axis: 'Monitoring without a limit' },
+    { from: 'Retrain the production machine learning model immediately', to: 'Retrain the model on the most recent operational data every week so that it follows the shift.', why: 'Frequent retraining chases the shift and may build in the new bias, and it sets no limit that tells reviewers when the model is no longer acceptable.', axis: 'Retraining as the control' },
+    { from: 'Commission an independent third-line', to: 'Ask the second line to review the credit scoring model each quarter and report its view on predictive efficacy and fairness.', why: 'A periodic review gives an independent view, but between reviews the degradation continues and nothing defines when to act.', axis: 'Periodic review without triggers' },
+  ],
+  'aaig-pipe-1791943271485-48-c6uyk': [
+    { from: 'Authorize the immediate operational deployment', to: 'Ask the model owner to oversample the under-represented group and retrain, then report the updated accuracy to the committee.', why: 'Rebalancing the data may help, but the objective of the governance body is fairness and legal compliance, which accuracy figures alone do not show.', axis: 'Technical correction mistaken for the objective' },
+    { from: 'Direct engineering teams to maximize', axis: 'Accuracy goal that ignores fairness' },
+    { from: 'Empower the first-line model development team', to: 'Have the second line set a new disparate impact threshold that fits the observed drift and apply it to this system.', why: 'Moving a threshold to fit the drift hides the problem. The governance body sets the threshold from fairness criteria and the law, not the other way round.', axis: 'Threshold adjusted to fit the drift' },
+  ],
 };
 
 /**
@@ -410,6 +460,16 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943171040-25-5puc0': 'Set up an executive AI committee with defined decision rights and regular reports to the board.',
   'aaig-pipe-1791943294203-50-49u23': 'Compare buying and building on skills, cost over time, explainability and third-party risk against the firm\'s risk limits.',
   'aaig-pipe-1791943382925-72-rsjps': 'Monitor drift against performance limits set by risk level, with escalation and review when a limit is crossed.',
+  'aaig-pipe-1791942414357-14': 'Letting the operations team edit or delete inference log entries during incident triage so the records match the final findings.',
+  'aaig-pipe-1791943115211-14-nny8a': 'Permitting production support teams to truncate anomalous inference logs when storage runs short.',
+  'aaig-pipe-1791943330756-59-in7ze': 'Letting the model operations teams change the thresholds themselves to stop repeated drift alerts from reaching the risk function.',
+  'aaig-pipe-1791943346650-64-3nlj2': 'Letting business units waive fairness evaluations when the AI model is bought from a third party instead of built in-house.',
+  'aaig-pipe-1791943564576-114-jdy9q': 'Allowing AI engineers to shorten the retention period of audit logs whenever storage capacity runs low on the platform.',
+  'aaig-pipe-1791943983566-199-mxwfl': 'Permitting business units to temporarily adjust risk tolerance thresholds when delivery deadlines are tight, as long as the changes are logged.',
+  'aaig-pipe-1791943026259-0-006uc': 'Approve a written mandate that sets who decides on AI, who answers for results and how much risk is acceptable.',
+  'aaig-pipe-1791943242476-42-b4cm9': 'Turn the AI principles into a policy with mandatory procedures and stage-gate approvals for every business unit.',
+  'aaig-pipe-1791943290779-52-tsbao': 'Set predefined degradation limits linked to the firm\'s risk appetite that start a formal model re-evaluation.',
+  'aaig-pipe-1791943271485-48-c6uyk': 'Ensure model outcomes remain consistent with the firm\'s non-discrimination policy and with regulatory fairness duties.',
 };
 
 /**

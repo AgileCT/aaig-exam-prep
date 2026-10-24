@@ -219,7 +219,7 @@ test('distractor rewrites keep answers, passes gates and removes the vocabulary 
   const { DISTRACTOR_REWRITES, CORRECT_REWRITES } = await import('../src/data/distractorRewrites');
   const { guessabilityRate } = await import('../src/services/guessability');
   const ids = Object.keys(DISTRACTOR_REWRITES);
-  assert.equal(ids.length, 65);
+  assert.equal(ids.length, 75);
   assert.deepEqual(Object.keys(CORRECT_REWRITES).sort(), [...ids].sort());
   const rewritten = INITIAL_QUESTIONS.filter(q => ids.includes(q.id));
   assert.equal(rewritten.length, ids.length);
