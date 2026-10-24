@@ -214,3 +214,24 @@ test('guessability indicator separates reasoning-dependent items from wording-de
   const report = (await import('../scripts/auditQuestions')).auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.equal(typeof report.guessability.rate, 'number');
 });
+
+test('distractor rewrite pilot keeps answers, passes gates and removes the vocabulary cue without inverting it', async () => {
+  const { DISTRACTOR_REWRITES, CORRECT_REWRITES } = await import('../src/data/distractorRewrites');
+  const { guessabilityRate } = await import('../src/services/guessability');
+  const ids = Object.keys(DISTRACTOR_REWRITES);
+  assert.equal(ids.length, 12);
+  assert.deepEqual(Object.keys(CORRECT_REWRITES).sort(), [...ids].sort());
+  const rewritten = INITIAL_QUESTIONS.filter(q => ids.includes(q.id));
+  assert.equal(rewritten.length, ids.length);
+  for (const q of rewritten) {
+    assert.ok(passesLengthGate(q), `${q.id} length parity`);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.distractorExplanations?.length, 3, q.id);
+    assert.equal(q.reviewStatus, 'unreviewed');
+  }
+  const rate = guessabilityRate(rewritten);
+  // Before the pilot every one of these items was answered correctly by the guesser.
+  assert.ok(rate <= 0.4, `pilot guessability ${rate}`);
+  assert.ok(rate >= 0.15, `pilot guessability ${rate} is below chance, which would invert the cue`);
+});

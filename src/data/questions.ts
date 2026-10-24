@@ -2,6 +2,7 @@ import { Question } from '../types';
 import { GENERATED_QUESTIONS } from './generatedQuestions';
 import { SUPPLEMENTAL_QUESTIONS } from './supplementalQuestions';
 import { FUNDAMENTAL_QUESTIONS } from './fundamentalQuestions';
+import { applyDistractorRewrite } from './distractorRewrites';
 import { CORRECT_POSITION_MOVES } from './correctPositionMoves';
 import { markQuestionUnreviewed, swapQuestionOptions } from '../services/questionOrder';
 import { normalizeQuestionDomain } from '../services/domainTaxonomy';
@@ -501,4 +502,4 @@ function applyCorrectPositionMove(question: Question): Question {
 export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
-].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS);
+].map(applyCorrectPositionMove).map(applyDistractorRewrite).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS);
