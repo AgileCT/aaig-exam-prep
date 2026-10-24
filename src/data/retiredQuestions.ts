@@ -69,6 +69,12 @@ export const RETIRED_QUESTIONS: readonly RetiredQuestion[] = [
   { id: 'aaig-pipe-1791943956698-191-0piit', keptTwin: 'aaig-pipe-1791943199628-31-3294z', similarity: 0.68 },
   { id: 'aaig-pipe-1791944041777-211-py1tv', keptTwin: 'aaig-pipe-1791943199628-31-3294z', similarity: 0.63 },
   { id: 'aaig-pipe-1791941523762-25', keptTwin: 'aaig-pipe-1791941151242-25', similarity: 0.62 },
+  // 2026-10-24: retired on the reviewer's decision, not by the similarity rule. Six questions asked the same ISO/IEC 42001
+  // fact (the AIMS starts with context and scope) and the reviewer chose to keep three. aaig-pipe-1791943409756-76-x6j7d was
+  // held by a 'needs-more-evidence' decision; the reviewer authorized its retirement. -196-b3ogk is below the 0.6 threshold.
+  { id: 'aaig-pipe-1791943409756-76-x6j7d', keptTwin: 'aaig-pipe-1791943492016-96-75ffw', similarity: 0.67 },
+  { id: 'aaig-pipe-1791943579801-116-pccul', keptTwin: 'aaig-pipe-1791943670257-136-96q8n', similarity: 0.67 },
+  { id: 'aaig-pipe-1791943982371-196-b3ogk', keptTwin: 'aaig-pipe-1791943492016-96-75ffw', similarity: 0.56 },
 ];
 
 export const RETIRED_QUESTION_IDS: ReadonlySet<string> = new Set(RETIRED_QUESTIONS.map(entry => entry.id));
