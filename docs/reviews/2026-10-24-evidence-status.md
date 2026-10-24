@@ -41,7 +41,7 @@ ISO/IEC 42001 为付费标准，即使网络放开，也需要正版文本才能
 
 复核人（Xiaoli (Shelly) Zhao）要求处理这 9 项。网络仍被拦截（iso.org、nist.gov、eur-lex、dl.acm.org、gdpr-info.eu 等，已再次尝试），且 ISO/IEC 42001:2023 和 COBIT 2019 是付费文本，所以我没有核验，也没有写任何 `sourceUrl`，9 项仍保持"待补证"。
 
-已做的：生成 `2026-10-24-evidence-worksheet.docx`。它把需要对照原文的陈述逐条列出（6 条 ISO/IEC 42001 事实、fc-04 的 3 个问题、fc-12 的 3 个问题），写了我凭记忆的理解（明确标为未核实），并留出勾选和填写条款号的位置。同时提出两个需要复核人决定的内容问题：①六道"建立 AIMS 先做什么"的题是同一个知识点，建议保留 3 道、退休 3 道；②fc-12 的出处建议改成 Gama 等 2014（concept drift / virtual drift）与 Quiñonero-Candela 等 2009（covariate / dataset shift）并列，因为 "Data Drift（Covariate Shift）" 这个名称并不出自 Gama 的综述。
+已做的：生成 `2026-10-24-evidence-worksheet-2.docx`。它把需要对照原文的陈述逐条列出（6 条 ISO/IEC 42001 事实、fc-04 的 3 个问题、fc-12 的 3 个问题），写了我凭记忆的理解（明确标为未核实），并留出勾选和填写条款号的位置。同时提出两个需要复核人决定的内容问题：①六道"建立 AIMS 先做什么"的题是同一个知识点，建议保留 3 道、退休 3 道；②fc-12 的出处建议改成 Gama 等 2014（concept drift / virtual drift）与 Quiñonero-Candela 等 2009（covariate / dataset shift）并列，因为 "Data Drift（Covariate Shift）" 这个名称并不出自 Gama 的综述。
 
 我还发现并标出两处可疑引用：x6j7d、pccul 两道题引用了 "ISO/IEC 23894 Clause 5.2"（领导与承诺），与"确定范围"无关；b3ogk 的解析提到"统一结构"，我没有核实。
 
@@ -52,3 +52,5 @@ ISO/IEC 42001 为付费标准，即使网络放开，也需要正版文本才能
 复核人同意工作表 1.3 的建议：aaig-pipe-1791942407156-11、-1791943492016-96-75ffw、-1791943670257-136-96q8n 保留；aaig-pipe-1791943409756-76-x6j7d、-1791943579801-116-pccul、-1791943982371-196-b3ogk 退休。退休记录在 `src/data/retiredQuestions.ts`，保留数据，不再进入练习、模考和统计。这三道里 x6j7d 原先是"待补证"题，退休由复核人授权；b3ogk 与保留题的相似度为 0.56，低于 0.6 的自动阈值，是依据复核人的决定退休。
 
 这使"待补证"的条目由 9 项减为 6 项：3 道题（-11、-75ffw、-96q8n）和 3 张闪卡（fc-32 含 fc-32b、fc-04、fc-12）。其中 x6j7d、pccul 引用的 "ISO/IEC 23894 Clause 5.2" 随题退休，不再需要核对。仍需要你对照 ISO/IEC 42001:2023 核对 4.1 到 4.3 和 6.1.3 的陈述，以及 COBIT 2019 EDM03 和 Gama 等的论文。题库现在有 373 道激活题。
+
+更新：核验工作表已缩减为 6 项（`2026-10-24-evidence-worksheet-2.docx`，5 页），去掉了已退休的三道题和六选三的决定，每条增加了"原文摘录"栏，复核人粘贴的关键句即作为证据记入核验记录。
