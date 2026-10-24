@@ -46,9 +46,9 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
   // Reviewed questions keep their positions; later supplements are appended after them.
   assert.deepEqual(INITIAL_QUESTIONS.slice(0, baseline.questions.length).map(q => [q.id, q.correctIndex]),
     baseline.questions.map(([id, index]) => [id, CORRECT_POSITION_MOVES[id] ? swappedIndex(index, CORRECT_POSITION_MOVES[id]) : index]));
-  assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => q.id.startsWith('aaig-d2s-')));
+  assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => /^aaig-d[123]s-/.test(q.id)));
   assert.deepEqual(INITIAL_FLASHCARDS.map(c => c.id), baseline.flashcards);
-  assert.equal(byId.size, 375);
+  assert.equal(byId.size, 383);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {

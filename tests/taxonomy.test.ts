@@ -19,7 +19,7 @@ test('active domains match the three public ISACA areas and built-in content con
   assert.deepEqual(Object.values(AAIG_DOMAINS).map(d => d.name), [
     'AI Enterprise Governance', 'Data and AI Architecture Principles', 'AI Enterprise Integration and Performance Monitoring',
   ]);
-  assert.equal(INITIAL_QUESTIONS.length, 335);
+  assert.equal(INITIAL_QUESTIONS.length, 343);
   assert.equal(INITIAL_FLASHCARDS.length, 40);
   assert.ok([...INITIAL_QUESTIONS, ...INITIAL_FLASHCARDS].every(item => item.domainId !== 'D4'));
   assert.ok(INITIAL_QUESTIONS.every(q => !q.subDomain.startsWith('D4.')));

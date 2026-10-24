@@ -7,6 +7,7 @@
 - Add mock exam history, progress backup and restore, and data bundle splitting.
 - Add a reference resolver that links source labels to the official landing pages of NIST, ISO, EU AI Act, COBIT and other references.
 - Rebalance canonical answer positions within every subtopic (previously up to 94% on one letter) by swapping options in 162 questions. Explanation letters move with the options. Saved attempts and pre-1.3.0 backups are remapped once on load or import; backups now record the option-order revision.
+- Add eight hand-authored questions to D1.3 Policies (previously MOST only) and D3.2 Business Case & ROI (previously FIRST only); both topics now use all five qualifier types.
 - Bring the last eight questions inside the option length-parity gate by trimming padded distractors.
 - Remove the unused `bun.lock`; npm remains the canonical installer.
 - No `sourceUrl` evidence was added and the nine evidence-pending items remain open; see `docs/reviews/2026-10-24-evidence-status.md`.

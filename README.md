@@ -21,7 +21,7 @@ Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebal
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The bundled content contains 335 questions (18 authored seed questions, 299 generated questions, and 18 hand-authored Data and AI Architecture questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The bundled content contains 343 questions (18 authored seed questions, 299 generated questions, and 26 hand-authored questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
 
 ## Study categories and official information
 
@@ -85,7 +85,7 @@ The dry run prints the sampling plan without API calls or file writes. A normal 
 
 The authoring pipeline independently samples topic, question type, difficulty, and answer position. It checks required fields, four options, answer bounds, explanation axes, the length-ratio range, and duplicate question text. A separate blind request must agree with the author key. Both requests use the configured model: agreement is a consistency check, not independent expert validation. Generated items remain unreviewed.
 
-The bundled bank retains limitations, including a single question type in two topics (D1.3 and D3.2) and unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
+The bundled bank retains limitations, including unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
 
 ## Production deployment
 

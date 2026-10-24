@@ -23,7 +23,7 @@ test('importing generation code does not contact an AI provider', async () => {
 });
 
 test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
-  assert.equal(INITIAL_QUESTIONS.length, 335);
+  assert.equal(INITIAL_QUESTIONS.length, 343);
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
@@ -116,8 +116,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 335);
-  assert.ok(valid.warnings.some((warning: string) => warning.includes('single question type')));
+  assert.equal(valid.unreviewedQuestions, 343);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -127,6 +126,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(concentrationReport.warnings.some((warning: string) => warning.includes('dominant answer position') && warning.includes('80.0%')));
   const fixed = module.auditQuestionBank(concentrated.map(q => ({ ...q, correctIndex: 0 })), []);
   assert.ok(fixed.warnings.some((warning: string) => warning.includes('fixed answer position')));
+  assert.ok(fixed.warnings.some((warning: string) => warning.includes('single question type')));
 });
 
 test('malformed distractor axes return validation failures instead of throwing', async () => {
@@ -166,9 +166,9 @@ test('dry-run covers three domains without API calls, reports or bank writes', a
   }
 });
 
-test('D2 supplement meets authoring gates and varies type and answer position', () => {
-  assert.equal(SUPPLEMENTAL_QUESTIONS.length, 18);
-  assert.ok(SUPPLEMENTAL_QUESTIONS.every(q => q.domainId === 'D2' && q.reviewStatus === 'unreviewed'));
+test('hand-authored supplement meets authoring gates and varies type and answer position', () => {
+  assert.equal(SUPPLEMENTAL_QUESTIONS.length, 26);
+  assert.ok(SUPPLEMENTAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   for (const q of SUPPLEMENTAL_QUESTIONS) {
     assert.ok(passesLengthGate(q), q.id);
     assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
@@ -179,6 +179,9 @@ test('D2 supplement meets authoring gates and varies type and answer position', 
   assert.ok(d21.length >= 15);
   assert.ok(new Set(d21.map(q => q.questionType)).size >= 4);
   assert.ok(new Set(d21.map(q => q.correctIndex)).size === 4);
+  for (const topic of ['D1.3', 'D3.2']) {
+    assert.ok(new Set(INITIAL_QUESTIONS.filter(q => q.subDomain.startsWith(topic)).map(q => q.questionType)).size >= 4, topic);
+  }
 });
 
 test('correct option is never the longest, except two items held by reviewer decisions', () => {
