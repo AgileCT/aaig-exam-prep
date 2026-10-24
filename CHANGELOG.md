@@ -8,6 +8,11 @@
 - Add a reference resolver that links source labels to the official landing pages of NIST, ISO, EU AI Act, COBIT and other references.
 - Rebalance canonical answer positions within every subtopic (previously up to 94% on one letter) by swapping options in 162 questions. Explanation letters move with the options. Saved attempts and pre-1.3.0 backups are remapped once on load or import; backups now record the option-order revision.
 - Add eight hand-authored questions to D1.3 Policies (previously MOST only) and D3.2 Business Case & ROI (previously FIRST only); both topics now use all five qualifier types.
+- Add 16 hand-authored Fundamental questions (12 before, 28 now) with non-financial scenarios, options of 40-80 characters, and distractors that are plausible concepts or actions failing on the scenario's facts.
+- Add a guessability indicator to the offline audit and a regression test. A scenario-blind keyword guesser answered 71.3% of the earlier bank, 49.0% of the 26 earlier supplement items and 33.9% of the 16 new items correctly (ties broken at random; random is 25%). The audit now warns above 40%; the earlier bank has not been rewritten.
+- Dashboard headline accuracy and per-domain accuracy now use each question's first attempt; the latest-answer figure is shown beside it.
+- Mock exams draw unanswered questions first within each domain and report how many questions had been answered before.
+- Practice gains a subtopic selector and a weak-subtopics-first order based on first-attempt accuracy.
 - Bring the last eight questions inside the option length-parity gate by trimming padded distractors.
 - Remove the unused `bun.lock`; npm remains the canonical installer.
 - No `sourceUrl` evidence was added and the nine evidence-pending items remain open; see `docs/reviews/2026-10-24-evidence-status.md`.

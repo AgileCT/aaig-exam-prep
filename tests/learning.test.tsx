@@ -163,3 +163,22 @@ test('dashboard, practice, cards and authoring expose three active study domains
   assert.ok(domainSelect);
   assert.deepEqual([...domainSelect.options].map(o => o.value), ['D1', 'D2', 'D3']);
 });
+
+test('practice can be narrowed to one subtopic and ordered weak-first without reshuffling on answer', async t => {
+  t.mock.method(Math, 'random', () => 0.5);
+  const topicA = { ...makeQuestion('a1'), subDomain: 'D1.1 Topic A' };
+  const topicB = { ...makeQuestion('b1'), subDomain: 'D1.2 Topic B' };
+  const progress: UserProgress = { ...emptyProgress(), history: { a1: [{ answeredIndex: 1, isCorrect: true, timestamp: 1 }] } };
+  const { container } = await mount(t, <QuizView questions={[topicA, topicB]} progress={progress}
+    onRecordAttempt={() => {}} onToggleBookmark={() => {}} onOpenTutor={() => {}} />);
+  const select = container.querySelector<HTMLSelectElement>('select[aria-label="Subtopic"]')!;
+  assert.ok(select, 'subtopic selector exists');
+  assert.equal(select.options.length, 3);
+  await act(async () => { select.value = 'D1.2 Topic B'; select.dispatchEvent(new Event('change', { bubbles: true })); });
+  assert.ok(container.textContent?.includes('Question 1 of 1'));
+  assert.ok(container.textContent?.includes('Question b1?'));
+  await act(async () => { select.value = 'ALL'; select.dispatchEvent(new Event('change', { bubbles: true })); });
+  const weak = container.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
+  await act(async () => weak.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  assert.ok(container.textContent?.includes('Question b1?'), 'untested/weak subtopic comes first');
+});

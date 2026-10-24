@@ -6,6 +6,7 @@ import { INITIAL_FLASHCARDS } from '../src/data/flashcards';
 import { isQuestion, isFlashcard, passesLengthGate } from '../src/services/contentValidation';
 import { normalizeQuestionStem } from './generateQuestions';
 import { STUDY_DOMAIN_IDS } from '../src/data/domains';
+import { GUESSABILITY_TARGET, guessabilityRate } from '../src/services/guessability';
 
 export function auditQuestionBank(questionValues: readonly unknown[], flashcardValues: readonly unknown[]) {
   const errors: string[] = [], warnings: string[] = [];
@@ -39,6 +40,10 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
   if (outsideParity.length) warnings.push(`${outsideParity.length} retained questions fall outside length parity [0.75, 1.45]: ${outsideParity.map(q => q.id).join(', ')}`);
   const longestCorrect = questions.filter(q => q.options[q.correctIndex].length === Math.max(...q.options.map(option => option.length))).length;
   if (longestCorrect) warnings.push(`${longestCorrect} retained questions have a longest correct option (including ties); display shuffling removes position cues only`);
+  const guessability = guessabilityRate(questions);
+  if (guessability > GUESSABILITY_TARGET) {
+    warnings.push(`scenario-blind keyword guesser answers ${(100 * guessability).toFixed(1)}% of questions correctly (random 25%, target <= ${100 * GUESSABILITY_TARGET}%); correct options are identifiable by wording rather than by the scenario`);
+  }
   const byTopic: Record<string, { count: number; answerPositions: number[]; questionTypes: string[] }> = {};
   const grouped = new Map<string, Question[]>();
   for (const question of questions) grouped.set(question.subDomain, [...(grouped.get(question.subDomain) || []), question]);
@@ -59,6 +64,8 @@ export function auditQuestionBank(questionValues: readonly unknown[], flashcardV
     unreviewedQuestions, unreviewedFlashcards,
     domains: Object.fromEntries(STUDY_DOMAIN_IDS.map(domain => [domain, questions.filter(q => q.domainId === domain).length])),
     answerPositions: [0, 1, 2, 3].map(i => questions.filter(q => q.correctIndex === i).length),
+    guessability: { rate: Number(guessability.toFixed(3)), target: GUESSABILITY_TARGET,
+      byQuestionType: Object.fromEntries(['BEST', 'FIRST', 'PRIMARY', 'MOST', 'LEAST'].map(type => [type, Number(guessabilityRate(questions.filter(q => q.questionType === type)).toFixed(3))])) },
     byTopic, errors, warnings,
   };
 }

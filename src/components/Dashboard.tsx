@@ -18,6 +18,7 @@ import {
   FileJson
 } from 'lucide-react';
 import { exportProgressJSON, importProgressJSON, resetUserProgress } from '../services/storage';
+import { firstAttemptSummary } from '../services/studyStats';
 
 interface DashboardProps {
   questions: Question[];
@@ -104,17 +105,18 @@ export const Dashboard: React.FC<DashboardProps> = ({
     }
   });
 
-  const accuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+  // Latest-answer accuracy rises toward 100% as missed items are re-answered after
+  // reading the explanation, so first-attempt accuracy is the headline figure.
+  const latestAccuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+  const firstTry = firstAttemptSummary(questions, progress.history);
+  const accuracy = firstTry.attempted > 0 ? Math.round((firstTry.correct / firstTry.attempted) * 100) : 0;
   const masteredFlashcards = Object.values(progress.flashcardMastery).filter(m => m === 'mastered').length;
 
   // Domain statistics
   const domainStats = Object.values(AAIG_DOMAINS).map(dom => {
     const domainQuestions = questions.filter(q => q.domainId === dom.id);
     const domainAttempted = domainQuestions.filter(q => progress.history[q.id]?.length > 0);
-    const domainCorrect = domainAttempted.filter(q => {
-      const attempts = progress.history[q.id];
-      return attempts[attempts.length - 1].isCorrect;
-    });
+    const domainCorrect = domainAttempted.filter(q => progress.history[q.id][0].isCorrect);
 
     const domainAcc = domainAttempted.length > 0 
       ? Math.round((domainCorrect.length / domainAttempted.length) * 100) 
@@ -198,14 +200,14 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
         <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
-            <span className="text-xs font-medium">Overall Accuracy</span>
+            <span className="text-xs font-medium">First-Attempt Accuracy</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
           </div>
           <div className="text-2xl font-bold text-slate-900 dark:text-white">
             {accuracy}%
           </div>
           <div className="text-xs text-emerald-600 dark:text-emerald-400 mt-1">
-            {totalAttemptsCount} total attempts
+            Latest-answer {latestAccuracy}% · {totalAttemptsCount} attempts
           </div>
         </div>
 
@@ -251,7 +253,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </p>
           </div>
           <span className="text-xs font-medium px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
-            Practice accuracy only · no official score estimate
+            First-attempt accuracy · no official score estimate
           </span>
         </div>
 
@@ -283,7 +285,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <div className="space-y-1.5 mb-3">
                 <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   <span>Coverage: {dom.attemptedCount}/{dom.totalCount} questions</span>
-                  <span>Accuracy: {dom.accuracy}%</span>
+                  <span>First-attempt accuracy: {dom.accuracy}%</span>
                 </div>
                 <div className="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div

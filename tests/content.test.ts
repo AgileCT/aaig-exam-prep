@@ -23,7 +23,7 @@ test('importing generation code does not contact an AI provider', async () => {
 });
 
 test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
-  assert.equal(INITIAL_QUESTIONS.length, 343);
+  assert.equal(INITIAL_QUESTIONS.length, 359);
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
@@ -116,7 +116,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 343);
+  assert.equal(valid.unreviewedQuestions, 359);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -199,4 +199,18 @@ test('explanations cite options only in the "Option X" form that shuffling can r
   const unmappable = /\b[Oo]ptions\s+[ABCD]\b|(?<![\w)/])\([ABCD]\)|\b[Cc]hoices?\s+[ABCD]\b|\b[Aa]nswer\s+[ABCD]\b/;
   const offenders = INITIAL_QUESTIONS.filter(q => [q.explanation, ...(q.distractorExplanations || [])].some(t => unmappable.test(t)));
   assert.deepEqual(offenders.map(q => q.id), []);
+});
+
+test('guessability indicator separates reasoning-dependent items from wording-dependent items', async () => {
+  const { guessabilityRate, guessProbability } = await import('../src/services/guessability');
+  const wordy = { options: ['Deploy an automated dashboard without review', 'Establish a charter with decision rights and risk appetite', 'Let engineers decide alone', 'Wait'], questionType: 'BEST' as const, correctIndex: 1 };
+  assert.equal(guessProbability(wordy), 1);
+  assert.equal(guessProbability({ ...wordy, correctIndex: 3 }), 0);
+  const tied = { options: ['one', 'two', 'three', 'four'], questionType: 'BEST' as const, correctIndex: 2 };
+  assert.equal(guessProbability(tied), 0.25, 'ties are broken at random, not by option position');
+  assert.equal(guessabilityRate([]), 0);
+  const { FUNDAMENTAL_QUESTIONS } = await import('../src/data/fundamentalQuestions');
+  assert.ok(guessabilityRate(FUNDAMENTAL_QUESTIONS) <= 0.4, 'new Fundamental items must not be answerable from wording alone');
+  const report = (await import('../scripts/auditQuestions')).auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
+  assert.equal(typeof report.guessability.rate, 'number');
 });

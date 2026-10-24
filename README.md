@@ -14,14 +14,14 @@ Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebal
 
 ## Learning features
 
-- **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Options are reordered without changing question IDs or stored answer meanings.
-- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Results show raw correctness, sample counts, and performance by study domain. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
+- **Practice:** answer a question, view the author's explanation, bookmark it, and revisit missed questions. Narrow practice to one subtopic, or order it with the weakest subtopics (by first-attempt accuracy) and unseen questions first. Options are reordered without changing question IDs or stored answer meanings.
+- **Timed practice:** a 25-question/40-minute sprint or a product-defined 90-question/150-minute session. Mock exams draw questions you have not answered before and tell you how many were repeats. Results show raw correctness, sample counts, and performance by study domain. The dashboard's headline accuracy counts each question's first attempt only, because re-answering after reading the explanation inflates the latest-answer figure. These are practice formats, not a reproduction of the official exam engine or scaled scoring.
 - **Flashcards:** track concepts as new, learning, or mastered.
 - **Review notebook:** open the exact missed question for another attempt.
 - **Optional AI tutor:** standard, Socratic, teach-back, and drill modes. AI output is unreviewed guidance. Without a key, the tutor uses clearly labeled local fallback content.
 - **AI authoring:** generated drafts undergo structure and length checks before they can be saved. Those checks do not establish factual correctness or expert approval.
 
-The bundled content contains 343 questions (18 authored seed questions, 299 generated questions, and 26 hand-authored questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
+The bundled content contains 359 questions (18 authored seed questions, 299 generated questions, and 42 hand-authored questions added in 1.3.0) and 40 flashcards. Quantity is not evidence of answer quality. All bundled materials remain unreviewed until a documented human review establishes their status.
 
 ## Study categories and official information
 
@@ -57,7 +57,7 @@ npm run verify
 npm run preview
 ```
 
-`verify` runs regression tests, an offline content audit, and the TypeScript/production build. CI uses the same command. The audit reports structural failures and remaining topic/type concentration; it is not a model judge, domain expert review, or certification of correctness.
+`verify` runs regression tests, an offline content audit, and the TypeScript/production build. CI uses the same command. The audit reports structural failures, remaining topic/type concentration, and a guessability indicator (the share of questions a scenario-blind keyword guesser answers correctly; random is 25%, the target is 40% or lower); it is not a model judge, domain expert review, or certification of correctness.
 
 ## AI processing and API key storage
 
