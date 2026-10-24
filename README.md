@@ -10,7 +10,7 @@ An independent, open-source AI governance practice tool with original and AI-gen
 
 The public deployment may lag behind repository changes. Check the deployed version before treating a fix as live.
 
-Version 1.2.0 adds selectable AI providers and editable models for tutoring and authoring. Version 1.1.0 aligned navigation with the three publicly listed AAIG core areas, incorporated 313 returned-review content corrections, and preserved legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
+Version 1.3.0 adds 18 hand-authored Data and AI Architecture questions and rebalances option wording so the correct answer is no longer the longest choice. Version 1.2.0 adds selectable AI providers and editable models for tutoring and authoring. Version 1.1.0 aligned navigation with the three publicly listed AAIG core areas, incorporated 313 returned-review content corrections, and preserved legacy four-category content and exam history. Nine items still require further source evidence. These changes do not establish ISACA approval or independent SME certification.
 
 ## Learning features
 

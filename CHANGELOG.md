@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0 2026-10-24
+
+- Add 18 hand-authored Data and AI Architecture questions. D2.1 Data Governance & Data Quality grows from 5 to 15 questions and now uses all five qualifier types and all four answer positions; D2.3, D2.4 and D2.5 gain 3, 2 and 3 questions. Citations remain unverified.
+- Shorten the correct option in 41 questions so it is no longer the longest choice. Answers, explanations and sources are unchanged. Two items held by reviewer decisions keep their wording.
+- Add mock exam history, progress backup and restore, and data bundle splitting.
+- Add a reference resolver that links source labels to the official landing pages of NIST, ISO, EU AI Act, COBIT and other references.
+- Remove the unused `bun.lock`; npm remains the canonical installer.
+- No `sourceUrl` evidence was added and the nine evidence-pending items remain open; see `docs/reviews/2026-10-24-evidence-status.md`.
+
 ## 1.2.0 2026-10-15
 
 - Add real browser-side Gemini, OpenAI, Anthropic Claude, and OpenAI-compatible HTTPS adapters for both tutoring and question/flashcard authoring.

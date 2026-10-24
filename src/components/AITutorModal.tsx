@@ -149,7 +149,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
           Do not submit personal, confidential, or protected ISACA exam/QAE content. Verify AI explanations against original sources.
         </p>
 
-        {/* Mode Selector Tabs (AAISM's 4 Tutor Modes) */}
+        {/* Mode Selector Tabs (4 tutor modes) */}
         <div className="px-4 py-2 bg-slate-50 dark:bg-slate-850 border-b border-slate-100 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto text-xs shrink-0">
           <button
             onClick={() => setMode('standard')}
