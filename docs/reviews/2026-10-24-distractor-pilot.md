@@ -56,3 +56,26 @@ aaig-pipe-1791941016903-0、aaig-pipe-1791941523762-25、aaig-pipe-1791943112438
 第三批（第一、二批之外）：aaig-pipe-1791942377513-8、aaig-pipe-1791943073272-4-jq50e、aaig-pipe-1791941483700-19、aaig-pipe-1791942430355-17、aaig-pipe-1791941106674-13、aaig-pipe-1791941502874-22、aaig-pipe-1791941470913-18、aaig-pipe-1791941453475-14、aaig-pipe-1791941407823-3、aaig-pipe-1791941527214-27。
 
 第二批：aaig-pipe-1791941151242-25、aaig-pipe-1791941166271-30、aaig-pipe-1791941200295-36、aaig-pipe-1791941406549-0、aaig-pipe-1791941406550-1、aaig-pipe-1791941424799-5、aaig-pipe-1791941421172-6、aaig-pipe-1791941442227-10、aaig-pipe-1791941470950-16、aaig-pipe-1791941501443-20、aaig-pipe-1791941501551-21、aaig-pipe-1791942376652-6、aaig-pipe-1791943579681-115-bbbve。
+
+## 复核结果（2026-10-24）
+
+复核人返回了《AAIG 题库改写复核册 - 深度核验版》，对 45 题逐题给出决定：
+
+| 决定 | 题数 | 说明 |
+| --- | ---: | --- |
+| 通过 | 34 | 符合三项标准：正确答案唯一且正确；新错误选项明显劣于正确答案；正确选项新措辞未改变原意 |
+| 修改 | 11 | 同上三项均通过，但要求同步修改主解析的用词 |
+| 恢复原文 | 0 | 无 |
+
+要求修改主解析的 11 题：aaig-pipe-1791941016903-0、aaig-pipe-1791943341335-60-xaq5w、aaig-pipe-1791943535745-105-0p7tf、aaig-pipe-1791943718126-145-870vw、aaig-pipe-1791943347849-61-aq1v4、aaig-pipe-1791943864279-171-tsv4n、aaig-pipe-1791941200295-36、aaig-pipe-1791941406549-0、aaig-pipe-1791941470950-16、aaig-pipe-1791941501443-20、aaig-pipe-1791941180316-32。
+
+处理：已按意见改写这 11 题的主解析（`EXPLANATION_REWRITES`）。
+
+- 把 charter、steering committee、"governance charter" 换成与新正确选项一致的说法（board-approved AI committee、mandate、mandated by the board）。
+- 保留所有框架条款引用（ISO/IEC 42001 的 Clause 编号、NIST AI RMF 的 GOVERN 编号），已逐题机器核对引用集合与改前一致。
+- 新的正确选项用了"risk limits""who decides"等平实说法，主解析里保留 risk appetite、decision rights 这两个考试术语，用括号与平实说法对应，方便学员把平实措辞映射回标准术语。
+- 其中第 6 题（aaig-pipe-1791943718126-145-870vw）把原解析中的"guarantees"改为"ensures"，因为"guarantees"超出了来源能支持的力度。这一处不是词汇替换，请复核人知悉。
+
+状态：这 45 题的 `reviewStatus` 仍保持 `unreviewed`。复核人在返回的文档里没有署名，我没有把任何人的身份或复核时间写入题库元数据。如需写入，请告知署名与日期。
+
+输入文件留痕：AAIG_Rewrite_Detailed_Review_20261024.docx，SHA256 `b985343d3597613c27738e0fe631f5b166a29b619461ce0c1dc0a95ac947adb8`。

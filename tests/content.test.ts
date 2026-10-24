@@ -330,3 +330,18 @@ test('audit reports flashcard form problems that make cards hard to recall', asy
   assert.ok(report.warnings.some((w: string) => w.includes('fc-t2')));
   assert.equal(auditQuestionBank(INITIAL_QUESTIONS.slice(0, 1), [clean]).flashcards.longBacks, 0);
 });
+
+test('reviewer-requested explanation updates use the plainer wording of the new correct options', async () => {
+  const { EXPLANATION_REWRITES, DISTRACTOR_REWRITES } = await import('../src/data/distractorRewrites');
+  const ids = Object.keys(EXPLANATION_REWRITES);
+  assert.equal(ids.length, 11);
+  for (const id of ids) {
+    assert.ok(DISTRACTOR_REWRITES[id], `${id} must also be one of the rewritten questions`);
+    const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
+    assert.equal(q.explanation, EXPLANATION_REWRITES[id]);
+    assert.doesNotMatch(q.explanation, /charter|steering committee/i, `${id} still uses the old wording`);
+    assert.match(q.explanation, /ISO\/IEC 42001/, `${id} keeps its framework citation`);
+    assert.match(q.explanation, /Clauses? \d/, `${id} keeps its clause citation`);
+    assert.doesNotMatch(q.explanation, /\bOption [ABCD]\b/, id);
+  }
+});

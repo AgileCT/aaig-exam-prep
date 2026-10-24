@@ -292,6 +292,26 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791941505157-23': 'Make sure the supplier agreement lets the institution inspect the supplier\'s practices, share risk fairly and enforce its rights.',
 };
 
+/**
+ * 2026-10-24 review outcome: for these items the reviewer asked for the main
+ * explanation to use the same plainer wording as the new correct option. Meaning,
+ * framework citations and reasoning are unchanged; the exam terms (risk appetite,
+ * decision rights) stay in brackets so the plain wording maps back to them.
+ */
+export const EXPLANATION_REWRITES: Readonly<Record<string, string>> = {
+  'aaig-pipe-1791941016903-0': 'From an ISACA governance perspective and per ISO/IEC 42001 Clause 5 and NIST AI RMF (GOVERN 1.1, 1.2), governance begins with top-down leadership and oversight. A board-approved AI committee with named executive responsibility, authority to decide and agreed risk limits (that is, explicit accountability, decision rights and alignment with the organization\'s risk appetite) is the foundational and most comprehensive governance action the board can take.',
+  'aaig-pipe-1791943341335-60-xaq5w': 'Creating a cross-functional AI committee with a mandate to set enterprise AI rules, risk limits and who decides what (that is, enterprise policy, risk appetite and decision rights) represents the foundational top-down governance action required by frameworks like ISO/IEC 42001 (Clause 5) and NIST AI RMF (GOVERN 1.1 and 1.2). Governance requires formal accountability structures that align AI initiatives with the organization\'s risk limits before technical controls or decentralized mechanisms can be effectively maintained.',
+  'aaig-pipe-1791943535745-105-0p7tf': 'According to ISO/IEC 42001 (Clause 5 - Leadership) and the NIST AI Risk Management Framework (GOVERN 1.1 & 1.2), effective AI governance requires a top-down mandate where executive leadership and the governing body establish clear decision rights, risk tolerances, and cross-functional structures (such as a board-approved AI committee with a defined mandate). Establishing accountability mechanisms and integrating legal, risk, compliance, and technical domains must precede technical implementations.',
+  'aaig-pipe-1791943718126-145-870vw': 'According to ISO/IEC 42001 (Clause 5: Leadership) and NIST AI RMF (GOVERN 1.1, 1.2), effective AI enterprise governance requires top-down leadership, formal oversight structures, and defined decision rights. A cross-functional AI committee mandated by the board, which sets risk appetite, approves enterprise rules and assigns who decides, ensures that risk appetite, enterprise-wide policy, and Three Lines Model accountability are institutionalized before technical or operational deployment scales.',
+  'aaig-pipe-1791943347849-61-aq1v4': 'According to ISO/IEC 42001 (Clauses 5.1–5.3) and NIST AI RMF (GOVERN 1.1 and 1.2), the foundational first step in AI enterprise governance is establishing top-down leadership: a board-backed mandate and a cross-functional committee. This mechanism defines strategic objectives, organizational risk appetite, accountability, and who decides (decision rights) before tools are acquired or use cases are advanced.',
+  'aaig-pipe-1791943864279-171-tsv4n': 'In ISACA governance frameworks and ISO/IEC 42001 (Clause 6.2), the foundational initial step in value realization and investment governance is establishing top-down criteria, strategic alignment objectives, and formal gating thresholds in an approved enterprise mandate. Defining what constitutes value, how it aligns with corporate strategy, and the stage-gate rules for investment approval precedes operational baseline measurements, telemetry deployment, and independent assurance.',
+  'aaig-pipe-1791941200295-36': 'According to ISACA AI governance principles and standards such as ISO/IEC 42001 (Clause 5.1) and NIST AI RMF (GOVERN 1.1, 1.2), the foundational initial step in AI enterprise governance is a board-approved statement of strategic intent, accountability and the limits of acceptable AI risk. It sets the enterprise strategic objectives, establishes organizational decision rights and accountability, and defines risk appetite boundaries before operationalizing or acquiring AI systems.',
+  'aaig-pipe-1791941406549-0': 'According to ISO/IEC 42001 (Clauses 5.1 and 5.3) and NIST AI RMF (GOVERN 1.1 and 1.2), effective AI governance requires leadership commitment, clear organizational roles, and top-down oversight. A cross-functional AI committee mandated directly by the board ensures that accountability, policy frameworks, and the limits of acceptable risk (risk appetite alignment) are established across business, legal, compliance, and technical domains before deployment.',
+  'aaig-pipe-1791941470950-16': 'According to ISACA governance principles, ISO/IEC 42001 (Clause 5: Leadership), and NIST AI RMF (GOVERN 1.1, 1.2), establishing top-down accountability and strategic direction is the foundational first step. Forming a cross-functional executive AI committee with a clear mandate ensures that organizational roles, decision rights, risk appetite, and strategic objectives are defined before technical implementation or model-specific assessments take place.',
+  'aaig-pipe-1791941501443-20': 'According to NIST AI RMF (GOVERN 1.1, 1.2) and ISO/IEC 42001 (Clause 5), sound governance begins with top-down accountability. A cross-functional AI committee mandated by the board establishes the necessary leadership mandate, sets risk limits (risk appetite), defines decision authority, and issues enterprise rules (policies) that guide all subsequent operational activities.',
+  'aaig-pipe-1791941180316-32': 'In accordance with ISO/IEC 42001 (Clause 5.2 and 6.2) and NIST AI RMF (GOVERN 1.1, 1.2), an AI policy is only effective and enforceable when it directly maps to the organization\'s risk limits (risk appetite), incorporates periodic review cycles to address emerging AI risks, and clearly assigns compliance duties to first-line operational owners. Top-down governance establishes decision rights and enforceability before technical execution.',
+};
+
 /** Applies a pilot rewrite, keeping the correct option, its index and the main explanation unchanged. */
 export function applyDistractorRewrite(question: Question): Question {
   const edits = DISTRACTOR_REWRITES[question.id];
@@ -308,6 +328,7 @@ export function applyDistractorRewrite(question: Question): Question {
   if (CORRECT_REWRITES[question.id]) options[question.correctIndex] = CORRECT_REWRITES[question.id];
   return {
     ...question,
+    explanation: EXPLANATION_REWRITES[question.id] ?? question.explanation,
     options,
     distractorExplanations: edited.map(({ index, edit }, i) =>
       edit.why ? `${'ABCD'[index]}: ${edit.why}` : question.distractorExplanations![i]),
