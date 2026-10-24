@@ -1131,8 +1131,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "questionText": "In this governance structure, what is the PRIMARY responsibility of the second line of defense?",
     "options": [
       "Establish risk management frameworks and monitor first-line compliance against AI policies.",
-      "Deploy real-time technical monitoring pipelines to optimize model hyperparameters and maximize inference performance across business units.",
-      "Execute automated post-incident remediation workflows across active models before establishing baseline enterprise risk thresholds.",
+      "Deploy real-time monitoring pipelines to optimize model hyperparameters and inference performance.",
+      "Execute automated post-incident remediation across active models before setting baseline risk thresholds.",
       "Provide independent and objective assurance directly to the audit committee regarding AI governance control effectiveness."
     ],
     "correctIndex": 0,
@@ -1981,10 +1981,10 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial institution integrates an automated credit scoring AI system into its core lending workflow. To comply with ISO/IEC 42001 and NIST AI RMF continuous assurance mandates, the enterprise establishes telemetry pipelines and auditability mechanisms to evaluate operational decisions, data drift, and model integrity.",
     "questionText": "From an AI governance and continuous auditability perspective, which of the following practices is the LEAST acceptable?",
     "options": [
-      "Establishing immutable, time-stamped logging for all model inputs, outputs, and confidence scores across the production pipeline to support post-hoc traceability.",
-      "Scheduling periodic retrospective audits of high-risk decisions after continuous assurance monitoring verifies operational steady-state baseline performance.",
+      "Establishing immutable, time-stamped logging of model inputs, outputs and confidence scores to support traceability.",
+      "Scheduling periodic retrospective audits of high-risk decisions once monitoring confirms a stable baseline.",
       "Permitting production support teams to truncate anomalous inference logs to avoid telemetry storage overflow.",
-      "Authorizing the second-line risk function to independently review telemetry feeds and calibrate threshold alerts against approved risk appetite parameters."
+      "Authorizing the second-line risk function to independently review telemetry and calibrate alerts against approved risk appetite."
     ],
     "correctIndex": 2,
     "questionType": "LEAST",
@@ -2270,8 +2270,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A global financial services firm is architecting an enterprise customer intelligence platform that aggregates cross-channel behavioral telemetry, real-time transaction records, and customer support transcripts. Under the organization's Artificial Intelligence Management System (ISO/IEC 42001) and applicable privacy regulations, the AI Steering Committee must implement an architectural control mechanism to enforce data minimization principles across the pipeline.",
     "questionText": "Which architectural governance control is MOST effective for ensuring adherence to data minimization and privacy by design prior to model training?",
     "options": [
-      "Mandate that operational data engineering teams immediately apply advanced differential privacy algorithms and cryptographic homomorphic encryption techniques across all centralized feature stores regardless of downstream processing utility.",
-      "Commission an independent third-line internal audit review of model inference logs to detect post-hoc whether unapproved customer attributes were inappropriately retained during production operations.",
+      "Mandate that data engineering teams apply differential privacy and homomorphic encryption across all feature stores regardless of utility.",
+      "Commission a third-line audit of inference logs to detect, after the fact, whether unapproved customer attributes were retained.",
       "Authorize first-line data science teams to perform subjective relevance filtering and retain non-essential customer transaction fields based solely on localized validation accuracy.",
       "Enforce policy-driven ingestion gating that restricts data inputs to verified, purpose-bound attributes validated through formal impact assessments."
     ],
@@ -2408,9 +2408,9 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "An international commercial lender is integrating an automated deep-learning credit decisioning engine across multiple business units. During initial deployment monitoring, the Model Risk Management function observes that frontline loan officers are unable to provide actionable, plain-language justifications to rejected applicants, exposing the institution to regulatory sanctions and reputational harm under consumer protection frameworks.",
     "questionText": "In alignment with ISO/IEC 42001 and the NIST AI RMF (MEASURE and GOVERN functions), what is the PRIMARY governance objective for establishing enterprise explainability and interpretability requirements?",
     "options": [
-      "Mandate the universal deployment of mathematical post-hoc feature attribution techniques across all operational pipelines to optimize statistical interpretability metrics.",
+      "Mandate universal post-hoc feature attribution across all pipelines to optimize statistical interpretability metrics.",
       "Establish context-specific explainability requirements aligned with stakeholder risk tiers and statutory disclosure duties.",
-      "Commission an independent third-line assurance review to penalize business units that fail to capture explainability telemetry prior to approving enterprise transparency policies.",
+      "Commission a third-line review to penalize units lacking explainability telemetry before approving transparency policies.",
       "Empower first-line machine learning engineers to determine acceptable interpretability thresholds based exclusively on model accuracy retention metrics."
     ],
     "correctIndex": 1,
@@ -4385,10 +4385,10 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A global financial services firm intends to implement generative AI across its client advisory services to drive revenue growth and operational efficiency. The Board of Directors tasks executive leadership with establishing an enterprise Artificial Intelligence Management System (AIMS) that ensures AI investments directly support corporate objectives while remaining within acceptable risk boundaries.",
     "questionText": "What should executive leadership do FIRST to establish strategic alignment between AI initiatives and enterprise business objectives?",
     "options": [
-      "Procure and implement an automated AI model governance tool to monitor model telemetry across all lines of business.",
+      "Procure an automated AI governance tool to monitor model telemetry across all business lines.",
       "Define the enterprise AI strategy and risk appetite approved by the governing body.",
       "Perform algorithmic impact assessments and risk mapping across individual business unit pilot projects.",
-      "Authorize the internal audit function to design baseline operational controls and acceptance criteria for prospective AI models."
+      "Authorize internal audit to design baseline operational controls for prospective AI models."
     ],
     "correctIndex": 1,
     "questionType": "FIRST",
@@ -4556,8 +4556,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "An insurance enterprise is deciding whether to license a proprietary third-party commercial large language model via API or fine-tune an open-source foundation model on internal infrastructure for claims triage. The executive committee requires a defensible sourcing strategy that aligns with organizational risk tolerance and regulatory expectations.",
     "questionText": "Which of the following governance actions BEST supports this sourcing decision?",
     "options": [
-      "Benchmark technical performance metrics, computational inference costs, and model latency benchmarks across all candidate models to determine technical feasibility.",
-      "Execute binding vendor contracts with indemnification clauses and right-to-audit provisions prior to conducting organizational risk tiering assessments.",
+      "Benchmark performance, inference cost and latency across candidate models to determine technical feasibility.",
+      "Sign vendor contracts with indemnification and audit rights before conducting organizational risk tiering.",
       "Evaluate options against risk appetite, lifecycle oversight capacity, and regulatory transparency needs.",
       "Direct the internal audit function to select the preferred sourcing model and establish operational vendor monitoring protocols."
     ],
@@ -4759,9 +4759,9 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "An enterprise bank has deployed an automated AI solution for commercial loan underwriting, governed by continuous monitoring controls for fairness, drift, and explainability under ISO/IEC 42001 and NIST AI RMF. During quarterly peak processing, automated telemetry alerts executive risk leadership that demographic fairness metrics have breached the Board-approved risk tolerance threshold.",
     "questionText": "From an enterprise AI governance and risk oversight perspective, which of the following responses is the LEAST appropriate course of action?",
     "options": [
-      "Mandating immediate execution of pre-established fallback mechanisms and human-in-the-loop review protocols to curtail unmitigated credit adjudications while investigations proceed.",
-      "Requiring the operational team to delay model retraining deployments until the second-line risk team validates that proposed algorithmic adjustments do not compound demographic bias.",
-      "Formally escalating the tolerance exception to executive risk leadership and the Board Risk Committee to assess whether business impact warrants an explicit risk acceptance waiver.",
+      "Executing pre-established fallback and human-in-the-loop review to curtail unmitigated credit decisions during investigation.",
+      "Delaying retraining deployments until the second line confirms the adjustments do not compound demographic bias.",
+      "Escalating the tolerance exception to executive risk leadership and the Board Risk Committee for a risk acceptance decision.",
       "Allowing the first-line ML engineering team to adjust tolerance thresholds to accommodate peak operational volume shifts."
     ],
     "correctIndex": 3,
@@ -6442,8 +6442,8 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "An enterprise has deployed an automated credit underwriting AI system classified as high-risk under its AI management system aligned with ISO/IEC 42001 and NIST AI RMF. To support continuous assurance and regulatory auditability, the organization is implementing automated logging, monitoring, and telemetry retention controls for all production inferences.",
     "questionText": "Which of the following practices is LEAST appropriate for establishing effective auditability and continuous assurance for this AI system?",
     "options": [
-      "Enforcing write-once-read-many (WORM) storage configurations for all inference logs and prediction records to ensure audit trail immutability and compliance with retention policies.",
-      "Formalizing baseline drift metrics and continuous monitoring thresholds during pre-deployment testing prior to connecting live automated assurance pipelines.",
+      "Enforcing WORM storage for inference logs and prediction records to ensure audit-trail immutability and retention.",
+      "Formalizing baseline drift metrics and monitoring thresholds in pre-deployment testing before live assurance pipelines.",
       "Permitting the MLOps team to disable low-confidence logging during peak traffic to manage cloud telemetry expenses.",
       "Segregating operational telemetry dashboards utilized by first-line system operators from the independent log inspection tools administered by internal audit."
     ],

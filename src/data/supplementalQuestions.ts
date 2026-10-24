@@ -21,7 +21,7 @@ const SUPPLEMENTAL_DRAFTS: Question[] = [
     ],
     correctIndex: 0,
     questionType: 'FIRST',
-    explanation: 'Data quality is judged against the intended purpose. Before remediation starts, the organization must define what "fit for purpose" means for this clinical use (completeness, consistency, representativeness, accuracy) and assign data owners who are accountable for meeting those criteria. Imputation, tooling and architecture choices (Options B, C and D) are remediation decisions that depend on those criteria.',
+    explanation: 'Data quality is judged against the intended purpose. Before remediation starts, the organization must define what "fit for purpose" means for this clinical use (completeness, consistency, representativeness, accuracy) and assign data owners who are accountable for meeting those criteria. Imputation, tooling and architecture choices (Option B, Option C and Option D) are remediation decisions that depend on those criteria.',
     distractorExplanations: [
       'B: Median imputation is a technical fix applied before criteria exist. Because missingness differs by site, it can also introduce bias.',
       'C: Buying a tool before requirements and ownership are defined puts technology ahead of governance.',
@@ -49,7 +49,7 @@ const SUPPLEMENTAL_DRAFTS: Question[] = [
     ],
     correctIndex: 2,
     questionType: 'PRIMARY',
-    explanation: 'Without information on collection methods and origin, the insurer cannot judge whether the data is suitable, representative, lawfully collected or biased for the intended use. Data origin and collection processes are core inputs to data governance for AI. Storage, format and cost (Options A, B and D) are operational or commercial issues that do not determine fitness for purpose.',
+    explanation: 'Without information on collection methods and origin, the insurer cannot judge whether the data is suitable, representative, lawfully collected or biased for the intended use. Data origin and collection processes are core inputs to data governance for AI. Storage, format and cost (Option A, Option B and Option D) are operational or commercial issues that do not determine fitness for purpose.',
     distractorExplanations: [
       'A: Storage capacity is an operational constraint, not a data governance concern.',
       'B: Format compatibility is a technical integration task that can be solved without knowing whether the data is fit for use.',

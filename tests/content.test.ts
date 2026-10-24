@@ -186,3 +186,14 @@ test('correct option is never the longest, except two items held by reviewer dec
   // aaig-d4-003 was retained as-is and x6j7d awaits ISO/IEC 42001 evidence in the 2026-10-14 review.
   assert.deepEqual(longest.map(q => q.id).sort(), ['aaig-d4-003', 'aaig-pipe-1791943409756-76-x6j7d']);
 });
+
+test('every bank question passes the option length-parity gate', () => {
+  assert.deepEqual(INITIAL_QUESTIONS.filter(q => !passesLengthGate(q)).map(q => q.id), []);
+});
+
+test('explanations cite options only in the "Option X" form that shuffling can remap', () => {
+  // Legal locators such as Annex III 5(b) are not option references.
+  const unmappable = /\b[Oo]ptions\s+[ABCD]\b|(?<![\w)/])\([ABCD]\)|\b[Cc]hoices?\s+[ABCD]\b|\b[Aa]nswer\s+[ABCD]\b/;
+  const offenders = INITIAL_QUESTIONS.filter(q => [q.explanation, ...(q.distractorExplanations || [])].some(t => unmappable.test(t)));
+  assert.deepEqual(offenders.map(q => q.id), []);
+});
