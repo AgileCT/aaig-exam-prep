@@ -5,7 +5,7 @@ import { markQuestionUnreviewed } from '../services/questionOrder';
 // scenarios, and distractors that are plausible actions or concepts that fail on
 // the scenario's facts. Citations were written without primary-source access and
 // remain unverified; all items load as unreviewed.
-interface Spec {
+export interface Spec {
   id: string;
   domainId: DomainId;
   subDomain: string;
@@ -22,7 +22,7 @@ interface Spec {
   difficulty?: Difficulty;
 }
 
-function build(spec: Spec): Question {
+export function build(spec: Spec): Question {
   const options = [...spec.wrong];
   options.splice(spec.position, 0, spec.correct);
   const letters = [0, 1, 2, 3].filter(i => i !== spec.position).map(i => 'ABCD'[i]);

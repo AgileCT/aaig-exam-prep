@@ -48,7 +48,7 @@ test('review import preserves IDs, ordering and canonical answer indices for sav
     baseline.questions.map(([id, index]) => [id, CORRECT_POSITION_MOVES[id] ? swappedIndex(index, CORRECT_POSITION_MOVES[id]) : index]));
   assert.ok(INITIAL_QUESTIONS.slice(baseline.questions.length).every(q => /^aaig-d[123]s-/.test(q.id)));
   assert.deepEqual(INITIAL_FLASHCARDS.map(c => c.id), baseline.flashcards);
-  assert.equal(byId.size, 399);
+  assert.equal(byId.size, 439);
 });
 
 test('all 313 explicit revisions remain applied and other teaching content survives taxonomy migration unchanged', () => {

@@ -23,7 +23,7 @@ test('importing generation code does not contact an AI provider', async () => {
 });
 
 test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
-  assert.equal(INITIAL_QUESTIONS.length, 359);
+  assert.equal(INITIAL_QUESTIONS.length, 399);
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => q.reviewStatus === 'unreviewed' && !/ISACA/i.test(q.source)));
@@ -116,7 +116,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 359);
+  assert.equal(valid.unreviewedQuestions, 399);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
@@ -268,4 +268,28 @@ test('the app loads the active bank, so retired questions never reach practice o
     const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
     assert.deepEqual(loadAllQuestions().map(q => q.id), ACTIVE_QUESTIONS.map(q => q.id));
   } finally { cleanup(); }
+});
+
+test('expansion questions cover thin subtopics outside the financial sector and meet every authoring gate', async () => {
+  const { EXPANSION_QUESTIONS } = await import('../src/data/expansionQuestions');
+  const { guessabilityRate } = await import('../src/services/guessability');
+  const { findNearDuplicatePairs } = await import('../src/services/duplicateDetection');
+  const { ACTIVE_QUESTIONS } = await import('../src/data/questions');
+  assert.equal(EXPANSION_QUESTIONS.length, 40);
+  assert.deepEqual(['D1', 'D2', 'D3'].map(d => EXPANSION_QUESTIONS.filter(q => q.domainId === d).length), [12, 16, 12]);
+  for (const q of EXPANSION_QUESTIONS) {
+    assert.ok(passesLengthGate(q), `${q.id} length parity`);
+    assert.ok(q.options[q.correctIndex].length < Math.max(...q.options.map(o => o.length)), `${q.id} correct option is longest`);
+    assert.equal(q.distractorAxes?.length, 3, q.id);
+    assert.equal(q.reviewStatus, 'unreviewed');
+    assert.doesNotMatch(q.scenarioText || '', /financ|bank|credit|lending|insur|wealth|underwrit/i, `${q.id} scenario should not be financial`);
+  }
+  assert.ok(new Set(EXPANSION_QUESTIONS.map(q => q.questionType)).size === 5);
+  assert.ok(new Set(EXPANSION_QUESTIONS.map(q => q.correctIndex)).size === 4);
+  const rate = guessabilityRate(EXPANSION_QUESTIONS);
+  assert.ok(rate >= 0.15 && rate <= 0.4, `guessability ${rate}`);
+  const ids = new Set(EXPANSION_QUESTIONS.map(q => q.id));
+  assert.deepEqual(findNearDuplicatePairs(ACTIVE_QUESTIONS).filter(([a, b]) => ids.has(a) || ids.has(b)), [], 'new questions must not duplicate existing ones');
+  const stems = ACTIVE_QUESTIONS.map(q => q.questionText.toLowerCase());
+  assert.equal(new Set(stems).size, stems.length, 'question stems are unique');
 });
