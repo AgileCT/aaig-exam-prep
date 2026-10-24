@@ -287,6 +287,56 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Maximizing operational throughput', axis: 'Performance goal that ignores fairness' },
     { from: 'Tasking the independent third-line', to: 'Pause all new loan decisions until the second line has reviewed every model parameter and the governance committee has signed it off.', why: 'Pausing is a containment option, not the governance objective, and it removes the service without setting the criteria the firm must meet.', axis: 'Containment mistaken for the objective' },
   ],
+  'aaig-pipe-1791943062361-2-m01ua': [
+    { from: 'Mandate automated technical guardrails', axis: 'Technical blocking before the rules exist' },
+    { from: 'Conduct comprehensive conformity assessments', to: 'Create a central register of the AI guidelines that business units issue and ask the policy team to flag contradictions each quarter.', why: 'A register shows the inconsistency, but flagging contradictions afterwards does not give the units one standard to follow.', axis: 'Detecting inconsistency instead of preventing it' },
+    { from: 'Authorize internal audit to draft operational prompt', to: 'Ask each business unit to write its own AI usage guidelines and send a copy to the risk function for the record.', why: 'Local guidelines respond quickly, but copies filed for the record create no common standard and nobody checks consistency.', axis: 'Local guidelines without a common standard' },
+  ],
+  'aaig-pipe-1791943222206-37-po9vv': [
+    { from: 'Deploying continuous automated model performance telemetry', to: 'Ask the risk committee to review the MEASURE results each quarter and decide case by case which findings need action.', why: 'A quarterly review informs decisions, but with no set limits every case is argued afresh and some findings are never acted on.', axis: 'Case-by-case review without defined limits' },
+    { from: 'Conducting post-incident forensic', axis: 'Reactive review after harm has occurred' },
+    { from: 'Empowering frontline data science project leads', to: 'Give each model owner a monthly target for open MEASURE findings and report the progress to the committee.', why: 'Targets for closing findings measure activity, but they do not connect a metric result to a defined treatment decision.', axis: 'Activity target instead of a trigger' },
+  ],
+  'aaig-pipe-1791943243672-41-65gxx': [
+    { from: 'Procure an enterprise AI observability', to: 'Survey the business units for the AI use cases they plan and rank them by expected revenue before agreeing any structure.', why: 'A ranked list shows ambition, but nobody yet decides which initiatives fit the strategy or who may approve them.', axis: 'Ranking by revenue before decision rights' },
+    { from: 'Perform rigorous algorithmic audits', axis: 'Assessing candidate models before the strategy is aligned' },
+    { from: 'Authorize first-line business unit product owners', to: 'Ask the chief executive to appoint an AI sponsor in each business unit to push initiatives forward in line with unit targets.', why: 'Sponsors drive delivery, but unit-by-unit targets do not align the initiatives to one enterprise strategy or set who decides.', axis: 'Unit sponsors without enterprise alignment' },
+  ],
+  'aaig-pipe-1791943238742-43-l38z6': [
+    { from: 'Executing end-to-end data pipeline', to: 'Running the day-to-day controls over each model and fixing issues as they arise within the approved limits.', why: 'Day-to-day control and fixing issues are management duties of the first line. The second line oversees and challenges them.', axis: 'First-line duty assigned to the second line' },
+    { from: 'Remediating detected algorithmic drift', to: 'Approving each model for release into production and accepting the residual risk on behalf of the business.', why: 'Release approval and risk acceptance belong to the management that runs the system. The second line advises and challenges, it does not decide for them.', axis: 'Management decision assigned to the second line' },
+    { from: 'Providing independent, objective assurance', axis: 'Third-line duty assigned to the second line' },
+  ],
+  'aaig-pipe-1791943269969-47-mryb2': [
+    { from: 'Conducting post-hoc empirical extraction', to: 'Require a privacy review of each model after it has been trained, and remove the attributes that the review finds unnecessary.', why: 'A review after training finds problems late, when the model has already learned from the unnecessary attributes.', axis: 'Review after training instead of at intake' },
+    { from: 'Delegating final feature-selection', to: 'Ask each team\'s privacy champion to approve its feature list and keep the approval with the model record.', why: 'Local approval depends on each team\'s own judgement, and nothing applies a common test of purpose and necessity before ingestion.', axis: 'Local approval without a common gate' },
+    { from: 'Deploying differential privacy', to: 'Add differential privacy noise to stored data and use synthetic data wherever it is available, whatever the effect on accuracy.', why: 'Technical protection helps, but applying it everywhere regardless of need harms utility and does not show that each attribute is justified at intake.', axis: 'Technical obfuscation in place of intake control' },
+  ],
+  'aaig-pipe-1791943199628-31-3294z': [
+    { from: 'Commission business unit product owners', axis: 'Reconciliation after implementation, before value metrics exist' },
+    { from: 'Direct the internal audit function to establish quantitative', to: 'Ask finance to set one hurdle rate for all AI projects and reject any proposal whose forecast return falls below it.', why: 'A single hurdle rate is a useful filter, but it ignores strategic value and risk, and nothing yet defines how benefits will be measured.', axis: 'Single financial filter' },
+    { from: 'Procure and deploy an enterprise-wide automated', to: 'Ask each sponsor to present a business case for its pilot and approve the pilots with the highest forecast return first.', why: 'Business cases are needed, but with no common metrics the forecasts cannot be compared or checked later.', axis: 'Forecasts without common metrics' },
+  ],
+  'aaig-pipe-1791943294885-53-cjlfm': [
+    { from: 'Mandate the implementation of post-hoc attribution', to: 'Ask the vendor to supply an explanation report for every decision and keep the reports in case the regulator asks.', why: 'Reports for every decision give material, but they do not set what each audience needs to know or what the law requires the firm to say.', axis: 'Volume of documentation instead of audience needs' },
+    { from: 'Authorize frontline model developers', axis: 'Developers deciding legal thresholds' },
+    { from: 'Deploy customer-facing interactive', to: 'Publish a general description of how the model works on the firm\'s website for customers and regulators.', why: 'A general description is transparency at one level. It does not give an applicant the reasons for their own decision.', axis: 'Generic disclosure for all audiences' },
+  ],
+  'aaig-pipe-1791943171040-25-5puc0': [
+    { from: 'Mandate the deployment of centralized', to: 'Ask the board to receive a yearly AI governance presentation from the chief technology officer and record any questions raised.', why: 'An annual presentation informs the board, but it creates no structure with decision rights between meetings.', axis: 'Annual information instead of a structure' },
+    { from: 'Delegate operational risk acceptance', to: 'Let each business unit leader accept AI risks and approve policy exceptions for the systems that the unit runs.', why: 'Unit leaders know their systems, but unit-by-unit risk acceptance has no enterprise limits and no independent challenge.', axis: 'Risk acceptance fragmented across units' },
+    { from: 'Conduct comprehensive third-party conformity', to: 'Commission an outside review of AI practices at peer firms and adopt the structure that most of them use.', why: 'Peer practice is useful input, but copying it does not tie the structure to this firm\'s strategy, risk limits and board duties.', axis: 'Imitation of peers' },
+  ],
+  'aaig-pipe-1791943294203-50-49u23': [
+    { from: 'Conduct live penetration testing', to: 'Ask the vendors to run a proof of concept at their own cost and pick the one whose results look strongest after four weeks.', why: 'A proof of concept shows technical fit, but not lifecycle cost, explainability or third-party risk, so it informs the choice only in part.', axis: 'Proof of concept as the only basis' },
+    { from: 'Prioritize selecting the vendor', to: 'Select the vendor with the highest benchmark accuracy and the lowest fee, then record the choice for the committee.', why: 'Accuracy and price are real factors, but picking on them alone ignores lifecycle cost, explainability and third-party risk.', axis: 'Two metrics as the whole decision' },
+    { from: 'Delegate the final buy-versus-build', to: 'Let the sponsoring executive decide after consulting procurement on price and legal on contract terms.', why: 'Consultation on price and terms is useful, but one sponsor\'s judgement does not weigh capability, explainability and risk against agreed limits.', axis: 'Single decision-maker with partial consultation' },
+  ],
+  'aaig-pipe-1791943382925-72-rsjps': [
+    { from: 'Automating continuous retraining', to: 'Ask the model owner to compare accuracy with the launch figure once a quarter and write a short note on any change.', why: 'A quarterly note records the change, but between notes the model can drift well beyond what the firm can accept.', axis: 'Infrequent check without limits' },
+    { from: 'Commissioning an immediate architectural', axis: 'Redesign before revised performance metrics exist' },
+    { from: 'Tasking the third-line internal audit team', to: 'Have the second line sample model outputs each month and report the error rate to the risk committee.', why: 'Sampling gives some assurance, but with no set limit and no required response the report does not trigger action.', axis: 'Sampling without a trigger' },
+  ],
 };
 
 /**
@@ -350,6 +400,16 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943166460-26-wrliw': 'Define an enterprise AI asset taxonomy and the minimum metadata each entry must have, aligned with risk appetite.',
   'aaig-pipe-1791943170521-27-c05z1': 'Enforce ingestion gating that limits inputs to verified, purpose-bound attributes confirmed through formal impact assessments.',
   'aaig-pipe-1791943088709-8-8nnep': 'Ensure outcomes stay within risk appetite, legal non-discrimination duties and the fairness criteria the firm has set.',
+  'aaig-pipe-1791943062361-2-m01ua': 'Issue one AI policy, approved by senior leadership, that sets the principles and says who decides what.',
+  'aaig-pipe-1791943222206-37-po9vv': 'Set risk limits for each metric so that crossing a limit starts a defined escalation and risk treatment step.',
+  'aaig-pipe-1791943243672-41-65gxx': 'Set up an executive committee to define who decides on AI and link AI initiatives to the firm\'s strategy.',
+  'aaig-pipe-1791943238742-43-l38z6': 'Setting risk limits, checking compliance with the AI rules, and giving objective challenge to the teams that run the models.',
+  'aaig-pipe-1791943269969-47-mryb2': 'Set up a second-line gating step that requires each feature to be justified and tokenized before data enters the pipeline.',
+  'aaig-pipe-1791943199628-31-3294z': 'Agree how value will be measured: common metrics linked to strategic goals, with a named person who decides.',
+  'aaig-pipe-1791943294885-53-cjlfm': 'Set explanation requirements for each audience, including the notices that the law requires for adverse decisions.',
+  'aaig-pipe-1791943171040-25-5puc0': 'Set up an executive AI committee with defined decision rights and regular reports to the board.',
+  'aaig-pipe-1791943294203-50-49u23': 'Compare buying and building on skills, cost over time, explainability and third-party risk against the firm\'s risk limits.',
+  'aaig-pipe-1791943382925-72-rsjps': 'Monitor drift against performance limits set by risk level, with escalation and review when a limit is crossed.',
 };
 
 /**
