@@ -334,7 +334,7 @@ test('audit reports flashcard form problems that make cards hard to recall', asy
 test('reviewer-requested explanation updates use the plainer wording of the new correct options', async () => {
   const { EXPLANATION_REWRITES, DISTRACTOR_REWRITES } = await import('../src/data/distractorRewrites');
   const ids = Object.keys(EXPLANATION_REWRITES);
-  assert.equal(ids.length, 11);
+  assert.equal(ids.length, 19);
   for (const id of ids) {
     assert.ok(DISTRACTOR_REWRITES[id], `${id} must also be one of the rewritten questions`);
     const q = INITIAL_QUESTIONS.find(item => item.id === id)!;
