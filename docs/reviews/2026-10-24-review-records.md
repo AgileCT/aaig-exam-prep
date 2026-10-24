@@ -17,3 +17,7 @@
 给这些题写入复核人信息，等于记录一次没有发生过的复核，所以没有写。如果复核人要复核它们，可以做成复核册，通过后再写入。
 
 复核人信息的含义：这是从业者复核（`reviewStatus: 'reviewed'`，`reviewedBy`，`reviewedAt`），不是 ISACA 批准，也不是独立专家认证。出处没有逐条对照原文，大部分题仍没有 `sourceUrl`。实现见 `src/data/reviewRecords.ts` 和 `src/data/evidenceVerification.ts`。
+
+## 第六轮复核册
+
+为这 134 道题做了复核册 `2026-10-24-review-packet-6-unreviewed.docx`（72 页）：C 类 7 道（复核后缩短过选项，给出缩短前后对比）、B 类 12 道（2026-10-14 复核未覆盖）、A 类 115 道（手写题）。每题选"通过""修改"或"删除"。通过的题我才写入复核人信息；删除的题退休；没有返回的题保持 unreviewed。
