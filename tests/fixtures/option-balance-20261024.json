@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-24",
+  "scope": "Option text rebalanced so the correct option is not the longest; ID, answer index, explanations and sources unchanged.",
+  "items": [
+    {
+      "id": "aaig-d1-003",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "2c675750fda70df6c5b12510aa2ee550b5b8b2ae366f8e87080d3d6f8fc07775"
+    },
+    {
+      "id": "aaig-d2-002",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "4b12f6ebce00908cdcd182f46c78d85520c0dbb123f0d6a1363a06d443a7d642"
+    },
+    {
+      "id": "aaig-d2-003",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "dae1e1953c9a56ecf44305c9cf0f7bae7955e4f972decaf48f8e42593fef1c44"
+    },
+    {
+      "id": "aaig-d3-001",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "c72f622e6d8c0c5dae5fff9f1cccce07b92a18e48f6a7ee4860270eb3b727a94"
+    },
+    {
+      "id": "aaig-d3-002",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "ff5b55a0116b086efdf9dc3c54ca3de93842672e95e74b0bae39aadae1de6b2e"
+    },
+    {
+      "id": "aaig-d3-004",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "3996ecfdf2cc783520bdd374e889e3f6b1b18f72801b228513631748dc60e680"
+    },
+    {
+      "id": "aaig-d4-001",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "94829259dc9690f2315e4ac550799d06fd39fc3d68f8904ce91430922bb5b95e"
+    },
+    {
+      "id": "aaig-d4-002",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "6817212e850d53b7b481430b591ab3f08b9140c5d1e7ada090a466959903ddc6"
+    },
+    {
+      "id": "aaig-pipe-1791942474428-27",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "aacf4772af005a3025e24d55b78c1333165f1bb870229f2f7a7e3df953d42028"
+    },
+    {
+      "id": "aaig-pipe-1791943754176-156-68emw",
+      "decision": "not-in-review",
+      "change": "option wording only",
+      "hashWithoutOptions": "86d6b2c2332288b96feaa27352d02b96baafe248c2c913a155fc80abff610f3a"
+    }
+  ]
+}

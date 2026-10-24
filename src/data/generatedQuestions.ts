@@ -215,7 +215,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services firm is establishing an enterprise Artificial Intelligence Management System (AIMS) to govern the adoption of predictive and generative AI models across its lines of business. Executive leadership mandates the creation of an enterprise-wide AI Policy to standardize compliance, risk appetite alignment, and accountable usage.",
     "questionText": "Which of the following is the MOST effective governance control to ensure the enterprise AI policy remains operationally viable and enforceable across business units?",
     "options": [
-      "Establish structured policy review cycles linked to risk appetite and assign explicit compliance obligations to first-line business owners.",
+      "Establish policy review cycles linked to risk appetite and assign explicit compliance duties to first-line owners.",
       "Mandate the automated technical enforcement of model explainability and fairness metrics across all algorithmic deployment pipelines.",
       "Deploy enterprise continuous monitoring tools to track data drift across operational models prior to baselining policy standards.",
       "Designate the internal audit function to define departmental acceptable-use criteria and approve risk acceptance exceptions."
@@ -353,7 +353,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services enterprise is operationalizing its responsible AI principles across all automated credit-underwriting workflows in alignment with NIST AI RMF 1.0 (GOVERN function) and ISO/IEC 42001. The enterprise AI Governance Committee has been chartered to establish consistent ethical safeguards, organizational accountability, and risk escalation channels. The committee is reviewing proposed operational practices submitted by internal business units and technical delivery teams.",
     "questionText": "Which of the following operational practices is the LEAST appropriate for the enterprise to implement within its responsible AI ethical framework?",
     "options": [
-      "Permitting project teams to resolve trade-offs between ethical fairness and commercial performance internally without formal oversight or escalation.",
+      "Permitting project teams to settle fairness-versus-commercial trade-offs internally without formal oversight or escalation.",
       "Establishing board-approved ethical risk boundaries that constrain algorithmic performance optimization within defined risk appetites.",
       "Requiring formal socio-technical impact assessments to be completed and approved before any high-risk model enters production testing.",
       "Authorizing the independent second-line risk function to halt deployments that breach predefined enterprise bias and fairness thresholds."
@@ -1454,7 +1454,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "options": [
       "Deploying continuous automated retraining pipelines to adjust algorithmic weights dynamically whenever distribution divergence is observed.",
       "Decommissioning the model immediately from production prior to completing root cause analysis or quantifying business impact metrics.",
-      "Establishing formalized drift tolerance thresholds tied to enterprise risk appetite that trigger predefined escalation and remediation workflows.",
+      "Establishing drift tolerance thresholds tied to risk appetite that trigger predefined escalation and remediation workflows.",
       "Authorizing the independent internal audit function to define acceptable statistical degradation limits during annual assurance engagements."
     ],
     "correctIndex": 2,
@@ -1570,7 +1570,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Deploy automated drift-detection algorithms and adversarial stress-testing toolsets across all production model endpoints to satisfy continuous technical verification.",
       "Commission an external conformity assessment to validate algorithmic fairness benchmarks prior to establishing internal system classification registries.",
       "Authorize first-line development teams to independently determine operational risk tolerances and define context boundaries for their deployed algorithms.",
-      "Institutionalize cross-functional impact assessments to document system categorization, contextual dependencies, and risk tolerances within the enterprise risk register."
+      "Institutionalize cross-functional impact assessments documenting system categorization, context and risk tolerances in the risk register."
     ],
     "correctIndex": 3,
     "questionType": "MOST",
@@ -1775,7 +1775,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "questionText": "What is the BEST governance action for the Board of Directors to establish defensible, enterprise-wide oversight and strategic alignment?",
     "options": [
       "Deploy automated algorithmic observability platforms and continuous fairness testing across all production model pipelines to eliminate operational bias.",
-      "Establish an AI governance charter defining explicit decision rights, enterprise risk appetite limits, and oversight committee reporting structures aligned with ISO/IEC 42001.",
+      "Establish an AI governance charter defining decision rights, risk appetite limits and oversight committee reporting, aligned with ISO/IEC 42001.",
       "Direct business unit leaders to immediately execute technical conformity assessments on all existing models before finalizing the organizational AI policy framework.",
       "Delegate ongoing AI risk acceptance and policy enforcement responsibilities exclusively to first-line model development teams and lead data scientists."
     ],
@@ -1915,7 +1915,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Procure automated ModelOps monitoring tooling to track algorithmic latency, drift, and API throughput against operational SLAs.",
       "Commission an independent external audit to validate conformity benchmarks against ISO/IEC 42001 prior to business case approval.",
       "Empower first-line business unit managers to establish autonomous value criteria and approve discretionary risk-adjusted ROI thresholds.",
-      "Define strategic value metrics, tangible business objectives, and risk-adjusted return thresholds approved by the AI steering committee."
+      "Define strategic value metrics, business objectives and risk-adjusted return thresholds approved by the AI steering committee."
     ],
     "correctIndex": 3,
     "questionType": "FIRST",
@@ -2003,7 +2003,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is preparing to deploy an AI-driven candidate assessment and recruitment platform across its European Union operating entities. Under the EU AI Act, this platform qualifies as a High-Risk AI System within the domain of employment and worker management.",
     "questionText": "What is the BEST course of action for the enterprise AI Governance Steering Committee to establish compliant, enterprise-wide oversight as a deployer of this system?",
-    "options": ["Deploy automated fairness and statistical parity validation algorithms directly into the engineering pipeline to eliminate demographic bias prior to candidate inference.","Commission an external third-party technical conformity audit and notify national market surveillance authorities prior to finalizing internal deployer governance policies.","Authorize the First Line HR talent operations team to independently determine acceptable residual risk thresholds and approve the platform for enterprise deployment.","Establish deployer governance policies requiring competent human oversight protocols, operational monitoring and log retention under EU AI Act Article 26, worker notification (Art. 26(7)), and applicable impact assessments (GDPR Art. 35 DPIA, or EU AI Act Art. 27 FRIA where covered as a public body or public-service operator)."],
+    "options": ["Deploy automated fairness and statistical parity validation algorithms directly into the engineering pipeline to eliminate demographic bias prior to candidate inference.","Commission an external third-party technical conformity audit and notify national market surveillance authorities prior to finalizing internal deployer governance policies.","Authorize the First Line HR talent operations team to independently determine acceptable residual risk thresholds and approve the platform for enterprise deployment.","Establish deployer policies for competent human oversight, monitoring and log retention (Art. 26), worker notification, and any applicable DPIA or FRIA."],
     "correctIndex": 3,
     "questionType": "BEST",
     "explanation": "When the relevant requirements apply, EU AI Act Article 26 requires deployers of high-risk recruitment AI systems (Annex III point 4) to establish governance mechanisms to ensure use in accordance with instructions, assign competent human oversight (Art. 26(2)), monitor operation and report serious incidents (Art. 26(5)), retain automatically generated logs (Art. 26(6)), and inform workers' representatives and affected workers (Art. 26(7)). Note that pre-use Fundamental Rights Impact Assessments (FRIA, Art. 27) are statutorily mandatory for bodies governed by public law, private entities providing public services, and deployers of Annex III 5(b)/(c) credit/insurance systems. Private-sector employers must assess whether the personal-data processing triggers a DPIA under GDPR Article 35; a DPIA is required where the applicable criteria are met. Check applicable transition rules before determining current obligations.",
@@ -2138,7 +2138,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "questionText": "What should the enterprise establish FIRST to ensure AI initiatives achieve strategic alignment and support enterprise business objectives?",
     "options": [
       "Deploy an automated observability pipeline across all candidate models to benchmark technical inference efficiency.",
-      "Define an AI governance charter establishing leadership oversight, strategic objectives, and enterprise risk appetite.",
+      "Define an AI governance charter setting leadership oversight, strategic objectives and enterprise risk appetite.",
       "Conduct comprehensive algorithmic impact assessments and conformity reviews for each individual business use case.",
       "Direct operational machine learning development teams to determine acceptable enterprise thresholds for model bias."
     ],
@@ -2453,7 +2453,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is preparing to deploy an AI-driven credit scoring platform across its European subsidiaries, qualifying it as a high-risk AI system under Annex III of the EU AI Act. The executive committee has tasked the AI Governance Director with establishing the governance posture necessary to ensure organizational compliance and defend against regulatory sanctions.",
     "questionText": "Which of the following represents the BEST strategic governance action to ensure compliance prior to placing the system into service?",
-    "options": ["Deploy algorithmic explainability toolkits, automated bias detection pipelines, and real-time performance telemetry dashboards across all operational inference nodes.","Submit technical specifications to an accredited notified body for external conformity assessment and register the system in the EU database prior to ratifying internal AI risk policies.","Authorize 1st-line development engineering leads to validate technical documentation, self-certify regulatory conformity, and sign off on production release.","Establish an AI compliance framework that enforces quality management (Art. 17), technical documentation and conformity assessment (Art. 43), human oversight protocols (Arts. 14 & 26), and pre-deployment fundamental rights impact assessments (Art. 27) satisfying applicable provider and deployer obligations."],
+    "options": ["Deploy algorithmic explainability toolkits, automated bias detection pipelines, and real-time performance telemetry dashboards across all operational inference nodes.","Submit technical specifications to an accredited notified body for external conformity assessment and register the system in the EU database prior to ratifying internal AI risk policies.","Authorize 1st-line development engineering leads to validate technical documentation, self-certify regulatory conformity, and sign off on production release.","Establish a compliance framework for quality management (Art. 17), documentation and conformity assessment (Art. 43), human oversight (Arts. 14, 26) and FRIA (Art. 27)."],
     "correctIndex": 3,
     "questionType": "BEST",
     "explanation": "When a financial institution develops and deploys a high-risk credit-scoring AI system (Annex III point 5(b)) across the EU, it must satisfy both provider obligations (Articles 9–17 and 43, including a Risk Management System, Quality Management System, human-oversight design, and Annex VI internal control conformity assessment) and deployer obligations (Articles 26 and 27, including assigning competent human oversight and conducting a pre-use Fundamental Rights Impact Assessment).",
@@ -3289,7 +3289,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services institution relies on a machine learning model to evaluate retail credit applications in real time. Following rapid macroeconomic interest rate changes, the model begins exhibiting concept drift, leading to a marked increase in misclassified risk profiles and variance from initial validation benchmarks.",
     "questionText": "Which of the following is the MOST effective governance control to ensure the model's ongoing operational performance remains aligned with enterprise risk appetite?",
     "options": [
-      "Establishing continuous drift monitoring against risk-based performance thresholds tied to formalized escalation and review protocols.",
+      "Establishing continuous drift monitoring against risk-based performance thresholds tied to formal escalation and review.",
       "Automating continuous retraining pipelines that ingest all newly observed production data to maximize statistical predictive accuracy.",
       "Commissioning an immediate architectural redesign of the underlying neural network prior to establishing revised performance metrics.",
       "Tasking the third-line internal audit team with executing daily operational data drift monitoring scripts to maintain model integrity."
@@ -3541,7 +3541,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial services enterprise is establishing an AI governance operating model aligned with NIST AI RMF (GOVERN) and the IIA Three Lines Model to oversee generative AI adoption. The board has mandated distinct separation between day-to-day algorithm delivery, risk oversight, and independent assurance across all operating subsidiaries.",
     "questionText": "What is the PRIMARY responsibility of the second line of defense within this AI governance structure?",
-    "options": ["Deploy automated model observability tooling directly within continuous integration pipelines to optimize system telemetry and model accuracy.","Execute granular technical audits of algorithms across operational business units before the governing body formalizes the organizational risk appetite.","Assume direct operational ownership of algorithmic failure remediation and direct frontline data science teams during model development cycles.","Establish enterprise AI risk frameworks, formulate policy constraints within delegated authority, and provide objective oversight and challenge to operational risk owners."],
+    "options": ["Deploy automated model observability tooling directly within continuous integration pipelines to optimize system telemetry and model accuracy.","Execute granular technical audits of algorithms across operational business units before the governing body formalizes the organizational risk appetite.","Assume direct operational ownership of algorithmic failure remediation and direct frontline data science teams during model development cycles.","Establish AI risk frameworks, set policy constraints within delegated authority, and objectively challenge operational risk owners."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
     "explanation": "In the IIA Three Lines Model (2020), both first- and second-line roles belong to management. The second line (e.g., Enterprise Risk Management, AI Compliance) establishes risk management frameworks and policy guardrails under delegated authority while providing continuous monitoring and objective challenge to first-line business operations. First-line roles retain direct operational and risk ownership, and the third line (Internal Audit) provides independent assurance to the governing body.",
@@ -3857,7 +3857,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "options": [
       "Execute automated penetration testing and adversarial prompt injections against the supplier's runtime model endpoints.",
       "Mandate supplier remediation of algorithmic bias identified during pilot testing before defining organizational risk thresholds.",
-      "Establish enforceable accountability, transparency requirements, and contractual audit rights aligned with enterprise risk appetite.",
+      "Establish enforceable accountability, transparency requirements and contractual audit rights aligned with risk appetite.",
       "Delegate residual risk acceptance and continuous operational model monitoring entirely to the business unit's development leads."
     ],
     "correctIndex": 2,
@@ -3993,7 +3993,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services enterprise is operationalizing its Responsible AI framework across several autonomous business units developing automated credit-decisioning systems. The enterprise aims to establish consistent ethical risk management aligned with NIST AI RMF and ISO/IEC 42001.",
     "questionText": "Which of the following governance practices is LEAST appropriate when embedding ethical AI principles into enterprise operations?",
     "options": [
-      "Permitting individual delivery teams to autonomously define their own acceptable algorithmic fairness thresholds.",
+      "Permitting delivery teams to autonomously define their own acceptable algorithmic fairness thresholds.",
       "Mandating enterprise-wide ethical baselines before evaluating technical fairness toolkits across business units.",
       "Defining organizational risk tolerance prior to approving autonomous machine learning model deployment pipelines.",
       "Assigning the second-line risk management function responsibility to challenge adherence to ethical AI baselines."
@@ -4342,7 +4342,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating automated circuit breakers that decouple the conversational agent when hallucination metrics breach defined boundaries.",
       "Establishing automated monitoring triggers that require formal second-line risk validation before autonomous model updates deploy.",
       "Requiring recurring aggregation and escalation of residual risk metric variances to the board risk committee for tolerance review.",
-      "Authorizing first-line business owners to unilaterally widen operational risk tolerance bands whenever service performance degrades."
+      "Authorizing first-line business owners to unilaterally widen risk tolerance bands whenever service performance degrades."
     ],
     "correctIndex": 3,
     "questionType": "LEAST",
@@ -4430,7 +4430,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial enterprise is operationalizing an AI Management System (AIMS) conforming to ISO/IEC 42001 and aligning organizational risk oversight with the Three Lines Model. Following several generative AI deployments across decentralized business units, executive leadership seeks to formalize accountability and eliminate role ambiguity between operational teams and the central risk function.",
     "questionText": "Under this governance architecture, what is the PRIMARY responsibility of the second line of defense?",
-    "options": ["Deploy automated CI/CD pipeline guardrails and tune monitoring thresholds directly within the operational machine learning infrastructure.","Execute comprehensive pre-deployment penetration testing and model red-teaming prior to the formal establishment of enterprise AI risk appetite statements.","Assume operational ownership of AI risk treatment plans and execute model retraining workflows when performance drift exceeds critical operational limits.","Define the AI risk management framework, establish compliance policies within delegated authority, and objectively challenge the risk decisions made by model owners."],
+    "options": ["Deploy automated CI/CD pipeline guardrails and tune monitoring thresholds directly within the operational machine learning infrastructure.","Execute comprehensive pre-deployment penetration testing and model red-teaming prior to the formal establishment of enterprise AI risk appetite statements.","Assume operational ownership of AI risk treatment plans and execute model retraining workflows when performance drift exceeds critical operational limits.","Define the AI risk management framework, set compliance policies within delegated authority, and challenge model owners' risk decisions."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
     "explanation": "Under the IIA Three Lines Model (2020), first- and second-line roles are both part of management. The second line (Risk Management and Compliance) defines risk management frameworks, formulates enterprise AI policies within delegated authority, monitors compliance, and provides objective challenge to first-line decisions. First-line management owns and operates AI systems and their risks, while the third line (Internal Audit) provides independent assurance.",
@@ -4894,7 +4894,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "questionText": "Which of the following represents the BEST course of action to establish board oversight and institutionalize AI enterprise governance?",
     "options": [
       "Deploy automated model telemetry and drift-detection tooling across all runtime environments to provide the board with live operational performance metrics.",
-      "Establish a board-chartered, cross-functional AI steering committee to define AI risk appetite, approve enterprise policies, and allocate decision rights across lines of defense.",
+      "Establish a board-chartered, cross-functional AI steering committee to set risk appetite, approve policies and allocate decision rights.",
       "Conduct mandatory conformity assessments and algorithmic impact assessments for high-risk use cases prior to defining the enterprise AI risk taxonomy and strategic objectives.",
       "Authorize individual business unit leaders to establish local risk tolerances and procure proprietary AI vendor solutions tailored to their division's commercial requirements."
     ],
@@ -5127,7 +5127,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Direct the engineering teams to optimize algorithmic fairness metrics and implement automated monitoring dashboards to mitigate disparate impact across applicant demographic groups.",
       "Engage an accredited external notified body to perform a third-party conformity audit and register the tool in the EU database prior to formalizing the internal AI policy framework.",
       "Authorize regional human resources leadership to determine risk acceptance thresholds, document residual operational impacts, and grant deployment approval under local operating charters.",
-      "Establish a quality management system and conformity assessment process aligned with provider requirements, ensuring ongoing risk management and technical documentation across the lifecycle."
+      "Establish a quality management system and conformity assessment process meeting provider requirements, with ongoing risk management and documentation."
     ],
     "correctIndex": 3,
     "questionType": "BEST",
@@ -5147,7 +5147,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services firm has initiated an enterprise-wide project to adopt ISO/IEC 42001 to govern its internal machine learning credit evaluation models and generative AI customer chatbots. Executive leadership has mandated that the implementation must follow a defensible top-down governance approach.",
     "questionText": "What should the AI steering committee do FIRST to establish the AI Management System (AIMS)?",
     "options": [
-      "Define the scope and boundaries of the AI management system considering organizational context and business objectives.",
+      "Define the scope and boundaries of the AI management system based on organizational context and objectives.",
       "Deploy automated model performance monitoring and algorithmic bias-testing toolsets across the production pipelines.",
       "Perform an AI risk assessment and compile the formal Statement of Applicability based on the controls in Annex A.",
       "Task the internal audit department with drafting operational AI risk treatment plans and baseline safety thresholds."
@@ -5308,7 +5308,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational financial institution is establishing an enterprise-wide Artificial Intelligence Management System (AIMS) under ISO/IEC 42001 and NIST AI RMF GOVERN. Business units across commercial banking and underwriting have begun independently deploying machine learning and generative AI applications, resulting in fragmented risk assessment and inconsistent control baselines across the organization.",
     "questionText": "Under the Three Lines Model adapted for enterprise AI governance, what is the PRIMARY responsibility of the second-line AI Risk Management and Compliance function?",
-    "options": ["Implement automated drift detection scripts and fine-tune hyperparameters across production models to optimize algorithmic performance.","Conduct external third-party independent conformity assessments on pre-release systems prior to defining the risk taxonomy.","Maintain direct ownership of AI system operations and execute remediation protocols whenever system biases emerge.","Establish risk management frameworks, define guardrails within delegated authority, and provide credible, objective challenge to model operational risk."],
+    "options": ["Implement automated drift detection scripts and fine-tune hyperparameters across production models to optimize algorithmic performance.","Conduct external third-party independent conformity assessments on pre-release systems prior to defining the risk taxonomy.","Maintain direct ownership of AI system operations and execute remediation protocols whenever system biases emerge.","Establish risk frameworks, define guardrails within delegated authority, and credibly challenge operational model risk."],
     "correctIndex": 3,
     "questionType": "PRIMARY",
     "explanation": "Under the IIA Three Lines Model (2020), both first- and second-line roles belong to management. The second line (AI Risk Management and Compliance) establishes enterprise AI risk frameworks and guardrails within delegated authority, monitors compliance, and provides credible, objective challenge to first-line risk owners. First-line business units retain direct operational ownership, while independent assurance is provided by the third line (Internal Audit).",
@@ -5671,7 +5671,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Mandating automated telemetry feeds that notify second-line risk oversight whenever predictive performance metrics approach established organizational tolerance thresholds.",
       "Requiring formal executive risk committee re-authorization prior to resuming autonomous model decisions following any emergency fail-safe suspension triggered by threshold breaches.",
       "Empowering the independent second-line risk oversight team to continuously benchmark model drift metrics and directly enforce corrective operational action plans upon first-line teams.",
-      "Authorizing the first-line model operations team to dynamically recalibrate drift tolerance thresholds during periods of heightened market volatility to avoid operational pipeline halts."
+      "Authorizing the first-line model operations team to recalibrate drift tolerance thresholds during market volatility to avoid pipeline halts."
     ],
     "correctIndex": 3,
     "questionType": "LEAST",
@@ -5962,7 +5962,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services institution utilizes a machine learning model to evaluate consumer credit risk in production. Telemetry dashboards configured by the second-line risk function reveal that macroeconomic shifts have caused significant concept drift, resulting in model accuracy KPIs falling below approved risk appetite limits.",
     "questionText": "Which of the following governance controls is the MOST effective mechanism to mitigate ongoing risk arising from this performance degradation?",
     "options": [
-      "Enforcing predetermined performance threshold triggers that initiate an automatic fallback to an approved baseline model alongside formal incident escalation.",
+      "Enforcing predetermined performance thresholds that trigger automatic fallback to an approved baseline model and formal incident escalation.",
       "Retraining the primary production machine learning model on the latest available inference data to restore statistical performance benchmarks quickly.",
       "Executing a comprehensive third-line internal audit review to evaluate algorithmic decay drivers prior to enacting system-level operational adjustments.",
       "Authorizing the first-line machine learning engineering team to independently recalibrate the acceptable error thresholds within monitoring dashboards."
@@ -6034,7 +6034,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Direct the machine learning engineering group to deploy continuous algorithmic bias testing and technical explainability metrics across all production credit decision pipelines.",
       "Direct procurement to immediately contract an external notified body to conduct a formal audit prior to defining internal risk classification criteria or quality management policies.",
       "Authorize the first-line credit modeling team to make definitive regulatory determinations and self-certify model conformity without formal second-line risk oversight review.",
-      "Mandate an overarching compliance program that establishes a quality management system, technical documentation standards, conformity assessment procedures, and post-market monitoring."
+      "Mandate a compliance program establishing a quality management system, documentation standards, conformity assessment procedures and post-market monitoring."
     ],
     "correctIndex": 3,
     "questionType": "BEST",
@@ -6126,7 +6126,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
       "Establishing dynamic operational key risk indicators (KRIs) that trigger automated reporting and escalation to executive risk leadership prior to breaching risk tolerance boundaries.",
       "Calibrating model-level tolerance thresholds and operational metrics only after formal alignment with enterprise-wide risk appetite approved by the board of directors.",
       "Mandating that the second-line risk management function independently challenge model metrics and verify ongoing adherence to approved risk appetite parameters.",
-      "Permitting first-line business units to temporarily adjust defined risk tolerance thresholds when deployment velocity is constrained, provided the modifications are logged for audit."
+      "Permitting first-line business units to temporarily adjust risk tolerance thresholds when deployment velocity is constrained, provided changes are logged."
     ],
     "correctIndex": 3,
     "questionType": "LEAST",
@@ -6146,7 +6146,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial institution plans to adopt generative AI across multiple business units, but decentralized teams are currently procuring third-party models without centralized oversight or standardized guardrails. The board directs executive management to formalize oversight structures to comply with ISO/IEC 42001 and NIST AI RMF GOVERN function requirements.",
     "questionText": "Which of the following is the BEST action for executive leadership to take to establish institutional AI governance and board oversight?",
     "options": [
-      "Establish a cross-functional AI steering committee with defined decision rights, board reporting cadences, and an enterprise AI policy tied to risk appetite.",
+      "Establish a cross-functional AI steering committee with decision rights, board reporting cadences and an AI policy tied to risk appetite.",
       "Deploy automated algorithmic monitoring telemetry and real-time output validation filters across all departmental environments to manage operational risks.",
       "Conduct detailed risk and impact assessments for all decentralized AI use cases before defining organizational leadership roles and governance charters.",
       "Delegate the approval and operational compliance oversight of business unit AI solutions exclusively to the internal audit department."
@@ -6396,7 +6396,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
     "scenarioText": "A multinational financial services enterprise deploys an AI-driven credit scoring model in production. Subsequent performance monitoring reveals significant statistical concept drift and feature distribution shifts, leading to an unquantified degradation in predictive fairness and accuracy.",
     "questionText": "Which of the following governance controls is MOST effective for addressing this ongoing model degradation?",
     "options": [
-      "Establish governance-approved performance thresholds tied to enterprise risk appetite that trigger predefined remediation and escalation pathways.",
+      "Establish approved performance thresholds tied to enterprise risk appetite that trigger predefined remediation and escalation pathways.",
       "Deploy automated synthetic data pipelines to continuously retrain and redeploy the underlying model without requiring manual oversight.",
       "Immediately decommission the operational model and revert credit operations to manual processing prior to determining risk tolerance impact.",
       "Task the third-line internal audit team with recalibrating the model hyperparameters and adjusting drift sensitivity settings."
@@ -6464,7 +6464,7 @@ const GENERATED_QUESTION_DRAFTS: Question[] = [
   {
     "scenarioText": "A multinational enterprise is preparing to deploy an automated recruitment and candidate evaluation platform across its European subsidiaries, qualifying it as a high-risk AI system under Annex III of the EU AI Act. The Chief Risk Officer seeks to institute an enterprise-wide governance mechanism to fulfill the organization's legal obligations as an AI deployer prior to system rollout.",
     "questionText": "Which of the following represents the BEST governance action for the enterprise to establish compliance and risk oversight?",
-    "options": ["Direct the technical engineering staff to conduct deep algorithmic code reviews and automated statistical parity testing on the vendor's proprietary training weights.","Register the deployment in the EU high-risk AI database and initiate live applicant processing while developing organizational use policies in parallel.","Assign the internal audit function operational responsibility for executing daily logging reviews and verifying continuous post-market human oversight.","Establish deployer governance policies requiring competent human oversight protocols, operational monitoring and log retention under EU AI Act Article 26, worker notification (Art. 26(7)), and applicable impact assessments (GDPR Art. 35 DPIA, or EU AI Act Art. 27 FRIA where covered as a public body or public-service operator)."],
+    "options": ["Direct the technical engineering staff to conduct deep algorithmic code reviews and automated statistical parity testing on the vendor's proprietary training weights.","Register the deployment in the EU high-risk AI database and initiate live applicant processing while developing organizational use policies in parallel.","Assign the internal audit function operational responsibility for executing daily logging reviews and verifying continuous post-market human oversight.","Establish deployer policies for competent human oversight, monitoring and log retention (Art. 26), worker notification, and any applicable DPIA or FRIA."],
     "correctIndex": 3,
     "questionType": "BEST",
     "explanation": "When the relevant requirements apply, EU AI Act Article 26 requires deployers of high-risk recruitment AI systems (Annex III point 4) to establish governance mechanisms to ensure use in accordance with instructions, assign competent human oversight (Art. 26(2)), monitor operation and report serious incidents (Art. 26(5)), retain automatically generated logs (Art. 26(6)), and inform workers' representatives and affected workers (Art. 26(7)). Note that pre-use Fundamental Rights Impact Assessments (FRIA, Art. 27) are statutorily mandatory for bodies governed by public law, private entities providing public services, and deployers of Annex III 5(b)/(c) credit/insurance systems. Private-sector employers must assess whether the personal-data processing triggers a DPIA under GDPR Article 35; a DPIA is required where the applicable criteria are met. Check applicable transition rules before determining current obligations.",

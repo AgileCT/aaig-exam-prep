@@ -180,3 +180,9 @@ test('D2 supplement meets authoring gates and varies type and answer position', 
   assert.ok(new Set(d21.map(q => q.questionType)).size >= 4);
   assert.ok(new Set(d21.map(q => q.correctIndex)).size === 4);
 });
+
+test('correct option is never the longest, except two items held by reviewer decisions', () => {
+  const longest = INITIAL_QUESTIONS.filter(q => q.options[q.correctIndex].length === Math.max(...q.options.map(o => o.length)));
+  // aaig-d4-003 was retained as-is and x6j7d awaits ISO/IEC 42001 evidence in the 2026-10-14 review.
+  assert.deepEqual(longest.map(q => q.id).sort(), ['aaig-d4-003', 'aaig-pipe-1791943409756-76-x6j7d']);
+});

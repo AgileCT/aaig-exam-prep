@@ -14,7 +14,7 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D1.1 AI Governance Structure & Board Oversight',
     scenarioText: 'A global financial institution plans to deploy enterprise-wide generative AI copilots across multiple business units. Several departmental heads have already started vendor pilots independently without centralized coordination.',
     questionText: 'What should the Chief AI Governance Officer recommend as the FIRST step?',
-    options: ["Immediately mandate a technical penetration test and red-teaming assessment on all vendor APIs.","Establish a formally chartered AI Governance Steering Committee with delegated decision rights and board-aligned risk appetite thresholds (while containing urgent data or security exposures in active pilots in parallel).","Instruct the IT department to block access to all generative AI endpoints until procurement review finishes.","Deploy an automated monitoring dashboard to capture real-time prompt token consumption and latency metrics."],
+    options: ["Immediately mandate a technical penetration test and red-teaming assessment on all vendor APIs.","Charter an AI Governance Steering Committee with decision rights, while containing urgent pilot risks.","Instruct the IT department to block access to all generative AI endpoints until procurement review finishes.","Deploy an automated monitoring dashboard to capture real-time prompt token consumption and latency metrics."],
     correctIndex: 1,
     questionType: 'FIRST',
     explanation: "When business units initiate uncoordinated vendor pilots without central oversight, the Chief AI Governance Officer should establish a cross-functional AI Governance Steering Committee operating under a formal charter, clear decision rights, and board-approved risk appetite thresholds (while containing any immediate data leakage or compliance exposures in parallel). This top-down governance structure provides the mandate and evaluation criteria needed to govern subsequent red-teaming (Option A), access controls (Option C), and operational telemetry (Option D).",
@@ -37,7 +37,7 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D1.4 Roles, Responsibilities & Three Lines Model',
     scenarioText: 'An enterprise is aligning its emerging AI risk management program with the Institute of Internal Auditors (IIA) Three Lines Model to ensure accountability and defensibility.',
     questionText: "Under the IIA Three Lines Model, which responsibility is characteristic of the SECOND LINE roles in enterprise AI governance?",
-    options: ["Designing and executing day-to-day model validation tests during the data science training pipeline.","Establishing enterprise AI risk frameworks, formulating compliance policies within delegated authority, and providing objective, credible challenge to first-line management.","Conducting periodic independent assurance audits directly reporting to the Board Audit Committee.","Accepting residual business risks and determining commercial trade-offs for high-impact use cases."],
+    options: ["Designing and executing day-to-day model validation tests during the data science training pipeline.","Setting AI risk frameworks and policies, and objectively challenging first-line management.","Conducting periodic independent assurance audits directly reporting to the Board Audit Committee.","Accepting residual business risks and determining commercial trade-offs for high-impact use cases."],
     correctIndex: 1,
     questionType: 'BEST',
     explanation: "Under the IIA Three Lines Model (2020), both first- and second-line roles are part of management. First-line roles own and manage operational AI delivery and day-to-day validation controls (Option A) and accept commercial/operational risks within approved appetite (Option D). Second-line roles (Risk and Compliance) provide complementary expertise, establish risk frameworks and policies under delegated authority, monitor adherence to risk appetite, and provide objective challenge to the first line. Independent assurance reporting directly to the Audit Committee belongs exclusively to the third line, Internal Audit (Option C).",
@@ -62,7 +62,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'What is the PRIMARY objective of aligning AI governance with enterprise business strategy?',
     options: [
       'Maximizing the raw parameter count and benchmark performance of proprietary neural network architectures.',
-      'Ensuring that AI investments create measurable stakeholder value while operating strictly within approved risk appetite.',
+      'Ensuring that AI investments create measurable stakeholder value within approved risk appetite.',
       'Guaranteeing that the enterprise files more generative AI intellectual property patents than its sector peers.',
       'Shifting total compliance and regulatory liabilities onto third-party foundation model infrastructure providers.'
     ],
@@ -90,7 +90,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'Which governance policy update is MOST urgent?',
     options: [
       'Send a company-wide email urging employees to exercise heightened personal discretion when online.',
-      'Formulate an enforceable AI Acceptable Use Policy (AUP) defining approved tools, prohibited data classifications, and explicit sanctions.',
+      'Issue an enforceable AI Acceptable Use Policy listing approved tools, prohibited data and sanctions.',
       'Install client-side keystroke loggers on every employee laptop without updating written policies.',
       'Demand that consumer-tier LLM vendors sign a custom business associate agreement (BAA) retroactively.'
     ],
@@ -140,7 +140,7 @@ const BASE_QUESTIONS: Question[] = [
     scenarioText: 'A healthcare conglomerate maintains an IT asset database that records server hostnames and software licenses, but executive leadership cannot determine which clinical decision algorithms process patient protected health information (PHI).',
     questionText: 'What critical governance artifact is MOST needed to remediate this visibility gap?',
     options: [
-      'An enterprise AI asset inventory and standardized Model Cards capturing intended use, owners, training provenance, and risk tiers.',
+      'An enterprise AI asset inventory with model cards recording intended use, owners, provenance and risk tier.',
       'A centralized repository containing raw training loss curves and GPU power consumption telemetry logs.',
       'An annual employee acknowledgment form confirming that clinicians understand the hospital acceptable use policy.',
       'A blanket non-disclosure agreement signed by all external cloud foundation model vendors and contractors.'
@@ -169,7 +169,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'What does this situation BEST illustrate from an AI data governance perspective?',
     options: [
       'Concept drift caused by sudden changes in macroeconomic employment conditions.',
-      'Aggregate metric masking, where overall high accuracy obscures severe localized demographic bias and disparate impact.',
+      'Aggregate metric masking, where high overall accuracy hides severe bias against specific demographic groups.',
       'Adversarial data poisoning orchestrated by external applicants during resume submission.',
       'A failure of infrastructure availability service level objectives (SLOs) within the talent acquisition platform.'
     ],
@@ -197,7 +197,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'Which architectural and governance control should have been implemented FIRST during data pipeline preparation?',
     options: [
       'Purchasing additional server storage to retain all unredacted loan records indefinitely.',
-      'Data minimization and automated de-identification/tokenization to purge direct identifiers before training ingestion.',
+      'Data minimization and automated de-identification to strip direct identifiers before ingestion.',
       'Adding a post-generation disclaimer telling users that model answers might expose real personal data.',
       'Increasing the learning rate parameter during fine-tuning so the model memorizes fewer training tokens.'
     ],
@@ -223,7 +223,7 @@ const BASE_QUESTIONS: Question[] = [
     subDomain: 'D2.5 Provenance, Lineage & Synthetic Data Usage',
     scenarioText: 'An enterprise decides to supplement its training dataset with commercially purchased synthetic consumer financial records to accelerate model development.',
     questionText: 'What is the PRIMARY governance risk associated with incorporating unvalidated synthetic data?',
-    options: ["Mandatory reclassification of all downstream internal analytics models as prohibited AI practices under EU AI Act Article 5.","Distortion of real-world tail distributions, amplification of latent biases or statistical artifacts, residual privacy leakage, and recursive model collapse risks.","Automatic invalidation of existing enterprise encryption certificates across cloud storage buckets.","Statutory prohibition against combining third-party datasets with internal historical records under NIST AI RMF."],
+    options: ["Mandatory reclassification of all downstream internal analytics models as prohibited AI practices under EU AI Act Article 5.","Distorted tail distributions, amplified biases or artifacts, residual privacy leakage, and model collapse.","Automatic invalidation of existing enterprise encryption certificates across cloud storage buckets.","Statutory prohibition against combining third-party datasets with internal historical records under NIST AI RMF."],
     correctIndex: 1,
     questionType: 'PRIMARY',
     explanation: "Incorporating unvalidated synthetic financial data introduces major governance risks: loss or distortion of rare real-world tail events, propagation or amplification of generator biases and statistical artifacts, potential memorization/privacy leakage (e.g., membership inference attacks), and conditional model collapse if models are recursively trained on generated outputs without curated real-world anchoring. Governance requires validating distributional fidelity, bias, provenance, and privacy bounds prior to ingestion.",
@@ -248,7 +248,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'What is the MOST critical governance factor to evaluate during the "Buy vs. Build" assessment?',
     options: [
       'Whether the in-house engineering team prefers working in Python over third-party REST API integrations.',
-      'Total cost of ownership, ongoing maintenance liability, data confidentiality rights, and alignment with organizational capabilities.',
+      'Total cost of ownership, maintenance liability, data confidentiality rights and fit with internal capabilities.',
       'Selecting whichever vendor promises the lowest price per million input tokens during the initial 30-day promotional window.',
       'Prioritizing building in-house exclusively to ensure the company can publicly claim full AI self-sufficiency.'
     ],
@@ -276,7 +276,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'Which monitoring mechanism should the AI governance framework mandate to trigger automated review or rollback?',
     options: [
       'An annual static paper review of model documentation conducted during corporate audit season.',
-      'Statistically calibrated drift and performance thresholds linked to predefined remediation and human escalation workflows.',
+      'Calibrated drift and performance thresholds linked to predefined remediation and human escalation workflows.',
       'An automated cron job that deletes and resets all model weights whenever false positive rates rise above zero.',
       'A customer feedback questionnaire asking affected cardholders to rate their checkout satisfaction on a 1-5 scale.'
     ],
@@ -322,7 +322,7 @@ const BASE_QUESTIONS: Question[] = [
     scenarioText: 'An external compliance auditor requests evidence showing how a customer support AI assistant handled an escalated privacy inquiry three months ago. However, the system only logged aggregated daily request counts.',
     questionText: 'Which logging governance control was DEFICIENT in this architecture?',
     options: [
-      'Failure to preserve interaction logs including prompt inputs, retrieved contextual chunks, model outputs, and guardrail decisions.',
+      'Failure to retain logs of prompts, retrieved context, model outputs and guardrail decisions.',
       'Failure to install real-time GPU cooling sensor monitors across third-party cloud data centers.',
       'Failure to publish the internal developer chat channels to a publicly accessible external website.',
       'Failure to conduct weekly in-person interviews with every single customer who accessed the web portal.'
@@ -355,7 +355,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'Under the EU AI Act risk classification schema, how is this AI application primarily classified?',
     options: [
       'Minimal or No Risk, requiring zero compliance documentation or conformity assessment.',
-      'Prohibited AI practice or strictly High-Risk, subject to rigorous conformity assessments and fundamental rights impact assessments.',
+      'Prohibited practice or high-risk, with conformity and fundamental rights impact assessments.',
       'Limited Risk, requiring only a simple automated transparency watermark notice on video outputs.',
       'General Purpose AI (GPAI) exempt from downstream deployer compliance obligations.'
     ],
@@ -383,7 +383,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'What is the PRIMARY purpose of the Statement of Applicability (SoA) in ISO/IEC 42001?',
     options: [
       'Listing all hardware GPU serial numbers and verifying physical data center temperature logs.',
-      'Documenting which Annex A controls have been selected or excluded, along with the justifications tied to the AI risk assessment.',
+      'Recording which Annex A controls are included or excluded, and why, based on the AI risk assessment.',
       'Certifying that the organization has achieved zero residual risk across all production AI algorithms.',
       'Providing an unredacted copy of all proprietary source code to external regulators on a weekly schedule.'
     ],
@@ -439,7 +439,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'What is the BEST course of action for the enterprise risk officer before signing the agreement?',
     options: [
       'Sign the contract immediately to accelerate time-to-market since the cloud vendor has a strong market brand.',
-      'Mandate explicit contractual terms prohibiting customer prompt data retention and secondary training rights, with audit verification clauses.',
+      'Require contract terms prohibiting prompt data retention and secondary training use, with audit rights.',
       'Rely solely on verbal assurances made by the vendor sales representative during product demonstrations.',
       'Assume all liability on behalf of the customer and purchase excess commercial general liability insurance.'
     ],
@@ -467,7 +467,7 @@ const BASE_QUESTIONS: Question[] = [
     questionText: 'Under sound enterprise governance doctrine, what is the REQUIRED action?',
     options: [
       'Proceed with immediate deployment because projected commercial profits automatically override established risk tolerance.',
-      'Halt deployment or redesign the system with enhanced controls until residual risk falls within approved tolerance, or obtain formal board-level risk acceptance.',
+      'Halt or redesign until residual risk is within tolerance, or obtain formal board-level risk acceptance.',
       'Instruct junior engineers to suppress risk reporting metrics until after the quarterly financial earnings release.',
       'Transfer the excess risk by requiring end-users to click an unconditional liability waiver on the mobile app.'
     ],

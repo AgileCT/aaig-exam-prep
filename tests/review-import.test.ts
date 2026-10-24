@@ -11,6 +11,11 @@ interface Baseline {
   items: { id: string; decision: string; beforeHash: string }[];
 }
 const baseline: Baseline = JSON.parse(readFileSync(new URL('./fixtures/review-20261014-baseline.json', import.meta.url), 'utf8'));
+// 2026-10-24: option wording was rebalanced on some items outside the returned
+// review. Everything except the options must still match the signed snapshot.
+const optionBalance: { items: { id: string; hashWithoutOptions: string }[] } =
+  JSON.parse(readFileSync(new URL('./fixtures/option-balance-20261024.json', import.meta.url), 'utf8'));
+const optionOnly = new Map(optionBalance.items.map(item => [item.id, item.hashWithoutOptions]));
 const items = [...INITIAL_QUESTIONS.map(q => ({ type: 'mcq', ...q })),
   ...INITIAL_FLASHCARDS.map(c => ({ type: 'flashcard', ...c }))];
 const byId = new Map(items.map(item => [item.id, item]));
@@ -21,10 +26,11 @@ function canonical(value: unknown): unknown {
     Object.entries(value).sort(([a], [b]) => a.localeCompare(b)).map(([key, child]) => [key, canonical(child)]));
   return value;
 }
-function hash(value: unknown): string {
+function hash(value: unknown, omit: string[] = []): string {
   // Compare teaching content against the signed snapshot while allowing the
   // separately authorized taxonomy migration to retain its legacy metadata.
   const { legacyDomainId, legacySubDomain, ...original } = value as Record<string, unknown>;
+  for (const key of omit) delete original[key];
   if (legacyDomainId) original.domainId = legacyDomainId;
   if (legacySubDomain !== undefined) original.subDomain = legacySubDomain;
   return createHash('sha256').update(JSON.stringify(canonical(original))).digest('hex');
@@ -46,6 +52,10 @@ test('all 313 explicit revisions remain applied and other teaching content survi
     if (entry.decision === 'revise') {
       assert.notEqual(hash(item), entry.beforeHash, `Missing revision: ${entry.id}`);
       revised++;
+    } else if (optionOnly.has(entry.id)) {
+      assert.equal(entry.decision, 'not-in-review', `Option rebalance must not touch reviewer decisions: ${entry.id}`);
+      assert.equal(hash(item, ['options']), optionOnly.get(entry.id), `Change beyond option wording: ${entry.id}`);
+      protectedItems++;
     } else {
       assert.equal(hash(item), entry.beforeHash, `Unauthorized change: ${entry.id}`);
       protectedItems++;
