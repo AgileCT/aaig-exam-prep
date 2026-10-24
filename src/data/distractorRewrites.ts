@@ -757,6 +757,66 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Executing contractual vendor indemnification', to: 'Agree vendor indemnification clauses and incident response protocols before the MAP context and risk categories are complete.', why: 'Clauses and protocols are useful, but agreeing them before the MAP categories exist ties them to an incomplete risk picture.', axis: 'Contracts before MAP categorization' },
     { from: 'Authorizing first-line model development teams', to: 'Let model development teams set their own system boundaries and tolerances and confirm their own compliance.', why: 'Teams marking their own work leaves no independent view and no common limits across functions.', axis: 'Teams validating themselves' },
   ],
+  'aaig-pipe-1791941080701-6': [
+    { from: 'Authorize a departmental pilot deployment', to: 'Run a pilot in a few stores to see whether the forecast financial returns actually appear.', why: 'A pilot tests the forecast, but running it before objectives and value indicators are agreed means the results have no agreed yardstick.', axis: 'Pilot before value indicators' },
+    { from: 'Mandate that technical leads benchmark', axis: 'Technical benchmark before objectives' },
+    { from: 'Direct the internal audit function to validate', to: 'Ask finance to validate the models used to project the labor savings before the project goes forward.', why: 'Validating the savings model is useful, but the objectives and the value indicators it must support come first.', axis: 'Model validation before objectives' },
+  ],
+  'aaig-pipe-1791941150664-26': [
+    { from: 'Deploy automated telemetry tooling', to: 'Estimate the infrastructure and licence cost of the AI system for the next three years and add it to the budget.', why: 'A cost estimate belongs in the business case, but it does not say what value the project must deliver or how it fits strategy.', axis: 'Cost estimate before value measures' },
+    { from: 'Perform a post-implementation benefits realization audit', to: 'Plan an audit after launch that will compare reported savings with the original financial projections.', why: 'A post-launch audit is a useful check, but it comes after the objectives and value measures that define what is checked.', axis: 'Post-launch audit first' },
+    { from: 'Delegate authority to the model development team', to: 'Let the model development team choose the performance indicators and set its own risk thresholds.', why: 'Developers know the model, but indicators and risk thresholds for the business case should come from the business sponsor and governance.', axis: 'Developers setting the indicators' },
+  ],
+  'aaig-pipe-1791942471290-26': [
+    { from: 'Deploy automated telemetry tools', to: 'Ask the sponsor to propose three possible AI solutions and a vendor shortlist for each.', why: 'Solution options come later. The business case first needs the current performance and the outcomes it should achieve.', axis: 'Solutions before the baseline' },
+    { from: 'Execute a production pilot', axis: 'Pilot before baseline targets' },
+    { from: 'Direct the independent internal audit function', to: 'Ask the audit function to sign off the projected financial benefits before the sponsor presents the case.', why: 'Audit must stay independent of the case it later assures, and sign-off before the baseline exists has nothing to check against.', axis: 'Audit sign-off before the baseline' },
+  ],
+  'aaig-pipe-1791943463778-91-etjek': [
+    { from: 'Conduct technical benchmarking and algorithmic latency', to: 'Measure current customer response times for the advisory channel and record them as a reference point.', why: 'Current response times are a useful reference, but they say nothing about the objectives and indicators the business case must define.', axis: 'Reference measurement before objectives' },
+    { from: 'Direct the internal audit team to design', to: 'Ask the audit function to design the performance scorecard and set the return thresholds for the unit.', why: 'Audit must stay independent, and scorecards and thresholds are set by management.', axis: 'Audit designing the scorecard' },
+    { from: 'Implement an automated benefits-tracking', to: 'Set up a monthly report of financial returns and operating cost savings for each advisory channel.', why: 'Tracking benefits is needed later, but it needs the objectives and indicators to define what is tracked.', axis: 'Tracking before definition' },
+  ],
+  'aaig-pipe-1791943736083-151-32qho': [
+    { from: 'Deploy an automated performance monitoring', to: 'Choose a single financial return model for every AI project and ask the sponsors to use it in their cases.', why: 'A single return model helps comparison, but value and risk measures must first follow the strategic objectives.', axis: 'Return model before measures' },
+    { from: 'Perform formal cost-benefit audits', to: 'Review the cost and benefit of the first exploratory AI pilots once they have finished.', why: 'A review of finished pilots is a lesson-learning step, but it follows, and does not replace, the measures the business cases are held to.', axis: 'Review of pilots first' },
+    { from: 'Authorize individual business unit owners', to: 'Let each business unit set its own hurdle rate and financial return criteria for AI projects.', why: 'Separate hurdle rates make business cases incomparable and weaken portfolio decisions.', axis: 'Separate hurdle rates' },
+  ],
+  'aaig-d2s-001': [
+    { from: 'Impute missing laboratory values', axis: 'Imputation to meet the schedule' },
+    { from: 'Purchase a commercial data-cleansing', axis: 'Tool purchase before criteria' },
+    { from: 'Train separate site-specific', axis: 'Isolating sites instead of fixing quality' },
+  ],
+  'aaig-d2s-004': [
+    { from: 'Recording the original purpose', axis: 'Sound practice: recording the original purpose before reuse' },
+    { from: 'Documenting known data gaps', axis: 'Sound practice: documenting data gaps and their effects' },
+    { from: 'Requiring business data owner approval', axis: 'Sound practice: owner approval of labelling changes' },
+  ],
+  'aaig-d2s-005': [
+    { from: 'Let each business unit keep', axis: 'Separate definitions per unit' },
+    { from: 'Have the data science team pick', axis: 'Definition chosen by model accuracy' },
+    { from: 'Combine the business unit definitions', axis: 'Mechanical merge of conflicting labels' },
+  ],
+  'aaig-d2s-007': [
+    { from: 'Model developers usually lack', axis: 'Skills gap as the reason' },
+    { from: 'Data owners can lower', axis: 'Owners lowering thresholds under deadline' },
+    { from: 'Regulators require data owners', axis: 'Regulatory requirement overstated' },
+  ],
+  'aaig-d2s-008': [
+    { from: 'Automatically removing every anomalous', axis: 'Removing anomalies without review' },
+    { from: 'Replacing all sensors', axis: 'Calendar replacement of sensors' },
+    { from: 'Having the sensor vendor certify', axis: 'One-off vendor certification' },
+  ],
+  'aaig-d2s-009': [
+    { from: 'Measuring inter-annotator', axis: 'Sound practice: inter-annotator agreement' },
+    { from: 'Maintaining versioned labelling', axis: 'Sound practice: versioned labelling guidelines' },
+    { from: 'Seeding each batch', axis: 'Sound practice: gold-standard items' },
+  ],
+  'aaig-d2s-302': [
+    { from: 'Recording the share of missing', axis: 'Sound practice: recording the share of missing values' },
+    { from: 'Agreeing with clinicians', axis: 'Sound practice: agreeing treatment with clinicians' },
+    { from: 'Testing whether missing values differ', axis: 'Sound practice: testing missingness across groups' },
+  ],
 };
 
 /**
@@ -914,6 +974,18 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943870183-174-fbxgh': 'Permitting the platform team to purge low-confidence inference records, using automated scripts, to control cloud costs.',
   'aaig-pipe-1791943937415-185-ft3m7': 'Set up an executive AI committee that sets risk limits and decision rights and oversees the AI management system.',
   'aaig-pipe-1791944061542-217-i1geg': 'Formalize decision rights across functions, risk limits and stage-gate approvals across the lifecycle.',
+  'aaig-pipe-1791941080701-6': 'Align the project objectives with enterprise strategy and define value indicators that account for risk.',
+  'aaig-pipe-1791941150664-26': 'Align the AI objectives and value measures with business strategy and the firm\'s appetite for risk.',
+  'aaig-pipe-1791942471290-26': 'Record how the process performs today and link the expected AI outcomes to the firm\'s strategic objectives.',
+  'aaig-pipe-1791943463778-91-etjek': 'Define strategic AI objectives and balanced indicators that fit stakeholders and risk limits.',
+  'aaig-pipe-1791943736083-151-32qho': 'Define standard value and risk measures that follow the enterprise\'s strategic objectives.',
+  'aaig-d2s-001': 'Define data quality criteria for the intended clinical use and name who is answerable for each data source.',
+  'aaig-d2s-004': 'Letting the modelling team relabel ambiguous historical outcomes as it sees fit, with no record.',
+  'aaig-d2s-005': 'Establish one enterprise glossary definition, approved by the responsible business lead.',
+  'aaig-d2s-007': 'Data owners answer for whether data is fit for the business purpose and the firm\'s risk limits.',
+  'aaig-d2s-008': 'Tracking data quality metrics against agreed thresholds and reporting breaches to the business lead.',
+  'aaig-d2s-009': 'Accepting the vendor\'s labels as delivered, since the contract includes an accuracy SLA.',
+  'aaig-d2s-302': 'Filling every gap with the column average and not recording it',
 };
 
 /**

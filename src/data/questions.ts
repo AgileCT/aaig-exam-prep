@@ -505,7 +505,7 @@ function applyCorrectPositionMove(question: Question): Question {
 export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
-].map(applyCorrectPositionMove).map(applyDistractorRewrite).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2);
+].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2).map(applyDistractorRewrite);
 
 /** The bank learners practice from: every question except retired near-duplicates. */
 export const ACTIVE_QUESTIONS: Question[] = INITIAL_QUESTIONS.filter(question => !RETIRED_QUESTION_IDS.has(question.id));
