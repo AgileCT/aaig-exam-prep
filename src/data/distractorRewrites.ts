@@ -237,6 +237,56 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Execute continuous automated red-teaming', to: 'Rely on the supplier\'s published model card and responsible-AI statement as the basis of assurance.', why: 'Supplier-published statements describe what the supplier chooses to say and are not verified, enforceable commitments to the institution.', axis: 'Supplier self-description mistaken for assurance' },
     { from: 'Delegate final supply chain risk acceptance', to: 'Limit the integration to non-critical decisions for the first year and review the arrangement then.', why: 'A cautious start limits exposure, but it does not establish who is accountable, what can be audited, or how risk is allocated in the meantime.', axis: 'Cautious scope mistaken for governing terms' },
   ],
+  'aaig-pipe-1791942379061-5': [
+    { from: 'Deploy an automated data-profiling and lineage-tagging tool', to: 'Ask each business unit to keep its own data quality policy and review it each year with its governance lead.', why: 'Separate unit policies give structure, but without common thresholds and a named person accountable for each dataset, each unit still defines quality in its own way.', axis: 'Unit-level policies without common standards' },
+    { from: 'Mandate that individual data engineering teams', axis: 'Remediation before the policies are ratified' },
+    { from: 'Direct the Internal Audit team', to: 'Appoint a data steward in each business unit and let each steward set the quality rules for the datasets that unit owns.', why: 'Stewards are useful, but local rules recreate the inconsistency. The framework has to come first and the stewards then apply it.', axis: 'Local rules without enterprise standards' },
+  ],
+  'aaig-pipe-1791942403792-10': [
+    { from: 'Negotiate custom service level agreements', to: 'Negotiate service levels and indemnity clauses with the vendor before the firm has assessed the risks of the sourcing options.', why: 'Contract terms matter, but negotiating them before the options and their risks are assessed commits the firm too early.', axis: 'Contract terms before an initial risk assessment' },
+    { from: 'Mandate red-teaming benchmarks', to: 'Ask two business sponsors to rank the options by expected benefit and take the option with the higher ranking.', why: 'Sponsor ranking captures expected benefit, but not risk appetite, compliance duties or the cost of the option over its lifecycle.', axis: 'Single-criterion ranking' },
+    { from: 'Delegate the sourcing determination', to: 'Ask the procurement team to pick the supplier with the lowest bid and record the choice for the governance committee.', why: 'The lowest bid fits cost, but cost is only one factor. Strategy, risk and compliance duties have to be weighed before the choice.', axis: 'Cost as the sole criterion' },
+  ],
+  'aaig-pipe-1791942404379-12': [
+    { from: 'Deploying automated network monitoring agents', to: 'Ask each business unit to name an owner for each AI application and share the list with the risk function once a year.', why: 'A list shows what is in use, but it sets no rules and no approval route, so accountability across units stays unclear.', axis: 'Inventory without rules' },
+    { from: 'Conducting detailed algorithmic impact assessments', to: 'Run an awareness campaign on responsible AI use and ask all employees to confirm that they have read the guidance.', why: 'Awareness raises understanding, but it does not set approval routes or decision rights across business units.', axis: 'Awareness mistaken for oversight' },
+    { from: 'Delegating AI tool evaluation', to: 'Delegate AI tool evaluation and compliance sign-off to the business unit managers who will use the tools.', why: 'Delegation speeds up work, but sign-off by the units that use the tools leaves no enterprise-wide accountability.', axis: 'Delegation without enterprise criteria' },
+  ],
+  'aaig-pipe-1791942454013-23': [
+    { from: 'Mandate continuous real-time telemetry monitoring', axis: 'Technical monitoring inside the vendor\'s infrastructure' },
+    { from: 'Execute recurring forensic bias audits', to: 'Ask the supplier to complete the firm\'s standard security questionnaire once at onboarding and file the answers.', why: 'A questionnaire records the supplier\'s claims at one point in time. It sets no tiers, expectations or audit rights.', axis: 'One-off self-assessment' },
+    { from: 'Formally execute commercial procurement contracts', to: 'Approve the supplier arrangement once the business owner confirms that the commercial terms are acceptable.', why: 'Commercial acceptance is a business decision. The governance objective is risk tiering and assurance rights that continue through the arrangement.', axis: 'Commercial approval mistaken for oversight' },
+  ],
+  'aaig-pipe-1791942470081-25': [
+    { from: 'Deploy automated data profiling pipelines', to: 'Ask business units to name a data owner for each dataset, who then decides what quality is acceptable.', why: 'Owners are needed, but if each owner decides acceptable quality alone, the standards differ and nobody verifies them independently.', axis: 'Ownership without common criteria' },
+    { from: 'Mandate immediate data cleansing sprints', axis: 'Remediation before the framework exists' },
+    { from: 'Authorize the independent internal audit function', to: 'Hire an outside data consultancy to cleanse the training data and certify it as fit for purpose.', why: 'A one-off cleanse and certificate fixes today\'s data, but sets no owners, criteria or verification that continue as the data changes.', axis: 'One-off cleanse mistaken for governance' },
+  ],
+  'aaig-pipe-1791943105269-12-9ueky': [
+    { from: 'Allow the first-line MLOps engineering team', axis: 'Operating team adjusting its own limits' },
+    { from: 'Retrain the production model immediately', to: 'Add the macroeconomic variables to the monitoring report and ask the model owner to watch them every week.', why: 'More visibility helps, but watching a dashboard is not a control until limits and the required responses are agreed.', axis: 'Visibility without an obligation to act' },
+    { from: 'Conduct a comprehensive third-line independent assurance', to: 'Ask the model validation team to review the model every quarter and report its findings to the credit committee.', why: 'A periodic review is good practice, but the degradation continues between reviews and nothing defines when the firm must act.', axis: 'Periodic review without triggers' },
+  ],
+  'aaig-pipe-1791943144401-22-8tbz6': [
+    { from: 'Deploying automated model monitoring toolsets', to: 'Ask each business unit to confirm every quarter that it follows the new AI policy and to report any exceptions to the board.', why: 'Self-confirmation raises awareness, but without gated approvals nobody checks a use case before it goes ahead.', axis: 'Attestation instead of a gate' },
+    { from: 'Mandating pre-deployment algorithmic conformity', to: 'Publish the AI policy on the intranet and run a training course on it for all staff who build or buy AI tools.', why: 'Training makes the rules known, but it creates no approval step that can stop or condition a non-compliant use case.', axis: 'Awareness mistaken for enforcement' },
+    { from: 'Empowering individual product development teams', axis: 'Self-certification by the teams being governed' },
+  ],
+  'aaig-pipe-1791943166460-26-wrliw': [
+    { from: 'Mandate that all first-line data science teams populate', axis: 'Documentation before a schema is agreed' },
+    { from: 'Procure and deploy an automated metadata harvesting tool', to: 'Ask each business unit to list the AI systems it knows about in a spreadsheet and send it to the committee within 30 days.', why: 'A quick list shows what units remember, but with no common taxonomy or required fields the entries cannot be compared or risk-tiered.', axis: 'Unstructured list before a taxonomy' },
+    { from: 'Direct the internal audit team to conduct an independent baseline', to: 'Rank the business units by their expected AI risk and ask the head of the highest-risk unit, who is accountable for it, to build its inventory first.', why: 'Starting with one unit may help, but without a common taxonomy and minimum fields each unit builds a different inventory.', axis: 'Sequencing by unit before common standards' },
+  ],
+  'aaig-pipe-1791943170521-27-c05z1': [
+    { from: 'Mandate that data engineering teams apply differential privacy', to: 'Ask data science teams to document why each attribute is used and keep the documentation with the model record.', why: 'Documentation records intent, but nothing stops unneeded attributes entering training, so minimization depends on each team\'s judgement.', axis: 'Documentation without a gate' },
+    { from: 'Commission a third-line audit of inference logs', axis: 'After-the-fact detection instead of prevention' },
+    { from: 'Authorize first-line data science teams to perform', to: 'Let the privacy office review a sample of training datasets each quarter and ask teams to delete any attributes it finds unnecessary.', why: 'A sampled review finds some problems, but the data has already been used for training and unsampled datasets are never checked.', axis: 'Sampled review after ingestion' },
+  ],
+  'aaig-pipe-1791943088709-8-8nnep': [
+    { from: 'Deploying automated in-processing bias mitigation', to: 'Ask the model team to retrain the model on recent applicants and publish the new accuracy figures to the risk committee.', why: 'Retraining on recent data may reduce the drift, but accuracy figures alone do not show that fairness criteria and legal duties are met.', axis: 'Accuracy reporting mistaken for fairness' },
+    { from: 'Maximizing operational throughput', axis: 'Performance goal that ignores fairness' },
+    { from: 'Tasking the independent third-line', to: 'Pause all new loan decisions until the second line has reviewed every model parameter and the governance committee has signed it off.', why: 'Pausing is a containment option, not the governance objective, and it removes the service without setting the criteria the firm must meet.', axis: 'Containment mistaken for the objective' },
+  ],
 };
 
 /**
@@ -290,6 +340,16 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943315649-58-7qd1l': 'Define risk-based due diligence criteria and the contract assurances that show a supplier meets the firm\'s risk limits.',
   'aaig-pipe-1791943198675-33-0tu1t': 'Set explanation requirements by stakeholder need, decision impact and legal duties to inform people.',
   'aaig-pipe-1791941505157-23': 'Make sure the supplier agreement lets the institution inspect the supplier\'s practices, share risk fairly and enforce its rights.',
+  'aaig-pipe-1791942379061-5': 'Agree common rules for data provenance and quality, with a named person accountable for each dataset.',
+  'aaig-pipe-1791942403792-10': 'Set a multi-criteria evaluation covering strategy, risk appetite, compliance duties and total cost.',
+  'aaig-pipe-1791942404379-12': 'Mandate an enterprise AI acceptable use policy and a steering committee approval process for all business units.',
+  'aaig-pipe-1791942454013-23': 'Set supplier risk tiers, expectations for transparency and contractual assurance rights that fit the firm\'s appetite for risk.',
+  'aaig-pipe-1791942470081-25': 'Agree one set of data quality and provenance criteria with named owners and independent verification.',
+  'aaig-pipe-1791943105269-12-9ueky': 'Set predefined performance thresholds that trigger escalation and model fallback procedures when they are crossed.',
+  'aaig-pipe-1791943144401-22-8tbz6': 'Set up a committee that enforces gated approvals and maps risks to agreed enterprise tolerances.',
+  'aaig-pipe-1791943166460-26-wrliw': 'Define an enterprise AI asset taxonomy and the minimum metadata each entry must have, aligned with risk appetite.',
+  'aaig-pipe-1791943170521-27-c05z1': 'Enforce ingestion gating that limits inputs to verified, purpose-bound attributes confirmed through formal impact assessments.',
+  'aaig-pipe-1791943088709-8-8nnep': 'Ensure outcomes stay within risk appetite, legal non-discrimination duties and the fairness criteria the firm has set.',
 };
 
 /**
