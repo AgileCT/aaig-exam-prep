@@ -577,6 +577,111 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Establishing real-time production drift dashboards', axis: 'Monitoring before supplier classification' },
     { from: 'Empowering procurement engineers', to: 'Let the procurement team accept the residual AI risks if the vendor holds a recognized external audit certificate.', why: 'A certificate shows that the vendor passed an audit, but accepting residual risk is a management decision that depends on the firm\'s own limits.', axis: 'Certificate mistaken for risk acceptance' },
   ],
+  'aaig-pipe-1791943958027-190-xf2br': [
+    { from: 'Mandate automated adversarial red-teaming', to: 'Rank the shortlisted models by their results on a standard accuracy test and take the highest ranked.', why: 'A ranking by accuracy ignores strategic fit, cost over time, risk and assurance needs.', axis: 'Accuracy ranking as the decision' },
+    { from: 'Negotiate contract indemnification clauses', to: 'Open negotiations with the two lowest-priced vendors and choose the one that accepts the strongest audit terms.', why: 'Strong audit terms are valuable, but starting negotiations before criteria and risk limits are set narrows the choice by price.', axis: 'Negotiation before criteria' },
+    { from: 'Delegate the final buy-versus-build determination', to: 'Let the business development team decide, provided it records that it accepts the operational risks.', why: 'Recording acceptance does not make the decision independent. The team that wants the product weighs risk for the whole enterprise.', axis: 'Requester accepting its own risk' },
+  ],
+  'aaig-pipe-1791943650497-130-94yh2': [
+    { from: 'Benchmark performance, inference cost', axis: 'Technical feasibility as the decision' },
+    { from: 'Sign vendor contracts', axis: 'Contract signature before risk tiering' },
+    { from: 'Direct the internal audit function to select', to: 'Ask the audit function to choose the preferred sourcing model and set up the vendor monitoring routines.', why: 'Audit must stay independent of management decisions, and choosing the model and running monitoring are management work.', axis: 'Audit performing management work' },
+  ],
+  'aaig-pipe-1791943869015-170-3r2zz': [
+    { from: 'Perform comprehensive automated latency', to: 'Compare the open-source and commercial options on speed and accuracy using the same test set.', why: 'A speed and accuracy comparison tests technical performance, but not transparency, provenance or fit with the firm\'s risk limits.', axis: 'Technical comparison only' },
+    { from: 'Require the procurement department', to: 'Ask procurement to negotiate indemnity clauses and annual external vulnerability audits with every supplier.', why: 'Indemnity and audits are useful terms, but applying them to every supplier without first assessing transparency and provenance is not risk-based.', axis: 'Uniform contract terms before assessment' },
+    { from: 'Delegate single-point model selection', to: 'Let the team that manages the API integration choose the model and accept the supplier risk.', why: 'The integration team knows the technical fit, but choosing the model and accepting supplier risk for the enterprise is not its decision to make alone.', axis: 'Integration team accepting supplier risk' },
+  ],
+  'aaig-pipe-1791944022162-207-p53nt': [
+    { from: 'Mandating advanced homomorphic', to: 'Encrypt all training data end to end and apply differential privacy in every training environment.', why: 'Strong technical protection helps, but it does not limit what data is collected, so minimization is not achieved.', axis: 'Protection of everything instead of minimization' },
+    { from: 'Performing automated privacy leakage', to: 'Scan the model each month for privacy leakage and remove any data the scan shows to be exposed.', why: 'Scanning finds leakage after the data has been used, while minimization applies before and during model development.', axis: 'Detection after use' },
+    { from: 'Authorizing first-line data engineering', to: 'Let each data lead prune high-dimensional consumer data that does not improve the model\'s loss.', why: 'Pruning for model performance ignores whether each data type is needed for the purpose, and each lead decides alone.', axis: 'Performance-based pruning' },
+  ],
+  'aaig-pipe-1791944117191-227-p3ddh': [
+    { from: 'Deploy advanced differential privacy', to: 'Apply differential privacy to raw repositories and use synthetic data wherever it is workable.', why: 'Masking identity helps privacy, but it does not decide which data may enter the pipeline for which purpose.', axis: 'Masking instead of purpose limits' },
+    { from: 'Conduct automated data protection impact', to: 'Run a data protection impact assessment for the pipeline once the staging environment is ready.', why: 'An assessment at staging is late. Minimization decisions must be made before data is ingested.', axis: 'Assessment after build' },
+    { from: 'Authorize the first-line machine learning', to: 'Let the machine learning leads set retention limits by jurisdiction and decide the minimization trade-offs themselves.', why: 'Technical leads understand the data, but legal retention limits and minimization trade-offs need an enterprise rule, not a team decision.', axis: 'Team setting its own limits' },
+  ],
+  'aaig-pipe-1791944041150-212-airgq': [
+    { from: 'Deploy automated synthetic data pipelines', to: 'Retrain the model every month on fresh data and release it under the model release policy.', why: 'Regular retraining may help, but it is not tied to limits that say when degradation is unacceptable.', axis: 'Calendar retraining' },
+    { from: 'Immediately decommission', to: 'Take the operational model out of service now and revert credit operations to manual processing.', why: 'Withdrawing the model may be necessary in an emergency, but doing it before the impact on risk limits is assessed is premature.', axis: 'Withdrawal before assessing impact' },
+    { from: 'Task the third-line internal audit team', to: 'Ask the audit function to recalibrate the model settings and adjust the drift sensitivity.', why: 'Audit must stay independent, and recalibrating a model is operational work.', axis: 'Audit doing operational work' },
+  ],
+  'aaig-pipe-1791944099056-220-u236q': [
+    { from: 'Procure an automated AI model governance', to: 'Request a yearly report from each business unit on its AI projects, and discuss the reports at a board meeting.', why: 'Yearly reports give visibility, but the board still needs a body with decision rights and risk limits to act on them.', axis: 'Information without a decision body' },
+    { from: 'Conduct exhaustive third-party', to: 'Commission outside conformity assessments of the existing vendor models, then draw up the organization\'s AI standards.', why: 'Assessments produce evidence, but doing them before rules and standards exist leaves the board without a basis for what to approve.', axis: 'Assessments before standards' },
+    { from: 'Delegate sole oversight', to: 'Leave oversight and risk acceptance with the product owners who run each AI project, and ask for annual confirmation.', why: 'Product owners know their projects, but oversight by those running them has no independent check or enterprise limits.', axis: 'Oversight by those who run the projects' },
+  ],
+  'aaig-pipe-1791943597832-120-8zzew': [
+    { from: 'Implement enterprise-wide algorithmic fairness', to: 'Ask the board to review each AI incident report and agree a response case by case.', why: 'Case-by-case review reacts to incidents, but it does not set who decides or what limits apply in advance.', axis: 'Incident-driven oversight' },
+    { from: 'Commission an independent third-party conformity', to: 'Commission an outside review of the AI models and decide on the internal rules once the review is complete.', why: 'A review gives evidence, but doing it before the rules exist means the board has no basis to judge its findings.', axis: 'Review before rules' },
+    { from: 'Delegate AI risk appetite thresholds', axis: 'Appetite set by the units' },
+  ],
+  'aaig-pipe-1791943849647-165-md05v': [
+    { from: 'Mandate the enterprise-wide procurement and integration', to: 'Fund a central team to review every AI project against a standard checklist before launch.', why: 'A review team gives consistency, but without limits, accountabilities and strategy set by a governing body the checklist has no authority.', axis: 'Checklist review without a mandate' },
+    { from: 'Instruct the internal audit department', to: 'Ask an outside firm to assess all production systems against ISO/IEC 42001 and have each owner follow up its findings.', why: 'A conformity assessment gives a gap list, but rules built only from findings leave out strategy and the board\'s risk limits.', axis: 'Assessment before the mandate' },
+    { from: 'Delegate AI governance authority', to: 'Let each division head set its own AI risk limits and approve its models, with a summary sent to the board.', why: 'Divisions know their risks, but separate limits and approvals leave the board without a common view of enterprise risk.', axis: 'Divisional limits and approvals' },
+  ],
+  'aaig-pipe-1791944097363-222-p23rc': [
+    { from: 'Deploying technical continuous monitoring', to: 'Hold a yearly training session on the AI principles for all staff who develop or buy AI systems.', why: 'Training builds understanding, but it adds no checkpoint that can stop a project that breaches the principles.', axis: 'Training instead of a control' },
+    { from: 'Scheduling retrospective algorithmic fairness', to: 'Schedule fairness audits of lending models six months after launch to find non-compliant credit decisions.', why: 'An audit six months after launch finds problems late, after customers have been affected.', axis: 'Late audits' },
+    { from: 'Allowing first-line project delivery', to: 'Let project delivery teams certify their own compliance with the ethical principles before launch.', why: 'Self-certification has no independent check, and the team has an interest in launching.', axis: 'Self-certification' },
+  ],
+  'aaig-pipe-1791943823909-162-a11gg': [
+    { from: 'Mandate automated continuous integration', to: 'Add bias checks to the standard build process for every AI model so that failing builds cannot be released.', why: 'Build-time checks catch some problems, but they do not set who can approve a use case or the risk limits that apply.', axis: 'Technical checks instead of authority' },
+    { from: 'Require independent internal audit teams', to: 'Ask the audit function to review each AI system after it goes live and report weaknesses to the audit committee.', why: 'A review after go-live finds weaknesses late, and audit cannot also be the approver.', axis: 'Post-implementation audit' },
+    { from: 'Empower individual business unit owners', to: 'Let each business unit set and approve its own risk thresholds to suit its operations.', why: 'Local thresholds suit local operations, but they differ between units and cannot be enforced as an enterprise limit.', axis: 'Local thresholds' },
+  ],
+  'aaig-pipe-1791943691011-141-3u1ro': [
+    { from: 'Procure an automated model monitoring', to: 'Ask each business unit to describe its planned AI use cases in one page and send them to the director.', why: 'One-page descriptions show plans, but without decision rights and objectives nobody can say which plans fit.', axis: 'Plans collected before decision rights' },
+    { from: 'Perform algorithmic impact assessments and bias testing', to: 'Test the candidate third-party models for bias and run impact assessments before choosing among them.', why: 'Testing candidate models is useful, but it comes after the objectives and decision rights are set.', axis: 'Model testing before objectives' },
+    { from: 'Authorize business unit managers', to: 'Let business unit managers set risk criteria for their own pilots and start those pilots in their departments.', why: 'Departmental pilots can start quickly, but separate criteria across units leave strategic alignment and decision rights undefined.', axis: 'Departmental pilots with own criteria' },
+  ],
+  'aaig-pipe-1791943829229-160-0knam': [
+    { from: 'Implement automated model telemetry', to: 'Ask management to send the board a monthly summary of model accuracy and fairness results for each machine learning system.', why: 'Performance summaries inform the board, but the board still has no structure or limits through which to direct AI strategy.', axis: 'Performance reporting instead of an oversight structure' },
+    { from: 'Conduct comprehensive technical conformity', to: 'Commission technical conformity assessments of the candidate AI products before the board agrees how it will oversee AI.', why: 'Assessments of candidate products produce evidence, but oversight arrangements should not wait for them.', axis: 'Product assessment before oversight' },
+    { from: 'Assign independent assurance', to: 'Let the project managers who build generative AI applications give the final compliance sign-off on them.', why: 'Builders signing off their own work removes independent assurance and board-level oversight.', axis: 'Builders signing off their own work' },
+  ],
+  'aaig-pipe-1791943617917-125-4ch2u': [
+    { from: 'Deploy automated algorithmic bias detection', to: 'Ask each function to nominate an AI contact and hold a monthly meeting where the contacts share issues.', why: 'Contacts and meetings share issues, but they have no mandate or decision rights to resolve them.', axis: 'Coordination without a mandate' },
+    { from: 'Conduct detailed algorithmic impact assessments and risk scoring', to: 'Score the risk of every planned AI use case before deciding who is accountable for AI at the executive level.', why: 'Risk scoring helps prioritize, but it comes before the accountability structure that must act on the scores.', axis: 'Risk scoring before accountability' },
+    { from: 'Assign internal audit the operational authority', to: 'Give the audit function authority to set AI acceptance criteria and approve models before they go live.', why: 'Audit must stay independent, and approving models is a management decision that audit later assures.', axis: 'Audit approving models' },
+  ],
+  'aaig-pipe-1791943465809-92-22gqd': [
+    { from: 'Task the independent internal audit function with daily', to: 'Have the audit function tune the model\'s decision boundaries and drift sensitivity every day.', why: 'Audit must stay independent, and daily tuning is operational work for management.', axis: 'Audit doing operational work' },
+    { from: 'Deploy an automated continuous retraining pipeline', to: 'Retrain the model weekly on all the production data collected since the last run, without selecting or cleaning it.', why: 'Retraining on unselected data may build in the degradation, and no limit tells reviewers when to step in.', axis: 'Retraining on uncurated data' },
+    { from: 'Execute an immediate production rollback', to: 'Roll the production model back to the previous version now, then investigate the cause.', why: 'A rollback can be a valid response, but as the standing control it ignores the cause and sets no limit that tells when to use it.', axis: 'Rollback as the standing control' },
+  ],
+  'aaig-pipe-1791943831726-161-nvn8j': [
+    { from: 'Deploy an enterprise telemetry', to: 'Appoint a head of AI delivery and ask for a three-year roadmap of AI projects.', why: 'A roadmap sets delivery plans, but objectives, decision rights and acceptable risk have to come first.', axis: 'Roadmap before objectives' },
+    { from: 'Perform algorithmic impact assessments and bias audits', to: 'Assess the impact and bias risk of each prospective use case before the organization writes any AI rules.', why: 'Use-case assessments are useful, but they need the objectives and rules that the mandate provides.', axis: 'Use-case assessment before the mandate' },
+    { from: 'Delegate authority to individual business unit leaders', to: 'Let each business unit leader approve AI use cases that meet the unit\'s own return targets.', why: 'Local return targets tell little about enterprise risk and strategy, and separate approvals cannot be aligned.', axis: 'Local return targets decide' },
+  ],
+  'aaig-pipe-1791944001831-201-ggsrx': [
+    { from: 'Deploy enterprise model validation tools', to: 'Ask the technology function to select a standard set of model validation methods for all proposed AI applications.', why: 'A standard validation set is useful for engineering, but strategy and acceptable risk must be set first.', axis: 'Technical standards before strategy' },
+    { from: 'Conduct comprehensive algorithmic impact assessments and regulatory', axis: 'Use-case reviews before strategy' },
+    { from: 'Authorize first-line business unit owners', to: 'Let business units set their own ethical acceptance criteria for the AI applications they plan.', why: 'Local criteria suit functional goals but differ between units, and they do not follow from an enterprise strategy.', axis: 'Local ethical criteria' },
+  ],
+  'aaig-pipe-1791944097299-221-8325n': [
+    { from: 'Procure an enterprise AI safety', to: 'Commission a market study of AI trends in the sector and present the findings to the executive team.', why: 'A market study informs ideas, but it does not align them with strategy or risk limits.', axis: 'Market study before alignment' },
+    { from: 'Perform comprehensive algorithmic impact and data protection', axis: 'Use-case assessments before alignment' },
+    { from: 'Mandate that internal audit define', to: 'Ask the audit function to define the operational risk thresholds and approve the criteria for AI pilots.', why: 'Audit must stay independent of the decisions it later assures.', axis: 'Audit setting thresholds' },
+  ],
+  'aaig-pipe-1791943848698-168-f8m5h': [
+    { from: 'Immediately retrain the production credit scoring', to: 'Retrain the credit scoring model with oversampling so that approval rates are similar across demographic groups.', why: 'Equalizing approval rates by retraining is a technical fix that is not first checked against the firm\'s limits and legal duties.', axis: 'Technical parity fix' },
+    { from: 'Deploy automated continuous retraining pipelines directly', to: 'Set up continuous retraining of the model on recent applications and review the results once a quarter.', why: 'Continuous retraining changes the model constantly, and a quarterly review does not show whether bias limits are breached.', axis: 'Retraining without limits' },
+    { from: 'Delegate authority to the independent internal audit team', to: 'Ask the audit function to calibrate the scoring weights and approve exceptions for the affected demographic groups.', why: 'Audit must stay independent, and calibration and exceptions are management decisions.', axis: 'Audit doing management work' },
+  ],
+  'aaig-pipe-1791944113567-228-dgi7q': [
+    { from: 'Optimize the model', to: 'Tune the model to restore its original predictive accuracy and report the accuracy each month.', why: 'Restoring accuracy does not show that fairness metrics are within the firm\'s limits.', axis: 'Accuracy goal' },
+    { from: 'Retrain the production model using newly augmented', to: 'Retrain the production model on augmented synthetic samples to counter the shift in the data distribution.', why: 'Retraining before the cause is understood may not address the drift and sets no limit on fairness.', axis: 'Retraining before the cause is known' },
+    { from: 'Delegate the determination', to: 'Let the machine learning team decide how much fairness variance is acceptable and where the limits sit.', why: 'The team knows the model, but acceptable variance and limits are set by the governance body, not by the team being monitored.', axis: 'Team setting its own fairness limits' },
+  ],
+  'aaig-pipe-1791944042203-213-dbyap': [
+    { from: 'Mandate maximum mathematical fidelity', axis: 'Fidelity as the objective' },
+    { from: 'Procure and implement enterprise-grade', to: 'Buy an explainability product for the production environment and write the explanation rules afterwards.', why: 'A product helps produce explanations, but it should follow the rules on what must be explained to whom.', axis: 'Product before rules' },
+    { from: 'Authorize first-line model development teams', axis: 'Teams setting their own trade-offs' },
+  ],
 };
 
 /**
@@ -698,6 +803,27 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943950598-192-9ij22': 'Set preset performance limits that switch to an approved backup model and start incident escalation.',
   'aaig-pipe-1791943988538-197-p3hhf': 'Set enterprise risk limits, assign decision rights and require feedback loops to the AI oversight committee.',
   'aaig-pipe-1791943982220-198-6afbl': 'Ensure that responsibility for risk and the supplier\'s transparency duties are set out in the contract.',
+  'aaig-pipe-1791943958027-190-xf2br': 'Use set evaluation criteria that cover strategic fit, cost over time, risk and third-party assurance needs.',
+  'aaig-pipe-1791943650497-130-94yh2': 'Weigh the options on risk, lifetime oversight effort and regulator expectations on transparency.',
+  'aaig-pipe-1791943869015-170-3r2zz': 'Evaluate each supplier on model transparency, supply chain provenance and fit with the firm\'s risk limits.',
+  'aaig-pipe-1791944022162-207-p53nt': 'Limit model data to validated, purpose-bound features through a mandatory architecture gate.',
+  'aaig-pipe-1791944117191-227-p3ddh': 'Require a written purpose for each data use, with filtering and tokenization applied before data is ingested.',
+  'aaig-pipe-1791944041150-212-airgq': 'Agree performance bands in advance, with a remediation plan and escalation route on breach.',
+  'aaig-pipe-1791944099056-220-u236q': 'Establish an executive AI group to set risk limits and approve AI rules, with decision rights assigned to it.',
+  'aaig-pipe-1791943597832-120-8zzew': 'Form a cross-functional group that decides who may approve AI use and reports on AI risk to the board.',
+  'aaig-pipe-1791943849647-165-md05v': 'Set up a cross-functional AI committee that sets the risk limits, assigns accountabilities and ties AI to strategy.',
+  'aaig-pipe-1791944097363-222-p23rc': 'Build mandatory ethical checkpoints and stage-gate approvals into the procedures for developing systems.',
+  'aaig-pipe-1791943823909-162-a11gg': 'Give one committee the authority to approve AI at each stage gate and to enforce set risk limits.',
+  'aaig-pipe-1791943691011-141-3u1ro': 'Write down who decides on AI, the strategic objectives it serves and how much risk is acceptable.',
+  'aaig-pipe-1791943829229-160-0knam': 'Create a committee, mandated by the board, that sets AI risk limits and decides who approves AI uses.',
+  'aaig-pipe-1791943617917-125-4ch2u': 'Put in place an executive AI committee with a written mandate and clear decision rights across functions.',
+  'aaig-pipe-1791943465809-92-22gqd': 'Monitor performance against predefined limits that trigger human review and fallback procedures.',
+  'aaig-pipe-1791943831726-161-nvn8j': 'Approve a mandate for AI that states the objectives, who decides, and how much risk is accepted.',
+  'aaig-pipe-1791944001831-201-ggsrx': 'Formulate an AI strategy and a statement of acceptable risk, approved by executive leadership and the governing body.',
+  'aaig-pipe-1791944097299-221-8325n': 'Establish an executive body that weighs each AI opportunity and its constraints against strategy and risk limits.',
+  'aaig-pipe-1791943848698-168-f8m5h': 'Ensure the model\'s changed risk profile is checked against the firm\'s limits to see whether they are breached.',
+  'aaig-pipe-1791944113567-228-dgi7q': 'Make sure monitoring ties performance and fairness metrics to the firm\'s and regulators\' limits.',
+  'aaig-pipe-1791944042203-213-dbyap': 'Define explainability rules by risk tier, with minimum transparency levels that match regulatory impact and stakeholder needs.',
 };
 
 /**
