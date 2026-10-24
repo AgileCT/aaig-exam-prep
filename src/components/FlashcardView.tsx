@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Flashcard, StudyDomainId, FlashcardMastery, UserProgress } from '../types';
 import { STUDY_DOMAIN_IDS, getDomainMeta } from '../data/domains';
 import { 
@@ -28,12 +28,25 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const [selectedDomain, setSelectedDomain] = useState<StudyDomainId | 'ALL'>('ALL');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  // Many card backs are taller than the card, so tell the learner when more text is below.
+  const backRef = useRef<HTMLDivElement>(null);
+  const [moreBelow, setMoreBelow] = useState(false);
+  const updateMoreBelow = () => {
+    const el = backRef.current;
+    setMoreBelow(!!el && el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+  };
 
   const filteredCards = selectedDomain === 'ALL'
     ? flashcards
     : flashcards.filter(c => c.domainId === selectedDomain);
 
   const currentCard = filteredCards[currentIndex];
+
+  useEffect(() => {
+    if (backRef.current) backRef.current.scrollTop = 0;
+    const timer = setTimeout(updateMoreBelow, 0);
+    return () => clearTimeout(timer);
+  }, [isFlipped, currentCard?.id]);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -165,7 +178,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           </div>
 
           {/* BACK */}
-          <div className="absolute inset-0 w-full h-full p-8 rounded-3xl bg-slate-900 dark:bg-slate-950 text-white border-2 border-indigo-500/40 shadow-xl flex flex-col justify-between rotate-y-180 backface-hidden overflow-y-auto">
+          <div ref={backRef} onScroll={updateMoreBelow} className="absolute inset-0 w-full h-full p-8 rounded-3xl bg-slate-900 dark:bg-slate-950 text-white border-2 border-indigo-500/40 shadow-xl flex flex-col justify-between rotate-y-180 backface-hidden overflow-y-auto">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <span className="text-xs font-bold text-indigo-400">
@@ -212,6 +225,11 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400 pt-4 border-t border-slate-800">
               <RotateCw className="w-3.5 h-3.5" /> Click card to flip back
             </div>
+            {moreBelow && (
+              <div className="sticky bottom-0 -mx-8 -mb-8 pt-10 pb-3 text-center text-[11px] font-semibold text-indigo-300 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent pointer-events-none">
+                Scroll for the rest and the study takeaway ↓
+              </div>
+            )}
           </div>
         </div>
       </div>
