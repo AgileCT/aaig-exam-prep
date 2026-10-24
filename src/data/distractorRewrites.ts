@@ -137,6 +137,56 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Contract an accredited third-party notified body', axis: 'Conformity audit before the enterprise risk policy' },
     { from: 'Authorize individual business unit product managers', to: 'Appoint an EU representative and a data protection officer for the subsidiaries and make them responsible for AI compliance.', why: 'These roles are useful, but assigning compliance to two individuals does not create the risk management and quality management processes the Act requires for high-risk systems.', axis: 'Roles named without supporting processes' },
   ],
+  'aaig-pipe-1791942377513-8': [
+    { from: 'Deploy real-time monitoring pipelines', to: 'Own the day-to-day operation of the underwriting platform and fix model errors as they occur.', why: 'Day-to-day operation and error correction belong to the management that owns the process, the first line, not to the second line that oversees it.', axis: 'First-line duty assigned to the second line' },
+    { from: 'Execute automated post-incident remediation', to: 'Approve each model for release and sign off residual risk on behalf of the business.', why: 'Approving releases and accepting residual risk are management decisions. The second line advises and challenges but does not take them over.', axis: 'Management decision assigned to the second line' },
+    { from: 'Provide independent and objective assurance', axis: 'Third-line assurance duty assigned to the second line' },
+  ],
+  'aaig-pipe-1791943073272-4-jq50e': [
+    { from: 'Authorizing the second-line risk management function', axis: 'Sound practice: second-line challenge of fairness criteria' },
+    { from: 'Mandating that organizational ethical values', axis: 'Sound practice: values translated into verifiable metrics' },
+    { from: 'Requiring an ethical impact assessment', axis: 'Sound practice: impact assessment before release' },
+  ],
+  'aaig-pipe-1791941483700-19': [
+    { from: 'Suspending automated approvals', axis: 'Sound practice: suspension and formal re-authorization' },
+    { from: 'Requiring the first-line operations team to log', axis: 'Sound practice: logging the breach with independent verification' },
+    { from: 'Mandating an immediate fail-safe fallback', axis: 'Sound practice: fallback with independent bias audit' },
+  ],
+  'aaig-pipe-1791942430355-17': [
+    { from: 'Deploying post-hoc generative adversarial anonymization', to: 'Require a privacy review of every new feature request by the data protection office before it is added to the store.', why: 'A review of each request is a useful check, but it relies on case-by-case approval and does not build minimization into how data enters and persists in the store.', axis: 'Case-by-case approval instead of a structural control' },
+    { from: 'Executing comprehensive algorithmic privacy impact assessments', axis: 'Assessment late in the lifecycle instead of at design' },
+    { from: 'Authorizing the 1st-line data engineering squads', to: 'Publish a data retention schedule for the feature store and ask teams to delete data when the schedule says so.', why: 'A schedule sets expectations, but without enforcement at ingestion it depends on teams remembering to delete, and over-collection still happens first.', axis: 'Schedule without technical enforcement' },
+  ],
+  'aaig-pipe-1791941106674-13': [
+    { from: 'Direct the data science team to apply synthetic data', to: 'Commission an independent fairness audit of the production model and publish the results to regulators.', why: 'An audit gives evidence, but the director\'s primary duty is to set the limits and decision path that govern the response, not only to document the problem.', axis: 'Evidence gathering mistaken for the governance duty' },
+    { from: 'Authorize immediate deployment of an emergency retraining', axis: 'Emergency retraining before limits and review exist' },
+    { from: 'Delegate the determination of permissible bias variance', to: 'Ask the chief risk officer to approve every retraining run individually for the next twelve months.', why: 'Approving each run centralizes control, but without defined limits and review criteria the approver has no standard to apply.', axis: 'Case-by-case approval without standards' },
+  ],
+  'aaig-pipe-1791941502874-22': [
+    { from: 'Deploy advanced hyperparameter optimization', to: 'Increase scheduled model validation from quarterly to monthly and report the results to the model risk committee.', why: 'More frequent validation helps, but a fixed calendar still lets degradation run between reviews and ties no response to how bad the drift is.', axis: 'Fixed cadence instead of a threshold-triggered response' },
+    { from: 'Retrain and hot-swap the degraded production model', axis: 'Fix applied before root cause analysis' },
+    { from: 'Authorize frontline operational staff', to: 'Add the model to the watch list of the model risk team, which will review its performance when the quarterly report is produced.', why: 'A watch list adds attention but not a trigger. The review still waits for the next quarterly cycle however quickly the model degrades.', axis: 'Attention without a trigger' },
+  ],
+  'aaig-pipe-1791941470913-18': [
+    { from: 'Standardizing exclusively on post-hoc local attribution', axis: 'One technique mandated for every system' },
+    { from: 'Deploying consumer-facing explanation portals', to: 'Commission a customer research study on how applicants want adverse-action reasons to be worded.', why: 'Understanding customers is useful input, but the committee\'s primary objective is to set requirements that cover all stakeholders and regulatory duties, not to optimize wording for one group.', axis: 'Single stakeholder input mistaken for the objective' },
+    { from: 'Requiring independent internal audit teams', to: 'Require every model to be inherently interpretable so that no explanation tool is needed.', why: 'Interpretable models suit some uses, but requiring them everywhere ignores context and decision impact and may sacrifice needed performance.', axis: 'Uniform technical mandate regardless of context' },
+  ],
+  'aaig-pipe-1791941453475-14': [
+    { from: 'Prioritizing the capture of model version lineage', axis: 'Sound practice: lineage and confidence capture for explainability' },
+    { from: 'Standardizing log schema retention schedules', axis: 'Sound practice: standardized retention and encryption' },
+    { from: 'Granting independent internal audit teams direct', axis: 'Sound practice: independent read-only access for audit' },
+  ],
+  'aaig-pipe-1791941407823-3': [
+    { from: 'Implement automated continuous testing pipelines', to: 'Choose the supplier with the most recognized security certifications and rely on them for assurance.', why: 'Certifications are useful signals, but they describe the supplier\'s own controls, not how accountability, audit rights and risk are shared with the enterprise.', axis: 'Supplier certification mistaken for allocated accountability' },
+    { from: 'Execute post-deployment model performance monitoring', axis: 'Monitoring before contractual audit rights exist' },
+    { from: 'Authorize the first-line development team', to: 'Keep a second foundation model as a standby so the service can switch suppliers quickly if needed.', why: 'A standby supplier supports resilience, but the committee\'s primary objective is to set the criteria and terms that apply to whichever supplier is used.', axis: 'Resilience measure mistaken for governing criteria' },
+  ],
+  'aaig-pipe-1791941527214-27': [
+    { from: 'Deploy automated model telemetry pipelines', to: 'Hold a lessons-learned workshop after each MEASURE cycle and circulate the findings to all model owners.', why: 'A workshop shares learning, but it does not turn measurement results into decisions, owners and actions, which is what the MANAGE function requires.', axis: 'Learning activity mistaken for risk response' },
+    { from: 'Execute automated decommission protocols', axis: 'Decommissioning before the inventory classification is updated' },
+    { from: 'Authorize first-line model development teams', to: 'Rank all risks found in MEASURE by severity and publish the ranking in the central inventory.', why: 'Ranking is useful prioritization, but without treatment plans, owners and sign-off nothing is done about the ranked risks.', axis: 'Prioritization without treatment' },
+  ],
 };
 
 /**
@@ -170,6 +220,16 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791941501551-21': 'Set the enterprise taxonomy, classification criteria and rules that define AI assets and mandatory model card fields.',
   'aaig-pipe-1791942376652-6': 'Set baseline operational figures and define target value criteria aligned with enterprise strategy.',
   'aaig-pipe-1791943579681-115-bbbve': 'Build an AI risk management system within quality management procedures, with conformity assessment and post-market monitoring.',
+  'aaig-pipe-1791942377513-8': 'Set the risk management approach and challenge how the first line applies it.',
+  'aaig-pipe-1791943073272-4-jq50e': 'Letting the model team set its own acceptable demographic disparity limits, based on the model\'s test performance.',
+  'aaig-pipe-1791941483700-19': 'Letting the engineering team widen the tolerance band in production while retraining is under way, so the service keeps running without interruption.',
+  'aaig-pipe-1791942430355-17': 'Enforce purpose-bound schema checks at the point of ingestion so unneeded features never reach the store.',
+  'aaig-pipe-1791941106674-13': 'Set the acceptable limits and require a formal review before any retraining begins on the drifted data.',
+  'aaig-pipe-1791941502874-22': 'Link drift alerts to agreed limits so that a breach starts formal validation and a defined chain of decisions.',
+  'aaig-pipe-1791941470913-18': 'Making sure explanation capabilities fit who needs them, how large the decision impact is, and what regulation requires.',
+  'aaig-pipe-1791941453475-14': 'Letting operations staff summarize or prune inference logs on their own whenever storage runs short on the platform.',
+  'aaig-pipe-1791941407823-3': 'Set the criteria and binding contract terms that fix who answers for outcomes, who can audit, and who bears which risk.',
+  'aaig-pipe-1791941527214-27': 'Turn MEASURE thresholds into risk treatment plans with second-line sign-off and ongoing residual risk checks.',
 };
 
 /** Applies a pilot rewrite, keeping the correct option, its index and the main explanation unchanged. */
