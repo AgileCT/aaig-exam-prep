@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind v4 answers `dark:` with the OS setting unless told otherwise. The app toggles a `dark` class on <html>, so the variant has to follow that class or the theme button does nothing. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;
