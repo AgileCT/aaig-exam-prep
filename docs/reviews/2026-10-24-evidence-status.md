@@ -54,3 +54,27 @@ ISO/IEC 42001 为付费标准，即使网络放开，也需要正版文本才能
 这使"待补证"的条目由 9 项减为 6 项：3 道题（-11、-75ffw、-96q8n）和 3 张闪卡（fc-32 含 fc-32b、fc-04、fc-12）。其中 x6j7d、pccul 引用的 "ISO/IEC 23894 Clause 5.2" 随题退休，不再需要核对。仍需要你对照 ISO/IEC 42001:2023 核对 4.1 到 4.3 和 6.1.3 的陈述，以及 COBIT 2019 EDM03 和 Gama 等的论文。题库现在有 373 道激活题。
 
 更新：核验工作表已缩减为 6 项（`2026-10-24-evidence-worksheet-2.docx`，5 页），去掉了已退休的三道题和六选三的决定，每条增加了"原文摘录"栏，复核人粘贴的关键句即作为证据记入核验记录。
+
+## 2026-10-24 复核人返回的核验结果与落实
+
+输入文件：AAIG_Evidence_Worksheet_2_Results.docx，SHA256 `bf886ccd1691f8c6a7de6d760a83ddf21feb0c6bc76d9eebdd502fa4a1ed3eff`。核验人：Xiaoli (Shelly) Zhao，日期 2026-10-24。
+
+**核验依据（复核人原话）**："通过公开标准摘录、学术文献数据库检索以及行业白皮书比对"。没有使用 ISO/IEC 42001:2023 和 COBIT 2019 的正版全文。
+
+**结论**：F1 到 F5、fc-32、fc-32b、C1 到 C3、D1 到 D3 全部勾选"属实"；复核人要求解除 6 项的"待补证"状态，写入文献和条款号，附上核验人与日期。
+
+| 项目 | 落实 |
+| --- | --- |
+| aaig-pipe-1791942407156-11、-1791943492016-96-75ffw、-1791943670257-136-96q8n（3 道题） | `reviewStatus: 'reviewed'`，`reviewedBy`、`reviewedAt` 写入；`sourceUrl` 为 ISO/IEC 42001 标准页面（应用已有的链接）；出处末尾注明依据。出处条款（42001 的 4.1 到 4.3；23894 的第 5 章）保持不变。实现见 `src/data/evidenceVerification.ts`。 |
+| fc-32、fc-32b（闪卡） | 出处末尾注明依据，`sourceUrl` 为 ISO/IEC 42001 标准页面；卡片文字不变。 |
+| fc-04 | 出处改为 "COBIT 2019 EDM03; ISO 31073:2022（风险偏好与风险容忍度的定义）"，按复核人的 C3 双重引用；`sourceUrl` 为 COBIT 页面（应用已有的链接）；卡片文字不变。 |
+| fc-12 | 出处改为 Gama 等，ACM Computing Surveys 46(4), 2014（real concept drift 与 virtual drift；covariate shift 视为 virtual drift 或 data drift 的同义说法）。复核人没有提供链接，我没有写 `sourceUrl`。 |
+
+**需要读者知道的限制（没有隐藏）**：
+
+- 复核人的"原文摘录"多是对标准结构和内容的转述，不是逐字引文；依据是公开摘录和二手资料，不是付费全文。所以每项的出处都写明了"not the licensed full text"。界面上显示的 "Verified Primary Source" 链接指向标准目录页或 COBIT 总页，不是条款级链接，也不代表条款号已对照付费全文。
+- F4（"FIRST"的先后）：复核人的回答是 ISO 高层结构下，环境与范围（第 4 章）、领导（第 5 章）在逻辑上先于策划（第 6 章）；这是逻辑顺序，不是标准的明文步骤。题库里的 "FIRST" 题继续按 ISACA 倾向的先后逻辑作答，不声称标准有明文规定。
+- fc-32 的"基于 PDCA"：复核人的依据是 ISO 高层结构基于 PDCA，没有指出 ISO/IEC 42001 条文里的原话。卡片文字按 10-14 的决定保留。
+- fc-32b 的"理由与 AI 风险评估相关"：复核人的说明是排除的理由与风险处置的需要或缺乏外部要求有关，卡片文字保持"tied to its AI risk assessment"。
+- 在 10-14 基线里这 3 道题的决定仍记录为 `needs-more-evidence`（基线是已签核的历史记录，不改）；解除通过 `tests/review-import.test.ts` 中的 `AUTHORIZED_EVIDENCE_CHANGES` 记录。
+- 所有其他题目仍是 unreviewed，且大部分的出处没有 `sourceUrl`。

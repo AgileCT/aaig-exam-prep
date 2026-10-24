@@ -84,11 +84,12 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     topic: "AI Risk Appetite vs. Risk Tolerance",
     front: "How do Risk Appetite and Risk Tolerance differ in the context of enterprise AI governance?",
     back: "1. Risk Appetite: The broad amount and type of risk an organization is intentionally willing to accept in pursuit of its strategic AI objectives (set by the governing body or senior management).\n2. Risk Tolerance: The specific, measurable boundaries and acceptable variations around risk targets (e.g., maximum permissible error rates or drift thresholds before escalation).",
-    source: "COBIT 2019 EDM03",
+    source: "COBIT 2019 EDM03; ISO 31073:2022 (definitions of risk appetite and risk tolerance). Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds.",
     reviewStatus: 'reviewed',
     reviewedBy: 'Xiaoli (Shelly) Zhao',
-    reviewedAt: '2026-10-24'
+    reviewedAt: '2026-10-24',
+    sourceUrl: "https://www.isaca.org/resources/cobit"
   },
   {
     id: "fc-05",
@@ -229,7 +230,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     topic: "Data Drift vs. Concept Drift",
     front: "What is the fundamental difference between Data Drift and Concept Drift?",
     back: "1. Data Drift (Covariate Shift): Changes in the statistical distribution of input features P(X), such as shifts in customer demographics or user prompt language patterns over time.\n2. Concept Drift: Changes in the underlying statistical relationship between input features and target labels P(Y|X), such as fraudsters altering tactics so previously benign transactions now represent fraud.",
-    source: "General machine-learning literature on dataset shift and concept drift (e.g., Gama et al., 'A survey on concept drift adaptation', ACM Computing Surveys, 2014).",
+    source: "Gama et al., 'A survey on concept drift adaptation', ACM Computing Surveys 46(4), 2014 (real concept drift and virtual drift; covariate shift is treated as a synonym of virtual drift or data drift). Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship.",
     reviewStatus: 'reviewed',
     reviewedBy: 'Xiaoli (Shelly) Zhao',
@@ -737,11 +738,12 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     topic: "ISO/IEC 42001:2023 (AIMS)",
     front: "What is ISO/IEC 42001?",
     back: "The international certifiable standard for an Artificial Intelligence Management System (AIMS), based on the Plan-Do-Check-Act (PDCA) lifecycle.",
-    source: "ISO/IEC 42001:2023",
+    source: "ISO/IEC 42001:2023. Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "ISO/IEC 42001 is the certifiable AI management system standard.",
     reviewStatus: 'reviewed',
     reviewedBy: 'Xiaoli (Shelly) Zhao',
-    reviewedAt: '2026-10-24'
+    reviewedAt: '2026-10-24',
+    sourceUrl: "https://www.iso.org/standard/81230.html"
   },
   {
     id: "fc-32b",
@@ -750,11 +752,12 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     topic: "Statement of Applicability (SoA)",
     front: "What is the function of the Statement of Applicability (SoA) in ISO/IEC 42001?",
     back: "The SoA documents which Annex A controls the organization has selected or excluded, with justifications tied to its AI risk assessment.",
-    source: "ISO/IEC 42001:2023 Cl. 6.1.3",
+    source: "ISO/IEC 42001:2023 Cl. 6.1.3. Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "The SoA links risk assessment to the choice of Annex A controls.",
     reviewStatus: 'reviewed',
     reviewedBy: 'Xiaoli (Shelly) Zhao',
-    reviewedAt: '2026-10-24'
+    reviewedAt: '2026-10-24',
+    sourceUrl: "https://www.iso.org/standard/81230.html"
   },
   {
     id: "fc-33",

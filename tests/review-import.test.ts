@@ -29,6 +29,8 @@ const byId = new Map(items.map(item => [item.id, item]));
 
 const AUTHORIZED_CARD_CHANGES = new Set(['fc-04', 'fc-12', 'fc-13', 'fc-24', 'fc-32', 'fc-37', 'fc-38', 'fc-39']);
 // 2026-10-24: the reviewer authorized rewriting these 15 items, which the 2026-10-14 review had not covered ('not-in-review'). Nothing held by a 'retain' or 'needs-more-evidence' decision is on this list.
+// 2026-10-24: the reviewer verified the evidence for these three 'needs-more-evidence' AIMS questions and asked for the verification to be recorded.
+const AUTHORIZED_EVIDENCE_CHANGES = new Set(['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']);
 const AUTHORIZED_QUESTION_CHANGES = new Set(['aaig-d1-003', 'aaig-d3-001', 'aaig-d3-002', 'aaig-pipe-1791941135450-22', 'aaig-pipe-1791942357652-0', 'aaig-pipe-1791942382711-7', 'aaig-pipe-1791942453233-20', 'aaig-pipe-1791942474428-27', 'aaig-pipe-1791943199602-32-6yeaz', 'aaig-pipe-1791943341406-62-gtqhu', 'aaig-pipe-1791943422117-82-qmv4j', 'aaig-pipe-1791943598884-122-ahzg5', 'aaig-pipe-1791943870183-174-fbxgh', 'aaig-pipe-1791943937415-185-ft3m7', 'aaig-pipe-1791944061542-217-i1geg']);
 
 function canonical(value: unknown): unknown {
@@ -68,6 +70,11 @@ test('all 313 explicit revisions remain applied and other teaching content survi
     if (entry.decision === 'revise') {
       assert.notEqual(hash(item), entry.beforeHash, `Missing revision: ${entry.id}`);
       revised++;
+    } else if (AUTHORIZED_EVIDENCE_CHANGES.has(entry.id)) {
+      assert.equal(entry.decision, 'needs-more-evidence', `Evidence verification applies to evidence-pending items only: ${entry.id}`);
+      assert.notEqual(hash(item), entry.beforeHash, `Evidence verification missing: ${entry.id}`);
+      protectedItems++;
+      pending++;
     } else if (AUTHORIZED_QUESTION_CHANGES.has(entry.id)) {
       // Authorized rewrite of an item the 2026-10-14 review did not cover; it may also have had its options rebalanced.
       assert.equal(entry.decision, 'not-in-review', `Only items outside the review may be rewritten here: ${entry.id}`);

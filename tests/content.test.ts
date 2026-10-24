@@ -24,7 +24,17 @@ test('importing generation code does not contact an AI provider', async () => {
 
 test('retained questions are unreviewed and do not claim ISACA manual provenance', () => {
   assert.equal(INITIAL_QUESTIONS.length, 439);
-  assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'unreviewed'));
+  // Three AIMS questions carry the reviewer's evidence verification of 2026-10-24; everything else is unreviewed.
+  const verified = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed').map(q => q.id).sort();
+  assert.deepEqual(verified, ['aaig-pipe-1791942407156-11', 'aaig-pipe-1791943492016-96-75ffw', 'aaig-pipe-1791943670257-136-96q8n']);
+  for (const q of INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed')) {
+    assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao');
+    assert.equal(q.reviewedAt, '2026-10-24');
+    assert.match(q.source, /not the licensed full text/);
+    assert.equal(q.sourceUrl, 'https://www.iso.org/standard/81230.html');
+  }
+  assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'reviewed' || q.reviewStatus === 'unreviewed'));
+  assert.equal(INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'unreviewed').length, 436);
   assert.ok(INITIAL_QUESTIONS.every(q => !/ISACA/i.test(q.source)));
   assert.ok(FLASHCARDS.every(q => !/ISACA/i.test(q.source)));
 });
@@ -116,7 +126,7 @@ test('offline audit fails structural corruption but retains unreviewed concentra
   assert.ok(module, 'offline audit module must exist');
   const valid = module.auditQuestionBank(INITIAL_QUESTIONS, FLASHCARDS);
   assert.deepEqual(valid.errors, []);
-  assert.equal(valid.unreviewedQuestions, 439);
+  assert.equal(valid.unreviewedQuestions, 436);
   assert.ok(module.auditQuestionBank([INITIAL_QUESTIONS[0], INITIAL_QUESTIONS[0]], []).errors.some((error: string) => error.includes('duplicate')));
   assert.ok(module.auditQuestionBank([{ ...INITIAL_QUESTIONS[0], correctIndex: 4 }], []).errors.some((error: string) => error.includes('schema')));
   const concentrated = Array.from({ length: 5 }, (_, i) => ({ ...INITIAL_QUESTIONS[0],
