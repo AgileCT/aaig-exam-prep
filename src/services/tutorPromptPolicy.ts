@@ -1,4 +1,4 @@
-import { Question, TutorMode } from '../types';
+import { Question, TutorMessage, TutorMode } from '../types';
 import { AIConfig, AIRequestOptions, defaultAIConfig, generateAIText } from './ai';
 
 export const APPROVED_TUTOR_MODES: TutorMode[] = ['standard', 'socratic', 'teach-back', 'drill'];
@@ -81,6 +81,20 @@ ${contextQuestion.options.map((opt, i) => `${'ABCD'[i]}) ${opt}`).join('\n')}
   return `${baseRules.join('\n')}\n\n${modeSpecific}\n\n${questionContextStr}`.trim();
 }
 
+/** Max prior turns carried into the prompt, to keep requests bounded. */
+const MAX_TRANSCRIPT_TURNS = 12;
+
+/**
+ * Renders prior turns so multi-turn coaching (Socratic follow-ups,
+ * Teach-Back dialogues) keeps context on every provider.
+ */
+function buildTranscript(history: TutorMessage[]): string {
+  const turns = history.slice(-MAX_TRANSCRIPT_TURNS).filter(m => m.content && m.content.trim());
+  if (!turns.length) return '';
+  const lines = turns.map(m => `${m.role === 'user' ? 'Candidate' : 'Tutor'}: ${m.content}`).join('\n');
+  return `\n\nCONVERSATION SO FAR (earlier turns — continue from here, do not repeat verbatim):\n${lines}`;
+}
+
 /**
  * Direct browser-side provider invocation using a configuration snapshot.
  * If no key is set, returns an intelligent simulated tutor guidance.
@@ -91,6 +105,7 @@ export async function callAITutor(
   mode: TutorMode,
   contextQuestion?: Question,
   options: AIRequestOptions = {},
+  history: TutorMessage[] = [],
 ): Promise<string> {
   const config = typeof configuration === 'string' ? { ...defaultAIConfig(), apiKey: configuration } : { ...configuration };
   const systemPrompt = buildTutorSystemPrompt(mode, contextQuestion);
@@ -106,7 +121,7 @@ export async function callAITutor(
     return `Please configure your AI API key in the top right header to unlock the full AI Study Tutor conversational experience!`;
   }
 
-  return generateAIText(config, `${systemPrompt}\n\nCandidate Request: ${userMessage}`, {
+  return generateAIText(config, `${systemPrompt}${buildTranscript(history)}\n\nCandidate Request: ${userMessage}`, {
     ...options, temperature: mode === 'drill' ? 0.4 : 0.6, maxOutputTokens: 1000,
   });
 }

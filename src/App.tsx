@@ -170,6 +170,7 @@ export const App: React.FC = () => {
             progress={progress}
             onNavigate={(tab) => setActiveTab(tab)}
             onSelectDomainQuiz={handleSelectDomainFromDashboard}
+            onUpdateProgress={setProgress}
           />
         )}
 

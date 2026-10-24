@@ -68,6 +68,23 @@ export interface ExamRecord {
   breakdown: Partial<Record<DomainId, { correct: number; total: number }>>;
 }
 
+/**
+ * Live exam session snapshot persisted to localStorage so a page refresh
+ * (or accidental tab close) resumes the exam with the countdown intact.
+ * The whole shuffled question list is stored because option order is
+ * randomized per attempt — storing only ids would desync saved answers.
+ */
+export interface ExamSession {
+  examType: 'sprint' | 'full';
+  questions: Question[];
+  userAnswers: Record<string, number>;
+  flaggedIds: string[];
+  currentIndex: number;
+  startedAt: number;
+  durationSeconds: number;
+  examEndsAt: number;
+}
+
 export interface UserProgress {
   history: Record<string, QuestionAttempt[]>;
   bookmarkedIds: string[];

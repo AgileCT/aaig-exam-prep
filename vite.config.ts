@@ -14,4 +14,28 @@ export default defineConfig({
     port: 5173,
     open: false,
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('lucide-react')) {
+              return 'vendor-lucide';
+            }
+            return 'vendor';
+          }
+          if (id.includes('src/data/generatedQuestions.ts')) {
+            return 'data-generated-questions';
+          }
+          if (id.includes('src/data/questions.ts') || id.includes('src/data/flashcards.ts')) {
+            return 'data-study-content';
+          }
+        },
+      },
+    },
+  },
 });

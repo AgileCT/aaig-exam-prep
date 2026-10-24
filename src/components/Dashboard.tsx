@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Question, UserProgress, Flashcard, StudyDomainId } from '../types';
 import { AAIG_DOMAINS } from '../data/domains';
-import { Target, Award, CheckCircle2, AlertTriangle, ArrowRight, BookOpen, Layers, Sparkles } from 'lucide-react';
+import { 
+  Target, 
+  Award, 
+  CheckCircle2, 
+  AlertTriangle, 
+  ArrowRight, 
+  BookOpen, 
+  Layers, 
+  Sparkles,
+  History,
+  Clock,
+  Download,
+  Upload,
+  RotateCcw,
+  FileJson
+} from 'lucide-react';
+import { exportProgressJSON, importProgressJSON, resetUserProgress } from '../services/storage';
 
 interface DashboardProps {
   questions: Question[];
@@ -9,6 +25,7 @@ interface DashboardProps {
   progress: UserProgress;
   onNavigate: (tab: 'quiz' | 'mockExam' | 'flashcards' | 'review' | 'generate') => void;
   onSelectDomainQuiz: (domainId: StudyDomainId) => void;
+  onUpdateProgress?: (progress: UserProgress) => void;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
@@ -17,7 +34,60 @@ export const Dashboard: React.FC<DashboardProps> = ({
   progress,
   onNavigate,
   onSelectDomainQuiz,
+  onUpdateProgress,
 }) => {
+  const [backupStatus, setBackupStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const handleExportProgress = () => {
+    try {
+      const json = exportProgressJSON(progress);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `aaig-study-progress-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setBackupStatus({ type: 'success', message: 'Study progress backup downloaded successfully!' });
+      setTimeout(() => setBackupStatus(null), 4000);
+    } catch (e: any) {
+      setBackupStatus({ type: 'error', message: `Export failed: ${e.message}` });
+    }
+  };
+
+  const handleImportProgress = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const text = e.target?.result as string;
+        const restored = importProgressJSON(text);
+        if (onUpdateProgress) {
+          onUpdateProgress(restored);
+        }
+        setBackupStatus({ type: 'success', message: 'Progress restored successfully from backup!' });
+        setTimeout(() => setBackupStatus(null), 4000);
+      } catch (err: any) {
+        setBackupStatus({ type: 'error', message: err.message || 'Failed to restore backup.' });
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  };
+
+  const handleResetProgress = () => {
+    if (window.confirm('Are you sure you want to reset all quiz history, flashcard mastery, and mock exam records? This cannot be undone.')) {
+      const blank = resetUserProgress();
+      if (onUpdateProgress) {
+        onUpdateProgress(blank);
+      }
+      setBackupStatus({ type: 'success', message: 'All study progress has been reset.' });
+      setTimeout(() => setBackupStatus(null), 4000);
+    }
+  };
   // Compute stats
   const totalQuestions = questions.length;
   const attemptedQuestionIds = Object.keys(progress.history);
@@ -234,6 +304,160 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Mock Exam Performance History */}
+      <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <History className="w-5 h-5 text-indigo-500" />
+              Mock Exam History & Performance
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Track your mock simulation scores, completion times, and domain performance over time.
+            </p>
+          </div>
+          <button
+            onClick={() => onNavigate('mockExam')}
+            className="px-3.5 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 text-indigo-600 dark:text-indigo-400 font-semibold text-xs transition-colors self-start sm:self-auto flex items-center gap-1.5"
+          >
+            <Award className="w-4 h-4" /> Start New Simulation
+          </button>
+        </div>
+
+        {(!progress.examRecords || progress.examRecords.length === 0) ? (
+          <div className="p-8 text-center rounded-2xl bg-slate-50 dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-700/60 space-y-2">
+            <Clock className="w-8 h-8 text-slate-400 mx-auto" />
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+              No mock exam records yet
+            </p>
+            <p className="text-xs text-slate-500 max-w-md mx-auto">
+              Take a 25-item Mini Sprint (40m) or 90-item Full Simulation (150m) to test your endurance and benchmark your accuracy.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-100 dark:border-slate-800 text-xs">
+              <div>
+                <span className="text-slate-400 block text-[11px]">Total Simulated</span>
+                <span className="font-bold text-base text-slate-900 dark:text-white">{progress.examRecords.length} attempts</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Best Accuracy</span>
+                <span className="font-bold text-base text-emerald-600 dark:text-emerald-400">
+                  {Math.max(...progress.examRecords.map(r => r.total > 0 ? Math.round((r.score / r.total) * 100) : 0))}%
+                </span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Average Score</span>
+                <span className="font-bold text-base text-indigo-600 dark:text-indigo-400">
+                  {Math.round(progress.examRecords.reduce((acc, r) => acc + (r.total > 0 ? (r.score / r.total) * 100 : 0), 0) / progress.examRecords.length)}%
+                </span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Latest Test</span>
+                <span className="font-bold text-base text-slate-700 dark:text-slate-200">
+                  {new Date(progress.examRecords[0].date).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
+
+            <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-72 overflow-y-auto pr-1">
+              {progress.examRecords.slice(0, 10).map((record, idx) => {
+                const ratio = record.total > 0 ? Math.round((record.score / record.total) * 100) : 0;
+                const mins = Math.floor(record.durationSeconds / 60);
+                const secs = record.durationSeconds % 60;
+                return (
+                  <div key={record.id || idx} className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-slate-800 dark:text-slate-200">
+                          {record.total >= 90 ? 'Full Simulation (90 Items)' : `Mini Sprint (${record.total} Items)`}
+                        </span>
+                        <span className="text-slate-400 text-[11px]">
+                          {new Date(record.date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}
+                        </span>
+                      </div>
+                      {record.breakdown && (
+                        <div className="flex flex-wrap gap-1.5 text-[10px]">
+                          {Object.entries(record.breakdown).map(([dId, stat]) => (
+                            <span key={dId} className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                              {dId}: {stat.correct}/{stat.total}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 self-end sm:self-auto">
+                      <span className="text-slate-400 font-mono text-[11px]">
+                        ⏱ {mins}m {secs}s
+                      </span>
+                      <span className={`px-2.5 py-1 rounded-lg font-bold text-xs ${
+                        ratio >= 70 ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400' :
+                        ratio >= 50 ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400' :
+                        'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                      }`}>
+                        {record.score}/{record.total} ({ratio}%)
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Progress Data Management (Backup & Restore) */}
+      <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <FileJson className="w-5 h-5 text-indigo-500" />
+              Study Progress Backup & Sync
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Export your study history, bookmarks, and mock exam records as a JSON file, or restore them onto another device.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <button
+            onClick={handleExportProgress}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
+          >
+            <Download className="w-3.5 h-3.5 text-indigo-500" /> Export Progress Backup (JSON)
+          </button>
+
+          <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold cursor-pointer transition-colors">
+            <Upload className="w-3.5 h-3.5 text-indigo-500" /> Restore from JSON Backup
+            <input
+              type="file"
+              accept=".json"
+              onChange={handleImportProgress}
+              className="hidden"
+            />
+          </label>
+
+          <button
+            onClick={handleResetProgress}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs font-semibold transition-colors ml-auto"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Reset All Progress
+          </button>
+        </div>
+
+        {backupStatus && (
+          <div className={`p-3 rounded-xl text-xs font-medium flex items-center gap-2 ${
+            backupStatus.type === 'success' 
+              ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300' 
+              : 'bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300'
+          }`}>
+            <span>{backupStatus.message}</span>
+          </div>
+        )}
       </div>
 
       {/* Core Standards Reference Banner */}

@@ -73,7 +73,9 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
     setLoading(true);
 
     try {
-      const reply = await callAITutor({ ...config }, text, selectedMode, contextQuestion, { signal: controller.signal });
+      // Pass prior turns (minus the canned welcome) so the tutor can follow
+      // multi-turn Socratic/Teach-Back conversations.
+      const reply = await callAITutor({ ...config }, text, selectedMode, contextQuestion, { signal: controller.signal }, messages.slice(1));
       if (controller.signal.aborted || request.current !== controller) return;
       const assistantMsg: TutorMessage = {
         id: `a-${Date.now()}`,

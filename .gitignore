@@ -7,3 +7,4 @@ reports
 *.log
 .vercel
 .env*
+.workbuddy

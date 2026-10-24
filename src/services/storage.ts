@@ -1,4 +1,4 @@
-import { Question, Flashcard, UserProgress, FlashcardMastery, ExamRecord } from '../types';
+import { Question, Flashcard, UserProgress, FlashcardMastery, ExamRecord, ExamSession } from '../types';
 import { INITIAL_QUESTIONS } from '../data/questions';
 import { INITIAL_FLASHCARDS } from '../data/flashcards';
 import { isFlashcard, isQuestion } from './contentValidation';
@@ -10,6 +10,7 @@ const STORAGE_KEY_CUSTOM_QUESTIONS = 'aaig_custom_questions_v1';
 const STORAGE_KEY_CUSTOM_FLASHCARDS = 'aaig_custom_flashcards_v1';
 const STORAGE_KEY_API_KEY = 'aaig_gemini_api_key';
 const STORAGE_KEY_AI_CONFIG = 'aaig_ai_config_v1';
+const STORAGE_KEY_EXAM_SESSION = 'aaig_exam_session_v1';
 
 export function getAIConfig(): AIConfig {
   try {
@@ -149,4 +150,72 @@ export function saveApiKey(key: string, remember = false): void {
     target.setItem(STORAGE_KEY_API_KEY, trimmed);
     other.removeItem(STORAGE_KEY_API_KEY);
   } catch { throw new Error('API key was not saved. Browser storage is unavailable.'); }
+}
+
+export function loadExamSession(): ExamSession | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_EXAM_SESSION);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.examEndsAt !== 'number' || !Array.isArray(parsed.questions) || parsed.questions.length === 0) return null;
+    return parsed as ExamSession;
+  } catch { return null; }
+}
+
+export function saveExamSession(session: ExamSession): void {
+  try {
+    localStorage.setItem(STORAGE_KEY_EXAM_SESSION, JSON.stringify(session));
+  } catch { /* Storage full or unavailable: the session simply cannot be resumed. */ }
+}
+
+export function clearExamSession(): void {
+  try { localStorage.removeItem(STORAGE_KEY_EXAM_SESSION); }
+  catch { /* Nothing to clear if storage is unavailable. */ }
+}
+
+export function exportProgressJSON(progress: UserProgress): string {
+  const exportPayload = {
+    version: '1.2.0',
+    exportedAt: new Date().toISOString(),
+    progress,
+  };
+  return JSON.stringify(exportPayload, null, 2);
+}
+
+export function importProgressJSON(rawJson: string): UserProgress {
+  let parsed: any;
+  try {
+    parsed = JSON.parse(rawJson);
+  } catch {
+    throw new Error('Invalid JSON file format. Please upload a valid backup file.');
+  }
+
+  const candidate = parsed && parsed.progress ? parsed.progress : parsed;
+
+  if (!candidate || typeof candidate !== 'object') {
+    throw new Error('Backup file does not contain valid progress data.');
+  }
+
+  const validProgress: UserProgress = {
+    history: typeof candidate.history === 'object' && candidate.history !== null ? candidate.history : {},
+    bookmarkedIds: Array.isArray(candidate.bookmarkedIds) ? candidate.bookmarkedIds.filter((id: unknown) => typeof id === 'string') : [],
+    wrongIds: Array.isArray(candidate.wrongIds) ? candidate.wrongIds.filter((id: unknown) => typeof id === 'string') : [],
+    flashcardMastery: typeof candidate.flashcardMastery === 'object' && candidate.flashcardMastery !== null ? candidate.flashcardMastery : {},
+    examRecords: Array.isArray(candidate.examRecords) ? candidate.examRecords.filter((rec: any) => rec && typeof rec.score === 'number') : [],
+  };
+
+  saveUserProgress(validProgress);
+  return validProgress;
+}
+
+export function resetUserProgress(): UserProgress {
+  const blank: UserProgress = {
+    history: {},
+    bookmarkedIds: [],
+    wrongIds: [],
+    flashcardMastery: {},
+    examRecords: [],
+  };
+  saveUserProgress(blank);
+  return blank;
 }

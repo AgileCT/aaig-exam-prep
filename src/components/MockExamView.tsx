@@ -6,6 +6,7 @@ import {
   Flag, 
   CheckCircle2, 
   XCircle, 
+  AlertTriangle,
   ArrowLeft, 
   ArrowRight, 
   RotateCcw,
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 import { shuffleQuestionOptions } from '../services/questionOrder';
 import { sampleStudyQuestions } from '../services/exam';
+import { loadExamSession, saveExamSession, clearExamSession } from '../services/storage';
 
 interface MockExamViewProps {
   questions: Question[];
@@ -43,11 +45,16 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
     domainBreakdown: Record<StudyDomainId, { correct: number; total: number }>;
   } | null>(null);
   const [reviewFilter, setReviewFilter] = useState<'all' | 'missed'>('all');
+  const [resumedFromSnapshot, setResumedFromSnapshot] = useState(false);
+  const [pendingAutoFinish, setPendingAutoFinish] = useState(false);
   const answersRef = useRef<Record<string, number>>({});
   const finishedRef = useRef(true);
   const startedAtRef = useRef(0);
   const deadlineRef = useRef(0);
   const durationRef = useRef(0);
+  // Snapshot taken once on mount: a persisted session resumes instead of
+  // losing a 90-question attempt to an accidental refresh.
+  const [restoredSession] = useState(() => loadExamSession());
 
   // Start exam setup
   const startExam = (type: 'sprint' | 'full') => {
@@ -76,6 +83,7 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
   const finishExam = useCallback(() => {
     if (finishedRef.current) return;
     finishedRef.current = true;
+    clearExamSession();
     const finalAnswers = { ...answersRef.current };
 
     let correctCount = 0;
@@ -134,6 +142,56 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
       document.removeEventListener('visibilitychange', tick);
     };
   }, [isExamActive, isExamFinished, finishExam]);
+
+  // Restore a persisted session (refresh / accidental tab close). The clock
+  // is a deadline, so any time spent away is deducted automatically.
+  useEffect(() => {
+    const snapshot = restoredSession;
+    if (!snapshot) return;
+    setExamType(snapshot.examType);
+    setExamQuestions(snapshot.questions);
+    answersRef.current = snapshot.userAnswers;
+    setUserAnswers(snapshot.userAnswers);
+    setFlaggedIds(new Set(snapshot.flaggedIds));
+    setCurrentIndex(Math.min(snapshot.currentIndex, snapshot.questions.length - 1));
+    startedAtRef.current = snapshot.startedAt;
+    durationRef.current = snapshot.durationSeconds;
+    deadlineRef.current = snapshot.examEndsAt;
+    setTimeLeftSeconds(Math.max(0, Math.ceil((snapshot.examEndsAt - Date.now()) / 1000)));
+    setIsExamFinished(false);
+    setExamResult(null);
+    setIsExamActive(true);
+    finishedRef.current = false;
+    if (snapshot.examEndsAt > Date.now()) {
+      setResumedFromSnapshot(true);
+    } else {
+      // Deadline passed while away: grade what was answered.
+      setPendingAutoFinish(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Auto-finish once the restored state has committed
+  useEffect(() => {
+    if (!pendingAutoFinish) return;
+    setPendingAutoFinish(false);
+    finishExam();
+  }, [pendingAutoFinish, finishExam]);
+
+  // Persist the live session so a refresh can resume it
+  useEffect(() => {
+    if (!isExamActive || isExamFinished || examQuestions.length === 0 || !deadlineRef.current) return;
+    saveExamSession({
+      examType,
+      questions: examQuestions,
+      userAnswers,
+      flaggedIds: Array.from(flaggedIds),
+      currentIndex,
+      startedAt: startedAtRef.current,
+      durationSeconds: durationRef.current,
+      examEndsAt: deadlineRef.current,
+    });
+  }, [isExamActive, isExamFinished, examQuestions, userAnswers, flaggedIds, currentIndex, examType]);
 
   const selectAnswer = (questionId: string, index: number) => {
     if (finishedRef.current) return;
@@ -419,6 +477,20 @@ export const MockExamView: React.FC<MockExamViewProps> = ({
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 animate-fadeIn">
+      {/* Resume notice */}
+      {resumedFromSnapshot && (
+        <div className="flex items-center gap-2 p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-xs font-medium">
+          <AlertTriangle className="w-4 h-4 shrink-0" />
+          Session restored after page refresh — the clock kept running while you were away.
+          <button
+            onClick={() => setResumedFromSnapshot(false)}
+            className="ml-auto font-bold hover:underline"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {/* Top Proctored Exam Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex items-center gap-3">
