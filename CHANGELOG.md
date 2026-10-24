@@ -13,7 +13,7 @@
 - Dashboard headline accuracy and per-domain accuracy now use each question's first attempt; the latest-answer figure is shown beside it.
 - Mock exams draw unanswered questions first within each domain and report how many questions had been answered before.
 - Practice gains a subtopic selector and a weak-subtopics-first order based on first-attempt accuracy.
-- Pilot a rewrite of formulaic distractors on 12 BEST/FIRST questions: two wrong options per item become legitimate governance actions that fail on scope or sequence, and the right answers use plainer wording. Guesser hit rate on these items fell from 100% to 29.2%, while the whole bank moved only from 68.0% to 65.6%. The rewrite replaces text the 2026-10-14 review had revised and needs re-review; see `docs/reviews/2026-10-24-distractor-pilot.md`.
+- Rewrite formulaic distractors on 25 BEST/FIRST questions (a 12-question pilot plus a 13-question second batch): two wrong options per item become legitimate governance actions that fail on scope or sequence, and the right answers use plainer wording. Guesser hit rate on the pilot items fell from 100% to 29.2% and on the second batch to 27.6%; the whole bank moved from 68.0% to 63.0%. The rewrite replaces text the 2026-10-14 review had revised and needs re-review; see `docs/reviews/2026-10-24-distractor-pilot.md`.
 - Bring the last eight questions inside the option length-parity gate by trimming padded distractors.
 - Remove the unused `bun.lock`; npm remains the canonical installer.
 - No `sourceUrl` evidence was added and the nine evidence-pending items remain open; see `docs/reviews/2026-10-24-evidence-status.md`.

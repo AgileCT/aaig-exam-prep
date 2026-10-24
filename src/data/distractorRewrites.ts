@@ -72,6 +72,71 @@ export const DISTRACTOR_REWRITES: Readonly<Record<string, readonly DistractorEdi
     { from: 'Deploy continuous post-implementation benefit tracking', to: 'Prepare a three-year benefits forecast for each initiative using the sponsors\' assumptions and present it to the governance committee.', why: 'Forecasts built on sponsors\' assumptions rest on untested and inconsistent definitions of value, so the committee has nothing common to compare.', axis: 'Forecasts built on undefined value criteria' },
     { from: 'Direct the internal audit department to execute', to: 'Appoint a benefits owner for every initiative and require quarterly benefit reports to the steering committee.', why: 'Benefit owners and reporting are essential, but they need agreed value criteria and thresholds to report against, which must be defined first.', axis: 'Accountability roles before value criteria' },
   ],
+  'aaig-pipe-1791941151242-25': [
+    { from: 'Mandate the use of automated synthetic data generation', to: 'Create a central data catalogue listing every dataset used for AI, with its source and review date, and share it with model teams under the data policy.', why: 'A catalogue gives visibility, but listing datasets does not set quality thresholds, accountable owners or provenance checks, so the discrepancies would continue.', axis: 'Inventory without enforceable standards' },
+    { from: 'Procure and deploy an enterprise data observability', axis: 'Tooling before ownership and quality baselines' },
+    { from: 'Task the internal audit department with setting', to: 'Appoint a senior data steward for each business domain to approve third-party datasets before they are ingested.', why: 'Domain stewards help vet new data, but approval by individuals without common quality thresholds and provenance requirements leaves standards inconsistent across domains.', axis: 'Gatekeeping without common standards' },
+  ],
+  'aaig-pipe-1791941166271-30': [
+    { from: 'Mandate that internal engineering teams complete', axis: 'Prototype built before sourcing guidelines exist' },
+    { from: 'Prioritize benchmarking technical latency', to: 'Ask the procurement team to run a competitive tender and recommend the option with the best price-to-performance ratio.', why: 'A tender is a sound procurement step, but ranking on price and performance leaves out regulatory exposure, supply chain transparency and risk appetite for a high-impact lending use.', axis: 'Procurement efficiency treated as the governance test' },
+    { from: 'Authorize the first-line product management team', to: 'Obtain an independent legal opinion on the licensing terms of the commercial option and decide on that basis.', why: 'Licence terms are one important input, but a legal opinion does not cover strategic fit, lifetime cost or the firm\'s risk appetite for credit decisions.', axis: 'Single expert opinion on a multi-factor decision' },
+  ],
+  'aaig-pipe-1791941200295-36': [
+    { from: 'Deploy an automated model performance monitoring', to: 'Ask each division to submit its AI project plans and rank them by expected financial return for the board to review.', why: 'Collecting plans is useful, but ranking them by return before strategic intent and risk boundaries exist lets financial pull define alignment.', axis: 'Project ranking before strategic intent' },
+    { from: 'Conduct comprehensive conformity assessments', axis: 'Operational assessment before strategic intent' },
+    { from: 'Authorize business unit leads to independently', to: 'Commission a stakeholder survey on customers\' and employees\' expectations of AI and use the results to draft the bank\'s AI policy.', why: 'Stakeholder input is valuable for shaping values, but drafting policy from a survey before leadership sets strategic intent and accountability leaves the policy without a mandate.', axis: 'Stakeholder input before leadership mandate' },
+  ],
+  'aaig-pipe-1791941406549-0': [
+    { from: 'Delegate final approval of enterprise AI acceptable-use', to: 'Require the chief executive to certify annually that the firm\'s AI use complies with law and with the board\'s risk appetite.', why: 'Executive certification is a useful assurance step, but it does not create the structure, roles and decision rights through which the board directs and oversees AI day to day.', axis: 'Annual certification mistaken for ongoing oversight' },
+    { from: 'Deploy an automated model performance monitoring platform', to: 'Add AI as a standing item on the board agenda and ask management to present AI incidents and metrics at every meeting.', why: 'Regular reporting supports oversight, but without a body holding delegated authority and clear accountability the board only receives information and cannot direct the program.', axis: 'Reporting cadence without delegated authority' },
+    { from: 'Mandate third-party conformity assessments', axis: 'Third-party assessment before risk appetite and objectives' },
+  ],
+  'aaig-pipe-1791941406550-1': [
+    { from: 'Deploy an enterprise MLOps metadata cataloging', to: 'Ask each business unit to submit its current spreadsheet of AI assets so that the central team can merge them into one register.', why: 'Merging spreadsheets consolidates the inconsistency, because units define and describe AI assets differently, so the combined register cannot be classified or compared.', axis: 'Consolidation before common definitions' },
+    { from: 'Mandate that decentralized data science teams immediately', axis: 'Model cards before the taxonomy and templates' },
+    { from: 'Direct the Internal Audit function to conduct', to: 'Appoint an AI asset lead in each business unit who will maintain the unit\'s records and answer central queries.', why: 'Local leads give named contacts, but without a shared taxonomy and metadata schema each lead will keep records in a different way.', axis: 'Local roles before shared standards' },
+  ],
+  'aaig-pipe-1791941424799-5': [
+    { from: 'Deploy enterprise-wide automated synthetic data', to: 'Create an approved-sources list of external datasets and require teams to choose only from it, reviewing the list each year.', why: 'A source list helps control ingestion, but without criteria for provenance, consent and bias verification the list has no basis for including or excluding sources.', axis: 'Source list without verification criteria' },
+    { from: 'Mandate that decentralized data science teams perform', axis: 'Manual clean-up of data instead of enterprise criteria' },
+    { from: 'Empower first-line model developers', to: 'Ask the legal department to review the licence terms of each external dataset before the model teams may use it.', why: 'Licence review addresses intellectual property risk only, and leaves out bias, quality and provenance, which the board\'s low risk appetite also covers.', axis: 'Single-risk review of a multi-risk problem' },
+  ],
+  'aaig-pipe-1791941421172-6': [
+    { from: 'Deploy automated telemetry tooling', to: 'Request a vendor proposal with projected savings and ask the steering committee to approve funding if the projections look attractive.', why: 'Vendor projections are a starting point, but approving funds on them before the firm defines its own outcome metrics and baseline makes later verification impossible.', axis: 'Funding approved on vendor projections' },
+    { from: 'Perform a post-implementation benefits audit', axis: 'Post-implementation audit at the planning stage' },
+    { from: 'Instruct the engineering leads', to: 'Ask the finance team to set a single payback-period hurdle that all AI initiatives must meet before proceeding.', why: 'A hurdle rate is a legitimate tool, but a single payback test ignores service quality, risk and strategic outcomes, and needs agreed outcome metrics to be applied properly.', axis: 'Single financial test before outcome metrics' },
+  ],
+  'aaig-pipe-1791941442227-10': [
+    { from: 'Execute benchmark performance evaluations', to: 'Run a time-boxed technical proof of concept on both options and use the results to guide the decision taken by the executive team.', why: 'A proof of concept shows technical feasibility, but not vendor transparency, continuing compliance or fit with the firm\'s risk appetite and data sovereignty obligations.', axis: 'Technical feasibility treated as the decision' },
+    { from: 'Contract an external auditor', axis: 'Conformity assessment before use cases are defined' },
+    { from: 'Authorize the lead application development team', to: 'Ask the chief information security officer to approve whichever option meets the firm\'s security and interoperability requirements.', why: 'Security approval is necessary, but it covers one risk area and does not weigh transparency, regulatory compliance or business fit.', axis: 'Single-function approval of a multi-factor decision' },
+  ],
+  'aaig-pipe-1791941470950-16': [
+    { from: 'Procure an enterprise AI auditing platform', to: 'Commission a review of how peer institutions align AI with strategy and circulate the findings to the executive team.', why: 'Peer practice is helpful input, but a review does not give the firm a mandate, an accountable owner or strategic objectives to align against.', axis: 'Benchmarking before a mandate' },
+    { from: 'Perform detailed algorithmic impact assessments', axis: 'Impact assessments before strategic direction' },
+    { from: 'Authorize business unit heads to prioritize and fund', to: 'Ask the chief financial officer to set an annual AI investment budget and allocate it across business units by headcount.', why: 'A budget funds activity, but allocating it by headcount ties investment to size rather than strategy, and no objectives or limits exist yet to govern its use.', axis: 'Funding allocated before strategic objectives' },
+  ],
+  'aaig-pipe-1791941501443-20': [
+    { from: 'Instruct individual business units to perform independent', axis: 'Local assessments before an enterprise framework' },
+    { from: 'Mandate the implementation of enterprise-wide technical validation', to: 'Request a gap assessment of current AI practices against the NIST AI RMF from an external adviser and present it to the board.', why: 'A gap assessment gives useful insight, but it describes current weaknesses without creating the committee, decision rights and risk limits that fix the fragmentation.', axis: 'Diagnosis without a decision-making structure' },
+    { from: 'Assign direct responsibility for AI risk acceptance', to: 'Ask the chief risk officer to approve all AI deployments and to report exceptions to the board each quarter.', why: 'Central approval by one officer addresses fragmentation, but concentrates decisions in one function, with no cross-functional input and no board-defined risk limits.', axis: 'Single approver instead of cross-functional oversight' },
+  ],
+  'aaig-pipe-1791941501551-21': [
+    { from: 'Deploy an automated continuous discovery', to: 'Run a one-time workshop with business unit leaders to agree what should be listed as an AI asset in the inventory.', why: 'A workshop can build shared understanding, but it produces no approved taxonomy, classification criteria or mandatory fields, so the register will drift again.', axis: 'Consensus-building without binding standards' },
+    { from: 'Mandate that all business units immediately publish', axis: 'Publishing model cards before standards are set' },
+    { from: 'Direct internal audit to conduct an enterprise-wide discovery', to: 'Ask the data protection officer to identify AI systems that process personal data and add them to the inventory first.', why: 'Prioritizing personal-data systems is sensible later, but a partial inventory built without common definitions and classification leaves the other systems unmanaged.', axis: 'Partial inventory before common definitions' },
+  ],
+  'aaig-pipe-1791942376652-6': [
+    { from: 'Procure and deploy an enterprise performance dashboard', to: 'Ask the lending business to forecast the productivity gains it expects, and have finance record those forecasts in the business case.', why: 'Sponsor forecasts are normal inputs, but without an agreed measurement basis and common value criteria they cannot later be checked against actual results.', axis: 'Forecasts without an agreed measurement basis' },
+    { from: 'Conduct a small-scale pilot deployment', axis: 'Pilot before baseline and value criteria' },
+    { from: 'Mandate the third-line internal audit team', to: 'Ask the steering committee to approve a ceiling on total spend for the initiative and review progress against it quarterly.', why: 'A spending ceiling controls cost, but value realization needs outcome metrics and a baseline, which a spend limit alone does not provide.', axis: 'Cost control mistaken for value governance' },
+  ],
+  'aaig-pipe-1791943579681-115-bbbve': [
+    { from: 'Direct the data engineering team to implement continuous adversarial', to: 'Prepare a technical file for the ranking system and file it with the national authority before deployment in each member state.', why: 'Documentation and notification are part of compliance, but filing alone does not establish continuing risk management, quality management and post-market monitoring.', axis: 'One-off filing mistaken for continuing compliance' },
+    { from: 'Contract an accredited third-party notified body', axis: 'Conformity audit before the enterprise risk policy' },
+    { from: 'Authorize individual business unit product managers', to: 'Appoint an EU representative and a data protection officer for the subsidiaries and make them responsible for AI compliance.', why: 'These roles are useful, but assigning compliance to two individuals does not create the risk management and quality management processes the Act requires for high-risk systems.', axis: 'Roles named without supporting processes' },
+  ],
 };
 
 /**
@@ -92,6 +157,19 @@ export const CORRECT_REWRITES: Readonly<Record<string, string>> = {
   'aaig-pipe-1791943347849-61-aq1v4': 'Set up a board-backed mandate and committee to define strategic AI objectives, risk appetite and who decides.',
   'aaig-pipe-1791943556341-111-w9yo1': 'Define standard business value metrics and a risk-adjusted baseline linked to the strategic objectives of the enterprise.',
   'aaig-pipe-1791943864279-171-tsv4n': 'Define enterprise value criteria, strategic alignment objectives and investment gating thresholds in an approved mandate.',
+  'aaig-pipe-1791941151242-25': 'Set enterprise rules for data origin, quality limits and who is responsible for each domain\'s data, tied to the firm\'s risk limits.',
+  'aaig-pipe-1791941166271-30': 'Compare the options on strategic fit, lifetime cost, risk limits and supplier transparency against agreed criteria.',
+  'aaig-pipe-1791941200295-36': 'Set out a board-approved statement of strategic intent, accountability and the limits of acceptable AI risk.',
+  'aaig-pipe-1791941406549-0': 'Establish a cross-functional AI committee mandated by the board to define accountability, policy and the limits of acceptable risk.',
+  'aaig-pipe-1791941406550-1': 'Agree the AI asset taxonomy, risk tiers and mandatory metadata fields with the committee, and publish them to all business units.',
+  'aaig-pipe-1791941424799-5': 'Set an enterprise standard on data provenance, consent and bias checks, with thresholds linked to the board\'s risk limits.',
+  'aaig-pipe-1791941421172-6': 'Define measurable business outcomes and starting-point performance figures linked to enterprise strategy.',
+  'aaig-pipe-1791941442227-10': 'Set up a cross-functional sourcing process that weighs vendor transparency, continuing compliance and the firm\'s risk limits.',
+  'aaig-pipe-1791941470950-16': 'Form an executive AI committee to set the firm\'s AI mandate, strategic objectives and the way AI use will be overseen.',
+  'aaig-pipe-1791941501443-20': 'Set up a cross-functional AI committee, mandated by the board, to set risk limits, enterprise rules and decision authority.',
+  'aaig-pipe-1791941501551-21': 'Set the enterprise taxonomy, classification criteria and rules that define AI assets and mandatory model card fields.',
+  'aaig-pipe-1791942376652-6': 'Set baseline operational figures and define target value criteria aligned with enterprise strategy.',
+  'aaig-pipe-1791943579681-115-bbbve': 'Build an AI risk management system within quality management procedures, with conformity assessment and post-market monitoring.',
 };
 
 /** Applies a pilot rewrite, keeping the correct option, its index and the main explanation unchanged. */

@@ -215,11 +215,11 @@ test('guessability indicator separates reasoning-dependent items from wording-de
   assert.equal(typeof report.guessability.rate, 'number');
 });
 
-test('distractor rewrite pilot keeps answers, passes gates and removes the vocabulary cue without inverting it', async () => {
+test('distractor rewrites keep answers, passes gates and removes the vocabulary cue without inverting it', async () => {
   const { DISTRACTOR_REWRITES, CORRECT_REWRITES } = await import('../src/data/distractorRewrites');
   const { guessabilityRate } = await import('../src/services/guessability');
   const ids = Object.keys(DISTRACTOR_REWRITES);
-  assert.equal(ids.length, 12);
+  assert.equal(ids.length, 25);
   assert.deepEqual(Object.keys(CORRECT_REWRITES).sort(), [...ids].sort());
   const rewritten = INITIAL_QUESTIONS.filter(q => ids.includes(q.id));
   assert.equal(rewritten.length, ids.length);
