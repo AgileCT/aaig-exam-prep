@@ -96,3 +96,14 @@ The existing Vercel project is `aaig-exam-prep`. Its committed configuration sel
 Submit original scenarios with public reference links, version/date information, and explanations for each distractor. Only mark an item reviewed when the reviewer and review date are documented. Do not contribute real exam items or licensed QAE content.
 
 The code is MIT licensed. Referenced trademarks, standards, and third-party materials retain their respective rights.
+
+## Disclaimer
+
+This is an independent, community-built study tool. It is **not an official ISACA product** and is not affiliated with, sponsored by, or endorsed by ISACA. ISACA has not reviewed, approved, or certified any question, flashcard, explanation, or score produced by this project.
+
+- **Trademarks.** AAIG™, ISACA®, and COBIT® are trademarks of ISACA. ISO/IEC standards, NIST publications, the EU AI Act, MITRE ATLAS, OWASP projects, and other referenced works belong to their respective owners. Names are used only to identify the subject matter being studied.
+- **No official exam content.** Questions are original or AI-assisted and are written from public information. They are not real exam items, and they do not reproduce ISACA review manuals, QAE items, or other protected material. Do not contribute or paste such material.
+- **No guarantee.** Practice results do not predict certification success. Answers, explanations, and reference labels can be wrong or out of date; check the primary sources and ISACA's current published information before relying on any of them.
+- **Reviews are practitioner reviews.** A "reviewed" label means a named practitioner checked the item. It is not ISACA approval and not independent subject-matter-expert certification.
+- **AI features.** AI-generated and AI-tutor output is unreviewed. It is sent directly from your browser to the provider you choose, using your own API key; this project does not operate a server that receives your key or your data.
+- **Provided as is.** The software is provided under the [MIT License](LICENSE), without warranty of any kind.
