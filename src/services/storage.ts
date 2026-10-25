@@ -200,7 +200,19 @@ export function exportProgressJSON(progress: UserProgress): string {
   return JSON.stringify(exportPayload, null, 2);
 }
 
-export function importProgressJSON(rawJson: string): UserProgress {
+const FLASHCARD_STATES = new Set<string>(['new', 'learning', 'hard', 'mastered']);
+const isFiniteNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
+const isPlainObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
+export interface ParsedProgress {
+  progress: UserProgress;
+  /** Backup entries discarded because they did not match the expected shape. */
+  dropped: number;
+}
+
+/** Validate a backup without saving it, so the caller can confirm before overwriting. */
+export function parseProgressJSON(rawJson: string): ParsedProgress {
   let parsed: any;
   try {
     parsed = JSON.parse(rawJson);
@@ -208,25 +220,73 @@ export function importProgressJSON(rawJson: string): UserProgress {
     throw new Error('Invalid JSON file format. Please upload a valid backup file.');
   }
 
-  const candidate = parsed && parsed.progress ? parsed.progress : parsed;
+  const candidate = isPlainObject(parsed) && parsed.progress !== undefined ? parsed.progress : parsed;
 
-  if (!candidate || typeof candidate !== 'object') {
+  if (!isPlainObject(candidate)) {
     throw new Error('Backup file does not contain valid progress data.');
   }
 
+  let dropped = 0;
+
+  const history: UserProgress['history'] = {};
+  for (const [id, attempts] of Object.entries(isPlainObject(candidate.history) ? candidate.history : {})) {
+    if (!Array.isArray(attempts)) { dropped++; continue; }
+    const valid = attempts.filter((attempt: any) =>
+      isPlainObject(attempt) && typeof attempt.answeredIndex === 'number' && Number.isInteger(attempt.answeredIndex) && attempt.answeredIndex >= 0
+      && typeof attempt.isCorrect === 'boolean' && isFiniteNumber(attempt.timestamp));
+    dropped += attempts.length - valid.length;
+    if (valid.length > 0) history[id] = valid as UserProgress['history'][string];
+  }
+
+  const idList = (value: unknown): string[] => {
+    const list = Array.isArray(value) ? value : [];
+    const valid = [...new Set(list.filter((id): id is string => typeof id === 'string'))];
+    dropped += list.length - valid.length;
+    return valid;
+  };
+
+  const flashcardMastery: UserProgress['flashcardMastery'] = {};
+  for (const [id, state] of Object.entries(isPlainObject(candidate.flashcardMastery) ? candidate.flashcardMastery : {})) {
+    if (typeof state === 'string' && FLASHCARD_STATES.has(state)) flashcardMastery[id] = state as UserProgress['flashcardMastery'][string];
+    else dropped++;
+  }
+
+  const examRecords: UserProgress['examRecords'] = [];
+  for (const record of Array.isArray(candidate.examRecords) ? candidate.examRecords : []) {
+    if (!isPlainObject(record) || !isFiniteNumber(record.score) || !isFiniteNumber(record.total) || !isFiniteNumber(record.date)) { dropped++; continue; }
+    examRecords.push({
+      id: typeof record.id === 'string' ? record.id : `imported-${record.date}`,
+      date: record.date,
+      score: record.score,
+      total: record.total,
+      durationSeconds: isFiniteNumber(record.durationSeconds) ? record.durationSeconds : 0,
+      breakdown: isPlainObject(record.breakdown) ? record.breakdown as UserProgress['examRecords'][number]['breakdown'] : {},
+    });
+  }
+
   const validProgress: UserProgress = {
-    history: typeof candidate.history === 'object' && candidate.history !== null ? candidate.history : {},
-    bookmarkedIds: Array.isArray(candidate.bookmarkedIds) ? candidate.bookmarkedIds.filter((id: unknown) => typeof id === 'string') : [],
-    wrongIds: Array.isArray(candidate.wrongIds) ? candidate.wrongIds.filter((id: unknown) => typeof id === 'string') : [],
-    flashcardMastery: typeof candidate.flashcardMastery === 'object' && candidate.flashcardMastery !== null ? candidate.flashcardMastery : {},
-    examRecords: Array.isArray(candidate.examRecords) ? candidate.examRecords.filter((rec: any) => rec && typeof rec.score === 'number') : [],
+    history,
+    bookmarkedIds: idList(candidate.bookmarkedIds),
+    wrongIds: idList(candidate.wrongIds),
+    flashcardMastery,
+    examRecords,
     // Backups from before 1.3.0 carry no revision and are migrated below.
     ...(typeof candidate.optionOrderRevision === 'number' ? { optionOrderRevision: candidate.optionOrderRevision } : {}),
   };
 
-  const migrated = migrateProgress(validProgress);
-  saveUserProgress(migrated);
-  return migrated;
+  return { progress: migrateProgress(validProgress), dropped };
+}
+
+export function importProgressJSON(rawJson: string): UserProgress {
+  const { progress } = parseProgressJSON(rawJson);
+  saveUserProgress(progress);
+  return progress;
+}
+
+/** True when the progress holds any study activity that a restore would overwrite. */
+export function hasProgressData(progress: UserProgress): boolean {
+  return Object.keys(progress.history).length > 0 || progress.bookmarkedIds.length > 0 || progress.wrongIds.length > 0
+    || Object.keys(progress.flashcardMastery).length > 0 || progress.examRecords.length > 0;
 }
 
 export function resetUserProgress(): UserProgress {

@@ -17,7 +17,7 @@ import {
   RotateCcw,
   FileJson
 } from 'lucide-react';
-import { exportProgressJSON, importProgressJSON, resetUserProgress } from '../services/storage';
+import { exportProgressJSON, parseProgressJSON, hasProgressData, saveUserProgress, resetUserProgress } from '../services/storage';
 import { firstAttemptSummary } from '../services/studyStats';
 
 interface DashboardProps {
@@ -65,11 +65,23 @@ export const Dashboard: React.FC<DashboardProps> = ({
     reader.onload = (e) => {
       try {
         const text = e.target?.result as string;
-        const restored = importProgressJSON(text);
+        const { progress: restored, dropped } = parseProgressJSON(text);
+        if (hasProgressData(progress) && !window.confirm(
+          'Restoring replaces ALL current quiz history, bookmarks, flashcard mastery and mock exam records on this device with the backup. Progress made since the backup was exported will be lost. Continue?'
+        )) {
+          setBackupStatus({ type: 'error', message: 'Restore cancelled. Current progress was not changed.' });
+          return;
+        }
+        saveUserProgress(restored);
         if (onUpdateProgress) {
           onUpdateProgress(restored);
         }
-        setBackupStatus({ type: 'success', message: 'Progress restored successfully from backup!' });
+        setBackupStatus({
+          type: 'success',
+          message: dropped > 0
+            ? `Progress restored. ${dropped} malformed backup entr${dropped === 1 ? 'y was' : 'ies were'} skipped.`
+            : 'Progress restored successfully from backup!',
+        });
         setTimeout(() => setBackupStatus(null), 4000);
       } catch (err: any) {
         setBackupStatus({ type: 'error', message: err.message || 'Failed to restore backup.' });
