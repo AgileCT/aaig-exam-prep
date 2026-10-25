@@ -23,6 +23,7 @@ test('importing generation code does not contact an AI provider', async () => {
 });
 
 import { ACTIVE_QUESTIONS as ACTIVE_FOR_REVIEW_LIST } from '../src/data/questions';
+import { REVIEWER_NAME, DEFAULT_REVIEWER_NAME, resolveReviewerName } from '../src/data/reviewer';
 const ACTIVE_FOR_REVIEW_TEST = () => ACTIVE_FOR_REVIEW_LIST;
 
 test('every active question has a review record and none claims ISACA manual provenance', () => {
@@ -31,7 +32,7 @@ test('every active question has a review record and none claims ISACA manual pro
   const reviewed = INITIAL_QUESTIONS.filter(q => q.reviewStatus === 'reviewed');
   assert.equal(reviewed.length, 436);
   for (const q of reviewed) {
-    assert.equal(q.reviewedBy, 'Xiaoli (Shelly) Zhao', q.id);
+    assert.equal(q.reviewedBy, REVIEWER_NAME, q.id);
     assert.ok(q.reviewedAt === '2026-10-14' || q.reviewedAt === '2026-10-24', q.id);
   }
   assert.ok(INITIAL_QUESTIONS.every(q => q.reviewStatus === 'reviewed' || q.reviewStatus === 'unreviewed'));
@@ -385,7 +386,7 @@ test('flashcards follow the reviewer\'s 2026-10-24 decisions', () => {
     assert.doesNotMatch(card.front, / and (how|what|who|when|why|which)\b/i, `${card.id} front is compound`); // J3
     // 2026-10-24 second review: all cards approved by the reviewer, who asked for the name and date to be recorded (Q5).
     assert.equal(card.reviewStatus, 'reviewed');
-    assert.equal(card.reviewedBy, 'Xiaoli (Shelly) Zhao');
+    assert.equal(card.reviewedBy, REVIEWER_NAME);
     assert.equal(card.reviewedAt, '2026-10-24');
   }
   assert.deepEqual(FLASHCARDS.filter(card => card.scope).map(card => `${card.id}:${card.scope}`).sort(), ['fc-07b:US-specific', 'fc-19:US-specific']); // J4
@@ -429,4 +430,11 @@ test('the audit no longer flags flashcard length or compound fronts', async () =
   assert.equal(report.flashcards.longBacks, 0);
   assert.equal(report.flashcards.compoundFronts, 0);
   assert.equal(Object.values(report.flashcards.byDomain as Record<string, number>).reduce((a, b) => a + b, 0), 98);
+});
+
+test('reviewer name is configurable, defaults to the reviewer, and ignores blank or invalid values', () => {
+  assert.equal(REVIEWER_NAME, DEFAULT_REVIEWER_NAME);   // no VITE_REVIEWER_NAME in the test environment
+  assert.equal(resolveReviewerName('  Project   reviewer '), 'Project reviewer');
+  for (const blank of [undefined, null, '', '   ', 42, {}]) assert.equal(resolveReviewerName(blank), DEFAULT_REVIEWER_NAME);
+  assert.equal(resolveReviewerName('x'.repeat(200)).length, 80);
 });

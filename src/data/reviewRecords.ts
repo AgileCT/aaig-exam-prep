@@ -1,5 +1,6 @@
 import type { Question } from '../types';
 import { DISTRACTOR_REWRITES } from './distractorRewrites';
+import { REVIEWER_NAME } from './reviewer';
 
 /**
  * 2026-10-24: review records written at the reviewer's request, limited to questions the reviewer actually reviewed.
@@ -12,7 +13,7 @@ import { DISTRACTOR_REWRITES } from './distractorRewrites';
  *
  * Only the three retired AIMS duplicates that never went into a review packet stay unreviewed.
  */
-export const REVIEWER_NAME = 'Xiaoli (Shelly) Zhao';
+export { REVIEWER_NAME };
 export const REVIEWED_2026_10_14: ReadonlySet<string> = new Set([
   'aaig-d1-005',
   'aaig-d3-003',

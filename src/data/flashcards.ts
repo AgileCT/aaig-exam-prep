@@ -1,6 +1,7 @@
 import { Flashcard } from '../types';
 import { draftSource } from '../services/questionOrder';
 import { normalizeFlashcardDomain } from '../services/domainTaxonomy';
+import { REVIEWER_NAME } from './reviewer';
 
 // 2026-10-24: restructured after the reviewer's decisions. Every back is at most 400 characters
 // and every takeaway one sentence; compound fronts and overlong cards were split (the original ID
@@ -15,7 +16,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
     keyTakeaway: "The First Line owns and manages operational AI risk, and belongs to management.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -27,7 +28,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
     keyTakeaway: "The Second Line sets policy and challenges the First Line, within delegated authority.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -39,7 +40,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "The IIA's Three Lines Model (July 2020), Principles 1–5; NIST AI RMF 1.0 GOVERN 1.2 & 1.3.",
     keyTakeaway: "Only the Third Line is independent of management; it gives assurance, not management.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -51,7 +52,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.2, 1.3 & 2.1; IIA Three Lines Model (2020); ISO/IEC 42001:2023 Cl. 5 (verify exact subclause against licensed standard).",
     keyTakeaway: "A steering committee holds authorized decision rights and sets risk guardrails across the AI portfolio.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -63,7 +64,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
     keyTakeaway: "An AUP names the approved tools and sets what data may go into them.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -75,7 +76,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Arts. 5 & 6; NIST AI 600-1 GOVERN 1.2; ISO/IEC 42001:2023 (verify policy clauses against licensed standard).",
     keyTakeaway: "An AUP ties human review to impact and gives staff a clear way to report problems.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -87,7 +88,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM03; ISO 31073:2022 (definitions of risk appetite and risk tolerance). Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "Appetite sets the strategic posture; tolerance defines the quantitative operational thresholds.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     sourceUrl: "https://www.isaca.org/resources/cobit"
   },
@@ -100,7 +101,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "OECD Recommendation of the Council on Artificial Intelligence (OECD/LEGAL/0449, 2019 / amended 2024), Section 1.",
     keyTakeaway: "The OECD principles are an international reference point; legal duties must still be mapped per jurisdiction.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -112,7 +113,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
     keyTakeaway: "Shadow AI is AI use outside formal governance, such as unapproved consumer accounts.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -124,7 +125,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 600-1 GOVERN 1.2 & 1.6; ISO/IEC 42001:2023 (verify Annex A controls against licensed standard).",
     keyTakeaway: "Pair clear use rules and discovery controls with approved, secure alternatives.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -136,7 +137,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "IIA Three Lines Model (2020) Principle 2; NIST AI RMF 1.0 GOVERN 1.2; COBIT 2019 EDM01 (verify against licensed text).",
     keyTakeaway: "The Board oversees and holds accountability; management runs day-to-day AI controls.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -148,7 +149,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "In re Caremark Int'l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996).",
     keyTakeaway: "Caremark requires directors to maintain and monitor a board-level reporting system.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     scope: "US-specific"
   },
@@ -161,7 +162,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
     keyTakeaway: "A steering committee decides; check its actual authority in the charter.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -173,7 +174,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.2, 2.1 & 3.1; IIA Three Lines Model (2020) Principles 2 & 3.",
     keyTakeaway: "An ethics board advises; the steering committee decides.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -185,7 +186,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 4; ISO/IEC 42001:2023 (verify competence clause against licensed standard).",
     keyTakeaway: "Art. 4 is a statutory literacy duty; ISO/IEC 42001 competence requirements are voluntary.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -197,7 +198,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Directive (EU) 2019/1937 (Whistleblower Directive); Regulation (EU) 2024/1689 (EU AI Act) Art. 87.",
     keyTakeaway: "Internal escalation with anti-retaliation protection strengthens risk culture and preserves legal reporting rights.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -209,7 +210,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
     keyTakeaway: "An inventory lists models; model cards describe what each is for and where it falls short.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -221,7 +222,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Mitchell et al., 'Model Cards for Model Reporting' (arXiv:1810.03993); NIST AI RMF 1.0 GOVERN 1.6, MAP 1.1 & MEASURE 2.8; ISO/IEC 42001:2023 (verify inventory/documentation clauses against licensed standard).",
     keyTakeaway: "Model cards cover purpose, limits, data, disaggregated results, risk tier and ownership.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -233,7 +234,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Gama et al., 'A survey on concept drift adaptation', ACM Computing Surveys 46(4), 2014 (real concept drift and virtual drift; covariate shift is treated as a synonym of virtual drift or data drift). Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "Data drift monitors the input distribution; concept drift monitors the input-to-outcome relationship.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     sourceUrl: "https://doi.org/10.1145/2523813"
   },
@@ -246,7 +247,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF MEASURE 2.11",
     keyTakeaway: "Excluding protected attributes does not prevent proxy discrimination.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -258,7 +259,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF MEASURE 2.11",
     keyTakeaway: "Blinding a model to sensitive attributes is insufficient; test outcomes by group.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -270,7 +271,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Arts. 5(2) & 17; NIST AI RMF 1.0 MAP 2.3; ISO/IEC 42001:2023 (verify data management clauses against licensed standard).",
     keyTakeaway: "Lineage lets an organization verify data permissions and investigate data issues, in proportion to risk.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -282,7 +283,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Shumailov et al. (arXiv:2305.17493); NIST AI 600-1; ISO/IEC 23894 (verify standard text).",
     keyTakeaway: "Validate fidelity, bias and privacy leakage; never assume synthetic data is risk-free.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -294,7 +295,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
     keyTakeaway: "A datasheet documents a dataset's motivation, composition, collection, processing, uses, distribution and upkeep.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -306,7 +307,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Gebru et al., 'Datasheets for Datasets' (arXiv:1803.09010); NIST AI RMF 1.0 MAP 2.3.",
     keyTakeaway: "A datasheet informs dataset selection; it is not proof of legal compliance.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -318,7 +319,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
     keyTakeaway: "Differential privacy bounds how much any one person's data can change the output.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -330,7 +331,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST SP 800-226 (Guidelines for Evaluating Differential Privacy Guarantees); NIST AI RMF 1.0 MEASURE 2.10.",
     keyTakeaway: "DP bounds and quantifies privacy loss; it does not guarantee zero disclosure.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -342,7 +343,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
     keyTakeaway: "Enforce source-system permissions at query time so users only retrieve what they may see.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -354,7 +355,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
     keyTakeaway: "Protect chunks and embeddings in transit and at rest, and limit who can read them.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -366,7 +367,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST SP 800-218 & SP 800-218A; NIST AI 600-1; GDPR Arts. 5 & 17 (where personal data is processed).",
     keyTakeaway: "Deletion must reach the vector index, caches and backups, not just the source.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -378,7 +379,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "US Title VII (42 U.S.C. § 2000e-2(k)) & 29 CFR § 1607.4(D); EU Non-Discrimination Directives & EU AI Act Art. 10.",
     keyTakeaway: "Lack of intent is no defense to disparate impact, but a justified, job-related practice may be defended.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     scope: "US-specific"
   },
@@ -391,7 +392,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
     keyTakeaway: "Remove or mask identifiers from prompts unless the task needs them.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -403,7 +404,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
     keyTakeaway: "Index and retrieve only what the purpose needs.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -415,7 +416,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Art. 5(1)(c) & Art. 25; NIST AI 600-1; ISO/IEC 42001:2023 (verify Annex A data controls against licensed standard).",
     keyTakeaway: "Keep prompt logs short-lived and bar vendors from training on your prompts.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -427,7 +428,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 6.1, GOVERN 6.2 & MAP 4.1; NIST AI 600-1.",
     keyTakeaway: "Buying a model must not mean giving away rights to your prompts and data.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -439,7 +440,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Arts. 25 & 26.",
     keyTakeaway: "Outsourcing model development does not outsource accountability; Art. 25 triggers can make you the provider.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -451,7 +452,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; COBIT 2019 BAI03 (verify against licensed text).",
     keyTakeaway: "Include lock-in, exit and lifecycle costs, not just the licence price.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -463,7 +464,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
     keyTakeaway: "Art. 86 gives qualified individuals a right to explanation for specified high-risk decisions.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -475,7 +476,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
     keyTakeaway: "Explainability supports bias and limitation checks; match it to the use case.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -487,7 +488,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 13 & Art. 86; NIST AI RMF 1.0 MEASURE 2.8 & 2.9.",
     keyTakeaway: "Art. 13 is deployer-facing transparency; Art. 86 is the individual's right to explanation.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -499,7 +500,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
     keyTakeaway: "Check whether retraining is a substantial modification, then validate against baselines.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -511,7 +512,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 43(4); ISO/IEC 42001:2023 & COBIT BAI06 (verify exact standard clauses against licensed texts).",
     keyTakeaway: "Approve by risk tier and release with telemetry and a tested rollback.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -523,7 +524,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF MANAGE 2.4",
     keyTakeaway: "A circuit breaker stops or limits an AI system and hands work to a fallback.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -535,7 +536,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF MANAGE 2.4",
     keyTakeaway: "Pre-authorize who can pull the plug; authority must not be ambiguous during harm.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -547,7 +548,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
     keyTakeaway: "HITL means a human approves before execution, which adds latency.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -559,7 +560,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
     keyTakeaway: "HOTL means the system runs and humans monitor and can intervene.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -571,7 +572,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14; NIST AI RMF 1.0 GOVERN 2.1.",
     keyTakeaway: "HIC governs whether and when the system operates; a label alone does not ensure compliance.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -583,7 +584,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
     keyTakeaway: "Automation bias is over-reliance on AI outputs by human reviewers.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -595,7 +596,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 14 & Art. 26(2).",
     keyTakeaway: "Reviewers need competence, authority, and the ability to override and halt (Arts. 14, 26(2)).",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -607,7 +608,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MAP 1.3; COBIT 2019 BAI03 / ISO/IEC 42001:2023 (verify standard references against licensed texts).",
     keyTakeaway: "Budget for monitoring, retraining, security, compliance and exit, not just compute and licences.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -619,7 +620,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 MEA01",
     keyTakeaway: "KPIs track value creation; KRIs serve as early-warning tripwires for governance intervention.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -631,7 +632,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
     keyTakeaway: "Ground answers in curated sources and constrain how the model generates them.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -643,7 +644,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 600-1 (Generative AI Profile, Confabulation); NIST AI RMF 1.0 MEASURE 2.5 & 2.6.",
     keyTakeaway: "Layer guardrails, evaluation and human review; no control removes hallucination entirely.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -655,7 +656,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
     keyTakeaway: "Providers of high-risk AI must run a documented post-market monitoring system (Art. 72).",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -667,7 +668,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 26(5).",
     keyTakeaway: "Deployers monitor operation and report serious incidents (Art. 26(5)).",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -679,7 +680,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "ISO/IEC 42001:2023 (verify Cl. 9.1 wording against licensed standard); Regulation (EU) 2024/1689 (EU AI Act) Art. 72.",
     keyTakeaway: "42001 monitoring is voluntary internal assurance; Art. 72 is a legal duty.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -691,7 +692,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 5.",
     keyTakeaway: "Art. 5 bans unacceptable uses outright, with narrow exceptions.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -704,7 +705,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 6 & 27.",
     keyTakeaway: "High-risk duties are role-specific; the FRIA applies only to specified deployers.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -717,7 +718,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 50.",
     keyTakeaway: "Art. 50 duties differ for providers and deployers.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -730,7 +731,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 4 & 113.",
     keyTakeaway: "Minimal risk is not no obligation: Art. 4 literacy and other laws still apply.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -742,7 +743,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "ISO/IEC 42001:2023. Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "ISO/IEC 42001 is the certifiable AI management system standard.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     sourceUrl: "https://www.iso.org/standard/81230.html"
   },
@@ -756,7 +757,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "ISO/IEC 42001:2023 Cl. 6.1.3. Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.",
     keyTakeaway: "The SoA links risk assessment to the choice of Annex A controls.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24',
     sourceUrl: "https://www.iso.org/standard/81230.html"
   },
@@ -769,7 +770,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
     keyTakeaway: "The four functions are GOVERN, MAP, MEASURE and MANAGE.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -782,7 +783,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI 100-1 (AI RMF 1.0), Section 5.",
     keyTakeaway: "GOVERN is cross-cutting; MAP, MEASURE and MANAGE are applied iteratively.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -794,7 +795,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
     keyTakeaway: "Open-source non-systemic models are exempt only from the Art. 53(1)(a)–(b) documentation duties.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -807,7 +808,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Arts. 51–55.",
     keyTakeaway: "Systemic-risk GPAI (presumed above 10^25 FLOPs) adds evaluation, incident reporting and cybersecurity duties.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -819,7 +820,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     keyTakeaway: "Match the depth of assurance evidence to the vendor's risk tier.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -832,7 +833,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     keyTakeaway: "Contracts should fix data rights, deletion, training limits and audit rights.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -845,7 +846,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 6.1 & 6.2; ISO/IEC 42001:2023 (verify supplier clauses against licensed standard).",
     keyTakeaway: "Look through to upstream dependencies and plan the exit before onboarding.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -857,7 +858,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
     keyTakeaway: "A FRIA is mandatory only for specified deployers, not for every high-risk deployer.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -870,7 +871,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "Regulation (EU) 2024/1689 (EU AI Act) Art. 27 & Annex III.",
     keyTakeaway: "A FRIA is done before first use and updated when conditions change.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -882,7 +883,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "ISO/IEC 23894:2023",
     keyTakeaway: "ISO/IEC 23894 applies AI-specific guidance to the ISO 31000 risk process.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -895,7 +896,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "ISO/IEC 23894:2023",
     keyTakeaway: "23894 extends ISO 31000 to AI; it does not replace it.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -907,7 +908,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Article 73",
     keyTakeaway: "Outer limits are 2, 10 and 15 days depending on the incident; report immediately where possible.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -919,7 +920,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Article 43, Annexes VI & VII",
     keyTakeaway: "The provider carries out the conformity assessment of a high-risk system.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -932,7 +933,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Article 43, Annexes VI & VII",
     keyTakeaway: "A notified body is not required for every biometric system; the route depends on category.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -944,7 +945,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
     keyTakeaway: "Red teaming tests a system adversarially, scoped to its architecture and threat model.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -957,7 +958,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MEASURE 2.6 & 2.7; NIST AI 600-1 (Generative AI Profile); OWASP Top 10 for LLM Applications.",
     keyTakeaway: "Choose attack vectors that match the system's architecture.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -969,7 +970,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM02; NIST AI RMF 1.0 GOVERN 1.3",
     keyTakeaway: "Alignment means a traceable link from each initiative to an objective, outcome and sponsor.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -981,7 +982,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM02 & APO05",
     keyTakeaway: "Choose with common criteria: fit, value, risk and delivery capacity.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -993,7 +994,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Art. 10; NIST AI RMF 1.0 MAP 2.3",
     keyTakeaway: "Judge data quality against the intended use.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1005,7 +1006,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 APO14; NIST AI RMF 1.0 GOVERN 2.1",
     keyTakeaway: "Data quality belongs to the business function that creates and uses the data.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1017,7 +1018,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MAP 2.3 & MANAGE 4.1",
     keyTakeaway: "A data contract is checked at ingestion so bad input never reaches the model.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1029,7 +1030,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Art. 12; NIST AI RMF 1.0 MEASURE 2.8",
     keyTakeaway: "Log enough to trace one output to its inputs, version, sources and overrides.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1041,7 +1042,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "EU AI Act Arts. 12, 19 & 26(6)",
     keyTakeaway: "Retention follows risk and law; high-risk deployers keep logs at least six months (Art. 26(6)).",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1053,7 +1054,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "IIA Three Lines Model (2020); NIST AI RMF 1.0 MANAGE 4.1",
     keyTakeaway: "Combine automated threshold monitoring with independent second- and third-line review.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1065,7 +1066,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM02; NIST AI RMF 1.0 MAP 3.1",
     keyTakeaway: "Measure realized benefits against a pre-deployment baseline, with a named benefit owner.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1077,7 +1078,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.3 & MANAGE 2.4; COBIT 2019 EDM03",
     keyTakeaway: "Escalate and fall back; never move the limit after a breach.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1089,7 +1090,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "COBIT 2019 EDM03; IIA Three Lines Model (2020)",
     keyTakeaway: "Appetite and tolerance are set at the top; the first line cannot change them alone.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1101,7 +1102,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.6; ISO/IEC 42001:2023 Annex A (verify against licensed standard)",
     keyTakeaway: "Record owner, purpose, risk tier, data, version, status and links to approvals.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1113,7 +1114,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.6",
     keyTakeaway: "Define whether embedded AI is in scope, and how it will be found.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1125,7 +1126,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 GOVERN 1.7",
     keyTakeaway: "Retire the status, keep the record: it is the audit trail.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1137,7 +1138,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Art. 35(1) & (3)(b)",
     keyTakeaway: "Do the DPIA before high-risk processing begins, not after launch.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1149,7 +1150,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Art. 5(1)(b) & Art. 6(4)",
     keyTakeaway: "Check that the new training purpose is compatible with the original purpose.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1161,7 +1162,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MAP 2.3 & MEASURE 2.4",
     keyTakeaway: "Representation drift means the served population no longer matches the training data.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1173,7 +1174,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MEASURE 2.11; NIST SP 1270",
     keyTakeaway: "Test outcomes by group; overall accuracy can hide unfairness.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1185,7 +1186,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "NIST AI RMF 1.0 MAP 4.1; ISO/IEC 42001:2023 Annex A.7.5 (verify against licensed standard)",
     keyTakeaway: "Tag synthetic records at creation and keep the tag in every version.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   },
   {
@@ -1197,7 +1198,7 @@ const FLASHCARD_DRAFTS: Flashcard[] = [
     source: "GDPR Recital 26; NIST AI RMF 1.0 MEASURE 2.10",
     keyTakeaway: "Test for matching and inference attacks before sharing synthetic data.",
     reviewStatus: 'reviewed',
-    reviewedBy: 'Xiaoli (Shelly) Zhao',
+    reviewedBy: REVIEWER_NAME,
     reviewedAt: '2026-10-24'
   }
 ];

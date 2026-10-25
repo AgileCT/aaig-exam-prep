@@ -1,4 +1,5 @@
 import type { Question } from '../types';
+import { REVIEWER_NAME } from './reviewer';
 
 /**
  * 2026-10-24: the three AIMS questions that carried a 'needs-more-evidence' decision since the 2026-10-14
@@ -6,7 +7,7 @@ import type { Question } from '../types';
  * ISO/IEC 23894 citation against public excerpts, standard guidance and secondary sources, not the licensed
  * full text, and asked for the item to be marked verified with their name and the date. The source line says so.
  */
-export const EVIDENCE_VERIFIED_BY = 'Xiaoli (Shelly) Zhao';
+export const EVIDENCE_VERIFIED_BY = REVIEWER_NAME;
 export const EVIDENCE_VERIFIED_AT = '2026-10-24';
 const NOTE = 'Evidence verified by the reviewer on 2026-10-24 from public excerpts and secondary sources, not the licensed full text.';
 const ISO_42001_URL = 'https://www.iso.org/standard/81230.html';
