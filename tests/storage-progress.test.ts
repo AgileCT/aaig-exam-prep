@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { setupDom } from './dom';
-import { exportProgressJSON, importProgressJSON, resetUserProgress, loadUserProgress, saveUserProgress } from '../src/services/storage';
+import { exportProgressJSON, importProgressJSON, parseProgressJSON, hasProgressData, resetUserProgress, loadUserProgress, saveUserProgress } from '../src/services/storage';
 import type { UserProgress } from '../src/types';
 
 test('exportProgressJSON produces valid JSON backup with metadata', () => {
@@ -122,4 +122,42 @@ test('option-order migration remaps pre-1.3.0 attempts to the same option text, 
   } finally {
     cleanup();
   }
+});
+
+test('parseProgressJSON drops malformed entries, counts them, and does not save', () => {
+  const cleanup = setupDom();
+  try {
+    saveUserProgress({ history: {}, bookmarkedIds: ['keep'], wrongIds: [], flashcardMastery: {}, examRecords: [] });
+    const { progress, dropped } = parseProgressJSON(JSON.stringify({
+      progress: {
+        history: {
+          good: [{ answeredIndex: 1, isCorrect: true, timestamp: 5 }, { answeredIndex: 'x', isCorrect: true, timestamp: 5 }, null],
+          notArray: 'oops',
+          empty: [{ answeredIndex: -1, isCorrect: true, timestamp: 1 }],
+        },
+        bookmarkedIds: ['a', 'a', 7],
+        wrongIds: [],
+        flashcardMastery: { f1: 'mastered', f2: 'bogus' },
+        examRecords: [{ id: 'e1', date: 1, score: 2, total: 3, durationSeconds: 4, breakdown: {} }, { score: 'x' }, { date: 1, score: 1, total: 2 }],
+      },
+    }));
+    assert.deepEqual(Object.keys(progress.history), ['good']);
+    assert.equal(progress.history.good.length, 1);
+    assert.deepEqual(progress.bookmarkedIds, ['a']);
+    assert.deepEqual(progress.flashcardMastery, { f1: 'mastered' });
+    assert.equal(progress.examRecords.length, 2);
+    assert.equal(progress.examRecords[1].id, 'imported-1');
+    assert.equal(dropped, 2 + 1 + 1 + 1 + 1 + 1 + 1);
+    assert.deepEqual(loadUserProgress().bookmarkedIds, ['keep']);
+    assert.throws(() => parseProgressJSON('[1,2]'), /valid progress data/);
+  } finally {
+    cleanup();
+  }
+});
+
+test('hasProgressData is false only for a blank progress', () => {
+  const blank = { history: {}, bookmarkedIds: [], wrongIds: [], flashcardMastery: {}, examRecords: [] };
+  assert.equal(hasProgressData(blank), false);
+  assert.equal(hasProgressData({ ...blank, bookmarkedIds: ['q'] }), true);
+  assert.equal(hasProgressData({ ...blank, flashcardMastery: { f: 'new' } }), true);
 });
