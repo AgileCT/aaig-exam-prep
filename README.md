@@ -87,6 +87,10 @@ The authoring pipeline independently samples topic, question type, difficulty, a
 
 The bundled bank retains limitations, including unverified standard locators. Reordering options reduces position cues; it does not fix ambiguous questions, weak distractors, or factual errors. Human review should precede publishing new study content.
 
+## Reviewer name on review records
+
+Review records ("Reviewed by ... on ...") show the reviewer who actually reviewed the bundled bank. The label is a build-time setting: set `VITE_REVIEWER_NAME` (for example in `.env.local` or the Vercel project's environment variables) to show another name or a neutral label such as `Project reviewer`, then rebuild. An unset or blank value keeps the default. A fork that has not had its own review should set it, because the label states who performed the review. The review documents under `docs/reviews/` and the changelog are historical records and keep the original name.
+
 ## Production deployment
 
 The existing Vercel project is `aaig-exam-prep`. Its committed configuration selects Vite, installs with `npm ci`, builds with `npm run build`, and publishes only `dist`. Do not publish the repository root as static output. Link an authorized local checkout to the existing project, run `npm run verify`, and deploy the reviewed main commit. A successful local build alone is not proof that the public domain serves that commit.

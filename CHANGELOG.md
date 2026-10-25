@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Make the reviewer name on review records configurable at build time with `VITE_REVIEWER_NAME` (default unchanged). The name now comes from one place, `src/data/reviewer.ts`, for questions, flashcards and the evidence-verified items.
+
 ## 1.3.1 2026-10-24
 
 - Fix the dark mode button. Tailwind 4 answers `dark:` styles with the operating system setting unless told otherwise, while the button toggles a `dark` class on the page, so on a light system the button changed the class but not the page (and on a dark system it could not turn dark off). The `dark` variant now follows the class. A test guards this.
