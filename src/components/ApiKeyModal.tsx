@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, Key, ExternalLink, ShieldCheck } from 'lucide-react';
 import { getAIConfigPreference } from '../services/storage';
 import { AIConfig, AIProvider, aiDestination, defaultAIConfig, PROVIDERS, validateAIConfig } from '../services/ai';
+import { useAccessibleDialog } from '../hooks/useAccessibleDialog';
 
 interface ApiKeyModalProps {
   isOpen: boolean;
@@ -24,6 +25,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
   const [draft, setDraft] = useState<AIConfig>(active);
   const [remember, setRemember] = useState(getAIConfigPreference);
   const [error, setError] = useState('');
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,6 +34,8 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
       setError('');
     }
   }, [isOpen, active.apiKey, active.provider, active.model, active.baseUrl]);
+
+  useAccessibleDialog(isOpen, onClose, dialogRef);
 
   if (!isOpen) return null;
 
@@ -52,13 +56,13 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fadeIn">
-      <div className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl p-6 space-y-5">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="api-key-dialog-title" tabIndex={-1} className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl p-6 space-y-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
               <Key className="w-4 h-4" />
             </div>
-            <h3 className="font-bold text-base text-slate-900 dark:text-white">
+            <h3 id="api-key-dialog-title" className="font-bold text-base text-slate-900 dark:text-white">
               Configure AI API Key
             </h3>
           </div>
@@ -96,6 +100,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
           <input
             id="gemini-key"
             type="password"
+            autoFocus
             autoComplete="off"
             value={draft.apiKey}
             onChange={event => { const apiKey = event.target.value; setDraft(previous => ({ ...previous, apiKey })); }}

@@ -1,8 +1,9 @@
-// 2026-10-24: near-duplicate questions retired from the active bank. Each asks the
-// same thing as a kept twin in the same subtopic (cosine similarity of stem plus
-// correct option >= 0.6) and has the same answer logic. The records stay in the
-// source data so the signed review history and saved attempts remain traceable;
-// they are only excluded from practice, mock exams and counts.
+// Near-duplicate questions retired from the active bank by reviewer or user
+// decision. `keptTwin` points to a representative retained item in the same
+// duplicate cluster; `similarity` records the measured pair score. Some
+// cluster-level retirements can be below the pair threshold. The records stay
+// in source data so review history and saved attempts remain traceable; retired
+// items are excluded from practice, mock exams and active counts.
 export interface RetiredQuestion { id: string; keptTwin: string; similarity: number }
 
 export const RETIRED_QUESTIONS: readonly RetiredQuestion[] = [
@@ -75,6 +76,15 @@ export const RETIRED_QUESTIONS: readonly RetiredQuestion[] = [
   { id: 'aaig-pipe-1791943409756-76-x6j7d', keptTwin: 'aaig-pipe-1791943492016-96-75ffw', similarity: 0.67 },
   { id: 'aaig-pipe-1791943579801-116-pccul', keptTwin: 'aaig-pipe-1791943670257-136-96q8n', similarity: 0.67 },
   { id: 'aaig-pipe-1791943982371-196-b3ogk', keptTwin: 'aaig-pipe-1791943492016-96-75ffw', similarity: 0.56 },
+  // 2026-10-30: retired at the user's request when the eight-question AIMS scope cluster
+  // was replaced with questions covering distinct ISO/IEC 42001 implementation work.
+  { id: 'aaig-pipe-1791941444916-11', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.53 },
+  { id: 'aaig-pipe-1791943130280-16-1m9by', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.63 },
+  { id: 'aaig-pipe-1791943220398-36-yraxa', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.47 },
+  { id: 'aaig-pipe-1791943492016-96-75ffw', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.53 },
+  { id: 'aaig-pipe-1791943670257-136-96q8n', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.63 },
+  { id: 'aaig-pipe-1791943754176-156-68emw', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.43 },
+  { id: 'aaig-pipe-1791944062293-216-jq42g', keptTwin: 'aaig-pipe-1791942407156-11', similarity: 0.46 },
 ];
 
 export const RETIRED_QUESTION_IDS: ReadonlySet<string> = new Set(RETIRED_QUESTIONS.map(entry => entry.id));

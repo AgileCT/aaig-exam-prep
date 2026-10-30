@@ -9,9 +9,11 @@ import { REVIEWER_NAME } from './reviewer';
  *   since except for mechanical answer-position moves. The 2026-10-24 option trims that were not re-reviewed
  *   (seven items) are in the sixth packet.
  * - Every question in DISTRACTOR_REWRITES went through a 2026-10-24 review packet and was approved.
- * - The three AIMS questions are recorded by evidenceVerification.ts.
+ * - The three retained AIMS questions are recorded by evidenceVerification.ts.
+ * - Seven AIMS replacement drafts added on 2026-10-30 intentionally have no
+ *   review record until their content and citations are checked.
  *
- * Only the three retired AIMS duplicates that never went into a review packet stay unreviewed.
+ * Retired items retain the review state they had when they left the active bank.
  */
 export { REVIEWER_NAME };
 export const REVIEWED_2026_10_14: ReadonlySet<string> = new Set([

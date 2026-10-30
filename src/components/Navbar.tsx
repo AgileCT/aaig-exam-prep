@@ -24,8 +24,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
-        <div 
-          className="flex items-center gap-3 cursor-pointer select-none"
+        <button
+          type="button"
+          aria-label="AAIG Prep home"
+          className="flex items-center gap-3 cursor-pointer select-none text-left"
           onClick={() => setActiveTab('dashboard')}
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
@@ -44,12 +46,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               Advanced in AI Governance
             </p>
           </div>
-        </div>
+        </button>
 
         {/* Navigation Tabs */}
         <nav className="flex items-center gap-0.5 sm:gap-1.5">
           <button
             aria-label="Dashboard"
+            aria-current={activeTab === 'dashboard' ? 'page' : undefined}
             onClick={() => setActiveTab('dashboard')}
             className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'dashboard'
@@ -63,6 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             aria-label="Practice"
+            aria-current={activeTab === 'quiz' ? 'page' : undefined}
             onClick={() => setActiveTab('quiz')}
             className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'quiz'
@@ -76,6 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             aria-label="Mock Exam"
+            aria-current={activeTab === 'mockExam' ? 'page' : undefined}
             onClick={() => setActiveTab('mockExam')}
             className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'mockExam'
@@ -89,6 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             aria-label="Flashcards"
+            aria-current={activeTab === 'flashcards' ? 'page' : undefined}
             onClick={() => setActiveTab('flashcards')}
             className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'flashcards'
@@ -102,6 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             aria-label="Review"
+            aria-current={activeTab === 'review' ? 'page' : undefined}
             onClick={() => setActiveTab('review')}
             className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'review'
@@ -120,6 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             aria-label="AI Gen"
+            aria-current={activeTab === 'generate' ? 'page' : undefined}
             onClick={() => setActiveTab('generate')}
             className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
               activeTab === 'generate'
@@ -149,6 +157,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            type="button"
+            aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+            aria-pressed={isDarkMode}
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title="Toggle theme"

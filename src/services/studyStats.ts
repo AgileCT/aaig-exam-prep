@@ -55,13 +55,37 @@ export function seenQuestionIds(history: History): Set<string> {
 
 const CARD_PRIORITY: Record<FlashcardMastery, number> = { hard: 0, new: 1, learning: 2, mastered: 3 };
 
+export function flashcardReviewIntervalDays(mastery: FlashcardMastery, wasMastered: boolean, previousIntervalDays = 0): number {
+  if (mastery === 'hard' || mastery === 'new') return 1;
+  if (mastery === 'learning') return 2;
+  return wasMastered ? Math.min((previousIntervalDays || 7) * 2, 60) : 7;
+}
+
 /**
- * Orders flashcards for review: difficult cards first, then cards not yet rated, then
- * cards marked for review, then mastered ones. Ties keep the deck's own order.
+ * Orders due cards first by their next review time, then scheduled future cards;
+ * mastery breaks ties and the original deck order remains stable after that.
  */
-export function orderCardsForReview(cards: readonly Flashcard[], mastery: Readonly<Record<string, FlashcardMastery>>): Flashcard[] {
+export function orderCardsForReview(
+  cards: readonly Flashcard[],
+  mastery: Readonly<Record<string, FlashcardMastery>>,
+  schedule: Readonly<NonNullable<UserProgress['flashcardSchedule']>> = {},
+  now = Date.now(),
+): Flashcard[] {
   return cards
-    .map((card, index) => ({ card, index, priority: CARD_PRIORITY[mastery[card.id] ?? 'new'] ?? CARD_PRIORITY.new }))
-    .sort((a, b) => a.priority - b.priority || a.index - b.index)
+    .map((card, index) => {
+      const dueAt = schedule[card.id]?.nextReviewAt;
+      return {
+        card,
+        index,
+        due: dueAt === undefined || dueAt <= now ? 0 : 1,
+        dueAt: dueAt ?? 0,
+        priority: CARD_PRIORITY[mastery[card.id] ?? 'new'] ?? CARD_PRIORITY.new,
+      };
+    })
+    .sort((a, b) => a.due - b.due || a.dueAt - b.dueAt || a.priority - b.priority || a.index - b.index)
     .map(entry => entry.card);
+}
+
+export function isFlashcardDue(nextReviewAt: number | undefined, now = Date.now()): boolean {
+  return nextReviewAt === undefined || nextReviewAt <= now;
 }

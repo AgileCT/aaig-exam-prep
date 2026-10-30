@@ -57,6 +57,11 @@ export interface Flashcard {
 // 'hard' marks cards the learner found difficult; 'learning' means needs review.
 export type FlashcardMastery = 'new' | 'learning' | 'hard' | 'mastered';
 
+export interface FlashcardReviewSchedule {
+  nextReviewAt: number;
+  intervalDays: number;
+}
+
 export interface QuestionAttempt {
   answeredIndex: number;
   isCorrect: boolean;
@@ -95,6 +100,7 @@ export interface UserProgress {
   bookmarkedIds: string[];
   wrongIds: string[];
   flashcardMastery: Record<string, FlashcardMastery>;
+  flashcardSchedule?: Record<string, FlashcardReviewSchedule>;
   examRecords: ExamRecord[];
   // Canonical option order revision that history answeredIndex values refer to.
   optionOrderRevision?: number;

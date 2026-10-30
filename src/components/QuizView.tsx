@@ -77,10 +77,22 @@ export const QuizView: React.FC<QuizViewProps> = ({
   }
 
   const isBookmarked = progress.bookmarkedIds.includes(currentQ.id);
+  const currentReferences = resolveReferences(currentQ.source, currentQ.sourceUrl);
 
   const handleSelectOption = (idx: number) => {
     if (submittedRef.current) return;
     setSelectedOption(idx);
+  };
+
+  const handleOptionKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const key = event.key;
+    if (!['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End'].includes(key)) return;
+    event.preventDefault();
+    const targetIndex = key === 'Home' ? 0
+      : key === 'End' ? currentQ.options.length - 1
+        : (index + (key === 'ArrowDown' || key === 'ArrowRight' ? 1 : -1) + currentQ.options.length) % currentQ.options.length;
+    document.getElementById(`practice-option-${targetIndex}`)?.focus();
+    handleSelectOption(targetIndex);
   };
 
   const handleConfirmAnswer = () => {
@@ -202,7 +214,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </h2>
 
         {/* Options */}
-        <div className="space-y-3">
+        <div role="radiogroup" aria-label="Answer choices" className="space-y-3">
           {currentQ.options.map((option, idx) => {
             const letter = 'ABCD'[idx];
             const isSelected = selectedOption === idx;
@@ -226,10 +238,13 @@ export const QuizView: React.FC<QuizViewProps> = ({
               <button
                 key={idx}
                 type="button"
+                id={`practice-option-${idx}`}
                 role="radio"
                 aria-checked={isSelected}
+                tabIndex={isSelected || (selectedOption === null && idx === 0) ? 0 : -1}
                 disabled={hasSubmitted}
                 onClick={() => handleSelectOption(idx)}
+                onKeyDown={event => handleOptionKeyDown(event, idx)}
                 className={`w-full text-left p-4 rounded-2xl border text-sm transition-all cursor-pointer flex items-start gap-3.5 select-none ${optionStyle}`}
               >
                 <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 transition-colors ${
@@ -337,7 +352,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
               </div>
             )}
 
-            {/* Source Reference & Direct Authoritative Links */}
+            {/* Reference links help learners verify the relevant material. */}
             <div className="pt-3 border-t border-slate-200 dark:border-slate-700 space-y-2 text-xs text-slate-500 dark:text-slate-400">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span>📖 Reference: {currentQ.source}</span>
@@ -346,15 +361,23 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 </span>
               </div>
 
-              {(() => {
-                const refs = resolveReferences(currentQ.source, currentQ.sourceUrl);
-                if (refs.length === 0) return null;
-                return (
+              <p className="text-[11px]">
+                {currentQ.sourceUrl
+                  ? 'A question-specific source link is provided; check the linked material for the relevant section.'
+                  : currentReferences.length > 0
+                    ? 'No question-specific source link is provided. Suggested references below are based on the source label and may not support this exact item.'
+                    : 'No question-specific source link or matching reference is available for this item.'}
+              </p>
+              {currentQ.reviewedBy && currentQ.reviewedAt && (
+                <p className="text-[11px]">Practitioner reviewed by {currentQ.reviewedBy} on {currentQ.reviewedAt}; this is not ISACA approval or independent expert certification.</p>
+              )}
+
+              {currentReferences.length > 0 && (
                   <div className="flex flex-wrap items-center gap-1.5 pt-1">
                     <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">
-                      Primary Sources:
+                      Reference links · verify the relevant section:
                     </span>
-                    {refs.map((r, i) => (
+                    {currentReferences.map((r, i) => (
                       <a
                         key={i}
                         href={r.url}
@@ -367,8 +390,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
                       </a>
                     ))}
                   </div>
-                );
-              })()}
+              )}
             </div>
           </div>
         )}

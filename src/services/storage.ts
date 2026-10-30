@@ -76,6 +76,7 @@ export function loadUserProgress(): UserProgress {
     bookmarkedIds: [],
     wrongIds: [],
     flashcardMastery: {},
+    flashcardSchedule: {},
     examRecords: [],
     optionOrderRevision: OPTION_ORDER_REVISION,
   };
@@ -251,6 +252,13 @@ export function parseProgressJSON(rawJson: string): ParsedProgress {
     else dropped++;
   }
 
+  const flashcardSchedule: NonNullable<UserProgress['flashcardSchedule']> = {};
+  for (const [id, entry] of Object.entries(isPlainObject(candidate.flashcardSchedule) ? candidate.flashcardSchedule : {})) {
+    if (isPlainObject(entry) && isFiniteNumber(entry.nextReviewAt) && isFiniteNumber(entry.intervalDays) && entry.intervalDays >= 0) {
+      flashcardSchedule[id] = { nextReviewAt: entry.nextReviewAt, intervalDays: entry.intervalDays };
+    } else dropped++;
+  }
+
   const examRecords: UserProgress['examRecords'] = [];
   for (const record of Array.isArray(candidate.examRecords) ? candidate.examRecords : []) {
     if (!isPlainObject(record) || !isFiniteNumber(record.score) || !isFiniteNumber(record.total) || !isFiniteNumber(record.date)) { dropped++; continue; }
@@ -269,6 +277,7 @@ export function parseProgressJSON(rawJson: string): ParsedProgress {
     bookmarkedIds: idList(candidate.bookmarkedIds),
     wrongIds: idList(candidate.wrongIds),
     flashcardMastery,
+    flashcardSchedule,
     examRecords,
     // Backups from before 1.3.0 carry no revision and are migrated below.
     ...(typeof candidate.optionOrderRevision === 'number' ? { optionOrderRevision: candidate.optionOrderRevision } : {}),
@@ -286,7 +295,7 @@ export function importProgressJSON(rawJson: string): UserProgress {
 /** True when the progress holds any study activity that a restore would overwrite. */
 export function hasProgressData(progress: UserProgress): boolean {
   return Object.keys(progress.history).length > 0 || progress.bookmarkedIds.length > 0 || progress.wrongIds.length > 0
-    || Object.keys(progress.flashcardMastery).length > 0 || progress.examRecords.length > 0;
+    || Object.keys(progress.flashcardMastery).length > 0 || Object.keys(progress.flashcardSchedule || {}).length > 0 || progress.examRecords.length > 0;
 }
 
 export function resetUserProgress(): UserProgress {
@@ -295,6 +304,7 @@ export function resetUserProgress(): UserProgress {
     bookmarkedIds: [],
     wrongIds: [],
     flashcardMastery: {},
+    flashcardSchedule: {},
     examRecords: [],
     optionOrderRevision: OPTION_ORDER_REVISION,
   };

@@ -11,6 +11,7 @@ import { RETIRED_QUESTION_IDS } from './retiredQuestions';
 import { CORRECT_POSITION_MOVES } from './correctPositionMoves';
 import { markQuestionUnreviewed, swapQuestionOptions } from '../services/questionOrder';
 import { normalizeQuestionDomain } from '../services/domainTaxonomy';
+import { QUESTION_REPLACEMENTS } from './questionReplacements';
 
 const BASE_QUESTIONS: Question[] = [
   // =========================================================================
@@ -507,7 +508,7 @@ function applyCorrectPositionMove(question: Question): Question {
 export const INITIAL_QUESTIONS: Question[] = [
   ...BASE_QUESTIONS.map(markQuestionUnreviewed).map(normalizeQuestionDomain),
   ...GENERATED_QUESTIONS,
-].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2).map(applyDistractorRewrite).map(applyEvidenceVerification).map(applyReviewRecord);
+].map(applyCorrectPositionMove).concat(SUPPLEMENTAL_QUESTIONS, FUNDAMENTAL_QUESTIONS, EXPANSION_QUESTIONS, EXPANSION_QUESTIONS_2, QUESTION_REPLACEMENTS).map(applyDistractorRewrite).map(applyEvidenceVerification).map(applyReviewRecord);
 
 /** The bank learners practice from: every question except retired near-duplicates. */
 export const ACTIVE_QUESTIONS: Question[] = INITIAL_QUESTIONS.filter(question => !RETIRED_QUESTION_IDS.has(question.id));

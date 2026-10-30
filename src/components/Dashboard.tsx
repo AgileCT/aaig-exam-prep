@@ -18,7 +18,7 @@ import {
   FileJson
 } from 'lucide-react';
 import { exportProgressJSON, parseProgressJSON, hasProgressData, saveUserProgress, resetUserProgress } from '../services/storage';
-import { firstAttemptSummary } from '../services/studyStats';
+import { firstAttemptSummary, isFlashcardDue } from '../services/studyStats';
 
 interface DashboardProps {
   questions: Question[];
@@ -126,6 +126,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const firstTry = firstAttemptSummary(questions, progress.history);
   const accuracy = firstTry.attempted > 0 ? Math.round((firstTry.correct / firstTry.attempted) * 100) : 0;
   const masteredFlashcards = Object.values(progress.flashcardMastery).filter(m => m === 'mastered').length;
+  const dueFlashcards = flashcards.filter(card => isFlashcardDue(progress.flashcardSchedule?.[card.id]?.nextReviewAt)).length;
 
   // Domain statistics
   const domainStats = Object.values(AAIG_DOMAINS).map(dom => {
@@ -164,34 +165,35 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
           <div className="flex flex-wrap gap-3">
             <button
-              onClick={() => onNavigate('mockExam')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-sm shadow-md transition-all active:scale-95"
-            >
-              <Award className="w-4 h-4 text-white" />
-              Timed Mock Exam (150m)
-            </button>
-            <button
               onClick={() => onNavigate('quiz')}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-indigo-900 font-semibold text-sm hover:bg-indigo-50 shadow-md transition-all active:scale-95"
             >
               <BookOpen className="w-4 h-4 text-indigo-600" />
-              Domain Practice
+              {totalAttempted === 0 ? 'Start with Practice' : 'Continue Practice'}
+            </button>
+            <button
+              onClick={() => onNavigate('mockExam')}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-sm shadow-md transition-all active:scale-95"
+            >
+              <Award className="w-4 h-4 text-white" />
+              Timed Mock Exam
             </button>
             <button
               onClick={() => onNavigate('flashcards')}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-700/60 hover:bg-indigo-700 border border-indigo-500/40 text-white font-semibold text-sm transition-all active:scale-95"
             >
               <Layers className="w-4 h-4 text-sky-300" />
-              Review Flashcards
+              Review Cards ({dueFlashcards} due)
             </button>
             <button
               onClick={() => onNavigate('generate')}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-950/60 hover:bg-indigo-950/80 border border-indigo-500/30 text-indigo-200 font-semibold text-sm transition-all active:scale-95"
             >
               <Sparkles className="w-4 h-4 text-amber-300" />
-              AI Generator
+              Optional AI Generator
             </button>
           </div>
+          <p className="mt-3 text-xs text-indigo-100/80">Practice and flashcards work without an API key. AI tools are optional and generated drafts need independent review.</p>
         </div>
 
         {/* Background glow decoration */}

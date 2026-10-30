@@ -81,7 +81,7 @@ export function resolveReferences(sourceText: string, explicitUrl?: string): Res
 
   if (explicitUrl) {
     results.push({
-      label: 'Verified Primary Source',
+      label: 'Supplied Source Link',
       url: explicitUrl,
       category: 'OTHER',
     });

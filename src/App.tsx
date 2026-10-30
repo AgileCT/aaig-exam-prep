@@ -20,6 +20,7 @@ import {
 } from './services/storage';
 import { Question, Flashcard, DomainId, FlashcardMastery, UserProgress, ExamRecord } from './types';
 import { AIConfig } from './services/ai';
+import { flashcardReviewIntervalDays } from './services/studyStats';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'quiz' | 'mockExam' | 'flashcards' | 'review' | 'generate'>('dashboard');
@@ -99,13 +100,19 @@ export const App: React.FC = () => {
   };
 
   const handleUpdateFlashcardMastery = (cardId: string, mastery: FlashcardMastery) => {
-    updateProgress(prev => ({
-      ...prev,
-      flashcardMastery: {
-        ...prev.flashcardMastery,
-        [cardId]: mastery,
-      },
-    }));
+    updateProgress(prev => {
+      const previousSchedule = prev.flashcardSchedule?.[cardId];
+      const wasMastered = prev.flashcardMastery[cardId] === 'mastered';
+      const intervalDays = flashcardReviewIntervalDays(mastery, wasMastered, previousSchedule?.intervalDays);
+      return {
+        ...prev,
+        flashcardMastery: { ...prev.flashcardMastery, [cardId]: mastery },
+        flashcardSchedule: {
+          ...(prev.flashcardSchedule || {}),
+          [cardId]: { intervalDays, nextReviewAt: Date.now() + intervalDays * 24 * 60 * 60 * 1000 },
+        },
+      };
+    });
   };
 
   const handleSaveAIConfig = (config: AIConfig, remember: boolean) => {

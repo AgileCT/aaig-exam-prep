@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Question, TutorMode, TutorMessage } from '../types';
 import { callAITutor } from '../services/tutorPromptPolicy';
 import { AIConfig, defaultAIConfig, PROVIDERS } from '../services/ai';
+import { useAccessibleDialog } from '../hooks/useAccessibleDialog';
 import { 
   X, 
   Send, 
@@ -32,6 +33,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const request = useRef<AbortController | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<TutorMessage[]>([
     {
       id: 'welcome',
@@ -51,6 +53,8 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
       request.current = null;
     };
   }, [isOpen, contextQuestion?.id, config.apiKey, config.provider, config.model, config.baseUrl]);
+
+  useAccessibleDialog(isOpen, onClose, dialogRef);
 
   if (!isOpen) return null;
 
@@ -113,7 +117,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-xs animate-fadeIn">
-      <div className="w-full max-w-2xl h-[85vh] bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col overflow-hidden">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="ai-tutor-dialog-title" tabIndex={-1} className="w-full max-w-2xl h-[85vh] bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col overflow-hidden">
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
@@ -122,7 +126,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                <h3 id="ai-tutor-dialog-title" className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                   AAIG Study Tutor
                 </h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
@@ -247,6 +251,7 @@ export const AITutorModal: React.FC<AITutorModalProps> = ({
         <div className="p-3 sm:p-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 shrink-0 bg-white dark:bg-slate-900">
           <input
             type="text"
+            autoFocus
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleSend()}
